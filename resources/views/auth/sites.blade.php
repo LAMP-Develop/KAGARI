@@ -3,9 +3,9 @@
 <table class="table text-muted">
 <thead>
 <tr>
-<th scope="col">サイト名</th>
+<th scope="col">サイトの名前</th>
 <th scope="col">サイトのジャンル</th>
-<th scope="col">プラン</th>
+<th scope="col">ご契約プラン</th>
 </tr>
 </thead>
 <tbody>
