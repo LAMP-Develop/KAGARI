@@ -1,1 +1,12 @@
-$font-family-sans-serif: 'Noto Sans JP', sans-serif;
+.table {
+  thead {
+    th {
+      border-top: 0;
+    }
+  }
+
+  td,
+  th {
+    vertical-align: middle;
+  }
+}
