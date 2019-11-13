@@ -1,11 +1,9 @@
 // Body
-$body-bg: #f8fafc;
-
+$body-bg: #fff;
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-sans-serif: 'Noto Sans JP', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
-
 // Colors
 $blue: #3490dc;
 $indigo: #6574cd;
@@ -17,3 +15,11 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+// KAGARI Colors
+$ka-primary: #EC5F2F;
+$ka-orange: #FF490D;
+$ka-dark: #030F36;
+$ka-navy: #4E5670;
+$ka-green: #0EC2A1;
+// Override bootstrap colors
+$primary: $ka-primary;

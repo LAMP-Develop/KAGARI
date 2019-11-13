@@ -6,7 +6,7 @@
 </head>
 <body class="drawer drawer--right">
 @yield('header')
-<main>
+<main class="py-5">
 @yield('content')
 </main>
 @yield('footer')
