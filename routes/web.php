@@ -11,14 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@top')->name('top');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
