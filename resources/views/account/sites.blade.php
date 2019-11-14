@@ -1,4 +1,5 @@
 @section('content')
+<section class="wrap">
 <div class="container">
 <table class="table text-muted">
 <thead>
@@ -33,4 +34,5 @@
 </tbody>
 </table>
 </div>
+</section>
 @endsection

@@ -11262,11 +11262,11 @@ body {
   letter-spacing: 1px;
 }
 
-.form-signin-wrap {
-  min-height: calc(100vh - 117px - 6rem);
+.wrap {
+  min-height: calc(100vh - 110px - 6rem);
 }
 
-.form-signin-wrap .form-signin {
+.form-signin {
   width: 100%;
   max-width: 420px;
   margin: auto;

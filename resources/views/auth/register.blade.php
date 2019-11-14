@@ -4,7 +4,7 @@
 @include('layouts.header')
 @include('layouts.footer')
 @section('content')
-<section class="form-signin-wrap">
+<section class="wrap">
 <div class="container">
 <h2 class="text-center text-muted h5 font-weight-bold">{{ __('Register') }}</h2>
 <form class="register-form form-signin mt-5" method="POST" action="{{ route('register') }}">

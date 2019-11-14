@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\AddSites;
+use App\User;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,7 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $login_user_id = Auth::user()->id;
+        $add_sites = AddSites::where('user_id', $login_user_id)->get();
+        return view('dashboard', [
+            'add_sites' => $add_sites
+        ]);
     }
 
     public function top()
