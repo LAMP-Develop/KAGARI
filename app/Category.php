@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     protected $table = 'site_categories';
-    protected $guarded = array('id');
+    protected $guarded = ['id'];
     public $timestamps = true;
 
     protected $fillable = [

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Industry extends Model
 {
     protected $table = 'site_industries';
-    protected $guarded = array('id');
+    protected $guarded = ['id'];
     public $timestamps = true;
 
     protected $fillable = [
