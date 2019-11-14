@@ -10,6 +10,7 @@
 </tr>
 </thead>
 <tbody>
+@if (count($add_sites) != 0)
 <tr>
 <td>
 <div class="d-flex align-items-center">
@@ -31,8 +32,22 @@
 </div>
 </td>
 </tr>
+@else
+<tr>
+<td colspan="3">まだサイトが登録されていません。</td>
+</tr>
+@endif
 </tbody>
 </table>
+@if (count($add_sites) == 0)
+<div class="mt-5 text-center">
+<a href="{{ route('addsite') }}" class="btn btn-primary">サイトを追加する</a>
+</div>
+@else
+<div class="mt-3">
+<a href="{{ route('addsite') }}" class="stretched-link text-primary">サイトを追加する</a>
+</div>
+@endif
 </div>
 </section>
 @endsection

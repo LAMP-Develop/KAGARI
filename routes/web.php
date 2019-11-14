@@ -27,8 +27,14 @@ Route::prefix('auth')->group(function () {
         ->name('oauthCallback');
 });
 
-// ダッシュボード
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+// ダッシュボード内
+Route::group(['prefix' => 'dashboard'], function () {
+    Route::get('/', 'HomeController@index')->name('dashboard');
+    // アカウント関連
+    Route::group(['prefix' => 'account'], function () {
+        Route::get('/addsite', 'AddSitesController@index')->name('addsite');
+    });
+});
 
 // Voyager
 Route::group(['prefix' => 'admin'], function () {

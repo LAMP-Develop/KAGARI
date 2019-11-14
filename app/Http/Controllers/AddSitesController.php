@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\AddSites;
 use App\User;
+use App\Category;
+use App\Industry;
 use Auth;
 
 class AddSitesController extends Controller
@@ -16,9 +17,16 @@ class AddSitesController extends Controller
      */
     public function index()
     {
-        $login_user_id = Auth::user()->id;
-        $add_sites = AddSites::where('user_id', $login_user_id)->all();
-        return $add_sites;
+        $token = Auth::user()->google_token;
+        $refresh_token = Auth::user()->google_refresh_token;
+
+        $categories = Category::all();
+        $industries = Industry::all();
+        return view('account.addsite')->with([
+          'client' => $client,
+          'categories' => $categories,
+          'industries' => $industries
+        ]);
     }
 
     /**
