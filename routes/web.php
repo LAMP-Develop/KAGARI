@@ -17,6 +17,16 @@ Route::get('/', 'HomeController@top')->name('top');
 // ゲストユーザー用
 Auth::routes();
 
+// OAuth認証
+Route::prefix('auth')->group(function () {
+    Route::get('/{provider}', 'Auth\OAuthController@socialOAuth')
+       ->where('provider', 'google')
+       ->name('socialOAuth');
+    Route::get('/{provider}/callback', 'Auth\OAuthController@handleProviderCallback')
+        ->where('provider', 'google')
+        ->name('oauthCallback');
+});
+
 // ダッシュボード
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
