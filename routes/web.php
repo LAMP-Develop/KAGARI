@@ -11,12 +11,16 @@
 |
 */
 
+// トッページ無効化
 Route::get('/', 'HomeController@top')->name('top');
 
+// ゲストユーザー用
 Auth::routes();
 
+// ダッシュボード
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
+// Voyager
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
