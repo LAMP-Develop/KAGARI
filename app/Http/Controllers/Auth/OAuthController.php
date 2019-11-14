@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Socialite;
 use App\User;
@@ -40,8 +41,16 @@ class OAuthController extends Controller
     {
         $socialUser = Socialite::driver($provider)->user();
         if ($provider == 'google') {
+            $login_user_id = Auth::user()->id;
             $token = $socialUser->token;
             $refresh_token = $socialUser->refreshToken;
+            DB::table('users')
+            ->where('id', $login_user_id)
+            ->update([
+              'google_token' => $token,
+              'google_refresh_token' => $refresh_token
+            ]);
+            return redirect('/dashboard');
         }
     }
 }

@@ -12,3 +12,19 @@ body {
     margin: auto;
   }
 }
+
+.register-form {
+  label {
+    &::after {
+      content: '*';
+      color: $primary;
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+.form-control {
+  &::placeholder {
+    color: $gray-200;
+  }
+}

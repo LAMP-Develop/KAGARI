@@ -11272,3 +11272,29 @@ body {
   margin: auto;
 }
 
+.register-form label::after {
+  content: "*";
+  color: #EC5F2F;
+  margin-left: 0.5rem;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: #e9ecef;
+}
+
+.form-control::-moz-placeholder {
+  color: #e9ecef;
+}
+
+.form-control:-ms-input-placeholder {
+  color: #e9ecef;
+}
+
+.form-control::-ms-input-placeholder {
+  color: #e9ecef;
+}
+
+.form-control::placeholder {
+  color: #e9ecef;
+}
+
