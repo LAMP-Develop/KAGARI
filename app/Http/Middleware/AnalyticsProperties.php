@@ -6,7 +6,7 @@ use Closure;
 use Google;
 use Auth;
 
-class Analytics
+class AnalyticsProperties
 {
     /**
      * Handle an incoming request.
@@ -27,7 +27,7 @@ class Analytics
         try {
             $google_analytics->management_webproperties->listManagementWebproperties('~all');
         } catch (\Exception $e) {
-            $refresh = $google_Client->refreshToken($user_refresh_token);
+            $refresh = $google_client->refreshToken($user_refresh_token);
             $user->google_token = $refresh['access_token'];
             $user->google_refresh_token = $refresh['refresh_token'];
             $user->update();

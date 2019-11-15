@@ -37216,6 +37216,8 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+$('[data-spy="scroll"]').scrollspy();
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

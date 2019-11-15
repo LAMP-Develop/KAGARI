@@ -17,7 +17,7 @@ class AddSitesController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('analytics');
+        $this->middleware('analytics.properties');
     }
 
     /**
@@ -27,10 +27,18 @@ class AddSitesController extends Controller
      */
     public function index(Request $request)
     {
+        $properties = [];
+
         $categories = Category::all();
         $industries = Industry::all();
         $ga = $request->ga;
-        $properties = $ga->management_webproperties->listManagementWebproperties('~all')->items;
+        $accounts = $ga->management_accounts->listManagementAccounts()->getItems();
+        foreach ($accounts as $key => $account) {
+            $id = $account->getId();
+            $name = $account->name;
+            $property = $ga->management_webproperties->listManagementWebproperties('~all')->getItems();
+            $properties[$name] = [$property];
+        }
         return view('account.addsite')->with([
           'properties' => $properties,
           'categories' => $categories,
