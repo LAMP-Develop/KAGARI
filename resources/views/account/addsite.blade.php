@@ -8,8 +8,16 @@
 
 @section('content')
 
-@php
-dd($client, $categories, $industries)
-@endphp
+<section class="wrap">
+  <div class="container">
+    <h2 class="text-muted h5 font-weight-bold mb-4">GoogleAnalyticsのビューを選択してください</h2>
+    <p class="m-0">
+      <small>お探しのサイトが無い場合はGoogleAnalyticsにて追加してください。</small>
+      <br><a href="https://kagari.ai/blog/google-analytics/" target="_blank">
+        <small><i class="fas fa-link mr-1"></i>GoogleAnalyticsの設定方法</small>
+      </a>
+    </p>
+  </div>
+</section>
 
 @endsection
