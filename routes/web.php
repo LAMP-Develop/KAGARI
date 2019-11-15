@@ -29,7 +29,10 @@ Route::prefix('auth')->group(function () {
 
 // ダッシュボード内
 Route::group(['prefix' => 'dashboard'], function () {
-    Route::get('/', 'HomeController@index')->name('dashboard');
+    // トップ
+    Route::get('/', 'HomeController@index')
+    ->middleware(analytics::class)
+    ->name('dashboard');
     // アカウント関連
     Route::group(['prefix' => 'account'], function () {
         Route::get('/addsite', 'AddSitesController@index')->name('addsite');
