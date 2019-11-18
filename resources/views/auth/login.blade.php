@@ -6,7 +6,6 @@
 @section('content')
 <section class="wrap">
 <div class="container">
-<h2 class="text-center text-muted h5 font-weight-bold">ログイン</h2>
 <form class="mt-5 form-signin" method="POST" action="{{ route('login') }}">
 @csrf
 <!-- メール -->

@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\AddSites;
 use App\User;
-use App\Category;
-use App\Industry;
 use Auth;
 
-class HomeController extends Controller
+class UserController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -28,20 +26,13 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = Category::all();
-        $industries = Industry::all();
         $user = Auth::user();
         $user_id = $user->id;
-        $add_sites = AddSites::where('user_id', $user_id)->get();
-        return view('dashboard', [
-            'add_sites' => $add_sites,
-            'categories' => $categories,
-            'industries' => $industries,
-        ]);
-    }
+        $add_sites = AddSites::where('user_id', $user_id)->get()->count();
 
-    public function top()
-    {
-        return redirect('/dashboard');
+        return view('auth.account', [
+            'add_sites' => $add_sites,
+            'user' => $user
+        ]);
     }
 }

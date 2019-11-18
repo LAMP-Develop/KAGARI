@@ -11,27 +11,42 @@
 </thead>
 <tbody>
 @if (count($add_sites) != 0)
+@foreach ($add_sites as $key => $site)
 <tr>
 <td>
 <div class="d-flex align-items-center">
 <i class="fas fa-globe-americas h4"></i>
 <div class="ml-3">
-<span class="d-block">せんたくのーと</span>
-<span class="d-block"><small>https://sentakunote.com</small></span>
+<span class="d-block text-dark">{{ $site->site_name }}</span>
+<span class="d-block"><small>{{ $site->url }}</small></span>
 </div>
 </div>
 </td>
-<td>メディアサイト</td>
+<td>{{ $categories[$site->category]->cat }}</td>
 <td>
 <div class="d-flex align-items-center justify-content-between">
-<span>スタンダードプラン</span>
+<span>
+@if ($site->plan == null)
+<form class="" action="{{ route('plan') }}" method="get">
+<button type="submit" class="btn btn-link">プランを登録する</button>
+<input type="hidden" name="site-id" value="{{ $site->id }}">
+<input type="hidden" name="view-id" value="{{ $site->VIEW_ID }}">
+<input type="hidden" name="site-url" value="{{ $site->url }}">
+<input type="hidden" name="site-name" value="{{ $site->site_name }}">
+<input type="hidden" name="industries" value="{{ $site->industry }}">
+<input type="hidden" name="genre" value="{{ $site->category }}">
+</form>
+@else
+@endif
+</span>
 <div class="d-flex align-items-center justify-content-end">
-<a href="#" class="btn btn-outline-primary mr-2">レポートを作成する</a>
-<a href="#" class="btn btn-outline-secondary disabled">SEO分析する</a>
+<a href="#" class="btn btn-sm btn-outline-primary mr-2">レポートを作成する</a>
+<a href="#" class="btn btn-sm btn-outline-secondary disabled">SEO分析する</a>
 </div>
 </div>
 </td>
 </tr>
+@endforeach
 @else
 <tr>
 <td colspan="3">まだサイトが登録されていません。</td>
@@ -45,7 +60,7 @@
 </div>
 @else
 <div class="mt-3">
-<a href="{{ route('addsite') }}" class="stretched-link text-primary">サイトを追加する</a>
+<a href="{{ route('addsite') }}" class="text-primary"><i class="fas fa-plus mr-1"></i>サイトを追加する</a>
 </div>
 @endif
 </div>

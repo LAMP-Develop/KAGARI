@@ -69,17 +69,25 @@ class AddSitesController extends Controller
         $industries = $request['industries'];
         $genre = $request['genre'];
         $url = $request['site-url'];
+        $_token = $request['_token'];
+        $old_token = session('db_token');
 
-        DB::table('add_sites')->insert([
-            'user_id' => $user->id,
-            'site_name' => $request['site-name'],
-            'VIEW_ID' => $request['view-id'],
-            'industry' => $request['industries'],
-            'category' => $request['genre'],
-            'url' => $request['site-url'],
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
-        ]);
-        return view('account.plan');
+        if ($_token != $old_token) {
+            if (!isset($request['site-id'])) {
+                session(['db_token' => $_token]);
+                DB::table('add_sites')->insert([
+                  'user_id' => $user->id,
+                  'site_name' => $request['site-name'],
+                  'VIEW_ID' => $request['view-id'],
+                  'industry' => $request['industries'],
+                  'category' => $request['genre'],
+                  'url' => $request['site-url'],
+                  'created_at' => date('Y-m-d H:i:s'),
+                  'updated_at' => date('Y-m-d H:i:s')
+              ]);
+            }
+        }
+
+        return view('payment.plan');
     }
 }

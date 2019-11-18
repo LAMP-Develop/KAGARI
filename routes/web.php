@@ -30,11 +30,12 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', 'HomeController@index')->name('dashboard');
     // アカウント関連
     Route::group(['prefix' => 'account'], function () {
+      Route::get('/', 'UserController@index')->name('account');
       // サイト追加
       Route::group(['prefix' => 'addsite'], function () {
           Route::get('/', 'AddSitesController@index')->middleware('analytics.properties')->name('addsite');
           // プラン選択
-          Route::post('/plan', 'AddSitesController@plan')->name('plan');
+          Route::get('/plan', 'AddSitesController@plan')->name('plan');
       });
     });
 });

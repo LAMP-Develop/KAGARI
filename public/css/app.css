@@ -11263,7 +11263,19 @@ body {
 }
 
 .wrap {
-  min-height: calc(100vh - 110px - 6rem);
+  min-height: calc(100vh - 113px - 6rem);
+}
+
+.head-ttl {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 1;
 }
 
 .form-signin {
