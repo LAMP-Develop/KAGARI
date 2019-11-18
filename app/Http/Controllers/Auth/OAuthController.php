@@ -44,11 +44,13 @@ class OAuthController extends Controller
             $login_user_id = Auth::user()->id;
             $token = $socialUser->token;
             $refresh_token = $socialUser->refreshToken;
+            $time_created = time();
             DB::table('users')
             ->where('id', $login_user_id)
             ->update([
               'google_token' => $token,
-              'google_refresh_token' => $refresh_token
+              'google_refresh_token' => $refresh_token,
+              'time_created' => $time_created,
             ]);
             return redirect('/dashboard');
         }

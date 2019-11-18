@@ -19,7 +19,7 @@ class CreateAddSitesTable extends Migration
             $table->string('url');
             $table->string('category');
             $table->string('industry');
-            $table->integer('plan');
+            $table->integer('plan')->nullable();
             $table->string('site_name');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

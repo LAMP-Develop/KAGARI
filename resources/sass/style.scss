@@ -28,3 +28,25 @@ body {
     color: $gray-200;
   }
 }
+
+.sites-list {
+  .accounts {
+    &::before {
+      font-family: 'Font Awesome 5 Free';
+      content: '\f07b';
+      margin-right: 1rem;
+      font-weight: 900;
+    }
+
+    &[aria-expanded="true"]::before {
+      font-family: 'Font Awesome 5 Free';
+      content: '\f07c';
+      margin-right: 1rem;
+      font-weight: 900;
+    }
+  }
+
+  .list-group {
+    margin-top: 1px;
+  }
+}

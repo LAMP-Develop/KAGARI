@@ -17,24 +17,29 @@ class AnalyticsProperties
      */
     public function handle($request, Closure $next)
     {
+        $google_client = Google::getClient();
+
         $user = Auth::user();
         $user_access_token = $user->google_token;
         $user_refresh_token = $user->google_refresh_token;
-        $google_client = Google::getClient();
-        $google_client->setAccessToken($user_access_token);
+        $user_time_created = (int)$user->time_created;
+
+        $time = time();
+        $time_diff = $time - $user_time_created;
+
+        if ($time_diff < 3600) {
+          $google_client->setAccessToken($user_access_token);
+        } else {
+          $refresh = $google_client->refreshToken($user_refresh_token);
+          $user->google_token = $refresh['access_token'];
+          $user->google_refresh_token = $refresh['refresh_token'];
+          $user->update();
+          $google_client->setAccessToken($refresh['access_token']);
+        }
+
         $google_analytics = Google::make('Analytics');
         $request->merge(['ga' => $google_analytics]);
-        try {
-            $google_analytics->management_webproperties->listManagementWebproperties('~all');
-        } catch (\Exception $e) {
-            $refresh = $google_client->refreshToken($user_refresh_token);
-            $user->google_token = $refresh['access_token'];
-            $user->google_refresh_token = $refresh['refresh_token'];
-            $user->update();
-            $google_client->setAccessToken($refresh['access_token']);
-            $google_analytics = Google::make('Analytics');
-            $request->merge(['ga' => $google_analytics]);
-        }
+
         return $next($request);
     }
 }

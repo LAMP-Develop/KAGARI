@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->string('google_token')->default('');
             $table->string('google_refresh_token')->default('');
+            $table->string('time_created')->default('');
         });
     }
 
