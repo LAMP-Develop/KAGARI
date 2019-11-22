@@ -30,13 +30,20 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', 'HomeController@index')->name('dashboard');
     // アカウント関連
     Route::group(['prefix' => 'account'], function () {
-      Route::get('/', 'UserController@index')->name('account');
-      // サイト追加
-      Route::group(['prefix' => 'addsite'], function () {
-          Route::get('/', 'AddSitesController@index')->middleware('analytics.properties')->name('addsite');
-          // プラン選択
-          Route::get('/plan', 'AddSitesController@plan')->name('plan');
-      });
+        Route::get('/', 'UserController@index')->name('account');
+        // 退会フォーム
+        Route::view('/delete', 'auth.delete')->name('delete');
+        // サイト追加
+        Route::group(['prefix' => 'addsite'], function () {
+            Route::get('/', 'AddSitesController@index')->middleware('analytics')->name('addsite');
+            // プラン選択
+            Route::group(['prefix' => 'plan'], function () {
+                Route::get('/', 'AddSitesController@plan')->middleware('webmaster')->name('plan');
+                // 支払い
+                Route::post('/payment', 'PaymentController@index')->name('payment');
+                Route::post('/payment/done', 'PaymentController@done')->name('payment-done');
+            });
+        });
     });
 });
 

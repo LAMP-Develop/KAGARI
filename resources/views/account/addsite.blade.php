@@ -7,11 +7,6 @@
 @include('layouts.footer')
 
 @section('content')
-
-<!-- $properties - ga_properties
-$categories - sites_category
-$industries - sites_industry -->
-
 <section class="wrap">
 <div class="container">
 
@@ -81,18 +76,16 @@ data-property="{{ $prop['name'] }}"><i class="fas fa-globe-asia mr-3"></i>{{ $pr
 <input id="site-name" type="text" class="form-control" name="site-name" value="{{ old('site-name') }}" required autofocus>
 </div>
 <div class="form-group mb-4">
-<label for="industries">サイトの業種</label>
+<label for="industries">サイトの業種を選択</label>
 <select id="industries" class="form-control" name="industries" required>
-<option>業種を選択</option>
 @foreach ($industries as $key_i => $industry)
 <option value="{{ ($key_i+1) }}">{{ $industry->name }}</option>
 @endforeach
 </select>
 </div>
 <div class="form-group mb-4">
-<label for="genre">サイトのカテゴリー</label>
+<label for="genre">サイトのカテゴリーを選択</label>
 <select id="genre" class="form-control" name="genre" required>
-<option>カテゴリーを選択</option>
 @foreach ($categories as $key_c => $category)
 <option value="{{ ($key_c+1) }}">{{ $category->cat }}</option>
 @endforeach

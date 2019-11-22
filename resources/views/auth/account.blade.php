@@ -49,7 +49,7 @@
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
 </div>
 <div class="text-right mt-2">
-<a class="text-secondary" href="#">
+<a class="text-secondary" href="{{ route('delete') }}">
 <small><i class="fas fa-door-open mr-1"></i>退会する</small>
 </a>
 </div>

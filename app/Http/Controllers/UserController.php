@@ -35,4 +35,10 @@ class UserController extends Controller
             'user' => $user
         ]);
     }
+
+    // 退会処理
+    public function account_delete()
+    {
+        return 'aaa';
+    }
 }

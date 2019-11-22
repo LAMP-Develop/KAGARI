@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\AddSites;
 use App\Category;
 use App\Industry;
-use DB;
 use Auth;
-use AddSites;
+use DB;
 
 class AddSitesController extends Controller
 {
@@ -19,7 +19,8 @@ class AddSitesController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('analytics.properties');
+        // 常に発火する場合は下記のように
+        // $this->middleware('analytics.properties');
     }
 
     /**
@@ -60,34 +61,41 @@ class AddSitesController extends Controller
         ]);
     }
 
+    // プラン選択
     public function plan(Request $request)
     {
         $user = Auth::user();
-        $user_id = $user->id;
-        $site_name = $request['site-name'];
-        $view_id = (int)$request['view-id'];
-        $industries = $request['industries'];
-        $genre = $request['genre'];
-        $url = $request['site-url'];
-        $_token = $request['_token'];
-        $old_token = session('db_token');
-
-        if ($_token != $old_token) {
+        $site_id = $request['site-id'];
+        $site_url = $request['site-url'];
+        $e_message = '';
+        $sc_site = '';
+        $flag = DB::table('add_sites')->where([
+          ['user_id', $user->id],
+          ['VIEW_ID', $request['view-id']]
+        ])->get();
+        if (!count($flag) > 0) {
             if (!isset($request['site-id'])) {
-                session(['db_token' => $_token]);
-                DB::table('add_sites')->insert([
-                  'user_id' => $user->id,
-                  'site_name' => $request['site-name'],
-                  'VIEW_ID' => $request['view-id'],
-                  'industry' => $request['industries'],
-                  'category' => $request['genre'],
-                  'url' => $request['site-url'],
-                  'created_at' => date('Y-m-d H:i:s'),
-                  'updated_at' => date('Y-m-d H:i:s')
-              ]);
+                $add_sites = new AddSites();
+                $add_sites->user_id = $user->id;
+                $add_sites->site_name = $request['site-name'];
+                $add_sites->VIEW_ID = $request['view-id'];
+                $add_sites->industry = $request['industries'];
+                $add_sites->category = $request['genre'];
+                $add_sites->url = $site_url;
+                $add_sites->created_at = date('Y-m-d H:i:s');
+                $add_sites->updated_at = date('Y-m-d H:i:s');
+                $add_sites->save();
+                $site_id = $add_sites->id;
             }
         }
-
-        return view('payment.plan');
+        try {
+            $sc_site = $request->sc->sites->get($site_url)->siteUrl;
+        } catch (\Exception $e) {
+            $e_message = '選ばれたサイトはSearch Consoleに登録されていません。SEOのプランをご契約される際にはSearch Consoleへサイトをご登録ください。<br><a href="https://kagari.ai/blog/search-console/" target="_blank"><i class="fas fa-link mr-2"></i>Search Consoleの設定方法を見る</a>';
+        }
+        return view('payment.plan')->with([
+          'site_id' => $site_id,
+          'e_message' => $e_message
+        ]);
     }
 }
