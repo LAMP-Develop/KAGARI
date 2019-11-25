@@ -22,7 +22,7 @@
 </div>
 </div>
 </td>
-<td>{{ $categories[$site->category]->cat }}</td>
+<td>{{ $categories[($site->category - 1)]->cat }}</td>
 <td>
 <div class="d-flex align-items-center justify-content-between">
 <span>
@@ -37,11 +37,20 @@
 <input type="hidden" name="genre" value="{{ $site->category }}">
 </form>
 @else
+{{ $plans[($site->plan - 1)]->name }}
 @endif
 </span>
 <div class="d-flex align-items-center justify-content-end">
+@if ($site->plan == null)
+<a href="#" class="btn btn-sm btn-outline-primary mr-2 disabled">レポートを作成する</a>
+@else
 <a href="#" class="btn btn-sm btn-outline-primary mr-2">レポートを作成する</a>
+@endif
+@if ($site->plan % 2 != 0 || $site->plan == null)
 <a href="#" class="btn btn-sm btn-outline-secondary disabled">SEO分析する</a>
+@else
+<a href="#" class="btn btn-sm btn-outline-secondary">SEO分析する</a>
+@endif
 </div>
 </div>
 </td>

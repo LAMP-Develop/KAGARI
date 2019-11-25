@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(SiteTableCategory::class);
         $this->call(SiteTableIndustry::class);
+        $this->call(PlansTableSeeder::class);
     }
 }

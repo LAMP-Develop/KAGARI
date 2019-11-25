@@ -7,6 +7,7 @@ use App\AddSites;
 use App\User;
 use App\Category;
 use App\Industry;
+use App\Plans;
 use Auth;
 
 class HomeController extends Controller
@@ -30,6 +31,7 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $industries = Industry::all();
+        $plans = Plans::all();
         $user = Auth::user();
         $user_id = $user->id;
         $add_sites = AddSites::where('user_id', $user_id)->get();
@@ -37,6 +39,7 @@ class HomeController extends Controller
             'add_sites' => $add_sites,
             'categories' => $categories,
             'industries' => $industries,
+            'plans' => $plans,
         ]);
     }
 

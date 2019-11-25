@@ -41,6 +41,7 @@ Route::group(['prefix' => 'dashboard'], function () {
                 Route::get('/', 'AddSitesController@plan')->middleware('webmaster')->name('plan');
                 // 支払い
                 Route::post('/payment', 'PaymentController@index')->name('payment');
+                // プラン登録・支払い完了
                 Route::post('/payment/done', 'PaymentController@done')->name('payment-done');
             });
         });
