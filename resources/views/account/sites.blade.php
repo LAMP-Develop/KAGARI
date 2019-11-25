@@ -49,7 +49,7 @@
 @if ($site->plan % 2 != 0 || $site->plan == null)
 <a href="#" class="btn btn-sm btn-outline-secondary disabled">SEO分析する</a>
 @else
-<a href="#" class="btn btn-sm btn-outline-secondary">SEO分析する</a>
+<a href="{{ route('seo-report', $site->id) }}" class="btn btn-sm btn-outline-secondary">SEO分析する</a>
 @endif
 </div>
 </div>

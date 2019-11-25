@@ -35,7 +35,7 @@ Route::group(['prefix' => 'dashboard'], function () {
         Route::view('/delete', 'auth.delete')->name('delete');
         // サイト追加
         Route::group(['prefix' => 'addsite'], function () {
-            Route::get('/', 'AddSitesController@index')->middleware('analytics')->name('addsite');
+            Route::get('/', 'AddSitesController@index')->middleware('analytics.properties')->name('addsite');
             // プラン選択
             Route::group(['prefix' => 'plan'], function () {
                 Route::get('/', 'AddSitesController@plan')->middleware('webmaster')->name('plan');
@@ -46,6 +46,13 @@ Route::group(['prefix' => 'dashboard'], function () {
             });
         });
     });
+});
+
+// SEO解析系
+Route::group(['prefix' => 'seo'], function () {
+    Route::get('/{AddSites}', 'SeoController@index', function ($sites) {
+        return $sites;
+    })->name('seo-report');
 });
 
 // Voyager
