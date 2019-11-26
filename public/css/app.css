@@ -11369,14 +11369,28 @@ body {
   background-color: #fff9f0;
 }
 
-#seo-report-detail thead th {
+.table-responsive thead th {
   white-space: nowrap;
   font-weight: normal;
   vertical-align: middle;
-  min-width: 10rem;
-  max-width: 10rem;
   font-size: 0.8rem;
   line-height: normal;
+}
+
+#seo-detail-table thead th {
+  min-width: 8rem;
+  max-width: 8rem;
+}
+
+#seo-detail-table tbody td {
+  text-align: right;
+  min-width: 8rem;
+  max-width: 8rem;
+}
+
+#seo-report-detail thead th {
+  min-width: 10rem;
+  max-width: 10rem;
 }
 
 #seo-report-detail tbody td {
@@ -11409,12 +11423,6 @@ body {
   color: #EC5F2F;
 }
 
-#seo-report-detail .No {
-  min-width: 5rem;
-  max-width: 5rem;
-  text-align: left;
-}
-
 #seo-report-detail .page-name {
   overflow: hidden;
   min-width: 500px;
@@ -11442,6 +11450,17 @@ body {
   overflow-x: scroll;
   overflow-y: auto;
   height: 500px;
+}
+
+.No {
+  min-width: 5rem !important;
+  max-width: 5rem !important;
+  text-align: left !important;
+}
+
+.keyword-seo {
+  min-width: 12rem !important;
+  max-width: 12rem !important;
 }
 
 /* 単位 */
@@ -11478,5 +11497,13 @@ body {
 
 .pagenavi {
   overflow-x: auto;
+}
+
+[data-toggle=modal] {
+  cursor: pointer;
+}
+
+[data-toggle=modal]:hover {
+  color: #EC5F2F;
 }
 

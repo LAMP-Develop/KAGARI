@@ -7,6 +7,17 @@
 @include('layouts.footer')
 
 @section('content')
+
+@php
+if ($plan_id == 1 || $plan_id == 2) {
+  $str = '年';
+} elseif ($plan_id == 3 || $plan_id == 4) {
+  $str = '半年';
+} else {
+  $str = '月';
+}
+@endphp
+
 <section class="wrap">
 <div class="container">
 
@@ -84,7 +95,7 @@
 </tr>
 <tr>
 <th>お支払い金額</th>
-<td>{{ $plan_price }} 円（税込）</td>
+<td>{{ $plan_price }} 円（税込）/ {{ $str }}</td>
 </tr>
 </tbody>
 </table>

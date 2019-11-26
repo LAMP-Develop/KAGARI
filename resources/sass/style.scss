@@ -101,16 +101,40 @@ body {
   }
 }
 
-#seo-report-detail {
+.table-responsive {
   thead {
     th {
       white-space: nowrap;
       font-weight: normal;
       vertical-align: middle;
-      min-width: 10rem;
-      max-width: 10rem;
       font-size: 0.8rem;
       line-height: normal;
+    }
+  }
+}
+
+#seo-detail-table {
+  thead {
+    th {
+      min-width: 8rem;
+      max-width: 8rem;
+    }
+  }
+
+  tbody {
+    td {
+      text-align: right;
+      min-width: 8rem;
+      max-width: 8rem;
+    }
+  }
+}
+
+#seo-report-detail {
+  thead {
+    th {
+      min-width: 10rem;
+      max-width: 10rem;
     }
   }
 
@@ -151,12 +175,6 @@ body {
     }
   }
 
-  .No {
-    min-width: 5rem;
-    max-width: 5rem;
-    text-align: left;
-  }
-
   .page-name {
     overflow: hidden;
     min-width: 500px;
@@ -187,6 +205,17 @@ body {
     overflow-y: auto;
     height: 500px;
   }
+}
+
+.No {
+  min-width: 5rem !important;
+  max-width: 5rem !important;
+  text-align: left !important;
+}
+
+.keyword-seo {
+  min-width: 12rem !important;
+  max-width: 12rem !important;
 }
 /* 単位 */
 .unit {
@@ -223,4 +252,12 @@ body {
 
 .pagenavi {
   overflow-x: auto;
+}
+
+[data-toggle="modal"] {
+  cursor: pointer;
+
+  &:hover {
+    color: $primary;
+  }
 }

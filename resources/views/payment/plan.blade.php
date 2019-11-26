@@ -23,6 +23,14 @@ echo $e_message;
 </button>
 </div>
 @endif
+@if ($message != '')
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+@php
+echo $message;
+@endphp
+<a class="ml-2" href="{{ url('/') }}">トップへ戻る<i class="ml-1 fas fa-chevron-right"></i></a>
+</div>
+@endif
 <ul class="nav nav-pills mt-5 justify-content-center">
 <li class="nav-item">
 <a href="#annual" class="nav-link active" data-toggle="tab">年間契約</a>

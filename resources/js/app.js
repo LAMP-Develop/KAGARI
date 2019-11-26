@@ -3,10 +3,21 @@ import '../../node_modules/@fortawesome/fontawesome-free/js/all.min.js';
 
 require('./bootstrap');
 require('tablesorter');
+require('xlsx');
+require('file-saverjs');
+require('tableexport');
 
 $(function() {
   // テーブルソート
-  var table_sort = $('#seo-report-detail table').tablesorter();
+  let table_sort = $('#seo-report-detail table').tablesorter();
+
+  // テーブルエクスポート
+  let table_export = $('#seo-report-detail .table-responsive .table').tableExport({
+    formats: ['xlsx', 'csv', 'txt'],
+    bootstrap: true,
+    filename: 'kagari_seo_report',
+    exportButtons: false
+  });
 
   // テーブルスクロール
   $('.horizontal-scroll li').on('click', function() {
@@ -28,5 +39,29 @@ $(function() {
       });
       $('.row-head th.site').addClass('active');
     }
+  });
+
+  $(document).ajaxStop(function() {
+    // 時間取得
+    let today = new Date();
+    let year = today.getFullYear();
+    let month = today.getMonth() + 1;
+    let day = today.getDate();
+    let hours = today.getHours();
+    let minutes = today.getMinutes();
+    let seconds = today.getSeconds();
+    let time = year+'_'+month+'_'+day+'_'+hours+'_'+minutes+'_'+seconds;
+
+    // テーブルソート
+    table_sort.trigger('update', true);
+    // テーブルエクスポート
+    table_export.update({
+      formats: ['xlsx', 'csv', 'txt'],
+      bootstrap: true,
+      filename: time,
+      exportButtons: false,
+    });
+
+    console.log('ajax stop');
   });
 });

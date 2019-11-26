@@ -32,6 +32,7 @@ class SeoController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('auth');
         $this->middleware('analytics.reporting');
         $this->middleware('webmaster');
     }
@@ -102,6 +103,8 @@ class SeoController extends Controller
             'today' => $today,
             'all_pages' => $all_pages,
             'this_page' => $this_page,
+            'view_id' => $view_id,
+            'site_id' => $sites,
         ]);
     }
 

@@ -93,9 +93,15 @@ class AddSitesController extends Controller
         } catch (\Exception $e) {
             $e_message = '選ばれたサイトはSearch Consoleに登録されていません。SEOのプランをご契約される際にはSearch Consoleへサイトをご登録ください。<br><a href="https://kagari.ai/blog/search-console/" target="_blank"><i class="fas fa-link mr-2"></i>Search Consoleの設定方法を見る</a>';
         }
+        if (!isset($site_id)) {
+            $message = '選択されたサイトは既に登録済みです。';
+        } else {
+            $message = '';
+        }
         return view('payment.plan')->with([
           'site_id' => $site_id,
-          'e_message' => $e_message
+          'e_message' => $e_message,
+          'message' => $message,
         ]);
     }
 }

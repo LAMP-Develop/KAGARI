@@ -52,7 +52,15 @@ Route::group(['prefix' => 'dashboard'], function () {
 Route::group(['prefix' => 'seo'], function () {
     Route::get('/{AddSites}', 'SeoController@index', function ($sites) {
         return $sites;
-    })->name('seo-report');
+    })->middleware('webmaster');
+});
+
+// Ajax
+Route::post('/seo-detail/{AddSites}', 'AjaxController@get_seo_detail', function ($sites) {
+    return $sites;
+});
+Route::post('/seo-page-kyes/{AddSites}', 'AjaxController@get_seo_kyes', function ($sites) {
+    return $sites;
 });
 
 // Voyager

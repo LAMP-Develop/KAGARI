@@ -1,3 +1,7 @@
+@php
+$url_array = [];
+@endphp
+
 @section('content')
 <section id="seo-report" class="wrap">
 <div class="container">
@@ -23,9 +27,9 @@
 <div class="dropdown">
 <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="export" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">エクスポート</button>
 <div class="dropdown-menu" aria-labelledby="export">
-<button class="dropdown-item text-muted" type="button"><i class="fas fa-file-excel mr-1"></i>Excel</button>
-<button class="dropdown-item text-muted" type="button"><i class="fas fa-file-csv mr-1"></i>CSV</button>
-<button class="dropdown-item text-muted" type="button"><i class="fas fa-file-alt mr-1"></i>TXT</button>
+<button tableexport-id="2280ca-xlsx" class="dropdown-item text-muted" type="button"><i class="fas fa-file-excel mr-1"></i>Excel</button>
+<button tableexport-id="3a8efbb5-csv" class="dropdown-item text-muted" type="button"><i class="fas fa-file-csv mr-1"></i>CSV</button>
+<button tableexport-id="399d2dcb-txt" class="dropdown-item text-muted" type="button"><i class="fas fa-file-alt mr-1"></i>TXT</button>
 </div>
 </div>
 </div>
@@ -60,7 +64,7 @@
 <tr class="column-head">
 <th class="No">No.</th>
 <th class="page-name">ページタイトル</th>
-<th>最も多くヒットした<br>検索キーワード</th>
+<th class="keyword-seo">最も多くヒットした<br>検索キーワード</th>
 <th>検索結果で<br>クリックされた数</th>
 <th>検索結果の<br>表示回数</th>
 <th>検索結果で<br>クリックされた率</th>
@@ -77,7 +81,12 @@
 <tbody>
 @foreach ($ga as $key => $val)
 @php
-$no = ($this_page*100-100)+$key+1;
+$num = $key+1;
+if (preg_match("/\/$/", $url)) {
+    $url = substr($url, 0, -1);
+}
+
+$no = ($this_page*100-100)+$num;
 $page_name = $val[0];
 $page_url = $url.$val[1];
 $ss = number_format($val[2]);
@@ -100,12 +109,15 @@ if (isset($sc[$page_url])) {
     $impressions = '0';
     $position = '-';
 }
+
+array_push($url_array, $page_url);
+
 @endphp
-<tr>
+<tr content-url="{{ $page_url }}" content-name="{{ $page_name }}">
 <td class="No">{{ $no }}</td>
-<td class="page-name">{{ $page_name }}</td>
+<td class="page-name" data-toggle="modal" data-target="#seo-detail">{{ $page_name }}</td>
 <!-- seo -->
-<td></td>
+<td id="kyes-{{ $num }}" class="keyword-seo" data-toggle="modal" data-target="#seo-detail"></td>
 <td class="unit-kai">{{ $click }}</td>
 <td class="unit-kai">{{ $impressions }}</td>
 <td class="unit-par">{{ $ctr }}</td>
@@ -148,4 +160,68 @@ $end = $_GET['end'];
 
 </div>
 </section>
+
+<!-- モーダル -->
+<div id="seo-detail" class="modal" tabindex="-1" role="dialog">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title">
+「<span></span>」
+<a class="h6 d-block" href="#" target="_blank">
+<small>
+<i class="fas fa-link mr-1"></i>
+<span></span>
+</small>
+</a>
+</h5>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="table-responsive">
+<table id="seo-detail-table" class="table table-bordered table-hover table-fixed">
+<thead>
+<tr>
+<th class="No">No</th>
+<th class="keyword-seo">検索キーワード</th>
+<th>検索結果で<br>クリックされた数</th>
+<th>検索結果の<br>表示回数</th>
+<th>検索結果で<br>クリックされた率</th>
+<th>検索結果の<br>平均順位</th>
+</tr>
+</thead>
+<tbody id="seo-detail-tbody">
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+@php
+$urls_json = json_encode($url_array, JSON_UNESCAPED_UNICODE);
+@endphp
+
+<input id="site_overview"
+  type="hidden"
+  site-id="{{ $site_id }}"
+  data-url="{{ $url }}"
+  start="{{ $start }}"
+  end="{{ $end }}"
+  site-id="{{ $site_id }}"
+  view-id="{{ $view_id }}">
+
+<input id="get_seo_kyes"
+  type="hidden"
+  name="get_seo_kyes"
+  action="{{ action('AjaxController@get_seo_kyes', $site_id) }}"
+  value="{{ $urls_json }}">
+
+<input id="get_seo_detail"
+  type="hidden"
+  name="get_seo_detail"
+  action="{{ action('AjaxController@get_seo_detail', $site_id) }}">
 @endsection
