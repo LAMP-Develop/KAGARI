@@ -5,6 +5,16 @@ $url_array = [];
 @section('content')
 <section id="seo-report" class="wrap">
 <div class="container">
+@if ($ga_message != '')
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+@php
+echo $ga_message;
+@endphp
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+@endif
 <header class="seo-nav">
 <!-- エクスポートと期間選択 -->
 <div class="row justify-content-between align-items-end mx-0">
@@ -25,7 +35,7 @@ $url_array = [];
 </form>
 <div class="col-2 p-0 text-right">
 <div class="dropdown">
-<button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="export" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">エクスポート</button>
+<button class="btn btn-primary btn-sm dropdown-toggle load" type="button" id="export" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-spinner mr-1"></i>エクスポート</button>
 <div class="dropdown-menu" aria-labelledby="export">
 <button tableexport-id="2280ca-xlsx" class="dropdown-item text-muted" type="button"><i class="fas fa-file-excel mr-1"></i>Excel</button>
 <button tableexport-id="3a8efbb5-csv" class="dropdown-item text-muted" type="button"><i class="fas fa-file-csv mr-1"></i>CSV</button>
@@ -43,12 +53,12 @@ $url_array = [];
 <li class="site"><i class="fas fa-chart-bar mr-1"></i>サイト</li>
 </ul>
 </div>
-<div class="col p-0 text-right">
+<!-- <div class="col p-0 text-right">
 <div class="custom-control custom-switch">
 <input type="checkbox" class="custom-control-input" id="customSwitch1">
 <label class="custom-control-label" for="customSwitch1">課題ハイライト</label>
 </div>
-</div>
+</div> -->
 </div>
 </header>
 <!-- 解析テーブル -->
@@ -180,6 +190,14 @@ $end = $_GET['end'];
 </button>
 </div>
 <div class="modal-body">
+<div class="dropdown text-right mb-3">
+<button class="btn btn-primary btn-sm dropdown-toggle load" type="button" id="export-kyes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-spinner mr-1"></i>エクスポート</button>
+<div class="dropdown-menu" aria-labelledby="export-kyes">
+<button tableexport-id="42dbd70a-xlsx" class="dropdown-item text-muted" type="button"><i class="fas fa-file-excel mr-1"></i>Excel</button>
+<button tableexport-id="ec3a69f-csv" class="dropdown-item text-muted" type="button"><i class="fas fa-file-csv mr-1"></i>CSV</button>
+<button tableexport-id="fb57489-txt" class="dropdown-item text-muted" type="button"><i class="fas fa-file-alt mr-1"></i>TXT</button>
+</div>
+</div>
 <div class="table-responsive">
 <table id="seo-detail-table" class="table table-bordered table-hover table-fixed">
 <thead>

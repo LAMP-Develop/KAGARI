@@ -14,7 +14,7 @@
 <div class="form-signin">
 <h5 class="font-weight-bold mb-3">
 <span>アカウント概要</span>
-<a href="" class="float-right font-weight-normal h6 text-primary"><i class="fas fa-user-edit mr-1"></i>編集する</a>
+<a href="{{ route('edit') }}" class="float-right font-weight-normal h6 text-primary"><i class="fas fa-user-edit mr-1"></i>編集する</a>
 </h5>
 <table class="table">
 <tbody>

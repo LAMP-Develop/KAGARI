@@ -261,3 +261,17 @@ body {
     color: $primary;
   }
 }
+@keyframes route {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.load {
+  .fa-spinner {
+    animation: route 2s linear infinite;
+  }
+}

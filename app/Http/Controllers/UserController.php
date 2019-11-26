@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\AddSites;
 use App\User;
 use Auth;
@@ -34,6 +35,40 @@ class UserController extends Controller
             'add_sites' => $add_sites,
             'user' => $user
         ]);
+    }
+
+    // アカウント情報表示
+    public function account_form()
+    {
+        $user = Auth::user();
+        return view('account.edit')->with([
+            'user' => $user
+        ]);
+    }
+
+    // アカウント情報変更
+    public function account_edit(Request $request)
+    {
+        $all = $request->only(['email','tell']);
+        $validator = Validator::make($all, [
+            'email' => 'required|unique:users,email,'.$request->user_id.'|max:255|email',
+            'tell' => 'required|numeric|digits_between:8,11',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/dashboard/account/edit')
+                ->withErrors($validator)
+                ->withInput();
+            dd('no');
+        } else {
+            $user = Auth::user();
+            $user->company = $request->company;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->tell = $request->tell;
+            $user->update();
+            dd('ok');
+            return redirect()->action('UserController@account_form');
+        }
     }
 
     // 退会処理

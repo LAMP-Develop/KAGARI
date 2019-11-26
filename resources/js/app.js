@@ -18,6 +18,12 @@ $(function() {
     filename: 'kagari_seo_report',
     exportButtons: false
   });
+  let table_export_seo = $('#seo-detail-table').tableExport({
+    formats: ['xlsx', 'csv', 'txt'],
+    bootstrap: true,
+    filename: 'kagari_seo_report_detail',
+    exportButtons: false
+  });
 
   // テーブルスクロール
   $('.horizontal-scroll li').on('click', function() {
@@ -59,6 +65,12 @@ $(function() {
       formats: ['xlsx', 'csv', 'txt'],
       bootstrap: true,
       filename: time,
+      exportButtons: false,
+    });
+    table_export_seo.update({
+      formats: ['xlsx', 'csv', 'txt'],
+      bootstrap: true,
+      filename: 'seo_'+time,
       exportButtons: false,
     });
 

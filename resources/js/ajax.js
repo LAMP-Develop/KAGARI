@@ -39,6 +39,9 @@ $(function() {
     const content_name = $(this).parent('tr').attr('content-name');
     const action = $('#get_seo_detail').attr('action');
     let number = 0;
+    let body = $('#seo-detail-tbody');
+    body.html('');
+    body.append('<tr><td class="load"><i class="fas fa-spinner mr-1"></i>取得中</td><td></td><td></td><td></td><td></td><td></td></tr>');
     $('#seo-detail .modal-title>span').html(content_name);
     $('#seo-detail .modal-title>a>small>span').html(content_url);
     $('#seo-detail .modal-title>a').attr('href', content_url);
@@ -53,9 +56,8 @@ $(function() {
         end: end
       }
     }).done(function(data) {
-      let body = $('#seo-detail-tbody');
-      body.html('');
       if (data.length != 0) {
+        body.html('');
         $.each(data, function(n, value) {
           let keywords = value['keys'][0];
           let clicks = value['clicks'];

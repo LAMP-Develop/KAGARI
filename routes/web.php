@@ -31,6 +31,9 @@ Route::group(['prefix' => 'dashboard'], function () {
     // アカウント関連
     Route::group(['prefix' => 'account'], function () {
         Route::get('/', 'UserController@index')->name('account');
+        // アカウント情報編集
+        Route::get('/edit', 'UserController@account_form')->name('edit');
+        Route::post('/edit', 'UserController@account_edit')->name('edit-post');
         // 退会フォーム
         Route::view('/delete', 'auth.delete')->name('delete');
         // サイト追加
@@ -52,7 +55,7 @@ Route::group(['prefix' => 'dashboard'], function () {
 Route::group(['prefix' => 'seo'], function () {
     Route::get('/{AddSites}', 'SeoController@index', function ($sites) {
         return $sites;
-    })->middleware('webmaster');
+    })->middleware('webmaster')->name('seo-report');
 });
 
 // Ajax
