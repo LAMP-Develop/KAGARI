@@ -35,6 +35,7 @@ class AjaxController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('webmaster');
+        $this->middleware('analytics.reporting');
     }
 
     // SEOページキーワード
@@ -67,6 +68,69 @@ class AjaxController extends Controller
         $sc = $request->sc;
         $sc_re = $this->get_sc_data($sc, $url, $content_url, $start, $end, $limit = 100);
         return Response::json($sc_re->rows);
+    }
+
+    // GAの全て
+    public function get_ga_all(Request $request)
+    {
+        $start = $request->start;
+        $end = $request->end;
+        $view_id = $request->view_id;
+        $ga = $request->ga_report;
+        $result = $this->get_ga_all_data($ga, $view_id, $start, $end);
+        return Response::json($result);
+    }
+
+    // SCの全て
+    public function get_sc_all(Request $request)
+    {
+        $url = $request->url;
+        $start = $request->start;
+        $end = $request->end;
+        $sc = $request->sc;
+        try {
+            $query = new Google_Service_Webmasters_SearchAnalyticsQueryRequest();
+            $query->setStartDate($start);
+            $query->setEndDate($end);
+            $query->setSearchType('web');
+            $resulets = $sc->searchanalytics->query($url, $query)->rows[0];
+        } catch (\Exception $e) {
+            $resulets = [];
+        }
+        return Response::json($resulets);
+    }
+
+    // GA全てのデータ
+    public function get_ga_all_data($analytics, $view_id, $start, $end)
+    {
+        $dateRange = new Google_Service_AnalyticsReporting_DateRange();
+        $dateRange->setStartDate($start);
+        $dateRange->setEndDate($end);
+        $ss = new Google_Service_AnalyticsReporting_Metric();
+        $ss->setExpression('ga:sessions');
+        $pv = new Google_Service_AnalyticsReporting_Metric();
+        $pv->setExpression('ga:pageviews');
+        $ps = new Google_Service_AnalyticsReporting_Metric();
+        $ps->setExpression('ga:pageviewsPerSession');
+        $up = new Google_Service_AnalyticsReporting_Metric();
+        $up->setExpression('ga:users');
+        $time = new Google_Service_AnalyticsReporting_Metric();
+        $time->setExpression('ga:avgTimeOnPage');
+        $br = new Google_Service_AnalyticsReporting_Metric();
+        $br->setExpression('ga:bounceRate');
+        $cv = new Google_Service_AnalyticsReporting_Metric();
+        $cv->setExpression('ga:goalCompletionsAll');
+        $orderBy = new Google_Service_AnalyticsReporting_OrderBy();
+        $orderBy->setFieldName('ga:sessions');
+        $orderBy->setSortOrder('DESCENDING');
+        $request = new Google_Service_AnalyticsReporting_ReportRequest();
+        $request->setViewId($view_id);
+        $request->setDateRanges($dateRange);
+        $request->setMetrics(array($ss, $pv, $ps, $up, $time, $br, $cv));
+        $body = new Google_Service_AnalyticsReporting_GetReportsRequest();
+        $body->setReportRequests(array($request));
+        $result = $analytics->reports->batchGet($body)->reports[0]->data->totals[0]->values;
+        return $result;
     }
 
     // プライマリーSC

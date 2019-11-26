@@ -6,7 +6,7 @@
 @section('content')
 <section class="wrap">
 <div class="container">
-<h2 class="text-center text-muted h5 font-weight-bold">{{ __('Register') }}</h2>
+<!-- <h2 class="text-center text-muted h5 font-weight-bold">{{ __('Register') }}</h2> -->
 <form class="register-form form-signin mt-5" method="POST" action="{{ route('register') }}">
 @csrf
 <div class="form-group mb-4">

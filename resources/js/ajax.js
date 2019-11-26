@@ -15,6 +15,44 @@ $(function() {
     }
   });
 
+  // GAの全体
+  $.ajax({
+    url: $('#get_ga_all').attr('action'),
+    type: 'post',
+    datatype: 'json',
+    data: {
+      start: start,
+      end: end,
+      view_id: view_id,
+    }
+  }).done(function(data) {
+    $('.all-ss').text(data[0].toLocaleString());
+    $('.all-pv').text(data[1].toLocaleString());
+    $('.all-ps').text(roundFloat(data[2], 2));
+    $('.all-uu').text(data[3].toLocaleString());
+    $('.all-br').text(roundFloat(data[4], 0));
+    $('.all-re').text(roundFloat(data[5], 2));
+    $('.all-cv').text(data[6].toLocaleString());
+  });
+
+  // SCの全体
+  $.ajax({
+    url: $('#get_sc_all').attr('action'),
+    type: 'post',
+    datatype: 'json',
+    data: {
+      start: start,
+      end: end,
+      url: url,
+    }
+  }).done(function(data) {
+    console.log(data);
+    $('.all-clicks').text(data['clicks'].toLocaleString());
+    $('.all-impressions').text(data['impressions'].toLocaleString());
+    $('.all-ctr').text(roundFloat(data['ctr']*100, 1));
+    $('.all-position').text(roundFloat(data['position'], 1));
+  });
+
   // ページごとのキーワード取得
   $.each(content_urls, function(n, value) {
     $.ajax({
@@ -29,8 +67,9 @@ $(function() {
       }
     }).done(function(data) {
       number = n + 1;
-      $('#kyes-'+number).text(data);
+      $('#kyes-' + number).text(data);
     });
+    // return false;
   });
 
   // 個別ページのSEOデータ取得

@@ -102,44 +102,4 @@ data-property="{{ $prop['name'] }}"><i class="fas fa-globe-asia mr-3"></i>{{ $pr
 </div>
 </div>
 </div>
-
-<script>
-$(function() {
-  const $searchElem = $('.accounts');
-  const excludedClass = 'is-excluded';
-  let $searchInput = $('#ga-search');
-  function extraction() {
-    var keywordArr = $searchInput.val().toLowerCase().replace('　', ' ').split(' ');
-    $searchElem.removeClass(excludedClass).show();
-    for (var i = 0; i < keywordArr.length; i++) {
-      for (var j = 0; j < $searchElem.length; j++) {
-        var thisString = $searchElem.eq(j).text().toLowerCase();
-        if (thisString.indexOf(keywordArr[i]) == -1) {
-          $searchElem.eq(j).addClass(excludedClass);
-        }
-      }
-    }
-    $('.' + excludedClass).hide();
-  }
-  $searchInput.on('load keyup blur', function() {
-    extraction();
-  });
-
-  $('.accounts').on('click', function() {
-    $(this).children('.fas');
-  });
-
-  $('[data-toggle="modal"]').on('click', function() {
-    let account_name = $(this).attr('data-name');
-    let property_name = $(this).attr('data-property');
-    let view_id = $(this).attr('data-id');
-    let data_url = $(this).attr('data-url');
-    $('#addsite-form-label').text(account_name);
-    $('#site-name').val(property_name);
-    $('#view-id').val(view_id);
-    $('#site-url').val(data_url);
-  });
-});
-</script>
-
 @endsection

@@ -87,6 +87,20 @@ echo $ga_message;
 <th>直帰率</th>
 <th>目標達成数</th>
 </tr>
+<tr class="text-right all-data">
+<th colspan="3" class="No font-weight-bold">サイト全体の合計・平均値</th>
+<th class="all-clicks font-weight-bold unit-kai"></th>
+<th class="all-impressions font-weight-bold unit-kai"></th>
+<th class="all-ctr font-weight-bold unit-par"></th>
+<th class="all-position unit-rank"></th>
+<th class="all-ss font-weight-bold"></th>
+<th class="all-pv font-weight-bold"></th>
+<th class="all-ps font-weight-bold"></th>
+<th class="all-uu font-weight-bold unit-nin"></th>
+<th class="all-br font-weight-bold unit-seconds"></th>
+<th class="all-re font-weight-bold unit-par"></th>
+<th class="all-cv font-weight-bold unit-kai"></th>
+</tr>
 </thead>
 <tbody>
 @foreach ($ga as $key => $val)
@@ -148,7 +162,7 @@ array_push($url_array, $page_url);
 </section>
 
 <!-- ページネーション -->
-<form class="mt-3 pagenavi" method="get">
+<form class="mt-3 pb-2 pagenavi" method="get">
 @for ($i = 1; $i <= $all_pages; $i++)
 @if ($i == $this_page)
 <button class="active btn btn-primary btn-sm" type="submit" name="page" disabled>{{ $i }}</button>
@@ -237,6 +251,16 @@ $urls_json = json_encode($url_array, JSON_UNESCAPED_UNICODE);
   name="get_seo_kyes"
   action="{{ action('AjaxController@get_seo_kyes', $site_id) }}"
   value="{{ $urls_json }}">
+
+<input id="get_ga_all"
+  type="hidden"
+  name="get_ga_all"
+  action="{{ action('AjaxController@get_ga_all', $site_id) }}">
+
+<input id="get_sc_all"
+  type="hidden"
+  name="get_sc_all"
+  action="{{ action('AjaxController@get_sc_all', $site_id) }}">
 
 <input id="get_seo_detail"
   type="hidden"

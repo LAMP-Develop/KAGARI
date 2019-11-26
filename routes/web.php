@@ -65,6 +65,12 @@ Route::post('/seo-detail/{AddSites}', 'AjaxController@get_seo_detail', function 
 Route::post('/seo-page-kyes/{AddSites}', 'AjaxController@get_seo_kyes', function ($sites) {
     return $sites;
 });
+Route::post('/ga-all/{AddSites}', 'AjaxController@get_ga_all', function ($sites) {
+    return $sites;
+})->middleware('analytics.reporting');
+Route::post('/sc-all/{AddSites}', 'AjaxController@get_sc_all', function ($sites) {
+    return $sites;
+});
 
 // Voyager
 Route::group(['prefix' => 'admin'], function () {
