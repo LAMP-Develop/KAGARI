@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Notifications\SendNotification;
 use App\AddSites;
 use App\User;
 use App\Category;
@@ -35,6 +36,7 @@ class HomeController extends Controller
         $user = Auth::user();
         $user_id = $user->id;
         $add_sites = AddSites::where('user_id', $user_id)->get();
+        $user->notify(new SendNotification());
         return view('dashboard', [
             'add_sites' => $add_sites,
             'categories' => $categories,

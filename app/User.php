@@ -36,4 +36,10 @@ class User extends \TCG\Voyager\Models\User
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function send_notification($user_name)
+    {
+        // ここで先ほど作成したNotificationクラスを呼び出す
+        $this->notify(new \App\Notifications\SendNotification($user_name));
+    }
 }

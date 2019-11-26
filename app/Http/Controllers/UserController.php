@@ -58,7 +58,6 @@ class UserController extends Controller
             return redirect('/dashboard/account/edit')
                 ->withErrors($validator)
                 ->withInput();
-            dd('no');
         } else {
             $user = Auth::user();
             $user->company = $request->company;
@@ -66,7 +65,6 @@ class UserController extends Controller
             $user->email = $request->email;
             $user->tell = $request->tell;
             $user->update();
-            dd('ok');
             return redirect()->action('UserController@account_form');
         }
     }
