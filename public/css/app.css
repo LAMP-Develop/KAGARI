@@ -11555,3 +11555,7 @@ body {
           animation: route 2s linear infinite;
 }
 
+.highlight.on {
+  background-color: #fff9f0;
+}
+

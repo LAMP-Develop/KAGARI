@@ -142,17 +142,17 @@ array_push($url_array, $page_url);
 <td class="page-name" data-toggle="modal" data-target="#seo-detail">{{ $page_name }}</td>
 <!-- seo -->
 <td id="kyes-{{ $num }}" class="keyword-seo" data-toggle="modal" data-target="#seo-detail"></td>
-<td class="unit-kai">{{ $click }}</td>
-<td class="unit-kai">{{ $impressions }}</td>
-<td class="unit-par">{{ $ctr }}</td>
-<td class="unit-rank">{{ $position }}</td>
+<td data-name="click" class="unit-kai <?php if ((int)str_replace(',','',$click) < 5) echo 'highlight'; ?>">{{ $click }}</td>
+<td data-name="impressions" class="unit-kai <?php if ((int)str_replace(',','',$impressions) < 10) echo 'highlight'; ?>">{{ $impressions }}</td>
+<td data-name="ctr" class="unit-par <?php if ((float)$ctr < 1) echo 'highlight'; ?>">{{ $ctr }}</td>
+<td data-name="position" class="unit-rank <?php if ((float)$position > 80) echo 'highlight'; ?>">{{ $position }}</td>
 <!-- ga -->
 <td>{{ $ss }}</td>
 <td>{{ $pv }}</td>
-<td>{{ $ps }}</td>
+<td data-name="ps" class="<?php if ((float)$ps < 1.15) echo 'highlight'; ?>">{{ $ps }}</td>
 <td class="unit-nin">{{ $u }}</td>
-<td class="unit-seconds">{{ $time }}</td>
-<td class="unit-par">{{ $br }}</td>
+<td data-name="time" class="unit-seconds <?php if ((float)$time < 20) echo 'highlight'; ?>">{{ $time }}</td>
+<td data-name="br" class="unit-par <?php if ((float)$br > 95) echo 'highlight'; ?>">{{ $br }}</td>
 <td class="unit-kai">{{ $cv }}</td>
 </tr>
 @endforeach

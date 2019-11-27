@@ -307,3 +307,9 @@ body {
     animation: route 2s linear infinite;
   }
 }
+
+.highlight {
+  &.on {
+    background-color: rgb(255, 249, 240);
+  }
+}
