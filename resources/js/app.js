@@ -12,6 +12,7 @@ $(function() {
   const $searchElem = $('.accounts');
   const excludedClass = 'is-excluded';
   let $searchInput = $('#ga-search');
+
   function extraction() {
     var keywordArr = $searchInput.val().toLowerCase().replace('　', ' ').split(' ');
     $searchElem.removeClass(excludedClass).show();
@@ -57,6 +58,15 @@ $(function() {
     bootstrap: true,
     filename: 'kagari_seo_report_detail',
     exportButtons: false
+  });
+
+  // 課題ハイライト
+  $('#highlight').on('click', function() {
+    if ($(this).prop('checked') == true) {
+      $('.highlight').addClass('bg-primary');
+    } else {
+      $('.highlight').removeClass('bg-primary');
+    }
   });
 
   // テーブルスクロール

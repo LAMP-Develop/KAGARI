@@ -70,7 +70,7 @@ Route::post('/api/ajax', 'VueController@analytics');
 
 // SEO解析系
 Route::group(['prefix' => 'seo'], function () {
-    Route::get('/{AddSites}', 'ReportController@index', function ($sites) {
+    Route::get('/{AddSites}', 'SeoController@index', function ($sites) {
         return $sites;
     })->middleware('webmaster')->name('seo-report');
 });
