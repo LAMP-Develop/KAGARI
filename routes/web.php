@@ -28,6 +28,7 @@ Route::prefix('auth')->group(function () {
 Route::group(['prefix' => 'dashboard'], function () {
     // トップ
     Route::get('/', 'HomeController@index')->name('dashboard');
+
     // アカウント関連
     Route::group(['prefix' => 'account'], function () {
         Route::get('/', 'UserController@index')->name('account');
@@ -36,9 +37,16 @@ Route::group(['prefix' => 'dashboard'], function () {
         Route::post('/edit', 'UserController@account_edit')->name('edit-post');
         // 退会フォーム
         Route::view('/delete', 'auth.delete')->name('delete');
+
+        // サイト編集
+        Route::group(['prefix' => 'sites'], function () {
+            Route::get('/edit', 'AddSitesController@edit')->name('sites-edit');
+        });
+
         // サイト追加
         Route::group(['prefix' => 'addsite'], function () {
             Route::get('/', 'AddSitesController@index')->middleware('analytics.properties')->name('addsite');
+
             // プラン選択
             Route::group(['prefix' => 'plan'], function () {
                 Route::get('/', 'AddSitesController@plan')->middleware('webmaster')->name('plan');
@@ -51,9 +59,18 @@ Route::group(['prefix' => 'dashboard'], function () {
     });
 });
 
+// レポート系
+Route::group(['prefix' => 'report'], function () {
+    // Route::get('/{path}', 'HomeController@index')->where('path', '([ A-z\d-\/_.]+)?');
+    Route::get('/{AddSites}', 'ReportController@index', function ($sites) {
+        return $sites;
+    })->middleware('analytics.reporting')->name('ga-report');
+});
+Route::post('/api/ajax', 'VueController@analytics');
+
 // SEO解析系
 Route::group(['prefix' => 'seo'], function () {
-    Route::get('/{AddSites}', 'SeoController@index', function ($sites) {
+    Route::get('/{AddSites}', 'ReportController@index', function ($sites) {
         return $sites;
     })->middleware('webmaster')->name('seo-report');
 });

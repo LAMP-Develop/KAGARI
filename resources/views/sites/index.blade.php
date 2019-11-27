@@ -6,7 +6,9 @@
 <tr>
 <th scope="col">サイトの名前</th>
 <th scope="col">サイトのジャンル</th>
-<th scope="col">ご契約プラン</th>
+<th scope="col">ご契約プラン
+<!-- <a class="float-right font-weight-normal" href="{{ route('sites-edit') }}"><i class="fas fa-edit mr-1"></i>編集する</a> -->
+</th>
 </tr>
 </thead>
 <tbody>
@@ -44,7 +46,7 @@
 @if ($site->plan == null)
 <a href="#" class="btn btn-sm btn-outline-primary mr-2 disabled">レポートを作成する</a>
 @else
-<a href="#" class="btn btn-sm btn-outline-primary mr-2">レポートを作成する</a>
+<a href="{{ route('ga-report', $site->id) }}" class="btn btn-sm btn-outline-primary mr-2">レポートを作成する</a>
 @endif
 @if ($site->plan % 2 != 0 || $site->plan == null)
 <a href="#" class="btn btn-sm btn-outline-secondary disabled">SEO分析する</a>

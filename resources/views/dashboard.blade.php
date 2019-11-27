@@ -6,4 +6,4 @@
 @include('layouts.header')
 @include('layouts.footer')
 
-@include('account.sites')
+@include('sites.index')

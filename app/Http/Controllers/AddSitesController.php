@@ -7,6 +7,7 @@ use App\User;
 use App\AddSites;
 use App\Category;
 use App\Industry;
+use App\Plans;
 use Auth;
 use DB;
 
@@ -102,6 +103,22 @@ class AddSitesController extends Controller
           'site_id' => $site_id,
           'e_message' => $e_message,
           'message' => $message,
+        ]);
+    }
+
+    public function edit()
+    {
+        $user = Auth::user();
+        $categories = Category::all();
+        $industries = Industry::all();
+        $plans = Plans::all();
+        $user_id = $user->id;
+        $add_sites = AddSites::where('user_id', $user_id)->get();
+        return view('sites.edit')->with([
+          'add_sites' => $add_sites,
+          'categories' => $categories,
+          'industries' => $industries,
+          'plans' => $plans,
         ]);
     }
 }

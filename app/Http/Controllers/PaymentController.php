@@ -53,7 +53,9 @@ class PaymentController extends Controller
     {
         AddSites::where('id', (int)$request['site_id'])->update([
           'plan' => (int)$request['plan_id'],
+          'payment_methods' => (int)$request['payment_methods'],
         ]);
+
         return view('payment.done')->with([
             'site_id' => $request['site_id'],
             'site_name' => $request['site_name'],
