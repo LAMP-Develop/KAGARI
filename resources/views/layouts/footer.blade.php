@@ -11,7 +11,4 @@
 </div>
 </div>
 </footer>
-
-<!-- Scripts -->
-<script src="{{ mix('js/app.js') }}"></script>
 @endsection

@@ -11,14 +11,20 @@ const mix = require('laravel-mix');
  |
  */
 
+// 共通
 mix.js([
   'resources/js/app.js',
-  'resources/js/ajax.js',
-  'resources/js/ajax-stop.js',
 ], 'public/js');
 
+// SEOレポート時
 mix.js([
-  'resources/js/app-vue.js'
+  'resources/js/ajax.js',
+  'resources/js/ajax-stop.js',
+], 'public/js/seo.js');
+
+// GAレポート時
+mix.js([
+  'resources/js/app-report.js',
 ], 'public/js/report.js');
 
 mix.sass('resources/sass/app.scss', 'public/css').sourceMaps();

@@ -10,5 +10,6 @@
 @yield('content')
 </main>
 @yield('footer')
+@stack('scripts-vue')
 </body>
 </html>

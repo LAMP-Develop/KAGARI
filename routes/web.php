@@ -61,12 +61,10 @@ Route::group(['prefix' => 'dashboard'], function () {
 
 // レポート系
 Route::group(['prefix' => 'report'], function () {
-    // Route::get('/{path}', 'HomeController@index')->where('path', '([ A-z\d-\/_.]+)?');
     Route::get('/{AddSites}', 'ReportController@index', function ($sites) {
         return $sites;
     })->middleware('analytics.reporting')->name('ga-report');
 });
-Route::post('/api/ajax', 'VueController@analytics');
 
 // SEO解析系
 Route::group(['prefix' => 'seo'], function () {

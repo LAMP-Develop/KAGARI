@@ -46,10 +46,9 @@ $(function() {
       url: url,
     }
   }).done(function(data) {
-    console.log(data);
     $('.all-clicks').text(data['clicks'].toLocaleString());
     $('.all-impressions').text(data['impressions'].toLocaleString());
-    $('.all-ctr').text(roundFloat(data['ctr']*100, 1));
+    $('.all-ctr').text(roundFloat(data['ctr'] * 100, 1));
     $('.all-position').text(roundFloat(data['position'], 1));
   });
 
@@ -109,7 +108,7 @@ $(function() {
         body.append('<tr><td>データがありませんでした。</td><td></td><td></td><td></td><td></td><td></td></tr>');
       }
     }).fail(function(data) {
-      console.log('SC-DETAIL-Error：' + data);
+      console.error('SC-DETAIL-Error：' + data);
     });
   });
 });

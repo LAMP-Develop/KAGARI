@@ -37,28 +37,27 @@ class ReportController extends Controller
         $this->middleware('analytics.reporting');
     }
 
-    public function index(Request $request, $id)
+    public function index(Request $request, $sites)
     {
-        $addSite = AddSites::find($id)->first();
-        $site_name = $addSite->site_name;
-        $view_id =(string)$addSite->VIEW_ID;
-        $url = $addSite->url;
+        $add_site = AddSites::where('id', $sites)->get()[0];
+        $site_name = $add_site->site_name;
+        $view_id =(string)$add_site->VIEW_ID;
+        $url = $add_site->url;
         $gsa = $request->ga_report;
         $end = date('Y-m-d', strtotime('-1 day', time()));
         $start = date('Y-m-d', strtotime('-30 days', time()));
-        $comEnd = date('Y-m-d', strtotime('-1 day', strtotime($start)));
-        $comStart = date('Y-m-d', strtotime('-29 days', strtotime($comEnd)));
-        $ga_result = $this->get_ga_data($gsa, $view_id, $start, $end, $comStart, $comEnd)[0];
-        $ga_user = $this->get_ga_user($gsa, $view_id, $start, $end, $comStart, $comEnd);
-        $ga_action = $this->get_ga_cv($gsa, $view_id, $start, $end, $comStart, $comEnd);
+        $com_end = date('Y-m-d', strtotime('-1 day', strtotime($start)));
+        $com_start = date('Y-m-d', strtotime('-29 days', strtotime($com_end)));
+        // $ga_result = $this->get_ga_data($gsa, $view_id, $start, $end, $comStart, $comEnd)[0];
+        // $ga_user = $this->get_ga_user($gsa, $view_id, $start, $end, $comStart, $comEnd);
+        // $ga_action = $this->get_ga_cv($gsa, $view_id, $start, $end, $comStart, $comEnd);
         return view('analysis.report.index')->with([
-          'ga_result'=>$ga_result,
-          'addSite'=>$addSite,
-          'start'=>$start,
-          'end'=>$end,
-          'view_id'=>$view_id,
-          'url'=>$url,
-          'site_name'=>$site_name
+          // 'ga_result' => $ga_result,
+          'add_site' => $add_site,
+          'end' => $end,
+          'start' => $start,
+          'com_end' => $com_end,
+          'com_start' => $com_start
         ]);
     }
 
@@ -118,11 +117,11 @@ class ReportController extends Controller
             }
             $i++;
         }
-        foreach ($result as $value) {
+        foreach ($result as $key => $value) {
             $value = $value->values;
             array_push($array, $value);
         }
-        return [$array,$arrayUser];
+        return [$array, $arrayUser];
     }
 
     // ユーザーサマリー
