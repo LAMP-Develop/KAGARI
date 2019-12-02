@@ -3,6 +3,16 @@ body {
   letter-spacing: 1px;
 }
 
+.line-height {
+  &-1 {
+    line-height: 1;
+  }
+
+  &-2 {
+    line-height: 2;
+  }
+}
+
 .wrap {
   min-height: calc(100vh - 113px - 6rem);
 }

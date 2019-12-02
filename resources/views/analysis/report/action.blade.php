@@ -43,7 +43,7 @@ rsort($br);
 <tbody>
 <?php foreach ($ga_result as $key => $val): ?>
 <tr>
-<td><small class="text-dark">{{ $val[0][0][0][0] }}</small></td>
+<td><small class="text-dark font-weight-bold">{{ $val[0][0][0][0] }}</small></td>
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ number_format($val[0][0][1]) }}</span>
 <div class="progress">
@@ -69,13 +69,13 @@ rsort($br);
 </div>
 </td>
 <td class="text-right">
-<span class="text-dark font-weight-bold">{{ round($val[0][0][5], 2) }}</span>
+<span class="text-dark font-weight-bold">{{ round($val[0][0][5], 1) }}秒</span>
 <div class="progress">
 <div class="progress-bar ka-bg-red" style="width:{{ ($val[0][0][5]/$time[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][5]/$time[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
 </td>
 <td class="text-right">
-<span class="text-dark font-weight-bold">{{ round($val[0][0][6], 2) }}</span>
+<span class="text-dark font-weight-bold">{{ round($val[0][0][6], 1) }}%</span>
 <div class="progress">
 <div class="progress-bar ka-bg-purple-2" style="width:{{ ($val[0][0][6]/$br[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][6]/$br[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>

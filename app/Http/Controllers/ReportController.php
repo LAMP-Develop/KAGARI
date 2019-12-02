@@ -313,7 +313,7 @@ class ReportController extends Controller
         $dateRangeTwo->setStartDate($comStart);
         $dateRangeTwo->setEndDate($comEnd);
         $action = new Google_Service_AnalyticsReporting_Dimension();
-        $action->setName('ga:pagePath');
+        $action->setName('ga:pageTitle');
         $up = new Google_Service_AnalyticsReporting_Metric();
         $up->setExpression('ga:users');
         $br = new Google_Service_AnalyticsReporting_Metric();
@@ -401,5 +401,59 @@ class ReportController extends Controller
             array_push($array, $value);
         }
         return [$number,$array];
+    }
+
+    // 広告
+    public function get_ga_ad($analytics, $VIEW_ID, $start, $end, $comStart, $comEnd)
+    {
+        $dateRange = new Google_Service_AnalyticsReporting_DateRange();
+        $dateRange->setStartDate($start);
+        $dateRange->setEndDate($end);
+        $dateRangeTwo = new Google_Service_AnalyticsReporting_DateRange();
+        $dateRangeTwo->setStartDate($comStart);
+        $dateRangeTwo->setEndDate($comEnd);
+        $query = new Google_Service_AnalyticsReporting_Dimension();
+        $query->setName('ga:adMatchedQuery');
+        $ss = new Google_Service_AnalyticsReporting_Metric();
+        $ss->setExpression('ga:sessions');
+        $cv = new Google_Service_AnalyticsReporting_Metric();
+        $cv->setExpression('ga:goalCompletionsAll');
+        $cvr = new Google_Service_AnalyticsReporting_Metric();
+        $cvr->setExpression('ga:goalConversionRateAll');
+        $adCost = new Google_Service_AnalyticsReporting_Metric();
+        $adCost->setExpression('ga:adCost');
+        $adClicks = new Google_Service_AnalyticsReporting_Metric();
+        $adClicks->setExpression('ga:adClicks');
+        // $goalValue = new Google_Service_AnalyticsReporting_Metric();
+        // $goalValue->setExpression('ga:goalValueAll');
+        $orderBy = new Google_Service_AnalyticsReporting_OrderBy();
+        $orderBy->setFieldName('ga:adClicks');
+        $orderBy->setSortOrder('DESCENDING');
+        $request = new Google_Service_AnalyticsReporting_ReportRequest();
+        $request->setViewId($VIEW_ID);
+        $request->setDateRanges(array($dateRange,$dateRangeTwo));
+        $request->setMetrics(array($adCost, $adClicks, $cv));
+        $requestTwo = new Google_Service_AnalyticsReporting_ReportRequest();
+        $requestTwo->setViewId($VIEW_ID);
+        $requestTwo->setDateRanges(array($dateRange, $dateRangeTwo));
+        $requestTwo->setDimensions($query);
+        $requestTwo->setMetrics(array($adClicks,$adCost,$ss,$cv,$cvr));
+        $requestTwo->setOrderBys($orderBy);
+        $requestTwo->setPageSize('10');
+        $body = new Google_Service_AnalyticsReporting_GetReportsRequest();
+        $body->setReportRequests(array($request, $requestTwo));
+        $result = $analytics->reports->batchGet($body);
+        $result = $analytics->reports->batchGet($body)->reports[0]->data->totals;
+        $resultTwo = $analytics->reports->batchGet($body)->reports[1]->data->rows;
+        $array = [];
+        foreach ($result as $value) {
+            $value = $value->values;
+            array_push($array, $value);
+        }
+        foreach ($resultTwo as $key => $report) {
+            $number[$key][0][] = [$report->dimensions,$report->metrics[0]->values[0],$report->metrics[0]->values[1],$report->metrics[0]->values[2],$report->metrics[0]->values[3],$report->metrics[0]->values[4]];
+            $number[$key][1][]= [$report->dimensions,$report->metrics[1]->values[0],$report->metrics[1]->values[1],$report->metrics[1]->values[2],$report->metrics[1]->values[3],$report->metrics[1]->values[4]];
+        }
+        return [$array, $number];
     }
 }

@@ -91,18 +91,18 @@ rsort($arr_time);
 <div class="card">
 <div class="card-body">
 <p class="overflow-hidden opacity-bg-blue opacity-color-blue m-0 p-3 rounded-lg">
-<span class="float-left">セッション数</span>
-<span class="float-right font-weight-bold h5">{{ number_format($ss) }}</span>
+<span class="float-left line-height">セッション数</span>
+<span class="float-right font-weight-bold h5 line-height m-0">{{ number_format($ss) }}</span>
 </p>
 <p class="text-right my-2 text-dark"><i class="fas fa-long-arrow-alt-down mr-2"></i>{{ round(100 - $ex, 2) }}%</p>
 <p class="overflow-hidden opacity-bg-blue opacity-color-blue m-0 p-3 rounded-lg">
-<span class="float-left">サイト内閲覧数</span>
-<span class="float-right font-weight-bold h5">{{ number_format(round($ss * (100 - $ex) / 100, 0)) }}</span>
+<span class="float-left line-height">サイト内閲覧数</span>
+<span class="float-right font-weight-bold h5 line-height m-0">{{ number_format(round($ss * (100 - $ex) / 100, 0)) }}</span>
 </p>
 <p class="text-right my-2 text-dark"><i class="fas fa-long-arrow-alt-down mr-2"></i>{{ round($cv / round($ss * (100 - $ex) / 100, 0) * 100, 2) }}%</p>
 <p class="overflow-hidden opacity-bg-blue opacity-color-blue m-0 p-3 rounded-lg">
-<span class="float-left">コンバージョン数</span>
-<span class="float-right font-weight-bold h5">{{ $cv }}</span>
+<span class="float-left line-height">コンバージョン数</span>
+<span class="float-right font-weight-bold h5 line-height m-0">{{ $cv }}</span>
 </p>
 </div>
 </div>
@@ -128,7 +128,7 @@ rsort($arr_time);
 <tbody>
 <?php foreach ($ga_result[0] as $key => $val): ?>
 <tr>
-<td><small class="text-dark">{{ $val[0][0][0][0] }}</small></td>
+<td><small class="text-dark font-weight-bold">{{ $val[0][0][0][0] }}</small></td>
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ number_format($val[0][0][1]) }}</span>
 <div class="progress">
