@@ -313,3 +313,153 @@ body {
     background-color: rgb(255, 249, 240);
   }
 }
+/* Report */
+.reports {
+  .card {
+    height: 100%;
+  }
+}
+
+.report-nav {
+  border: 0;
+
+  .nav-item {
+    .nav-link {
+      border: 0;
+      font-weight: bold;
+      color: #959ea7;
+
+      &.active {
+        color: $report-blue;
+        border-bottom: solid 3px $report-blue;
+      }
+    }
+  }
+}
+
+.ka-bg {
+  &-purple {
+    background-color: #af52de;
+  }
+
+  &-purple-2 {
+    background-color: #5856d6;
+  }
+
+  &-blue {
+    background-color: #007aff;
+  }
+
+  &-blue-2 {
+    background-color: #5ac8fa;
+  }
+
+  &-green {
+    background-color: #34c759;
+  }
+
+  &-yellow {
+    background-color: #fc0;
+  }
+
+  &-orange {
+    background-color: #ff9500;
+  }
+
+  &-red {
+    background-color: #ff2d55;
+  }
+
+  &-red-2 {
+    background-color: #ff3b30;
+  }
+}
+
+.opacity {
+  &-item {
+    display: inline-block;
+    width: $font-size-base*3;
+    height: $font-size-base*3;
+    border-radius: 50%;
+    font-size: $font-size-base*1.5;
+    line-height: 2em;
+    text-align: center;
+  }
+
+  &-color-purple {
+    color: #af52de;
+  }
+
+  &-color-purple-2 {
+    color: #5856d6;
+  }
+
+  &-color-blue {
+    color: #007aff;
+  }
+
+  &-color-blue-2 {
+    color: #5ac8fa;
+  }
+
+  &-color-green {
+    color: #34c759;
+  }
+
+  &-color-yellow {
+    color: #fc0;
+  }
+
+  &-color-orange {
+    color: #ff9500;
+  }
+
+  &-color-red {
+    color: #ff2d55;
+  }
+
+  &-color-red-2 {
+    color: #ff3b30;
+  }
+
+  &-bg-purple {
+    background-color: rgba(175, 82, 222, .12);
+  }
+
+  &-bg-purple-2 {
+    background-color: rgba(88, 86, 214, .12);
+  }
+
+  &-bg-blue {
+    background-color: rgba(0, 122, 255, .12);
+  }
+
+  &-bg-blue-2 {
+    background-color: rgba(90, 200, 250, .12);
+  }
+
+  &-bg-green {
+    background-color: rgba(52, 199, 89, .12);
+  }
+
+  &-bg-yellow {
+    background-color: rgba(255, 204, 0, .12);
+  }
+
+  &-bg-orange {
+    background-color: rgba(255, 149, 0, .12);
+  }
+
+  &-bg-red {
+    background-color: rgba(255, 45, 85, .12);
+  }
+
+  &-bg-red-2 {
+    background-color: rgba(255, 59, 48, .12);
+  }
+}
+
+.line-chart {
+  width: 100%;
+  height: 200px;
+}

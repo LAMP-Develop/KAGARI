@@ -9,4 +9,18 @@
   th {
     vertical-align: middle;
   }
+
+  &.table-striped {
+    tbody {
+      tr {
+        &:nth-of-type(odd) {
+          background-color: #f8fafc;
+        }
+      }
+    }
+  }
+}
+
+.progress {
+  height: 0.4rem;
 }

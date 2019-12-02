@@ -64,6 +64,21 @@ Route::group(['prefix' => 'report'], function () {
     Route::get('/{AddSites}', 'ReportController@index', function ($sites) {
         return $sites;
     })->middleware('analytics.reporting')->name('ga-report');
+    Route::get('/users/{AddSites}', 'ReportController@index', function ($sites) {
+        return $sites;
+    })->middleware('analytics.reporting')->name('ga-user');
+    Route::get('/inflow/{AddSites}', 'ReportController@index', function ($sites) {
+        return $sites;
+    })->middleware('analytics.reporting')->name('ga-inflow');
+    Route::get('/action/{AddSites}', 'ReportController@index', function ($sites) {
+        return $sites;
+    })->middleware('analytics.reporting')->name('ga-action');
+    Route::get('/conversion/{AddSites}', 'ReportController@index', function ($sites) {
+        return $sites;
+    })->middleware('analytics.reporting')->name('ga-conversion');
+    Route::get('/ad/{AddSites}', 'ReportController@index', function ($sites) {
+        return $sites;
+    })->middleware('analytics.reporting')->name('ga-ad');
 });
 
 // SEO解析系

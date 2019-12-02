@@ -14,11 +14,13 @@ use App\Plans;
 use Auth;
 use Google;
 use DB;
+use Route;
 
 use Google_Service_AnalyticsReporting_DateRange;
 use Google_Service_AnalyticsReporting_Metric;
 use Google_Service_AnalyticsReporting_Dimension;
 use Google_Service_AnalyticsReporting_SegmentDimensionFilter;
+use Google_Service_AnalyticsReporting_DimensionFilter;
 use Google_Service_AnalyticsReporting_DimensionFilterClause;
 use Google_Service_AnalyticsReporting_OrderBy;
 use Google_Service_AnalyticsReporting_ReportRequest;
@@ -39,20 +41,41 @@ class ReportController extends Controller
 
     public function index(Request $request, $sites)
     {
+        // 諸々
+        $route_name = Route::current()->getName();
         $add_site = AddSites::where('id', $sites)->get()[0];
         $site_name = $add_site->site_name;
         $view_id =(string)$add_site->VIEW_ID;
         $url = $add_site->url;
+
+        // AnalyticsReporting API インスタンス
         $gsa = $request->ga_report;
+
+        // 期間指定
         $end = date('Y-m-d', strtotime('-1 day', time()));
         $start = date('Y-m-d', strtotime('-30 days', time()));
         $com_end = date('Y-m-d', strtotime('-1 day', strtotime($start)));
         $com_start = date('Y-m-d', strtotime('-29 days', strtotime($com_end)));
-        // $ga_result = $this->get_ga_data($gsa, $view_id, $start, $end, $comStart, $comEnd)[0];
-        // $ga_user = $this->get_ga_user($gsa, $view_id, $start, $end, $comStart, $comEnd);
-        // $ga_action = $this->get_ga_cv($gsa, $view_id, $start, $end, $comStart, $comEnd);
+
+        // ルートごとの返り値変更
+        if ($route_name == 'ga-report') {
+            $ga_result = $this->get_ga_data($gsa, $view_id, $start, $end, $com_start, $com_end);
+        } elseif ($route_name == 'ga-user') {
+            $ga_result = $this->get_ga_user($gsa, $view_id, $start, $end, $com_start, $com_end);
+        } elseif ($route_name == 'ga-inflow') {
+            $ga_result = $this->get_ga_inflow($gsa, $view_id, $start, $end, $com_start, $com_end);
+        } elseif ($route_name == 'ga-action') {
+            $ga_result = $this->get_ga_action($gsa, $view_id, $start, $end, $com_start, $com_end);
+        } elseif ($route_name == 'ga-conversion') {
+            $ga_result = $this->get_ga_conversion($gsa, $view_id, $start, $end, $com_start, $com_end);
+        } else {
+            $ga_result = $this->get_ga_ad($gsa, $view_id, $start, $end, $com_start, $com_end);
+        }
+
+        // dd($ga_result);
+
         return view('analysis.report.index')->with([
-          // 'ga_result' => $ga_result,
+          'ga_result' => $ga_result,
           'add_site' => $add_site,
           'end' => $end,
           'start' => $start,
@@ -70,22 +93,22 @@ class ReportController extends Controller
         $dateRangeTwo = new Google_Service_AnalyticsReporting_DateRange();
         $dateRangeTwo->setStartDate($comStart);
         $dateRangeTwo->setEndDate($comEnd);
-        $ss = new Google_Service_AnalyticsReporting_Metric();
-        $ss->setExpression('ga:sessions');
-        $ps = new Google_Service_AnalyticsReporting_Metric();
-        $ps->setExpression('ga:pageviewsPerSession');
         $up = new Google_Service_AnalyticsReporting_Metric();
         $up->setExpression('ga:users');
-        $time = new Google_Service_AnalyticsReporting_Metric();
-        $time->setExpression('ga:avgTimeOnPage');
-        $br = new Google_Service_AnalyticsReporting_Metric();
-        $br->setExpression('ga:bounceRate');
-        $aveSs = new Google_Service_AnalyticsReporting_Metric();
-        $aveSs->setExpression('ga:avgSessionDuration');
+        $ss = new Google_Service_AnalyticsReporting_Metric();
+        $ss->setExpression('ga:sessions');
         $pv = new Google_Service_AnalyticsReporting_Metric();
         $pv->setExpression('ga:pageviews');
+        $ps = new Google_Service_AnalyticsReporting_Metric();
+        $ps->setExpression('ga:pageviewsPerSession');
+        $aveSs = new Google_Service_AnalyticsReporting_Metric();
+        $aveSs->setExpression('ga:avgSessionDuration');
+        $time = new Google_Service_AnalyticsReporting_Metric();
+        $time->setExpression('ga:avgTimeOnPage');
         $exit = new Google_Service_AnalyticsReporting_Metric();
         $exit->setExpression('ga:exitRate');
+        $br = new Google_Service_AnalyticsReporting_Metric();
+        $br->setExpression('ga:bounceRate');
         $date = new Google_Service_AnalyticsReporting_Dimension();
         $date->setName('ga:date');
         $orderBy = new Google_Service_AnalyticsReporting_OrderBy();
@@ -105,15 +128,16 @@ class ReportController extends Controller
         $resultUsers = $analytics->reports->batchGet($body)->reports[1]->data->rows;
         $arrayUser = [];
         $array = [];
+        $comp_array = [];
         foreach ($resultUsers as $i => $resultUser) {
             $day = date('Y-m-d', strtotime($resultUser->dimensions[0]));
             if ($i <= 29) {
                 $user = $resultUser->metrics[1]->values[0];
-                $arrayUser['compare'][$day] = $user;
+                $arrayUser['compare'][(string)$day] = (int)$user;
             }
             if ($i >=30) {
                 $user = $resultUser->metrics[0]->values[0];
-                $arrayUser['original'][$day] = $user;
+                $arrayUser['original'][(string)$day] = (int)$user;
             }
             $i++;
         }
@@ -121,7 +145,14 @@ class ReportController extends Controller
             $value = $value->values;
             array_push($array, $value);
         }
-        return [$array, $arrayUser];
+        foreach ($array[0] as $key => $val) {
+            $comp_array[] = round(((float)$val / (float)$array[1][$key] - 1) * 100, 2);
+        }
+        return [
+          'transition' => $arrayUser,
+          'sumally' => $array,
+          'comp' => $comp_array
+        ];
     }
 
     // ユーザーサマリー
@@ -146,10 +177,10 @@ class ReportController extends Controller
         $userType = new Google_Service_AnalyticsReporting_Dimension();
         $userType->setName('ga:userType');
         $ss = new Google_Service_AnalyticsReporting_Metric();
-        $ss->setExpression('ga:sessions');
-        $ss->setAlias('ss');
+        $ss->setExpression('ga:users');
+        $ss->setAlias('uu');
         $orderBy = new Google_Service_AnalyticsReporting_OrderBy();
-        $orderBy->setFieldName('ga:sessions');
+        $orderBy->setFieldName('ga:users');
         $orderBy->setSortOrder('DESCENDING');
         $requestCity = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestCity->setViewId($VIEW_ID);
@@ -209,11 +240,115 @@ class ReportController extends Controller
                 $numberUser[$i][] = [$val->dimensions[0], $val->metrics[0]->values[0], $val->metrics[1]->values[0]];
             }
         }
-        return [$number,$numberUser];
+        return [$number, $numberUser];
+    }
+
+    public function get_ga_inflow($analytics, $VIEW_ID, $start, $end, $comStart, $comEnd)
+    {
+        $dateRange = new Google_Service_AnalyticsReporting_DateRange();
+        $dateRange->setStartDate($start);
+        $dateRange->setEndDate($end);
+        $dateRangeTwo = new Google_Service_AnalyticsReporting_DateRange();
+        $dateRangeTwo->setStartDate($comStart);
+        $dateRangeTwo->setEndDate($comEnd);
+        $medium = new Google_Service_AnalyticsReporting_Dimension();
+        $medium->setName('ga:channelGrouping');
+        $social = new Google_Service_AnalyticsReporting_Dimension();
+        $social->setName('ga:socialNetwork');
+        $referral = new Google_Service_AnalyticsReporting_Dimension();
+        $referral->setName('ga:fullReferrer');
+        $ss = new Google_Service_AnalyticsReporting_Metric();
+        $ss->setExpression('ga:sessions');
+        $ss->setAlias('ss');
+        $orderBy = new Google_Service_AnalyticsReporting_OrderBy();
+        $orderBy->setFieldName('ga:sessions');
+        $orderBy->setSortOrder('DESCENDING');
+        $requestMedium = new Google_Service_AnalyticsReporting_ReportRequest();
+        $requestMedium->setViewId($VIEW_ID);
+        $requestMedium->setDateRanges(array($dateRange,$dateRangeTwo));
+        $requestMedium->setMetrics($ss);
+        $requestMedium->setDimensions($medium);
+        $requestMedium->setOrderBys($orderBy);
+        $requestSocial = new Google_Service_AnalyticsReporting_ReportRequest();
+        $requestSocial->setViewId($VIEW_ID);
+        $requestSocial->setDateRanges(array($dateRange,$dateRangeTwo));
+        $requestSocial->setMetrics($ss);
+        $requestSocial->setDimensions($social);
+        $requestSocial->setOrderBys($orderBy);
+
+        $filter = new Google_Service_AnalyticsReporting_DimensionFilter();
+        $filter->setDimensionName('ga:sourceMedium');
+        $filter->setExpressions(['referral']);
+        $filters = new Google_Service_AnalyticsReporting_DimensionFilterClause();
+        $filters->setFilters($filter);
+        $requestReferral = new Google_Service_AnalyticsReporting_ReportRequest();
+        $requestReferral->setViewId($VIEW_ID);
+        $requestReferral->setDateRanges(array($dateRange,$dateRangeTwo));
+        $requestReferral->setMetrics($ss);
+        $requestReferral->setDimensions($referral);
+        $requestReferral->setDimensionFilterClauses($filters);
+        $requestReferral->setOrderBys($orderBy);
+        $requestReferral->setPageSize('5');
+        $body = new Google_Service_AnalyticsReporting_GetReportsRequest();
+        $body->setReportRequests(array($requestMedium,$requestSocial,$requestReferral));
+        $reports = $analytics->reports->batchGet($body)->reports;
+        $number = [];
+        $result = [];
+        foreach ($reports as $i => $value) {
+            $rows = $value->data->rows;
+            foreach ($rows as $key => $val) {
+                $number[$i][] = [$val->dimensions[0], $val->metrics[0]->values[0],$val->metrics[1]->values[0]];
+            }
+        }
+        return $number;
+    }
+
+    // 行動分析
+    public function get_ga_action($analytics, $VIEW_ID, $start, $end, $comStart, $comEnd)
+    {
+        $dateRange = new Google_Service_AnalyticsReporting_DateRange();
+        $dateRange->setStartDate($start);
+        $dateRange->setEndDate($end);
+        $dateRangeTwo = new Google_Service_AnalyticsReporting_DateRange();
+        $dateRangeTwo->setStartDate($comStart);
+        $dateRangeTwo->setEndDate($comEnd);
+        $action = new Google_Service_AnalyticsReporting_Dimension();
+        $action->setName('ga:pagePath');
+        $up = new Google_Service_AnalyticsReporting_Metric();
+        $up->setExpression('ga:users');
+        $br = new Google_Service_AnalyticsReporting_Metric();
+        $br->setExpression('ga:bounceRate');
+        $ps = new Google_Service_AnalyticsReporting_Metric();
+        $ps->setExpression('ga:pageviewsPerSession');
+        $time = new Google_Service_AnalyticsReporting_Metric();
+        $time->setExpression('ga:avgTimeOnPage');
+        $ss = new Google_Service_AnalyticsReporting_Metric();
+        $ss->setExpression('ga:sessions');
+        $pv = new Google_Service_AnalyticsReporting_Metric();
+        $pv->setExpression('ga:pageviews');
+        $orderBy = new Google_Service_AnalyticsReporting_OrderBy();
+        $orderBy->setFieldName('ga:sessions');
+        $orderBy->setSortOrder('DESCENDING');
+        $request = new Google_Service_AnalyticsReporting_ReportRequest();
+        $request->setViewId($VIEW_ID);
+        $request->setDateRanges(array($dateRange, $dateRangeTwo));
+        $request->setDimensions($action);
+        $request->setMetrics(array($ss,$pv,$ps,$up,$time,$br));
+        $request->setOrderBys($orderBy);
+        $request->setPageSize('10');
+        $body = new Google_Service_AnalyticsReporting_GetReportsRequest();
+        $body->setReportRequests(array($request));
+        $reports = $analytics->reports->batchGet($body);
+        $reports = $reports[0]->data->rows;
+        foreach ($reports as $key => $report) {
+            $number[$key][0][] = [$report->dimensions,$report->metrics[0]->values[0],$report->metrics[0]->values[1],$report->metrics[0]->values[2],$report->metrics[0]->values[3],$report->metrics[0]->values[4],$report->metrics[0]->values[5]];
+            $number[$key][1][]= [$report->dimensions,$report->metrics[1]->values[0],$report->metrics[1]->values[1],$report->metrics[1]->values[2],$report->metrics[1]->values[3],$report->metrics[1]->values[4],$report->metrics[1]->values[5]];
+        }
+        return $number;
     }
 
     // CV解析
-    public function get_ga_cv($analytics, $VIEW_ID, $start, $end, $comStart, $comEnd)
+    public function get_ga_conversion($analytics, $VIEW_ID, $start, $end, $comStart, $comEnd)
     {
         $dateRange = new Google_Service_AnalyticsReporting_DateRange();
         $dateRange->setStartDate($start);

@@ -1,5 +1,5 @@
 @section('header')
-<nav class="position-relative navbar navbar-expand-md navbar-light bg-white shadow-sm px-5">
+<nav class="position-relative navbar navbar-expand-md navbar-light bg-white border-bottom px-5">
 <a class="navbar-brand" href="{{ url('/dashboard') }}">
 <img src="/storage/{{ setting('site.logo') }}" alt="{{ setting('site.title') }}" width="108">
 </a>
