@@ -56,6 +56,8 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
+    'google_redirect' => env('GOOGLE_REDIRECT', null),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
