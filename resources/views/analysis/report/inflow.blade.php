@@ -10,7 +10,7 @@ $link = $ga_result[2];
 @section('content')
 <section class="reports">
 <div class="container">
-<div class="row mx-0 mb-4">
+<div class="row mx-0 mb-3">
 
 <div class="col-4">
 <div class="card">
@@ -18,16 +18,31 @@ $link = $ga_result[2];
 <span class="opacity-item opacity-bg-blue">
 <i class="fas fa-project-diagram opacity-color-blue"></i>
 </span>
-<h4 class="h6 text-dark mt-2">流入チャネル</h4>
+<h4 class="h6 text-dark mt-3">流入チャネル</h4>
 @foreach ($channel as $key => $value)
 <p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
-<div class="progress mb-3">
+<div class="progress">
 @if ($key == 0)
 <div class="progress-bar ka-bg-blue" style="width:100%" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 @else
 <div class="progress-bar ka-bg-blue" style="width:{{ ($value[1]/$channel[0][1]*100) }}%" role="progressbar" aria-valuenow="{{ ($value[1]/$channel[0][1]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 @endif
 </div>
+<p class="mb-3 text-right">
+@php
+if ($channel[$key][2] != 0) {
+$comp = round(($value[1] / (int)$channel[$key][2] - 1) * 100, 2);
+} else {
+$comp = 0;
+}
+@endphp
+@if($comp >= 0)
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+@else
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+@endif
+{{ $comp }}%</span>
+</p>
 @endforeach
 </div>
 </div>
@@ -39,16 +54,31 @@ $link = $ga_result[2];
 <span class="opacity-item opacity-bg-purple-2">
 <i class="fas fa-retweet opacity-color-purple-2"></i>
 </span>
-<h4 class="h6 text-dark mt-2">SNSからの流入</h4>
+<h4 class="h6 text-dark mt-3">SNSからの流入</h4>
 @foreach ($sns as $key => $value)
 <p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
-<div class="progress mb-3">
+<div class="progress">
 @if ($key == 0)
 <div class="progress-bar ka-bg-purple-2" style="width:100%" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 @else
 <div class="progress-bar ka-bg-purple-2" style="width:{{ ($value[1]/$sns[0][1]*100) }}%" role="progressbar" aria-valuenow="{{ ($value[1]/$sns[0][1]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 @endif
 </div>
+<p class="mb-3 text-right">
+@php
+if ($sns[$key][2] != 0) {
+$comp = round(($value[1] / (int)$sns[$key][2] - 1) * 100, 2);
+} else {
+$comp = 0;
+}
+@endphp
+@if($comp >= 0)
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+@else
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+@endif
+{{ $comp }}%</span>
+</p>
 @endforeach
 </div>
 </div>
@@ -60,16 +90,31 @@ $link = $ga_result[2];
 <span class="opacity-item opacity-bg-purple">
 <i class="fas fa-link opacity-color-purple"></i>
 </span>
-<h4 class="h6 text-dark mt-2">他サイトからのリンク</h4>
+<h4 class="h6 text-dark mt-3">他サイトからのリンク</h4>
 @foreach ($link as $key => $value)
 <p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
-<div class="progress mb-3">
+<div class="progress">
 @if ($key == 0)
 <div class="progress-bar ka-bg-purple" style="width:100%" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 @else
 <div class="progress-bar ka-bg-purple" style="width:{{ ($value[1]/$link[0][1]*100) }}%" role="progressbar" aria-valuenow="{{ ($value[1]/$link[0][1]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 @endif
 </div>
+<p class="mb-3 text-right">
+@php
+if ($link[$key][2] != 0) {
+$comp = round(($value[1] / (int)$link[$key][2] - 1) * 100, 2);
+} else {
+$comp = 0;
+}
+@endphp
+@if($comp >= 0)
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+@else
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+@endif
+{{ $comp }}%</span>
+</p>
 @endforeach
 </div>
 </div>
@@ -87,7 +132,7 @@ $link = $ga_result[2];
 </span>
 </div>
 <div class="col-11">
-<h3 class="font-weight-bold h5 mt-2">見出し</h3>
+<h3 class="font-weight-bold h5 mt-2">流入元分析の総評</h3>
 <textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4">サンプルテキスト</textarea>
 </div>
 </div>

@@ -52,10 +52,17 @@ class ReportController extends Controller
         $gsa = $request->ga_report;
 
         // 期間指定
-        $end = date('Y-m-d', strtotime('-1 day', time()));
-        $start = date('Y-m-d', strtotime('-30 days', time()));
-        $com_end = date('Y-m-d', strtotime('-1 day', strtotime($start)));
-        $com_start = date('Y-m-d', strtotime('-29 days', strtotime($com_end)));
+        if (isset($request->start)) {
+            $end = $request->end;
+            $start = $request->start;
+            $com_end = $request->com_end;
+            $com_start = $request->com_start;
+        } else {
+            $end = date('Y-m-d', strtotime('-1 day', time()));
+            $start = date('Y-m-d', strtotime('-30 days', time()));
+            $com_end = date('Y-m-d', strtotime('-1 day', strtotime($start)));
+            $com_start = date('Y-m-d', strtotime('-29 days', strtotime($com_end)));
+        }
 
         // ルートごとの返り値変更
         if ($route_name == 'ga-report') {

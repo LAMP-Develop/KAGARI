@@ -45,7 +45,7 @@ if ($bool) {
 <section class="reports">
 <div class="container">
 @if($bool)
-<div class="row mx-0 mb-4">
+<div class="row mx-0 mb-3">
 <div class="col">
 <div class="card">
 <div class="card-body">
@@ -54,7 +54,7 @@ if ($bool) {
 <span class="opacity-item opacity-bg-blue">
 <i class="fas fa-yen-sign opacity-color-blue"></i>
 </span>
-<h4 class="h6 text-dark mt-4">広告費用</h4>
+<h4 class="h6 text-dark mt-3">広告費用</h4>
 <p class="h4 font-weight-bold text-dark"><i class="fas fa-yen-sign mr-1"></i>{{ number_format(round($cost, 0)) }}</p>
 <p class="m-0"><small class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ number_format(round($old_cost, 0)) }}</small></p>
 </div>
@@ -62,29 +62,29 @@ if ($bool) {
 <p class="m-0"><i class="fas fa-equals opacity-color-blue"></i></p>
 </div>
 <div class="col-5">
-<p class="overflow-hidden opacity-bg-blue m-0 p-3 rounded-lg text-center text-dark">
+<p class="overflow-hidden opacity-bg-blue m-0 px-3 py-2 rounded-lg text-center text-dark">
 <span>クリック単価</span>
-<span class="d-block h4 font-weight-bold text-dark"><i class="fas fa-yen-sign mr-1"></i>{{ $price }}</span>
+<span class="d-block h5 mb-1 font-weight-bold text-dark"><i class="fas fa-yen-sign mr-1"></i>{{ $price }}</span>
 <span class="d-block">
 @if($comp_price <= 0)
-<small class="opacity-color-green"><i class="fas fa-caret-down mr-1"></i>
+<span class="opacity-color-green"><i class="fas fa-caret-down mr-1"></i>
 @else
-<small class="opacity-color-red"><i class="fas fa-caret-up mr-1"></i>
+<span class="opacity-color-red"><i class="fas fa-caret-up mr-1"></i>
 @endif
-{{ $comp_price }}%</small>
+{{ $comp_price }}%</span>
 </span>
 </p>
-<p class="my-2 opacity-color-blue text-center"><i class="fas fa-times"></i></p>
-<p class="overflow-hidden opacity-bg-blue m-0 p-3 rounded-lg text-center text-dark">
+<p class="my-1 opacity-color-blue text-center"><i class="fas fa-times"></i></p>
+<p class="overflow-hidden opacity-bg-blue m-0 px-3 py-2 rounded-lg text-center text-dark">
 <span>クリック数</span>
-<span class="d-block h4 font-weight-bold text-dark">{{ number_format($click) }}</span>
+<span class="d-block h5 mb-1 font-weight-bold text-dark">{{ number_format($click) }}</span>
 <span class="d-block">
 @if($comp_click >= 0)
-<small class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
 @else
-<small class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
 @endif
-{{ $comp_click }}%</small>
+{{ $comp_click }}%</span>
 </span>
 </p>
 </div>
@@ -103,7 +103,7 @@ if ($bool) {
 <span class="opacity-item opacity-bg-purple">
 <i class="fas fa-yen-sign opacity-color-purple"></i>
 </span>
-<h4 class="h6 text-dark mt-4">コンバージョン単価</h4>
+<h4 class="h6 text-dark mt-3">コンバージョン単価</h4>
 <p class="h4 font-weight-bold text-dark"><i class="fas fa-yen-sign mr-1"></i>{{ number_format(round($cost/$cv, 0)) }}</p>
 <p class="m-0"><small class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ number_format(round($old_cost/$old_cv, 0)) }}</small></p>
 </div>
@@ -111,29 +111,29 @@ if ($bool) {
 <p class="m-0"><i class="fas fa-equals opacity-color-purple"></i></p>
 </div>
 <div class="col-5">
-<p class="overflow-hidden opacity-bg-purple m-0 p-3 rounded-lg text-center text-dark">
+<p class="overflow-hidden opacity-bg-purple m-0 px-3 py-2 rounded-lg text-center text-dark">
 <span>コンバージョン数</span>
-<span class="d-block h4 font-weight-bold text-dark">{{ $cv }}</span>
+<span class="d-block h5 mb-1 font-weight-bold text-dark">{{ $cv }}</span>
 <span class="d-block">
 @if($comp_cv >= 0)
-<small class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
 @else
-<small class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
 @endif
-{{ $comp_cv }}%</small>
+{{ $comp_cv }}%</span>
 </span>
 </p>
-<p class="my-2 opacity-color-purple text-center"><i class="fas fa-times"></i></p>
-<p class="overflow-hidden opacity-bg-purple m-0 p-3 rounded-lg text-center text-dark">
+<p class="my-1 opacity-color-purple text-center"><i class="fas fa-times"></i></p>
+<p class="overflow-hidden opacity-bg-purple m-0 px-3 py-2 rounded-lg text-center text-dark">
 <span>広告費用</span>
-<span class="d-block h4 font-weight-bold text-dark"><i class="fas fa-yen-sign mr-1"></i>{{ number_format($cost) }}</span>
+<span class="d-block h5 mb-1 font-weight-bold text-dark"><i class="fas fa-yen-sign mr-1"></i>{{ number_format($cost) }}</span>
 <span class="d-block">
 @if($comp_cost <= 0)
-<small class="opacity-color-green"><i class="fas fa-caret-down mr-1"></i>
+<span class="opacity-color-green"><i class="fas fa-caret-down mr-1"></i>
 @else
-<small class="opacity-color-red"><i class="fas fa-caret-up mr-1"></i>
+<span class="opacity-color-red"><i class="fas fa-caret-up mr-1"></i>
 @endif
-{{ $comp_cost }}%</small>
+{{ $comp_cost }}%</span>
 </span>
 </p>
 </div>
@@ -146,7 +146,7 @@ if ($bool) {
 
 </div>
 
-<div class="col-12 mb-4">
+<div class="col-12 mb-3">
 <div class="card">
 <div class="card-body">
 <div class="table-responsive">
@@ -164,36 +164,111 @@ if ($bool) {
 <tbody>
 <?php foreach ($ga_result[1] as $key => $val): ?>
 <tr>
-<td><small class="text-dark font-weight-bold">{{ $val[0][0][0][0] }}</small></td>
+<td><span class="text-dark">{{ $val[0][0][0][0] }}</span></td>
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ number_format($val[0][0][1]) }}</span>
 <div class="progress">
 <div class="progress-bar ka-bg-blue" style="width:{{ ($val[0][0][1]/$arr_click[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][1]/$arr_click[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
+<p class="text-right">
+@php
+if ($val[1][0][1] != 0) {
+$comp = round(($val[0][0][1] / $val[1][0][1] - 1) * 100, 2);
+} else {
+$comp = 0;
+}
+@endphp
+@if($comp >= 0)
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+@else
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+@endif
+{{ $comp }}%</span>
+</p>
 </td>
 <td class="text-right">
 <span class="text-dark font-weight-bold"><i class="fas fa-yen-sign mr-1"></i>{{ number_format(round($val[0][0][2], 2)) }}</span>
 <div class="progress">
 <div class="progress-bar ka-bg-purple-2" style="width:{{ ($val[0][0][2]/$arr_cost[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][2]/$arr_cost[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
+<p class="text-right">
+@php
+if ($val[1][0][2] != 0) {
+$comp = round(($val[0][0][2] / $val[1][0][2] - 1) * 100, 2);
+} else {
+$comp = 0;
+}
+@endphp
+@if($comp <= 0)
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+@else
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+@endif
+{{ $comp }}%</span>
+</p>
 </td>
 <td class="text-right">
 <span class="text-dark font-weight-bold"><i class="fas fa-yen-sign mr-1"></i>{{ number_format($val[0][0][3]) }}</span>
 <div class="progress">
 <div class="progress-bar ka-bg-blue-2" style="width:{{ ($val[0][0][3]/$arr_price[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][3]/$arr_price[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
+<p class="text-right">
+@php
+if ($val[1][0][3] != 0) {
+$comp = round(($val[0][0][3] / $val[1][0][3] - 1) * 100, 2);
+} else {
+$comp = 0;
+}
+@endphp
+@if($comp <= 0)
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+@else
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+@endif
+{{ $comp }}%</span>
+</p>
 </td>
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ number_format($val[0][0][4]) }}</span>
 <div class="progress">
 <div class="progress-bar ka-bg-orange" style="width:{{ ($val[0][0][4]/$arr_cv[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][4]/$arr_cv[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
+<p class="text-right">
+@php
+if ($val[1][0][4] != 0) {
+$comp = round(($val[0][0][4] / $val[1][0][4] - 1) * 100, 2);
+} else {
+$comp = 0;
+}
+@endphp
+@if($comp >= 0)
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+@else
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+@endif
+{{ $comp }}%</span>
+</p>
 </td>
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ round($val[0][0][5], 2) }}%</span>
 <div class="progress">
 <div class="progress-bar ka-bg-purple" style="width:{{ ($val[0][0][5]/$arr_cv_r[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][5]/$arr_cv_r[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
+<p class="text-right">
+@php
+if ($val[1][0][5] != 0) {
+$comp = round(($val[0][0][5] / $val[1][0][5] - 1) * 100, 2);
+} else {
+$comp = 0;
+}
+@endphp
+@if($comp >= 0)
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+@else
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+@endif
+{{ $comp }}%</span>
+</p>
 </td>
 </tr>
 <?php endforeach; ?>
@@ -213,7 +288,7 @@ if ($bool) {
 </span>
 </div>
 <div class="col-11">
-<h3 class="font-weight-bold h5 mt-2">見出し</h3>
+<h3 class="font-weight-bold h5 mt-2">広告分析の総評</h3>
 <textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4">サンプルテキスト</textarea>
 </div>
 </div>
@@ -222,9 +297,9 @@ if ($bool) {
 </div>
 @else
 <div class="col-12">
-  <div class="alert alert-warning">
-    <p class="m-0">Google広告と連携されていないか、広告設定が正しくありません。</p>
-  </div>
+<div class="alert alert-warning">
+<p class="m-0">Google広告と連携されていないか、広告設定が正しくありません。</p>
+</div>
 </div>
 @endif
 </div>

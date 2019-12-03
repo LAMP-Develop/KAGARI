@@ -18,7 +18,7 @@ $site_url = $add_site->url;
 $site_name = $add_site->site_name;
 @endphp
 
-@section('title', '解析レポート')
+@section('title', '解析レポート - '.$site_name)
 
 @extends('layouts.app')
 @include('layouts.head')

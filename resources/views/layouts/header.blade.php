@@ -4,7 +4,10 @@
 <img src="/storage/{{ setting('site.logo') }}" alt="{{ setting('site.title') }}" width="108">
 </a>
 <h1 class="head-ttl m-0 font-weight-bold h5">@yield('title')</h1>
-<input class="l-drawer__checkbox" id="drawerCheckbox" type="checkbox" >
+@if(strpos($_SERVER['REQUEST_URI'], 'report'))
+<a href="https://kagari.ai/pdf/kagari-reports.pdf" class="pdf-btn btn btn-sm btn-outline-secondary d-inline-block ml-auto" style="margin-right:5rem" target="_blank"><i class="fas fa-file-pdf mr-2"></i>PDFでレポート出力</a>
+@endif
+<input class="l-drawer__checkbox" id="drawerCheckbox" type="checkbox">
 <!-- ドロワーアイコン -->
 <label class="l-drawer__icon" for="drawerCheckbox">
 <span class="l-drawer__icon-parts"></span>
@@ -23,22 +26,22 @@
 @endif
 @endguest
 <li class="l-drawer__item">
-<a class="l-drawer__item-inner text-muted" href="#"><i class="fas fa-bell mr-3"></i>お知らせ</a>
+<a class="l-drawer__item-inner text-muted" href="https://seo.kagari.ai/news/" target="_blank"><i class="fas fa-bell mr-3"></i>お知らせ</a>
 </li>
 @auth
 <li class="l-drawer__item">
-<a class="l-drawer__item-inner text-muted" href="{{ route('account') }}"><i class="fas fa-user mr-3"></i>アカウント情報</a>
+<a class="l-drawer__item-inner text-muted" href="{{ route('dashboard') }}"><i class="fas fa-list-ul mr-3"></i>登録サイト一覧</a>
 </li>
 <li class="l-drawer__item">
-<a class="l-drawer__item-inner text-muted" href="{{ route('dashboard') }}"><i class="fas fa-list-ul mr-3"></i>サイト管理</a>
+<a class="l-drawer__item-inner text-muted" href="{{ route('account') }}"><i class="fas fa-user mr-3"></i>アカウント情報</a>
 </li>
 @endauth
 <li class="l-drawer__item">
-<a class="l-drawer__item-inner text-muted" href="#"><i class="fas fa-book-open mr-3"></i>マニュアル</a>
+<a class="l-drawer__item-inner text-muted" href="https://seo.kagari.ai/blog/" target="_blank"><i class="fas fa-book-open mr-3"></i>マニュアル</a>
 </li>
 <li class="l-drawer__item"><hr></li>
 <li class="l-drawer__item contact">
-<a class="l-drawer__item-inner text-muted" href="#">お問い合わせ</a>
+<a class="l-drawer__item-inner text-muted" href="https://kagari.ai/contact/" target="_blank">お問い合わせ</a>
 </li>
 @auth
 <li class="l-drawer__item">

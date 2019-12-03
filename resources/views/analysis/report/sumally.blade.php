@@ -52,7 +52,7 @@ $comp_bounce_rate = $ga_result['comp'][7];
 <section class="reports">
 <div class="container">
 <div class="col-12">
-<div class="card mb-4">
+<div class="card mb-3">
 <div class="card-body">
 <div class="row align-items-center">
 <div class="col-3 text-center">
@@ -75,25 +75,25 @@ $comp_bounce_rate = $ga_result['comp'][7];
 </div>
 </div>
 
-<div class="row mx-0 mb-4">
+<div class="row mx-0 mb-3">
 <div class="col-3">
 <div class="card">
 <div class="card-body text-center">
 <span class="opacity-item opacity-bg-blue">
 <i class="fas fa-user opacity-color-blue"></i>
 </span>
-<h4 class="h6 text-dark mt-2">ユーザー</h4>
+<h4 class="h6 text-dark mt-3">ユーザー</h4>
 <p class="h4 font-weight-bold text-dark">{{ $users_str }}</p>
 <p class="m-0">
-<small class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ $old_users_str }}</small>
+<span class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ $old_users_str }}</span>
 </p>
 <p class="m-0">
 @if($comp_users >= 0)
-<small class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
 @else
-<small class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
 @endif
-{{ $comp_users }}%</small>
+{{ $comp_users }}%</span>
 </p>
 <hr>
 <small class="d-block text-left text-secondary">期間中に１回以上のセッションを開始したユーザー数。</small>
@@ -106,18 +106,18 @@ $comp_bounce_rate = $ga_result['comp'][7];
 <span class="opacity-item opacity-bg-orange">
 <i class="fas fa-bolt opacity-color-orange"></i>
 </span>
-<h4 class="h6 text-dark mt-2">セッション</h4>
+<h4 class="h6 text-dark mt-3">セッション</h4>
 <p class="h4 font-weight-bold text-dark">{{ $session_str }}</p>
 <p class="m-0">
-<small class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ $old_session_str }}</small>
+<span class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ $old_session_str }}</span>
 </p>
 <p class="m-0">
 @if($comp_session >= 0)
-<small class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
 @else
-<small class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
 @endif
-{{ $comp_session }}%</small>
+{{ $comp_session }}%</span>
 </p>
 <hr>
 <small class="d-block text-left text-secondary">ユーザーがサイトを訪問した回数。</small>
@@ -130,18 +130,18 @@ $comp_bounce_rate = $ga_result['comp'][7];
 <span class="opacity-item opacity-bg-green">
 <i class="fas fa-eye opacity-color-green"></i>
 </span>
-<h4 class="h6 text-dark mt-2">ページビュー数</h4>
+<h4 class="h6 text-dark mt-3">ページビュー数</h4>
 <p class="h4 font-weight-bold text-dark">{{ $pv_str }}</p>
 <p class="m-0">
-<small class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ $old_pv_str }}</small>
+<span class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ $old_pv_str }}</span>
 </p>
 <p class="m-0">
 @if($comp_pv >= 0)
-<small class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
 @else
-<small class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
 @endif
-{{ $comp_pv }}%</small>
+{{ $comp_pv }}%</span>
 </p>
 <hr>
 <small class="d-block text-left text-secondary">ウェブサイト内の特定のページが開かれた回数。</small>
@@ -154,114 +154,114 @@ $comp_bounce_rate = $ga_result['comp'][7];
 <span class="opacity-item opacity-bg-blue-2">
 <i class="fas fa-pager opacity-color-blue-2"></i>
 </span>
-<h4 class="h6 text-dark mt-2">ページ/セッション</h4>
+<h4 class="h6 text-dark mt-3">ページ/セッション</h4>
 <p class="h4 font-weight-bold text-dark">{{ $ps_str }}</p>
 <p class="m-0">
-<small class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ $old_ps_str }}</small>
+<span class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ $old_ps_str }}</span>
 </p>
 <p class="m-0">
 @if($comp_ps >= 0)
-<small class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
 @else
-<small class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
 @endif
-{{ $comp_ps }}%</small>
+{{ $comp_ps }}%</span>
 </p>
 <hr>
 <small class="d-block text-left text-secondary">1セッション中に閲覧されたページビュー数の平均。</small>
 </div>
 </div>
 </div>
-<div class="col-3 mt-4">
+<div class="col-3 mt-3">
 <div class="card">
 <div class="card-body text-center">
 <span class="opacity-item opacity-bg-red-2">
 <i class="fa fa-clock opacity-color-red-2"></i>
 </span>
-<h4 class="h6 text-dark mt-2">平均セッション時間</h4>
+<h4 class="h6 text-dark mt-3">平均セッション時間</h4>
 <p class="h4 font-weight-bold text-dark">{{ $session_time_str }}<small class="ml-1 h6">秒</small></p>
 <p class="m-0">
-<small class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ $old_session_time_str }}</small>
+<span class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ $old_session_time_str }}</span>
 </p>
 <p class="m-0">
 @if($comp_session_time >= 0)
-<small class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
 @else
-<small class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
 @endif
-{{ $comp_session_time }}%</small>
+{{ $comp_session_time }}%</span>
 </p>
 <hr>
 <small class="d-block text-left text-secondary">ユーザーの1回のサイト訪問における滞在時間の平均。</small>
 </div>
 </div>
 </div>
-<div class="col-3 mt-4">
+<div class="col-3 mt-3">
 <div class="card">
 <div class="card-body text-center">
 <span class="opacity-item opacity-bg-red">
 <i class="far fa-clock opacity-color-red"></i>
 </span>
-<h4 class="h6 text-dark mt-2">平均ページ滞在時間</h4>
+<h4 class="h6 text-dark mt-3">平均ページ滞在時間</h4>
 <p class="h4 font-weight-bold text-dark">{{ $page_time_str }}<small class="ml-1 h6">秒</small></p>
 <p class="m-0">
-<small class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ $old_page_time_str }}</small>
+<span class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ $old_page_time_str }}</span>
 </p>
 <p class="m-0">
 @if($comp_page_time >= 0)
-<small class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
 @else
-<small class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
 @endif
-{{ $comp_page_time }}%</small>
+{{ $comp_page_time }}%</span>
 </p>
 <hr>
 <small class="d-block text-left text-secondary">1ページあたりのユーザーの滞在時間。</small>
 </div>
 </div>
 </div>
-<div class="col-3 mt-4">
+<div class="col-3 mt-3">
 <div class="card">
 <div class="card-body text-center">
 <span class="opacity-item opacity-bg-purple-2">
 <i class="fas fa-arrow-alt-circle-left opacity-color-purple-2"></i>
 </span>
-<h4 class="h6 text-dark mt-2">直帰率</h4>
+<h4 class="h6 text-dark mt-3">直帰率</h4>
 <p class="h4 font-weight-bold text-dark">{{ $exit_rate_str }}<small class="ml-1 h6">%</small></p>
 <p class="m-0">
-<small class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ $old_exit_rate_str }}</small>
+<span class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ $old_exit_rate_str }}</span>
 </p>
 <p class="m-0">
 @if($comp_exit_rate <= 0)
-<small class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
 @else
-<small class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
 @endif
-{{ $comp_exit_rate }}%</small>
+{{ $comp_exit_rate }}%</span>
 </p>
 <hr>
 <small class="d-block text-left text-secondary">1ページあたりのユーザーの滞在時間。</small>
 </div>
 </div>
 </div>
-<div class="col-3 mt-4">
+<div class="col-3 mt-3">
 <div class="card">
 <div class="card-body text-center">
 <span class="opacity-item opacity-bg-purple">
 <i class="fas fa-times-circle opacity-color-purple"></i>
 </span>
-<h4 class="h6 text-dark mt-2">離脱率</h4>
+<h4 class="h6 text-dark mt-3">離脱率</h4>
 <p class="h4 font-weight-bold text-dark">{{ $bounce_rate_str }}<small class="ml-1 h6">%</small></p>
 <p class="m-0">
-<small class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ $old_bounce_rate_str }}</small>
+<span class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ $old_bounce_rate_str }}</span>
 </p>
 <p class="m-0">
 @if($comp_bounce_rate <= 0)
-<small class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
 @else
-<small class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
 @endif
-{{ $comp_bounce_rate }}%</small>
+{{ $comp_bounce_rate }}%</span>
 </p>
 <hr>
 <small class="d-block text-left text-secondary">すべてのページで、そのページが最後の閲覧ページになった割合。</small>
@@ -280,7 +280,7 @@ $comp_bounce_rate = $ga_result['comp'][7];
 </span>
 </div>
 <div class="col-11">
-<h3 class="font-weight-bold h5 mt-2">見出し</h3>
+<h3 class="font-weight-bold h5 mt-2">解析結果の総評</h3>
 <textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4">サンプルテキスト</textarea>
 </div>
 </div>
@@ -314,14 +314,20 @@ $comp_bounce_rate = $ga_result['comp'][7];
         {
           label: '今期間',
           borderColor: '#007AFF',
-          backgroundColor: '#5AC8FA1A',
-          pointBackgroundColor: 'blue',
+          borderWidth: 2,
+          backgroundColor: 'rgba(0,122,255,.05)',
+          pointBackgroundColor: '#007AFF',
+          pointRadius: 2,
+          pointBorderWidth: 0,
           data: arrayDataOne
         }, {
           label: '前期間',
           borderColor: '#FF2D55',
-          pointBackgroundColor: 'red',
+          borderWidth: 2,
           backgroundColor: 'rgba(0, 0, 0, 0)',
+          pointBackgroundColor: '#FF2D55',
+          pointRadius: 2,
+          pointBorderWidth: 0,
           data: arrayDataTwo
         }
       ]

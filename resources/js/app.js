@@ -2,6 +2,7 @@
 import '../../node_modules/@fortawesome/fontawesome-free/js/all.min.js';
 
 require('./bootstrap');
+require('bootstrap-datepicker');
 require('tablesorter');
 require('xlsx');
 require('file-saverjs');
@@ -70,13 +71,13 @@ $(function() {
       $('.highlight').addClass('on');
     }
   });
-  $('[data-name="click"].highlight').attr('data-content', 'クリック数に課題があります。<br><a href="https://kagari.ai/blog/clicks/" target="_blank">改善方法をみる</a>');
-  $('[data-name="impressions"].highlight').attr('data-content', '表示回数に課題があります。<br><a href="https://kagari.ai/blog/impressions/" target="_blank">改善方法をみる</a>');
-  $('[data-name="ctr"].highlight').attr('data-content', 'CTRに課題があります。<br><a href="https://kagari.ai/blog/ctr/" target="_blank">改善方法をみる</a>');
-  $('[data-name="position"].highlight').attr('data-content', '掲載順位に課題があります。<br><a href="https://kagari.ai/blog/position/" target="_blank">改善方法をみる</a>');
-  $('[data-name="ps"].highlight').attr('data-content', 'ページ/セッションに課題があります。<br><a href="https://kagari.ai/blog/sessions/" target="_blank">改善方法をみる</a>');
-  $('[data-name="time"].highlight').attr('data-content', '平均ページ滞在時間に課題があります。<br><a href="https://kagari.ai/blog/page-stay-time/" target="_blank">改善方法をみる</a>');
-  $('[data-name="br"].highlight').attr('data-content', '直帰率に課題があります。<br><a href="https://kagari.ai/blog/bounce-rate/" target="_blank">改善方法をみる</a>');
+  $('[data-name="click"].highlight').attr('data-content', 'クリック数に課題があります。<br><a href="https://seo.kagari.ai/blog/clicks/" target="_blank">改善方法をみる</a>');
+  $('[data-name="impressions"].highlight').attr('data-content', '表示回数に課題があります。<br><a href="https://seo.kagari.ai/blog/impressions/" target="_blank">改善方法をみる</a>');
+  $('[data-name="ctr"].highlight').attr('data-content', 'CTRに課題があります。<br><a href="https://seo.kagari.ai/blog/ctr/" target="_blank">改善方法をみる</a>');
+  $('[data-name="position"].highlight').attr('data-content', '掲載順位に課題があります。<br><a href="https://seo.kagari.ai/blog/position/" target="_blank">改善方法をみる</a>');
+  $('[data-name="ps"].highlight').attr('data-content', 'ページ/セッションに課題があります。<br><a href="https://seo.kagari.ai/blog/sessions/" target="_blank">改善方法をみる</a>');
+  $('[data-name="time"].highlight').attr('data-content', '平均ページ滞在時間に課題があります。<br><a href="https://seo.kagari.ai/blog/page-stay-time/" target="_blank">改善方法をみる</a>');
+  $('[data-name="br"].highlight').attr('data-content', '直帰率に課題があります。<br><a href="https://seo.kagari.ai/blog/bounce-rate/" target="_blank">改善方法をみる</a>');
   $('.highlight').popover({
     html: true,
     trigger: 'manual'
@@ -145,7 +146,11 @@ $(function() {
       filename: 'seo_' + time,
       exportButtons: false,
     });
+  });
 
-    console.log('ajax stop');
+  // datepicker
+  $('.datepicker').datepicker({
+    format: 'yyyy-mm-dd',
+    language:'ja'
   });
 });
