@@ -319,7 +319,10 @@ if ($area[$key][2] != 0) {
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">ユーザー属性の総評</h3>
-<textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4">サンプルテキスト</textarea>
+<textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4">
+{{ $new_users }}% が初めてサイトに訪れているユーザーです。
+<?php if ($female_str > 50): ?>女性<?php else: ?>男性<?php endif; ?>のユーザーが大半を占めています。
+</textarea>
 </div>
 </div>
 </div>

@@ -281,7 +281,11 @@ $comp_bounce_rate = $ga_result['comp'][7];
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">解析結果の総評</h3>
-<textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4">サンプルテキスト</textarea>
+<textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4">
+<?php if (($comp_users+$comp_session+$comp_pv) > 0): ?>アクセス状況は上昇傾向にあります。<?php else: ?>アクセス状況は下降傾向にあります。<?php endif; ?>
+
+<?php if ($comp_exit_rate+$comp_bounce_rate < 0): ?>ユーザーの直帰率・離脱率が下降傾向にありユーザーがコンテンツに満足し始めいていると言えます。<?php else: ?>ユーザーの直帰率・離脱率が上昇傾向にありユーザーがコンテンツに満足していない可能性があります。<?php endif; ?>
+</textarea>
 </div>
 </div>
 </div>
