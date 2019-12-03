@@ -26,13 +26,13 @@ $(function() {
       view_id: view_id,
     }
   }).done(function(data) {
-    $('.all-ss').text(data[0].toLocaleString());
-    $('.all-pv').text(data[1].toLocaleString());
+    $('.all-ss').text(Number(data[0]).toLocaleString());
+    $('.all-pv').text(Number(data[1]).toLocaleString());
     $('.all-ps').text(roundFloat(data[2], 2));
-    $('.all-uu').text(data[3].toLocaleString());
+    $('.all-uu').text(Number(data[3]).toLocaleString());
     $('.all-br').text(roundFloat(data[4], 0));
     $('.all-re').text(roundFloat(data[5], 2));
-    $('.all-cv').text(data[6].toLocaleString());
+    $('.all-cv').text(Number(data[6]).toLocaleString());
   });
 
   // SCの全体

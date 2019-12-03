@@ -14,7 +14,7 @@
 
 <p class="m-0">
 <small>お探しのサイトが無い場合はGoogleAnalyticsにて追加してください。</small>
-<br><a href="https://kagari.ai/blog/google-analytics/" target="_blank">
+<br><a href="https://seo.kagari.ai/blog/google-analytics/" target="_blank">
 <small><i class="fas fa-link mr-1"></i>GoogleAnalyticsの設定方法</small>
 </a>
 </p>

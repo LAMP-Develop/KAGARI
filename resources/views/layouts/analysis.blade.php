@@ -189,7 +189,7 @@ $end = $_GET['end'];
 <div id="seo-detail" class="modal" tabindex="-1" role="dialog">
 <div class="modal-dialog modal-lg" role="document">
 <div class="modal-content">
-<div class="modal-header">
+<div class="modal-header position-relative pb-5">
 <h5 class="modal-title">
 「<span></span>」
 <a class="h6 d-block" href="#" target="_blank">
@@ -199,12 +199,7 @@ $end = $_GET['end'];
 </small>
 </a>
 </h5>
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
-<div class="modal-body">
-<div class="dropdown text-right mb-3">
+<div class="dropdown text-right" style="position:absolute; right:1rem; bottom:1rem;">
 <button class="btn btn-primary btn-sm dropdown-toggle load" type="button" id="export-kyes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-spinner mr-1"></i>エクスポート</button>
 <div class="dropdown-menu" aria-labelledby="export-kyes">
 <button tableexport-id="42dbd70a-xlsx" class="dropdown-item text-muted" type="button"><i class="fas fa-file-excel mr-1"></i>Excel</button>
@@ -212,6 +207,11 @@ $end = $_GET['end'];
 <button tableexport-id="fb57489-txt" class="dropdown-item text-muted" type="button"><i class="fas fa-file-alt mr-1"></i>TXT</button>
 </div>
 </div>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
 <div class="table-responsive">
 <table id="seo-detail-table" class="table table-bordered table-hover table-fixed">
 <thead>
