@@ -25,9 +25,6 @@
 </li>
 @endif
 @endguest
-<li class="l-drawer__item">
-<a class="l-drawer__item-inner text-muted" href="https://seo.kagari.ai/news/" target="_blank"><i class="fas fa-bell mr-3"></i>お知らせ</a>
-</li>
 @auth
 <li class="l-drawer__item">
 <a class="l-drawer__item-inner text-muted" href="{{ route('dashboard') }}"><i class="fas fa-list-ul mr-3"></i>登録サイト一覧</a>
@@ -35,7 +32,11 @@
 <li class="l-drawer__item">
 <a class="l-drawer__item-inner text-muted" href="{{ route('account') }}"><i class="fas fa-user mr-3"></i>アカウント情報</a>
 </li>
+<li class="l-drawer__item"><hr></li>
 @endauth
+<li class="l-drawer__item">
+<a class="l-drawer__item-inner text-muted" href="https://seo.kagari.ai/news/" target="_blank"><i class="fas fa-bell mr-3"></i>お知らせ</a>
+</li>
 <li class="l-drawer__item">
 <a class="l-drawer__item-inner text-muted" href="https://seo.kagari.ai/blog/" target="_blank"><i class="fas fa-book-open mr-3"></i>マニュアル</a>
 </li>

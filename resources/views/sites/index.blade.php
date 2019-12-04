@@ -17,8 +17,10 @@
 <tr>
 <td>
 <div class="d-flex align-items-center">
-<i class="fas fa-globe-americas h4"></i>
-<div class="ml-3">
+<figure class="m-0 line-height-1">
+<img class="d-inline-block align-middle" src="https://www.google.com/s2/favicons?domain={{ $site->url }}" width="16" height="16">
+</figure>
+<div class="ml-2">
 <span class="d-block text-dark">{{ $site->site_name }}</span>
 <span class="d-block"><small>{{ $site->url }}</small></span>
 </div>

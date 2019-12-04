@@ -40,6 +40,13 @@ body {
       color: $primary;
       margin-left: 0.5rem;
     }
+
+    &.not-must {
+      &::after {
+        display: none;
+        content: none;
+      }
+    }
   }
 }
 
@@ -52,17 +59,21 @@ body {
 .sites-list {
   .accounts {
     &::before {
+      display: none;
       font-family: 'Font Awesome 5 Free';
       content: '\f07b';
-      margin-right: 1rem;
       font-weight: 900;
     }
 
     &[aria-expanded="true"]::before {
+      display: none;
       font-family: 'Font Awesome 5 Free';
       content: '\f07c';
-      margin-right: 1rem;
       font-weight: 900;
+    }
+
+    svg {
+      margin-right: 1rem;
     }
   }
 
@@ -174,15 +185,22 @@ body {
       cursor: pointer;
 
       &::after {
+        display: none;
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        content: '\f0dc';
+        font-size: 0.7rem;
+      }
+
+      .svg-inline--fa {
         position: absolute;
         top: 50%;
         right: 0.5rem;
         transform: translateY(-50%);
-        font-family: 'Font Awesome 5 Free';
-        font-weight: 900;
-        content: '\f0dc';
-        color: #959ea7;
-        font-size: 0.7rem;
+
+        path {
+          fill: #959ea7;
+        }
       }
     }
   }
@@ -519,6 +537,14 @@ body {
 
 .card-body {
   padding: 1.5rem;
+
+  .table-responsive {
+    th {
+      &:nth-child(n+2) {
+        width: 7rem;
+      }
+    }
+  }
 }
 
 .h4 {

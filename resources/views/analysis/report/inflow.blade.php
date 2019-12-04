@@ -1,11 +1,11 @@
-<?php
+@php
 // 流入チャネル
 $channel = $ga_result[0];
 // sns
 $sns = $ga_result[1];
 // リファラル
 $link = $ga_result[2];
-?>
+@endphp
 
 @section('content')
 <section class="reports">
@@ -18,7 +18,7 @@ $link = $ga_result[2];
 <span class="opacity-item opacity-bg-blue">
 <i class="fas fa-project-diagram opacity-color-blue"></i>
 </span>
-<h4 class="h6 text-dark mt-3">流入チャネル</h4>
+<h4 class="h6 text-dark mt-3 mb-4">流入チャネル</h4>
 @foreach ($channel as $key => $value)
 <p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
 <div class="progress">
@@ -54,7 +54,7 @@ $comp = 0;
 <span class="opacity-item opacity-bg-purple-2">
 <i class="fas fa-retweet opacity-color-purple-2"></i>
 </span>
-<h4 class="h6 text-dark mt-3">SNSからの流入</h4>
+<h4 class="h6 text-dark mt-3 mb-4">SNSからの流入</h4>
 @foreach ($sns as $key => $value)
 <p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
 <div class="progress">
@@ -90,7 +90,7 @@ $comp = 0;
 <span class="opacity-item opacity-bg-purple">
 <i class="fas fa-link opacity-color-purple"></i>
 </span>
-<h4 class="h6 text-dark mt-3">他サイトからのリンク</h4>
+<h4 class="h6 text-dark mt-3 mb-4">他サイトからのリンク</h4>
 @foreach ($link as $key => $value)
 <p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
 <div class="progress">
@@ -133,7 +133,7 @@ $comp = 0;
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">流入元分析の総評</h3>
-<textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4">サンプルテキスト</textarea>
+<textarea class="border form-control text-secondary" name="name" rows="4">サンプルテキスト</textarea>
 </div>
 </div>
 </div>

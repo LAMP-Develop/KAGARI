@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
 
 use App\User;
 use App\AddSites;
@@ -156,5 +157,25 @@ class AjaxController extends Controller
             $resulets = [];
         }
         return $resulets;
+    }
+
+    // アカウント情報変更
+    public function edit_account(Request $request)
+    {
+        $user = Auth::user();
+        $data = $request->only(['email', 'tel']);
+        $validator = Validator::make($data, [
+            'email' => 'required|unique:users,email,'.$user->id.'|max:255|email',
+            'tel' => 'required|numeric|digits_between:8,11',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()->all()]);
+        } else {
+            $user->company = $request->company;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->tel = $request->tel;
+            $user->update();
+        }
     }
 }

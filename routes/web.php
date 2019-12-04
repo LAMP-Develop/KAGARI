@@ -34,7 +34,7 @@ Route::group(['prefix' => 'dashboard'], function () {
         Route::get('/', 'UserController@index')->name('account');
         // アカウント情報編集
         Route::get('/edit', 'UserController@account_form')->name('edit');
-        Route::post('/edit', 'UserController@account_edit')->name('edit-post');
+        Route::post('/edit-data', 'AjaxController@edit_account')->name('edit-ajax');
         // 退会フォーム
         Route::view('/delete', 'auth.delete')->name('delete');
 

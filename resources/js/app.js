@@ -1,3 +1,8 @@
+// fortawesomeの設定
+FontAwesomeConfig = {
+  searchPseudoElements: true
+};
+
 require('@fortawesome/fontawesome-free/js/all.js');
 require('./bootstrap');
 require('bootstrap-datepicker');
@@ -151,4 +156,48 @@ $(function() {
     format: 'yyyy-mm-dd',
     language: 'ja'
   });
+
+  // アカウント情報更新
+  $('#btn-account-edit').on('click', function() {
+    console.log('click');
+    const csrf = $('meta[name="csrf-token"]').attr('content');
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': csrf
+      }
+    });
+    if (window.confirm('変更してもよろしいですか？')) {
+      $.ajax({
+        url: '/dashboard/account/edit-data',
+        type: 'post',
+        datatype: 'json',
+        data: {
+          company: $('input[name="company"]').val(),
+          name: $('input[name="name"]').val(),
+          tel: $('input[name="tel"]').val(),
+          email: $('input[name="email"]').val(),
+          password: $('input[name="password"]').val(),
+          password_confirmation: $('input[name="password_confirmation"]').val(),
+        }
+      }).done(function(data) {
+        if ($.isEmptyObject(data.error)) {
+          $('.print-success-msg').children('.alert').html('');
+          $('.print-success-msg').css('display', 'block');
+          $('.print-success-msg').children('.alert').text('正しく更新されました。');
+        } else {
+          print_error_msg(data.error);
+        }
+      });
+    } else {
+      return false;
+    }
+  });
+
+  function print_error_msg(msg) {
+    $('.print-error-msg').children('.alert').find('ul').html('');
+    $('.print-error-msg').css('display', 'block');
+    $.each(msg, function(key, value) {
+      $('.print-error-msg').children('.alert').find('ul').append('<li>' + value + '</li>');
+    });
+  }
 });

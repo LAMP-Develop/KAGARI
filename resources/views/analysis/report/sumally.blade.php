@@ -281,7 +281,7 @@ $comp_bounce_rate = $ga_result['comp'][7];
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">解析結果の総評</h3>
-<textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4">
+<textarea class="border form-control text-secondary" name="name" rows="4">
 @if (($comp_users+$comp_session+$comp_pv) > 0)
 ・アクセス状況は上昇傾向にあります。
 @else

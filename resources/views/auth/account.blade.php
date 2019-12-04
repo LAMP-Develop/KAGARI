@@ -1,7 +1,5 @@
 @section('title', 'アカウント情報')
-
 @extends('layouts.app')
-
 @include('layouts.head')
 @include('layouts.header')
 @include('layouts.footer')
@@ -36,7 +34,7 @@
 </tr>
 <tr>
 <th>パスワード</th>
-<td class="text-right">******</td>
+<td class="text-right"><a href="{{ route('password.request') }}"><i class="fas fa-key mr-1"></i>再設定する</a></td>
 </tr>
 <tr>
 <th>登録サイト数</th>

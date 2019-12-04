@@ -22,14 +22,14 @@ if (!$param) {
 <div class="col text-right">
 <p class="m-0">
 <a class="text-decoration-none" href="#" data-toggle="modal" data-target="#period-form"><i class="far fa-calendar-alt mr-1 opacity-color-blue d-inline-block align-middle"></i>
-<span class="opacity-color-blue d-inline-block align-middle mr-2">期間</span>
-<span class="text-dark d-inline-block align-middle border-bottom">{{ $start }} ~ {{ $end }}</span>
+<span class="opacity-color-blue d-inline-block align-middle mr-2">指定期間</span>
+<span class="text-dark d-inline-block align-middle border rounded-lg px-2">{{ $start }} ~ {{ $end }}</span>
 </a>
 </p>
 <p class="m-0">
 <a class="text-decoration-none" href="#" data-toggle="modal" data-target="#period-form"><i class="fas fa-arrows-alt-h mr-1 opacity-color-red d-inline-block align-middle"></i>
-<span class="opacity-color-red d-inline-block align-middle mr-2">比較</span>
-<span class="text-dark d-inline-block align-middle border-bottom">{{ $com_start }} ~ {{ $com_end }}</span>
+<span class="opacity-color-red d-inline-block align-middle mr-2">比較期間</span>
+<span class="text-dark d-inline-block align-middle border rounded-lg px-2">{{ $com_start }} ~ {{ $com_end }}</span>
 </a>
 </p>
 </div>

@@ -1,4 +1,4 @@
-<?php
+@php
 // cv数
 $cv = $ga_result[1][0][1];
 $old_cv = $ga_result[1][1][1];
@@ -33,7 +33,7 @@ rsort($arr_uu);
 rsort($arr_ex);
 rsort($arr_ps);
 rsort($arr_time);
-?>
+@endphp
 
 @section('content')
 <section class="reports">
@@ -132,9 +132,13 @@ rsort($arr_time);
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ number_format($val[0][0][1]) }}</span>
 <div class="progress">
+@if($arr_cv[0] == 0)
+<div class="progress-bar ka-bg-orange" style="width:0" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+@else
 <div class="progress-bar ka-bg-orange" style="width:{{ ($val[0][0][1]/$arr_cv[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][1]/$arr_cv[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+@endif
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][1] != 0) {
 $comp = round(($val[0][0][1] / $val[1][0][1] - 1) * 100, 2);
@@ -153,9 +157,13 @@ $comp = 0;
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ round($val[0][0][2], 2) }}%</span>
 <div class="progress">
+@if($arr_cv_r[0] == 0)
+<div class="progress-bar ka-bg-purple" style="width:0" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+@else
 <div class="progress-bar ka-bg-purple" style="width:{{ ($val[0][0][2]/$arr_cv_r[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][2]/$arr_cv_r[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+@endif
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][2] != 0) {
 $comp = round(($val[0][0][2] / $val[1][0][2] - 1) * 100, 2);
@@ -176,7 +184,7 @@ $comp = 0;
 <div class="progress">
 <div class="progress-bar ka-bg-blue" style="width:{{ ($val[0][0][3]/$arr_uu[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][3]/$arr_uu[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][3] != 0) {
 $comp = round(($val[0][0][3] / $val[1][0][3] - 1) * 100, 2);
@@ -197,7 +205,7 @@ $comp = 0;
 <div class="progress">
 <div class="progress-bar ka-bg-purple-2" style="width:{{ ($val[0][0][4]/$arr_ex[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][4]/$arr_ex[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][4] != 0) {
 $comp = round(($val[0][0][4] / $val[1][0][4] - 1) * 100, 2);
@@ -218,7 +226,7 @@ $comp = 0;
 <div class="progress">
 <div class="progress-bar ka-bg-blue-2" style="width:{{ ($val[0][0][5]/$arr_ps[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][5]/$arr_ps[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][5] != 0) {
 $comp = round(($val[0][0][5] / $val[1][0][5] - 1) * 100, 2);
@@ -239,7 +247,7 @@ $comp = 0;
 <div class="progress">
 <div class="progress-bar ka-bg-red" style="width:{{ ($val[0][0][6]/$arr_time[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][6]/$arr_time[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][6] != 0) {
 $comp = round(($val[0][0][6] / $val[1][0][6] - 1) * 100, 2);
@@ -274,7 +282,7 @@ $comp = 0;
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">コンバージョン分析の総評</h3>
-<textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4">サンプルテキスト</textarea>
+<textarea class="border form-control text-secondary" name="name" rows="4">サンプルテキスト</textarea>
 </div>
 </div>
 </div>

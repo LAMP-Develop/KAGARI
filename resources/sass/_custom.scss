@@ -21,6 +21,24 @@
   }
 }
 
+.btn-sm {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.765625rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #ededed;
+  border-color: #6c757d;
+}
+
+.btn-outline-primary:hover {
+  color: #ec5f2f;
+  background-color: rgba(236, 95, 47, 0.1);
+  border-color: #ec5f2f;
+}
+
 .progress {
   height: 0.4rem;
 }

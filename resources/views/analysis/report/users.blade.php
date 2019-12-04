@@ -203,7 +203,7 @@ $area = $ga_result[1][1];
 <span class="opacity-item opacity-bg-blue">
 <i class="fas fa-user opacity-color-blue"></i>
 </span>
-<h4 class="h6 text-dark mt-3">年齢</h4>
+<h4 class="h6 text-dark mt-3 mb-4">年齢</h4>
 @foreach ($age as $key => $value)
 <p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
 <div class="progress">
@@ -239,7 +239,7 @@ if ($age[$key][2] != 0) {
 <span class="opacity-item opacity-bg-purple-2">
 <i class="fas fa-globe-asia opacity-color-purple-2"></i>
 </span>
-<h4 class="h6 text-dark mt-3">国</h4>
+<h4 class="h6 text-dark mt-3 mb-4">国</h4>
 @foreach ($country as $key => $value)
 <p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
 <div class="progress">
@@ -275,7 +275,7 @@ if ($country[$key][2] != 0) {
 <span class="opacity-item opacity-bg-purple">
 <i class="fas fa-map-marker-alt opacity-color-purple"></i>
 </span>
-<h4 class="h6 text-dark mt-3">地域</h4>
+<h4 class="h6 text-dark mt-3 mb-4">地域</h4>
 @foreach ($area as $key => $value)
 <p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
 <div class="progress">
@@ -318,7 +318,7 @@ if ($area[$key][2] != 0) {
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">ユーザー属性の総評</h3>
-<textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4">
+<textarea class="border form-control text-secondary" name="name" rows="4">
 {{ $new_users }}% が初めてサイトに訪れているユーザーです。
 <?php if ($female_str > 50): ?>女性<?php else: ?>男性<?php endif; ?>のユーザーが大半を占めています。
 </textarea>
