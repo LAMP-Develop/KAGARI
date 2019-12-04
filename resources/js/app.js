@@ -1,4 +1,4 @@
-require('@fortawesome/fontawesome-free');
+require('@fortawesome/fontawesome-free/js/all.js');
 require('./bootstrap');
 require('bootstrap-datepicker');
 require('tablesorter');
