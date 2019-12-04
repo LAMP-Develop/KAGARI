@@ -2,11 +2,19 @@
 // cv数
 $cv = $ga_result[1][0][1];
 $old_cv = $ga_result[1][1][1];
-$comp_cv = round(($cv/$old_cv-1)*100, 2);
+if($old_cv != 0) {
+  $comp_cv = round(($cv/$old_cv-1)*100, 2);
+} else {
+  $comp_cv = 0;
+}
 // cv率
 $cv_r = round($ga_result[1][0][2], 2);
 $old_cv_r = round($ga_result[1][1][2], 2);
-$comp_cv_r = round(($cv/$old_cv-1)*100, 2);
+if($old_cv_r != 0) {
+  $comp_cv_r = round(($cv/$old_cv-1)*100, 2);
+} else {
+  $comp_cv_r = 0;
+}
 // セッション
 $ss = $ga_result[1][0][0];
 // 直帰
