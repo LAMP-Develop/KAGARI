@@ -53,12 +53,12 @@ echo $ga_message;
 <li class="site"><i class="fas fa-chart-bar mr-1"></i>サイト</li>
 </ul>
 </div>
-<div class="col p-0 text-right">
+<!-- <div class="col p-0 text-right">
 <div class="custom-control custom-switch">
 <input type="checkbox" class="custom-control-input" id="highlight">
 <label class="custom-control-label" for="highlight">課題ハイライト</label>
 </div>
-</div>
+</div> -->
 </div>
 </header>
 <!-- 解析テーブル -->

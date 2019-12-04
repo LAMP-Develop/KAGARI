@@ -1,4 +1,4 @@
-<?php
+@php
 // 現在のデータ
 $users = $ga_result['sumally'][0][2];
 $session = $ga_result['sumally'][0][0];
@@ -46,7 +46,7 @@ $comp_session_time = $ga_result['comp'][5];
 $comp_page_time = $ga_result['comp'][3];
 $comp_exit_rate = $ga_result['comp'][4];
 $comp_bounce_rate = $ga_result['comp'][7];
-?>
+@endphp
 
 @section('content')
 <section class="reports">
@@ -282,9 +282,19 @@ $comp_bounce_rate = $ga_result['comp'][7];
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">解析結果の総評</h3>
 <textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4">
-<?php if (($comp_users+$comp_session+$comp_pv) > 0): ?>アクセス状況は上昇傾向にあります。<?php else: ?>アクセス状況は下降傾向にあります。<?php endif; ?>
-
-<?php if ($comp_exit_rate+$comp_bounce_rate < 0): ?>ユーザーの直帰率・離脱率が下降傾向にありユーザーがコンテンツに満足し始めいていると言えます。<?php else: ?>ユーザーの直帰率・離脱率が上昇傾向にありユーザーがコンテンツに満足していない可能性があります。<?php endif; ?>
+@if (($comp_users+$comp_session+$comp_pv) > 0)
+・アクセス状況は上昇傾向にあります。
+@else
+・アクセス状況は下降傾向にあります。
+@endif
+@if ($comp_session_time+$comp_page_time < 0)
+・ユーザーの滞在時間が下降傾向にあるのでユーザーが求めると配信コンテンツがマッチしていない可能性があります。
+@endif
+@if ($comp_exit_rate+$comp_bounce_rate < 0)
+・ユーザーの直帰率・離脱率が下降傾向にありユーザーがコンテンツに満足し始めいていると言えます。
+@else
+・ユーザーの直帰率・離脱率が上昇傾向にありユーザーがコンテンツに満足していない可能性があります。
+@endif
 </textarea>
 </div>
 </div>

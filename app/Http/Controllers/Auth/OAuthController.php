@@ -24,7 +24,7 @@ class OAuthController extends Controller
               'approval_prompt' => 'force'
             ];
             return Socialite::driver($provider)
-            ->scopes(['https://www.googleapis.com/auth/analytics.readonly', 'https://www.googleapis.com/auth/webmasters.readonly'])
+            ->scopes(['https://www.googleapis.com/auth/analytics', 'https://www.googleapis.com/auth/webmasters.readonly'])
             ->with($parameters)
             ->redirect();
         } else {

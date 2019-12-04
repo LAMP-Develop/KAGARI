@@ -1,4 +1,4 @@
-<?php
+@php
 // ユーザー数
 $new_user_data = $ga_result[0][0]['New Visitor'][0];
 $re_user_data = $ga_result[0][0]['Returning Visitor'][0];
@@ -51,8 +51,7 @@ $country = $ga_result[1][0];
 
 // 地域
 $area = $ga_result[1][1];
-
-?>
+@endphp
 
 @section('content')
 <section class="reports">
