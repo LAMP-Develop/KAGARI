@@ -19,8 +19,8 @@ rsort($ps);
 rsort($uu);
 rsort($time);
 rsort($br);
+$general_comment = 0;
 @endphp
-
 @section('content')
 <section class="reports">
 <div class="container">
@@ -56,6 +56,7 @@ $comp = round(($val[0][0][1] / $val[1][0][1] - 1) * 100, 2);
 } else {
 $comp = 0;
 }
+$general_comment += $comp;
 @endphp
 @if($comp >= 0)
 <span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
@@ -189,7 +190,14 @@ $comp = 0;
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">ユーザー行動分析の総評</h3>
-<textarea class="border form-control text-secondary" name="name" rows="4">サンプルテキスト</textarea>
+<textarea class="border form-control text-secondary" name="name" rows="4">
+・「{{ $ga_result[0][0][0][0][0] }}」ページが指定期間で一番多くのユーザーが訪れています。
+・@if($general_comment > 0)
+各ページ全体ではユーザーの流入が増加しており、上昇傾向にあります。
+@else
+各ページ全体ではユーザーの流入が減少しており、下降傾向にあります。
+@endif
+</textarea>
 </div>
 </div>
 </div>

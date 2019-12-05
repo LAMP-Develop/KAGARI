@@ -6,12 +6,10 @@ $sns = $ga_result[1];
 // リファラル
 $link = $ga_result[2];
 @endphp
-
 @section('content')
 <section class="reports">
 <div class="container">
 <div class="row mx-0 mb-3">
-
 <div class="col-4">
 <div class="card">
 <div class="card-body text-center">
@@ -47,7 +45,6 @@ $comp = 0;
 </div>
 </div>
 </div>
-
 <div class="col-4">
 <div class="card">
 <div class="card-body text-center">
@@ -83,7 +80,6 @@ $comp = 0;
 </div>
 </div>
 </div>
-
 <div class="col-4">
 <div class="card">
 <div class="card-body text-center">
@@ -119,9 +115,7 @@ $comp = 0;
 </div>
 </div>
 </div>
-
 </div>
-
 <div class="col-12">
 <div id="comment" class="card">
 <div class="card-body">
@@ -133,13 +127,16 @@ $comp = 0;
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">流入元分析の総評</h3>
-<textarea class="border form-control text-secondary" name="name" rows="4">サンプルテキスト</textarea>
+<textarea class="border form-control text-secondary" name="name" rows="4">
+・{{ $channel[0][0] }}からの流入が多くを占めています。
+・{{ $sns[0][0] }}からの流入が多くを占めています。
+・{{ $link[0][0] }}からの流入が多くを占めています。
+</textarea>
 </div>
 </div>
 </div>
 </div>
 </div>
-
 </div>
 </section>
 @endsection

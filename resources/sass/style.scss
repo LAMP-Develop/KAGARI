@@ -1,5 +1,9 @@
 body {
   color: $gray-600;
+
+  & > nav {
+    min-height: 56px;
+  }
 }
 
 .line-height {
@@ -338,6 +342,14 @@ body {
 .highlight {
   &.on {
     background-color: rgb(255, 249, 240);
+  }
+}
+
+.switch-drop {
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ededed;
   }
 }
 /* Report */

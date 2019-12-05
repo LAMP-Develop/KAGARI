@@ -2,7 +2,7 @@
 <script src="{{ mix('/js/seo.js') }}"></script>
 @endpush
 
-@section('title', $url)
+@section('title', 'SEO解析 - '.$url)
 
 @extends('layouts.app')
 

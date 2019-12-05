@@ -1,8 +1,37 @@
+<?php
+$req = $_SERVER['REQUEST_URI'];
+?>
 @section('header')
 <nav class="position-relative navbar navbar-expand-md navbar-light bg-white border-bottom px-5">
-<a class="navbar-brand" href="{{ url('/dashboard') }}">
-<img src="/storage/{{ setting('site.logo') }}" alt="{{ setting('site.title') }}" width="108">
+@if (strpos($req, 'report') != false)
+<div class="dropdown switch-drop rounded-lg">
+<span class="dropdown-toggle" id="switch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<img src="{{ asset('/img/kagari-report.svg') }}" alt="{{ setting('site.title') }}" width="170">
+</span>
+<div class="dropdown-menu" aria-labelledby="switch">
+<a class="dropdown-item" href="{{ route('seo-report', $site_id) }}">
+  <img src="{{ asset('/img/kagari-seo.svg') }}" alt="{{ setting('site.title') }}" width="120">
+  <small class="d-block line-hegiht-1 mt-1 text-center">SEOを分析する</small>
 </a>
+</div>
+</div>
+@elseif (strpos($req, 'seo') != false)
+<div class="dropdown switch-drop rounded-lg">
+<span class="dropdown-toggle" id="switch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<img src="{{ asset('/img/kagari-seo.svg') }}" alt="{{ setting('site.title') }}" width="140">
+</span>
+<div class="dropdown-menu" aria-labelledby="switch">
+<a class="dropdown-item" href="{{ route('ga-report', $site_id) }}">
+  <img src="{{ asset('/img/kagari-report.svg') }}" alt="{{ setting('site.title') }}" width="120">
+  <small class="d-block line-hegiht-1 mt-1 text-center">レポートを作成</small>
+</a>
+</div>
+</div>
+@else
+<a class="navbar-brand" href="{{ url('/dashboard') }}">
+<img src="{{ asset('/img/kagari.svg') }}" alt="{{ setting('site.title') }}" width="108">
+</a>
+@endif
 <h1 class="head-ttl m-0 font-weight-bold h5">@yield('title')</h1>
 @if(strpos($_SERVER['REQUEST_URI'], 'report'))
 <a href="https://kagari.ai/pdf/kagari-reports.pdf" class="pdf-btn btn btn-sm btn-outline-secondary d-inline-block ml-auto" style="margin-right:5rem" target="_blank"><i class="fas fa-file-pdf mr-2"></i>PDFでレポート出力</a>

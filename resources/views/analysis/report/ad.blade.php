@@ -10,17 +10,14 @@ if ($bool) {
     $click = $ga_result[0][0][1];
     $cv = $ga_result[0][0][2];
     $price = round($cost/$click, 1);
-
     $old_cost = $ga_result[0][1][0];
     $old_click = $ga_result[0][1][1];
     $old_cv = $ga_result[0][1][2];
     $old_price = round($old_cost/$old_click, 1);
-
     $comp_price = round(($price / $old_price - 1) * 100, 2);
     $comp_click = round(($click / $old_click - 1) * 100, 2);
     $comp_cost = round(($cost / $old_cost - 1) * 100, 2);
     $comp_cv = round(($cv / $old_cv - 1) * 100, 2);
-
     $arr_click = [];
     $arr_cost = [];
     $arr_price = [];
@@ -39,8 +36,8 @@ if ($bool) {
     rsort($arr_cv);
     rsort($arr_cv_r);
 }
+$general = 0;
 @endphp
-
 @section('content')
 <section class="reports">
 <div class="container">
@@ -94,7 +91,6 @@ if ($bool) {
 </div>
 </div>
 </div>
-
 <div class="col">
 <div class="card">
 <div class="card-body">
@@ -143,9 +139,7 @@ if ($bool) {
 </div>
 </div>
 </div>
-
 </div>
-
 <div class="col-12 mb-3">
 <div class="card">
 <div class="card-body">
@@ -240,6 +234,7 @@ $comp = round(($val[0][0][4] / $val[1][0][4] - 1) * 100, 2);
 } else {
 $comp = 0;
 }
+$general += $comp;
 @endphp
 @if($comp >= 0)
 <span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
@@ -289,7 +284,11 @@ $comp = 0;
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">広告分析の総評</h3>
-<textarea class="border form-control text-secondary" name="name" rows="4">サンプルテキスト</textarea>
+<textarea class="border form-control text-secondary" name="name" rows="4">
+・広告費用が比較期間よりも@if($comp_cost > 0)高くなっており、@else低くなっており、@endifクリック単価が@if($comp_price > 0)高くなっています。@else低くなっています。@endif
+
+・各キーワードにおけるコンバージョン獲得率は@if($general > 0)増加傾向にあり、@else減少傾向にあり、@endifクリック数が一番多いキーワードは「{{ $ga_result[1][0][0][0][0][0] }}」となっています。
+</textarea>
 </div>
 </div>
 </div>

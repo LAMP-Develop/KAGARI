@@ -8,7 +8,6 @@ $session_time = $ga_result['sumally'][0][5];
 $page_time = $ga_result['sumally'][0][3];
 $exit_rate = $ga_result['sumally'][0][4];
 $bounce_rate = $ga_result['sumally'][0][7];
-
 $users_str = number_format($users);
 $session_str = number_format($session);
 $pv_str = number_format($pv);
@@ -17,7 +16,6 @@ $session_time_str = round($session_time, 2);
 $page_time_str = round($page_time, 2);
 $exit_rate_str = round($exit_rate, 2);
 $bounce_rate_str = round($bounce_rate, 2);
-
 // 過去のデータ
 $old_users = $ga_result['sumally'][1][2];
 $old_session = $ga_result['sumally'][1][0];
@@ -27,7 +25,6 @@ $old_session_time = $ga_result['sumally'][ 1][5];
 $old_page_time = $ga_result['sumally'][1][3];
 $old_exit_rate = $ga_result['sumally'][1][4];
 $old_bounce_rate = $ga_result['sumally'][1][7];
-
 $old_users_str = number_format($old_users);
 $old_session_str = number_format($old_session);
 $old_pv_str = number_format($old_pv);
@@ -36,7 +33,6 @@ $old_session_time_str = round($old_session_time, 2);
 $old_page_time_str = round($old_page_time, 2);
 $old_exit_rate_str = round($old_exit_rate, 2);
 $old_bounce_rate_str = round($old_bounce_rate, 2);
-
 // 比較のデータ
 $comp_users = $ga_result['comp'][2];
 $comp_session = $ga_result['comp'][0];
@@ -47,7 +43,6 @@ $comp_page_time = $ga_result['comp'][3];
 $comp_exit_rate = $ga_result['comp'][4];
 $comp_bounce_rate = $ga_result['comp'][7];
 @endphp
-
 @section('content')
 <section class="reports">
 <div class="container">
@@ -74,7 +69,6 @@ $comp_bounce_rate = $ga_result['comp'][7];
 </div>
 </div>
 </div>
-
 <div class="row mx-0 mb-3">
 <div class="col-3">
 <div class="card">
@@ -269,7 +263,6 @@ $comp_bounce_rate = $ga_result['comp'][7];
 </div>
 </div>
 </div>
-
 <div class="col-12">
 <div id="comment" class="card">
 <div class="card-body">
@@ -304,80 +297,80 @@ $comp_bounce_rate = $ga_result['comp'][7];
 </div>
 </section>
 <script>
-  let ctx = $('#user-chart');
-  let originUser = @json($ga_result['transition']['original'], JSON_PRETTY_PRINT);
-  let compareUser = @json($ga_result['transition']['compare'], JSON_PRETTY_PRINT);
-  let arrayLabel = [];
-  let arrayLabel2 = [];
-  let arrayDataOne = [];
-  let arrayDataTwo = [];
-  for (var key in originUser) {
-    arrayLabel.push(key);
-    arrayDataOne.push(originUser[key]);
-  }
-  for (var key in compareUser) {
-    arrayLabel2.push(key);
-    arrayDataTwo.push(compareUser[key]);
-  }
-  let myChart = new Chart(ctx, {
-    type: 'line',
-    animation: true,
-    data: {
-      labels: arrayLabel,
-      datasets: [
+let ctx = $('#user-chart');
+let originUser = @json($ga_result['transition']['original'], JSON_PRETTY_PRINT);
+let compareUser = @json($ga_result['transition']['compare'], JSON_PRETTY_PRINT);
+let arrayLabel = [];
+let arrayLabel2 = [];
+let arrayDataOne = [];
+let arrayDataTwo = [];
+for (var key in originUser) {
+  arrayLabel.push(key);
+  arrayDataOne.push(originUser[key]);
+}
+for (var key in compareUser) {
+  arrayLabel2.push(key);
+  arrayDataTwo.push(compareUser[key]);
+}
+let myChart = new Chart(ctx, {
+  type: 'line',
+  animation: true,
+  data: {
+    labels: arrayLabel,
+    datasets: [
+      {
+        label: '今期間',
+        borderColor: '#007AFF',
+        borderWidth: 2,
+        backgroundColor: 'rgba(0,122,255,.05)',
+        pointBackgroundColor: '#007AFF',
+        pointRadius: 2,
+        pointBorderWidth: 0,
+        data: arrayDataOne
+      }, {
+        label: '前期間',
+        borderColor: '#FF2D55',
+        borderWidth: 2,
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+        pointBackgroundColor: '#FF2D55',
+        pointRadius: 2,
+        pointBorderWidth: 0,
+        data: arrayDataTwo
+      }
+    ]
+  },
+  options: {
+    legend: {
+      display: false
+    },
+    scales: {
+      xAxes: [
         {
-          label: '今期間',
-          borderColor: '#007AFF',
-          borderWidth: 2,
-          backgroundColor: 'rgba(0,122,255,.05)',
-          pointBackgroundColor: '#007AFF',
-          pointRadius: 2,
-          pointBorderWidth: 0,
-          data: arrayDataOne
-        }, {
-          label: '前期間',
-          borderColor: '#FF2D55',
-          borderWidth: 2,
-          backgroundColor: 'rgba(0, 0, 0, 0)',
-          pointBackgroundColor: '#FF2D55',
-          pointRadius: 2,
-          pointBorderWidth: 0,
-          data: arrayDataTwo
+          scaleLabel: {
+            fontColor: '#EDEDED'
+          },
+          gridLines: {
+            display: false
+          },
+          ticks: {
+            display: false
+          }
+        }
+      ],
+      yAxes: [
+        {
+          scaleLabel: {
+            fontColor: '#EDEDED'
+          },
+          gridLines: {},
+          ticks: {
+            suggestedMin: 0,
+            autoSkip: true
+          }
         }
       ]
-    },
-    options: {
-      legend: {
-        display: false
-      },
-      scales: {
-        xAxes: [
-          {
-            scaleLabel: {
-              fontColor: '#EDEDED'
-            },
-            gridLines: {
-              display: false
-            },
-            ticks: {
-              display: false
-            }
-          }
-        ],
-        yAxes: [
-          {
-            scaleLabel: {
-              fontColor: '#EDEDED'
-            },
-            gridLines: {},
-            ticks: {
-              suggestedMin: 0,
-              autoSkip: true
-            }
-          }
-        ]
-      }
     }
-  });
+  }
+});
 </script>
 @endsection

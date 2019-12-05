@@ -89,6 +89,15 @@ class AddSitesController extends Controller
                 $site_id = $add_sites->id;
             }
         }
+        // $host = parse_url($site_url)['host'];
+        // $sc_site = $request->sc->sites->listSites()->siteEntry;
+        // $search_arr = [];
+        // foreach ($sc_site as $key => $val) {
+        //     $search_arr[] = $val->siteUrl;
+        // }
+        // if (count($search_arr) == 0) {
+        //     $e_message = '選ばれたサイトはSearch Consoleに登録されていません。SEOのプランをご契約される際にはSearch Consoleへサイトをご登録ください。<br><a href="https://kagari.ai/blog/search-console/" target="_blank"><i class="fas fa-link mr-2"></i>Search Consoleの設定方法を見る</a>';
+        // }
         try {
             $sc_site = $request->sc->sites->get($site_url)->siteUrl;
         } catch (\Exception $e) {

@@ -9,5 +9,6 @@
   "Register": "新規会員登録",
   "Logout": "ログアウト",
   "Confirm Password": "パスワード(確認用)",
-  "Name": "お名前"
+  "Name": "お名前",
+  "passwords.throttled": "パスワードリセットに制限がかかっています。"
 }

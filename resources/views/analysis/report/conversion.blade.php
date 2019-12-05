@@ -19,14 +19,12 @@ if($old_cv_r != 0) {
 $ss = $ga_result[1][0][0];
 // 直帰
 $ex = $ga_result[1][0][3];
-
 $arr_cv = [];
 $arr_cv_r = [];
 $arr_uu = [];
 $arr_ex = [];
 $arr_ps = [];
 $arr_time = [];
-
 foreach ($ga_result[0] as $key => $val) {
     $arr_cv[] = (float)$val[0][0][1];
     $arr_cv_r[] = (float)$val[0][0][2];
@@ -42,7 +40,6 @@ rsort($arr_ex);
 rsort($arr_ps);
 rsort($arr_time);
 @endphp
-
 @section('content')
 <section class="reports">
 <div class="container">
@@ -51,7 +48,7 @@ rsort($arr_time);
 <div class="card">
 <div class="card-body text-center">
 <span class="opacity-item opacity-bg-orange">
-<i class="fas fa-user opacity-color-orange"></i>
+<i class="fas fa-flag opacity-color-orange"></i>
 </span>
 <h4 class="h6 text-dark mt-3">コンバージョン数</h4>
 <p class="h4 font-weight-bold text-dark">{{ $cv }}</p>
@@ -116,7 +113,6 @@ rsort($arr_time);
 </div>
 </div>
 </div>
-
 <div class="col-12 mb-3">
 <div class="card">
 <div class="card-body">
@@ -125,12 +121,12 @@ rsort($arr_time);
 <thead>
 <tr>
 <th class="font-weight-normal align-top"></th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-orange"><i class="fas fa-bolt opacity-color-orange"></i></span><small class="mt-2 d-block">コンバージョン<br>数</small></th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-purple"><i class="fas fa-eye opacity-color-purple"></i></span><small class="mt-2 d-block">コンバージョン<br>率</small></th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue"><i class="fas fa-pager opacity-color-blue"></i></span><small class="mt-2 d-block">ユーザー数</small></th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-purple-2"><i class="fas fa-user opacity-color-purple-2"></i></span><small class="mt-2 d-block">直帰率</small></th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue-2"><i class="far fa-clock opacity-color-blue-2"></i></span><small class="mt-2 d-block">ページ/<br>セッション</small></th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-red"><i class="fas fa-arrow-alt-circle-left opacity-color-red"></i></span><small class="mt-2 d-block">平均<br>セッション時間</small></th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-orange"><i class="fas fa-flag opacity-color-orange"></i></span><small class="mt-2 d-block">コンバージョン<br>数</small></th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-purple"><i class="far fa-flag opacity-color-purple"></i></span><small class="mt-2 d-block">コンバージョン<br>率</small></th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue"><i class="fas fa-user opacity-color-blue"></i></span><small class="mt-2 d-block">ユーザー数</small></th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-purple-2"><i class="fas fa-arrow-alt-circle-left opacity-color-purple-2"></i></span><small class="mt-2 d-block">直帰率</small></th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue-2"><i class="fas fa-pager opacity-color-blue-2"></i></span><small class="mt-2 d-block">ページ/<br>セッション</small></th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-red"><i class="fas fa-clock opacity-color-red"></i></span><small class="mt-2 d-block">平均<br>セッション時間</small></th>
 </tr>
 </thead>
 <tbody>
@@ -290,7 +286,9 @@ $comp = 0;
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">コンバージョン分析の総評</h3>
-<textarea class="border form-control text-secondary" name="name" rows="4">サンプルテキスト</textarea>
+<textarea class="border form-control text-secondary" name="name" rows="4">
+@if($comp_cv > 0)・コンバージョン獲得数が増加しています。@else・コンバージョン獲得数が減少しています。@endifその中でも「{{ $ga_result[0][0][0][0][0][0] }}」からのコンバージョン獲得が多くなっています。
+</textarea>
 </div>
 </div>
 </div>

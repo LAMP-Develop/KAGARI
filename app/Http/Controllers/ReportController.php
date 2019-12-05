@@ -82,6 +82,7 @@ class ReportController extends Controller
         // dd($ga_result);
 
         return view('analysis.report.index')->with([
+          'site_id' => $sites,
           'ga_result' => $ga_result,
           'add_site' => $add_site,
           'end' => $end,
