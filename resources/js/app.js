@@ -12,11 +12,13 @@ require('file-saverjs');
 require('tableexport');
 
 $(function() {
+  // Tooltips
+  $('[data-toggle="tooltip"]').tooltip();
+
   // サイト追加
   const $searchElem = $('.accounts');
   const excludedClass = 'is-excluded';
   let $searchInput = $('#ga-search');
-
   function extraction() {
     var keywordArr = $searchInput.val().toLowerCase().replace('　', ' ').split(' ');
     $searchElem.removeClass(excludedClass).show();

@@ -4,10 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Hash;
-
 use App\User;
 use App\AddSites;
 use App\Plans;
@@ -19,7 +15,6 @@ use Route;
 use Google_Service_AnalyticsReporting_DateRange;
 use Google_Service_AnalyticsReporting_Metric;
 use Google_Service_AnalyticsReporting_Dimension;
-use Google_Service_AnalyticsReporting_SegmentDimensionFilter;
 use Google_Service_AnalyticsReporting_DimensionFilter;
 use Google_Service_AnalyticsReporting_DimensionFilterClause;
 use Google_Service_AnalyticsReporting_OrderBy;

@@ -16,6 +16,12 @@ body {
   }
 }
 
+.custom-switch .custom-control-label::after,
+.custom-switch .custom-control-label::before,
+[data-toggle="tooltip"] {
+  cursor: pointer;
+}
+
 .wrap {
   min-height: calc(100vh - 113px - 6rem);
 }
@@ -539,8 +545,8 @@ body {
 .col-7,
 .col-8,
 .col-9 {
-  padding-right: 8px;
-  padding-left: 8px;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
 }
 
 .report-nav .nav-item .nav-link:hover {

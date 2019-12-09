@@ -6,8 +6,9 @@
 <tr>
 <th scope="col">サイトの名前</th>
 <th scope="col">サイトのジャンル</th>
-<th scope="col">ご契約プラン
-<!-- <a class="float-right font-weight-normal" href="{{ route('sites-edit') }}"><i class="fas fa-edit mr-1"></i>編集する</a> -->
+<th scope="col">ご契約プラン</th>
+<th scope="col">レポートのメール受信<i data-toggle="tooltip" data-original-title="月初にご登録メールアドレス宛に解析レポートPDFが送信されます。" class="ml-1 fas fa-question-circle"></i></th>
+<th></th>
 </th>
 </tr>
 </thead>
@@ -28,8 +29,6 @@
 </td>
 <td>{{ $categories[($site->category - 1)]->cat }}</td>
 <td>
-<div class="d-flex align-items-center justify-content-between">
-<span>
 @if ($site->plan == null)
 <form class="" action="{{ route('plan') }}" method="get">
 <button type="submit" class="btn btn-link">プランを登録する</button>
@@ -43,7 +42,14 @@
 @else
 {{ $plans[($site->plan - 1)]->name }}
 @endif
-</span>
+</td>
+<td class="text-center">
+<div class="custom-control custom-switch">
+<input id="checkbox-{{ $site->id }}" type="checkbox" class="custom-control-input">
+<label class="custom-control-label" for="checkbox-{{ $site->id }}"></label>
+</div>
+</td>
+<td>
 <div class="d-flex align-items-center justify-content-end">
 @if ($site->plan == null)
 <a href="#" class="btn btn-sm btn-outline-primary mr-2 disabled">レポートを作成する</a>
@@ -55,7 +61,6 @@
 @else
 <a href="{{ route('seo-report', $site->id) }}" class="btn btn-sm btn-outline-secondary">SEO分析する</a>
 @endif
-</div>
 </div>
 </td>
 </tr>
