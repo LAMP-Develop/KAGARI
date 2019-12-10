@@ -89,18 +89,19 @@ Route::group(['prefix' => 'seo'], function () {
 });
 
 // Ajax
-Route::post('/seo-detail/{AddSites}', 'AjaxController@get_seo_detail', function ($sites) {
+Route::post('/seo-detail/{AddSites}', 'AjaxController@get_seo_detail', function ($sites) { // 個別ページのSEO
     return $sites;
 });
-Route::post('/seo-page-kyes/{AddSites}', 'AjaxController@get_seo_kyes', function ($sites) {
+Route::post('/seo-page-kyes/{AddSites}', 'AjaxController@get_seo_kyes', function ($sites) { // SCのキーワード取得
     return $sites;
 });
-Route::post('/ga-all/{AddSites}', 'AjaxController@get_ga_all', function ($sites) {
+Route::post('/ga-all/{AddSites}', 'AjaxController@get_ga_all', function ($sites) { // GAの全データ
     return $sites;
 })->middleware('analytics.reporting');
-Route::post('/sc-all/{AddSites}', 'AjaxController@get_sc_all', function ($sites) {
+Route::post('/sc-all/{AddSites}', 'AjaxController@get_sc_all', function ($sites) { // SCの全データ
     return $sites;
 });
+Route::post('/send-flag', 'AjaxController@set_send_flag'); // PDF送付のフラグ
 
 // Voyager
 Route::group(['prefix' => 'admin'], function () {

@@ -1,4 +1,5 @@
 @section('content')
+<div class="message fixed-top m-4"></div>
 <section class="wrap">
 <div class="container">
 <table class="table text-muted">
@@ -45,7 +46,11 @@
 </td>
 <td class="text-center">
 <div class="custom-control custom-switch">
-<input id="checkbox-{{ $site->id }}" type="checkbox" class="custom-control-input">
+@if($site->send_flag)
+<input id="checkbox-{{ $site->id }}" data-id="{{ $site->id }}" name="send_flag" type="checkbox" class="custom-control-input" value="0" checked>
+@else
+<input id="checkbox-{{ $site->id }}" data-id="{{ $site->id }}" name="send_flag" type="checkbox" class="custom-control-input" value="1">
+@endif
 <label class="custom-control-label" for="checkbox-{{ $site->id }}"></label>
 </div>
 </td>
@@ -83,4 +88,36 @@
 @endif
 </div>
 </section>
+
+<script>
+$(function() {
+  const csrf = $('meta[name="csrf-token"]').attr('content');
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': csrf
+    }
+  });
+  $('[name="send_flag"]').change(function() {
+    $.ajax({
+      url: '/send-flag',
+      type: 'post',
+      datatype: 'json',
+      data: {
+        id: $(this).attr('data-id'),
+        flag: $(this).val(),
+      }
+    }).done(function() {
+      $('.message').html('<div class="alert alert-success alert-dismissible fade show" role="alert">更新されました。<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+      setTimeout(() => {
+        $('.message>.alert').alert('close');
+      }, 3000);
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+      $('.message').html('<div class="alert alert-danger alert-dismissible fade show" role="alert">予期せぬエラーが発生しました。<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+      setTimeout(() => {
+        $('.message>.alert').alert('close');
+      }, 3000);
+    });
+  });
+});
+</script>
 @endsection

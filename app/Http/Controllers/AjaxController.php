@@ -178,4 +178,12 @@ class AjaxController extends Controller
             $user->update();
         }
     }
+
+    // PDF送付のフラグ
+    public function set_send_flag(Request $request)
+    {
+        $site = AddSites::where('id', $request->id)->get()[0];
+        $site->send_flag = $request->flag;
+        $site->update();
+    }
 }
