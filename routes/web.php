@@ -79,6 +79,10 @@ Route::group(['prefix' => 'report'], function () {
     Route::get('/ad/{AddSites}', 'ReportController@index', function ($sites) {
         return $sites;
     })->middleware('analytics.reporting')->name('ga-ad');
+    // pdf
+    Route::get('/{AddSites}/pdf', 'PdfController@index', function ($sites) {
+        return $sites;
+    })->middleware('analytics.reporting')->name('ga-pdf');
 });
 
 // SEO解析系
