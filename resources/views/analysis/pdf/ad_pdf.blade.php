@@ -287,7 +287,11 @@ $comp = 0;
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">広告分析の総評</h3>
-<textarea class="border-0 form-control text-secondary" name="name" rows="4"></textarea>
+<textarea class="border-0 form-control text-secondary" name="name" rows="4">
+・広告費用が比較期間よりも@if($comp_cost > 0)高くなっており、@else低くなっており、@endifクリック単価が@if($comp_price > 0)高くなっています。@else低くなっています。@endif
+
+・各キーワードにおけるコンバージョン獲得率は@if($general > 0)増加傾向にあり、@else減少傾向にあり、@endifクリック数が一番多いキーワードは「{{ $ga_result_ad[1][0][0][0][0][0] }}」となっています。
+</textarea>
 </div>
 </div>
 </div>

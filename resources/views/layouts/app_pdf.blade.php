@@ -110,9 +110,7 @@
 <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
 <script>
 $(window).on('load', function() {
-  setTimeout(function(){
-     downloadImage();
-  },5000);
+  downloadImage();
   setTimeout(function(){
      $('.spinner').css('display', 'none');
   },5500);

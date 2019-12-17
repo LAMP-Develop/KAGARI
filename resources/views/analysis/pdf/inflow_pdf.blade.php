@@ -132,7 +132,11 @@ $comp = 0;
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">流入元分析の総評</h3>
-<textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4"></textarea>
+<textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4">
+・{{ $channel[0][0] }}からの流入が多くを占めています。
+・{{ $sns[0][0] }}からの流入が多くを占めています。
+・{{ $link[0][0] }}からの流入が多くを占めています。
+</textarea>
 </div>
 </div>
 </div>
