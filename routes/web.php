@@ -43,6 +43,9 @@ Route::group(['prefix' => 'dashboard'], function () {
             Route::get('/edit/{AddSites}', 'AddSitesController@edit', function ($sites) {
                 return $sites;
             })->name('sites-edit');
+            Route::post('/edit_data/{AddSites}/', 'AddSitesController@update', function ($sites) {
+                return $sites;
+            })->name('sites-update');
         });
 
         // サイト追加

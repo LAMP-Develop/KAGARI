@@ -10,6 +10,7 @@ use App\Industry;
 use App\Plans;
 use Auth;
 use DB;
+use Illuminate\Support\Facades\Storage;
 
 class AddSitesController extends Controller
 {
@@ -124,5 +125,33 @@ class AddSitesController extends Controller
           'industries' => $industries,
           'plans' => $plans,
         ]);
+    }
+
+    public function update($sites,Request $request)
+    {
+      $categories = Category::all();
+      $industries = Industry::all();
+      $plans = Plans::all();
+      $user = Auth::user();
+      $user_id = $user->id;
+      $add_sites = AddSites::where('user_id', $user_id)->get();
+      $add_site = AddSites::where('id', $sites)->get();
+      $site = $add_site[0];
+      $path = '/public/logos/'.$site->logo_path;
+      if (isset($request['image_file'])) {
+      Storage::delete($path);
+      $path = $request->file('image_file')->store('public/logos');
+      $site->logo_path = basename($path);
+      }
+      $site->site_name = $request['site_name'];
+      $site->category = $request['genre'];
+      $site->save();
+
+      return redirect('/')->with([
+          'add_sites' => $add_sites,
+          'categories' => $categories,
+          'industries' => $industries,
+          'plans' => $plans,
+      ]);
     }
 }
