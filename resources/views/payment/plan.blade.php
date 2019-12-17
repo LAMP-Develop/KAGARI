@@ -53,10 +53,10 @@ echo $message;
 <p class="text-center h2 font-weight-bold mb-0">¥4,000/月</p>
 <p class="text-center"><small>¥48,000/年間</small></p>
 <p class="text-center my-4 font-weight-bold">すべてのレポート作成機能を<br>ご利用いただけるプラン</p>
-<ul>
-<li>アクセス解析</li>
-<li>レポーティング機能</li>
-<li>AI改善提案</li>
+<ul class="list-group list-group-flush">
+<li class="border-0 p-0 mb-1 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>アクセス解析</li>
+<li class="border-0 p-0 mb-1 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>レポーティング機能</li>
+<li class="border-0 p-0 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>AI改善提案</li>
 </ul>
 <div class="mt-5 text-center">
 <button type="submit" name="plan" value="1" class="btn btn-outline-primary">このプランで登録する</button>
@@ -71,12 +71,12 @@ echo $message;
 <p class="text-center h2 font-weight-bold mb-0">¥7,000/月</p>
 <p class="text-center"><small>¥84,000/年間</small></p>
 <p class="text-center my-4 font-weight-bold">ページごとのSEO分析に特化した<br>分析機能付きのプラン</p>
-<ul>
-<li>アクセス解析</li>
-<li>レポーティング機能</li>
-<li>AI改善提案</li>
-<li>検索順位/キーワードのレポーティング</li>
-<li>ページごとのSEO解析</li>
+<ul class="list-group list-group-flush">
+<li class="border-0 p-0 mb-1 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>アクセス解析</li>
+<li class="border-0 p-0 mb-1 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>レポーティング機能</li>
+<li class="border-0 p-0 mb-1 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>AI改善提案</li>
+<li class="border-0 p-0 mb-1 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>検索順位/キーワードのレポーティング</li>
+<li class="border-0 p-0 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>ページごとのSEO解析</li>
 </ul>
 <div class="mt-5 text-center">
 @if ($e_message != '')

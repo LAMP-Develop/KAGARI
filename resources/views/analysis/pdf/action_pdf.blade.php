@@ -1,4 +1,4 @@
-<?php
+@php
 $ss = [];
 $pv = [];
 $ps = [];
@@ -19,8 +19,8 @@ rsort($ps);
 rsort($uu);
 rsort($time);
 rsort($br);
-?>
-
+$general_comment = 0;
+@endphp
 @section('content_action')
 <section class="reports">
 <div class="container">
@@ -28,7 +28,7 @@ rsort($br);
 <div class="card">
 <div class="card-body">
 <div class="table-responsive">
-<table class="table table-striped table-borderless">
+<table class="table table-striped table-borderless table-sm">
 <thead>
 <tr>
 <th class="font-weight-normal align-top"></th>
@@ -41,7 +41,7 @@ rsort($br);
 </tr>
 </thead>
 <tbody>
-<?php foreach ($ga_result_action as $key => $val): ?>
+@foreach ($ga_result_action as $key => $val)
 <tr>
 <td><span class="text-dark">{{ $val[0][0][0][0] }}</span></td>
 <td class="text-right">
@@ -49,13 +49,14 @@ rsort($br);
 <div class="progress">
 <div class="progress-bar ka-bg-orange" style="width:{{ ($val[0][0][1]/$ss[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][1]/$ss[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][1] != 0) {
 $comp = round(($val[0][0][1] / $val[1][0][1] - 1) * 100, 2);
 } else {
 $comp = 0;
 }
+$general_comment += $comp;
 @endphp
 @if($comp >= 0)
 <span class="opacity-color-green"><span class="mr-1">↑</span>
@@ -70,7 +71,7 @@ $comp = 0;
 <div class="progress">
 <div class="progress-bar ka-bg-green" style="width:{{ ($val[0][0][2]/$pv[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][2]/$pv[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][2] != 0) {
 $comp = round(($val[0][0][2] / $val[1][0][2] - 1) * 100, 2);
@@ -91,7 +92,7 @@ $comp = 0;
 <div class="progress">
 <div class="progress-bar ka-bg-blue-2" style="width:{{ ($val[0][0][3]/$ps[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][3]/$ps[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][3] != 0) {
 $comp = round(($val[0][0][3] / $val[1][0][3] - 1) * 100, 2);
@@ -112,7 +113,7 @@ $comp = 0;
 <div class="progress">
 <div class="progress-bar ka-bg-blue" style="width:{{ ($val[0][0][4]/$uu[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][4]/$uu[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][4] != 0) {
 $comp = round(($val[0][0][4] / $val[1][0][4] - 1) * 100, 2);
@@ -133,7 +134,7 @@ $comp = 0;
 <div class="progress">
 <div class="progress-bar ka-bg-red" style="width:{{ ($val[0][0][5]/$time[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][5]/$time[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][5] != 0) {
 $comp = round(($val[0][0][5] / $val[1][0][5] - 1) * 100, 2);
@@ -154,7 +155,7 @@ $comp = 0;
 <div class="progress">
 <div class="progress-bar ka-bg-purple-2" style="width:{{ ($val[0][0][6]/$br[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][6]/$br[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][6] != 0) {
 $comp = round(($val[0][0][6] / $val[1][0][6] - 1) * 100, 2);
@@ -171,7 +172,7 @@ $comp = 0;
 </p>
 </td>
 </tr>
-<?php endforeach; ?>
+@endforeach
 </tbody>
 </table>
 </div>
@@ -189,7 +190,7 @@ $comp = 0;
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">ユーザー行動分析の総評</h3>
-<textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4">サンプルテキスト</textarea>
+<textarea class="border-0 form-control text-secondary" name="name" rows="4"></textarea>
 </div>
 </div>
 </div>

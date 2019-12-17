@@ -74,8 +74,6 @@ class ReportController extends Controller
             $ga_result = $this->get_ga_ad($gsa, $view_id, $start, $end, $com_start, $com_end);
         }
 
-        // dd($ga_result);
-
         return view('analysis.report.index')->with([
           'site_id' => $sites,
           'ga_result' => $ga_result,
@@ -149,7 +147,11 @@ class ReportController extends Controller
             array_push($array, $value);
         }
         foreach ($array[0] as $key => $val) {
-            $comp_array[] = round(((float)$val / (float)$array[1][$key] - 1) * 100, 2);
+            if ((float)$array[1][$key] != 0) {
+                $comp_array[] = round(((float)$val / (float)$array[1][$key] - 1) * 100, 2);
+            } else {
+                $comp_array[] = 0;
+            }
         }
         return [
           'transition' => $arrayUser,
@@ -211,6 +213,7 @@ class ReportController extends Controller
         $requestAge->setMetrics($ss);
         $requestAge->setDimensions($age);
         $requestAge->setOrderBys($orderBy);
+        $requestAge->setPageSize('5');
         $requestDevice = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestDevice->setViewId($VIEW_ID);
         $requestDevice->setDateRanges(array($dateRange,$dateRangeTwo));
@@ -270,12 +273,15 @@ class ReportController extends Controller
         $requestMedium->setViewId($VIEW_ID);
         $requestMedium->setDateRanges(array($dateRange,$dateRangeTwo));
         $requestMedium->setMetrics($ss);
+        $requestMedium->setPageSize('5');
         $requestMedium->setDimensions($medium);
         $requestMedium->setOrderBys($orderBy);
+
         $requestSocial = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestSocial->setViewId($VIEW_ID);
         $requestSocial->setDateRanges(array($dateRange,$dateRangeTwo));
         $requestSocial->setMetrics($ss);
+        $requestSocial->setPageSize('5');
         $requestSocial->setDimensions($social);
         $requestSocial->setOrderBys($orderBy);
 

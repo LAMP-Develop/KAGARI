@@ -212,6 +212,7 @@ class PdfController extends Controller
         $requestAge->setMetrics($ss);
         $requestAge->setDimensions($age);
         $requestAge->setOrderBys($orderBy);
+        $requestAge->setPageSize('5');
         $requestDevice = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestDevice->setViewId($VIEW_ID);
         $requestDevice->setDateRanges(array($dateRange,$dateRangeTwo));
@@ -271,12 +272,15 @@ class PdfController extends Controller
         $requestMedium->setViewId($VIEW_ID);
         $requestMedium->setDateRanges(array($dateRange,$dateRangeTwo));
         $requestMedium->setMetrics($ss);
+        $requestMedium->setPageSize('5');
         $requestMedium->setDimensions($medium);
         $requestMedium->setOrderBys($orderBy);
+
         $requestSocial = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestSocial->setViewId($VIEW_ID);
         $requestSocial->setDateRanges(array($dateRange,$dateRangeTwo));
         $requestSocial->setMetrics($ss);
+        $requestSocial->setPageSize('5');
         $requestSocial->setDimensions($social);
         $requestSocial->setOrderBys($orderBy);
 

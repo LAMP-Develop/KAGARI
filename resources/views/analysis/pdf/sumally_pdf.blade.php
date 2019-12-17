@@ -1,5 +1,4 @@
-
-<?php
+@php
 // 現在のデータ
 $users = $ga_result_data['sumally'][0][2];
 $session = $ga_result_data['sumally'][0][0];
@@ -9,7 +8,6 @@ $session_time = $ga_result_data['sumally'][0][5];
 $page_time = $ga_result_data['sumally'][0][3];
 $exit_rate = $ga_result_data['sumally'][0][4];
 $bounce_rate = $ga_result_data['sumally'][0][7];
-
 $users_str = number_format($users);
 $session_str = number_format($session);
 $pv_str = number_format($pv);
@@ -18,7 +16,6 @@ $session_time_str = round($session_time, 2);
 $page_time_str = round($page_time, 2);
 $exit_rate_str = round($exit_rate, 2);
 $bounce_rate_str = round($bounce_rate, 2);
-
 // 過去のデータ
 $old_users = $ga_result_data['sumally'][1][2];
 $old_session = $ga_result_data['sumally'][1][0];
@@ -28,7 +25,6 @@ $old_session_time = $ga_result_data['sumally'][ 1][5];
 $old_page_time = $ga_result_data['sumally'][1][3];
 $old_exit_rate = $ga_result_data['sumally'][1][4];
 $old_bounce_rate = $ga_result_data['sumally'][1][7];
-
 $old_users_str = number_format($old_users);
 $old_session_str = number_format($old_session);
 $old_pv_str = number_format($old_pv);
@@ -37,7 +33,6 @@ $old_session_time_str = round($old_session_time, 2);
 $old_page_time_str = round($old_page_time, 2);
 $old_exit_rate_str = round($old_exit_rate, 2);
 $old_bounce_rate_str = round($old_bounce_rate, 2);
-
 // 比較のデータ
 $comp_users = $ga_result_data['comp'][2];
 $comp_session = $ga_result_data['comp'][0];
@@ -47,8 +42,7 @@ $comp_session_time = $ga_result_data['comp'][5];
 $comp_page_time = $ga_result_data['comp'][3];
 $comp_exit_rate = $ga_result_data['comp'][4];
 $comp_bounce_rate = $ga_result_data['comp'][7];
-?>
-
+@endphp
 @section('content_sumally')
 <section class="reports">
 <div class="container">
@@ -290,11 +284,7 @@ $comp_bounce_rate = $ga_result_data['comp'][7];
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">解析結果の総評</h3>
-<textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4">
-<?php if (($comp_users+$comp_session+$comp_pv) > 0): ?>アクセス状況は上昇傾向にあります。<?php else: ?>アクセス状況は下降傾向にあります。<?php endif; ?>
-
-<?php if ($comp_exit_rate+$comp_bounce_rate < 0): ?>ユーザーの直帰率・離脱率が下降傾向にありユーザーがコンテンツに満足し始めいていると言えます。<?php else: ?>ユーザーの直帰率・離脱率が上昇傾向にありユーザーがコンテンツに満足していない可能性があります。<?php endif; ?>
-</textarea>
+<textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4"></textarea>
 </div>
 </div>
 </div>

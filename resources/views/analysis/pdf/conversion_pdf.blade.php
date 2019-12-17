@@ -1,24 +1,30 @@
-<?php
+@php
 // cv数
 $cv = $ga_result_conversion[1][0][1];
 $old_cv = $ga_result_conversion[1][1][1];
-$comp_cv = round(($cv/$old_cv-1)*100, 2);
+if($old_cv != 0) {
+  $comp_cv = round(($cv/$old_cv-1)*100, 2);
+} else {
+  $comp_cv = 0;
+}
 // cv率
 $cv_r = round($ga_result_conversion[1][0][2], 2);
 $old_cv_r = round($ga_result_conversion[1][1][2], 2);
-$comp_cv_r = round(($cv/$old_cv-1)*100, 2);
+if($old_cv_r != 0) {
+  $comp_cv_r = round(($cv/$old_cv-1)*100, 2);
+} else {
+  $comp_cv_r = 0;
+}
 // セッション
 $ss = $ga_result_conversion[1][0][0];
 // 直帰
 $ex = $ga_result_conversion[1][0][3];
-
 $arr_cv = [];
 $arr_cv_r = [];
 $arr_uu = [];
 $arr_ex = [];
 $arr_ps = [];
 $arr_time = [];
-
 foreach ($ga_result_conversion[0] as $key => $val) {
     $arr_cv[] = (float)$val[0][0][1];
     $arr_cv_r[] = (float)$val[0][0][2];
@@ -33,8 +39,7 @@ rsort($arr_uu);
 rsort($arr_ex);
 rsort($arr_ps);
 rsort($arr_time);
-?>
-
+@endphp
 @section('content_conversion')
 <section class="reports">
 <div class="container">
@@ -43,7 +48,7 @@ rsort($arr_time);
 <div class="card">
 <div class="card-body text-center">
 <span class="opacity-item opacity-bg-orange">
-<img src="{{ asset('/img/fa-user_red_24.png') }}" alt="">
+<img src="{{ asset('/img/fa-flag_orange_16.png') }}" alt="">
 </span>
 <h4 class="h6 text-dark mt-3">コンバージョン数</h4>
 <p class="h4 font-weight-bold text-dark">{{ $cv }}</p>
@@ -113,20 +118,20 @@ rsort($arr_time);
 <div class="card">
 <div class="card-body">
 <div class="table-responsive">
-<table class="table table-striped table-borderless">
+<table class="table table-striped table-borderless table-sm">
 <thead>
 <tr>
 <th class="font-weight-normal align-top"></th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-orange"><img src="{{ asset('/img/fa-bolt_orange_16.png') }}"></span><small class="mt-2 d-block">コンバージョン<br>数</small></th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-purple"><img src="{{ asset('/img/fa-eye_green_16.png') }}"></span><small class="mt-2 d-block">コンバージョン<br>率</small></th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue"><img src="{{ asset('/img/fa-pager_blue-2_16.png') }}"></span><small class="mt-2 d-block">ユーザー数</small></th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-purple-2"><img src="{{ asset('/img/fa-user_blue_16.png') }}"></span><small class="mt-2 d-block">直帰率</small></th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue-2"><img src="{{ asset('/img/fa-clock_red_16.png') }}"></span><small class="mt-2 d-block">ページ/<br>セッション</small></th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-red"><img src="{{ asset('/img/fa-arrow-alt-circle-left_purple-2_16.png') }}"></span><small class="mt-2 d-block">平均<br>セッション時間</small></th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-orange"><img src="{{ asset('/img/fa-flag_orange_16.png') }}"></span><small class="mt-2 d-block">コンバージョン<br>数</small></th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-purple"><img src="{{ asset('/img/fa-flag_purple_16.png') }}"></span><small class="mt-2 d-block">コンバージョン<br>率</small></th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue"><img src="{{ asset('/img/fa-user_blue_16.png') }}"></span><small class="mt-2 d-block">ユーザー数</small></th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-purple-2"><img src="{{ asset('/img/fa-arrow-alt-circle-left_purple-2_16.png') }}"></span><small class="mt-2 d-block">直帰率</small></th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue-2"><img src="{{ asset('/img/fa-pager_blue-2_16.png') }}"></span><small class="mt-2 d-block">ページ/<br>セッション</small></th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-red"><img src="{{ asset('/img/fa-clock_red-2_16.png') }}"></span><small class="mt-2 d-block">平均<br>セッション時間</small></th>
 </tr>
 </thead>
 <tbody>
-<?php foreach ($ga_result_conversion[0] as $key => $val): ?>
+@foreach ($ga_result_conversion[0] as $key => $val)
 <tr>
 <td><span class="text-dark">{{ $val[0][0][0][0] }}</span></td>
 <td class="text-right">
@@ -134,7 +139,7 @@ rsort($arr_time);
 <div class="progress">
 <div class="progress-bar ka-bg-orange" style="width:{{ ($val[0][0][1]/$arr_cv[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][1]/$arr_cv[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][1] != 0) {
 $comp = round(($val[0][0][1] / $val[1][0][1] - 1) * 100, 2);
@@ -155,7 +160,7 @@ $comp = 0;
 <div class="progress">
 <div class="progress-bar ka-bg-purple" style="width:{{ ($val[0][0][2]/$arr_cv_r[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][2]/$arr_cv_r[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][2] != 0) {
 $comp = round(($val[0][0][2] / $val[1][0][2] - 1) * 100, 2);
@@ -176,7 +181,7 @@ $comp = 0;
 <div class="progress">
 <div class="progress-bar ka-bg-blue" style="width:{{ ($val[0][0][3]/$arr_uu[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][3]/$arr_uu[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][3] != 0) {
 $comp = round(($val[0][0][3] / $val[1][0][3] - 1) * 100, 2);
@@ -197,7 +202,7 @@ $comp = 0;
 <div class="progress">
 <div class="progress-bar ka-bg-purple-2" style="width:{{ ($val[0][0][4]/$arr_ex[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][4]/$arr_ex[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][4] != 0) {
 $comp = round(($val[0][0][4] / $val[1][0][4] - 1) * 100, 2);
@@ -218,7 +223,7 @@ $comp = 0;
 <div class="progress">
 <div class="progress-bar ka-bg-blue-2" style="width:{{ ($val[0][0][5]/$arr_ps[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][5]/$arr_ps[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][5] != 0) {
 $comp = round(($val[0][0][5] / $val[1][0][5] - 1) * 100, 2);
@@ -239,7 +244,7 @@ $comp = 0;
 <div class="progress">
 <div class="progress-bar ka-bg-red" style="width:{{ ($val[0][0][6]/$arr_time[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][6]/$arr_time[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][6] != 0) {
 $comp = round(($val[0][0][6] / $val[1][0][6] - 1) * 100, 2);
@@ -256,7 +261,7 @@ $comp = 0;
 </p>
 </td>
 </tr>
-<?php endforeach; ?>
+@endforeach
 </tbody>
 </table>
 </div>
@@ -274,7 +279,7 @@ $comp = 0;
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">コンバージョン分析の総評</h3>
-<textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4">サンプルテキスト</textarea>
+<textarea class="border-0 form-control text-secondary" name="name" rows="4"></textarea>
 </div>
 </div>
 </div>

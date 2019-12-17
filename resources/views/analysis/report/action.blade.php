@@ -41,7 +41,7 @@ $general_comment = 0;
 </tr>
 </thead>
 <tbody>
-<?php foreach ($ga_result as $key => $val): ?>
+@foreach ($ga_result as $key => $val)
 <tr>
 <td><span class="text-dark">{{ $val[0][0][0][0] }}</span></td>
 <td class="text-right">
@@ -172,7 +172,7 @@ $comp = 0;
 </p>
 </td>
 </tr>
-<?php endforeach; ?>
+@endforeach
 </tbody>
 </table>
 </div>

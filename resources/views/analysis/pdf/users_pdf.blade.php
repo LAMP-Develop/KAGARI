@@ -1,4 +1,4 @@
-<?php
+@php
 // ユーザー数
 $new_user_data = $ga_result_user[0][0]['New Visitor'][0];
 $re_user_data = $ga_result_user[0][0]['Returning Visitor'][0];
@@ -8,10 +8,8 @@ $new_users = round($new_user_data / ($new_user_data + $re_user_data) * 100, 2);
 $re_users = round($re_user_data / ($new_user_data + $re_user_data) * 100, 2);
 $old_new_users = round($old_new_user_data / ($old_new_user_data + $old_re_user_data) * 100, 2);
 $old_re_users = round($old_re_user_data / ($old_new_user_data + $old_re_user_data) * 100, 2);
-
 $comp_new_users = round($new_users - $old_new_users, 2);
 $comp_re_users = round($re_users - $old_re_users, 2);
-
 // 男女比
 $female = $ga_result_user[0][2]['female'][0];
 $male = $ga_result_user[0][2]['male'][0];
@@ -21,10 +19,8 @@ $female_str = round($female / ($female + $male) * 100, 2);
 $male_str = round($male / ($female + $male) * 100, 2);
 $old_female_str = round($old_female / ($old_female + $old_male) * 100, 2);
 $old_male_str = round($old_male / ($old_female + $old_male) * 100, 2);
-
 $comp_female = round($female_str - $old_female_str, 2);
 $comp_male = round($male_str - $old_male_str, 2);
-
 // デバイス
 $mobile = $ga_result_user[0][1]['mobile'][0];
 $desktop = $ga_result_user[0][1]['desktop'][0];
@@ -38,22 +34,16 @@ $tablet_str = round($tablet / ($mobile + $desktop + $tablet) * 100, 2);
 $old_mobile_str = round($old_mobile / ($old_mobile + $old_desktop + $old_tablet) * 100, 2);
 $old_desktop_str = round($old_desktop / ($old_mobile + $old_desktop + $old_tablet) * 100, 2);
 $old_tablet_str = round($old_tablet / ($old_mobile + $old_desktop + $old_tablet) * 100, 2);
-
 $comp_mobile = round($mobile_str - $old_mobile_str, 2);
 $comp_desktop = round($desktop_str - $old_desktop_str, 2);
 $comp_tablet = round($tablet_str - $old_tablet_str, 2);
-
 // 年齢
 $age = $ga_result_user[1][2];
-
 // 国
 $country = $ga_result_user[1][0];
-
 // 地域
 $area = $ga_result_user[1][1];
-
-?>
-
+@endphp
 @section('content_users')
 <section class="reports">
 <div class="container">
@@ -319,10 +309,7 @@ if ($area[$key][2] != 0) {
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">ユーザー属性の総評</h3>
-<textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4">
-{{ $new_users }}% が初めてサイトに訪れているユーザーです。
-<?php if ($female_str > 50): ?>女性<?php else: ?>男性<?php endif; ?>のユーザーが大半を占めています。
-</textarea>
+<textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4"></textarea>
 </div>
 </div>
 </div>

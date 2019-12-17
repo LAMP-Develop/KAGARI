@@ -40,7 +40,9 @@ Route::group(['prefix' => 'dashboard'], function () {
 
         // サイト編集
         Route::group(['prefix' => 'sites'], function () {
-            Route::get('/edit', 'AddSitesController@edit')->name('sites-edit');
+            Route::get('/edit/{AddSites}', 'AddSitesController@edit', function ($sites) {
+                return $sites;
+            })->name('sites-edit');
         });
 
         // サイト追加
@@ -49,7 +51,7 @@ Route::group(['prefix' => 'dashboard'], function () {
 
             // プラン選択
             Route::group(['prefix' => 'plan'], function () {
-                Route::get('/', 'AddSitesController@plan')->middleware('webmaster')->name('plan');
+                Route::post('/', 'AddSitesController@plan')->middleware('webmaster')->name('plan');
                 // 支払い
                 Route::post('/payment', 'PaymentController@index')->name('payment');
                 // プラン登録・支払い完了

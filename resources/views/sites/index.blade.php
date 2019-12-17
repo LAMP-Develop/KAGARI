@@ -31,7 +31,8 @@
 <td>{{ $categories[($site->category - 1)]->cat }}</td>
 <td>
 @if ($site->plan == null)
-<form class="" action="{{ route('plan') }}" method="get">
+<form class="" action="{{ route('plan') }}" method="post">
+@csrf
 <button type="submit" class="btn btn-link">プランを登録する</button>
 <input type="hidden" name="site-id" value="{{ $site->id }}">
 <input type="hidden" name="view-id" value="{{ $site->VIEW_ID }}">

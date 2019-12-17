@@ -1,4 +1,4 @@
-<?php
+@php
 // 広告費用
 $cost = $ga_result_ad[0][0][0];
 if ($cost == 0) {
@@ -10,17 +10,14 @@ if ($bool) {
     $click = $ga_result_ad[0][0][1];
     $cv = $ga_result_ad[0][0][2];
     $price = round($cost/$click, 1);
-
     $old_cost = $ga_result_ad[0][1][0];
     $old_click = $ga_result_ad[0][1][1];
     $old_cv = $ga_result_ad[0][1][2];
     $old_price = round($old_cost/$old_click, 1);
-
     $comp_price = round(($price / $old_price - 1) * 100, 2);
     $comp_click = round(($click / $old_click - 1) * 100, 2);
     $comp_cost = round(($cost / $old_cost - 1) * 100, 2);
     $comp_cv = round(($cv / $old_cv - 1) * 100, 2);
-
     $arr_click = [];
     $arr_cost = [];
     $arr_price = [];
@@ -39,8 +36,8 @@ if ($bool) {
     rsort($arr_cv);
     rsort($arr_cv_r);
 }
-?>
-
+$general = 0;
+@endphp
 @section('content_ad')
 <section class="reports">
 <div class="container">
@@ -150,7 +147,7 @@ if ($bool) {
 <div class="card">
 <div class="card-body">
 <div class="table-responsive">
-<table class="table table-striped table-borderless">
+<table class="table table-striped table-borderless table-sm">
 <thead>
 <tr>
 <th class="font-weight-normal align-top"></th>
@@ -162,7 +159,7 @@ if ($bool) {
 </tr>
 </thead>
 <tbody>
-<?php foreach ($ga_result_ad[1] as $key => $val): ?>
+@foreach ($ga_result_ad[1] as $key => $val)
 <tr>
 <td><span class="text-dark">{{ $val[0][0][0][0] }}</span></td>
 <td class="text-right">
@@ -170,7 +167,7 @@ if ($bool) {
 <div class="progress">
 <div class="progress-bar ka-bg-blue" style="width:{{ ($val[0][0][1]/$arr_click[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][1]/$arr_click[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][1] != 0) {
 $comp = round(($val[0][0][1] / $val[1][0][1] - 1) * 100, 2);
@@ -191,7 +188,7 @@ $comp = 0;
 <div class="progress">
 <div class="progress-bar ka-bg-purple-2" style="width:{{ ($val[0][0][2]/$arr_cost[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][2]/$arr_cost[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][2] != 0) {
 $comp = round(($val[0][0][2] / $val[1][0][2] - 1) * 100, 2);
@@ -212,7 +209,7 @@ $comp = 0;
 <div class="progress">
 <div class="progress-bar ka-bg-blue-2" style="width:{{ ($val[0][0][3]/$arr_price[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][3]/$arr_price[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][3] != 0) {
 $comp = round(($val[0][0][3] / $val[1][0][3] - 1) * 100, 2);
@@ -233,13 +230,14 @@ $comp = 0;
 <div class="progress">
 <div class="progress-bar ka-bg-orange" style="width:{{ ($val[0][0][4]/$arr_cv[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][4]/$arr_cv[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][4] != 0) {
 $comp = round(($val[0][0][4] / $val[1][0][4] - 1) * 100, 2);
 } else {
 $comp = 0;
 }
+$general += $comp;
 @endphp
 @if($comp >= 0)
 <span class="opacity-color-green"><span class="mr-1">↑</span>
@@ -254,7 +252,7 @@ $comp = 0;
 <div class="progress">
 <div class="progress-bar ka-bg-purple" style="width:{{ ($val[0][0][5]/$arr_cv_r[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][5]/$arr_cv_r[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="text-right">
+<p class="text-right mb-0">
 @php
 if ($val[1][0][5] != 0) {
 $comp = round(($val[0][0][5] / $val[1][0][5] - 1) * 100, 2);
@@ -271,7 +269,7 @@ $comp = 0;
 </p>
 </td>
 </tr>
-<?php endforeach; ?>
+@endforeach
 </tbody>
 </table>
 </div>
@@ -289,7 +287,7 @@ $comp = 0;
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">広告分析の総評</h3>
-<textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4">サンプルテキスト</textarea>
+<textarea class="border-0 form-control text-secondary" name="name" rows="4"></textarea>
 </div>
 </div>
 </div>

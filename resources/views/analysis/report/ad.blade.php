@@ -108,19 +108,6 @@ $general = 0;
 </div>
 <div class="col-5">
 <p class="overflow-hidden opacity-bg-purple m-0 px-3 py-2 rounded-lg text-center text-dark">
-<span>コンバージョン数</span>
-<span class="d-block h5 mb-1 font-weight-bold text-dark">{{ $cv }}</span>
-<span class="d-block">
-@if($comp_cv >= 0)
-<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
-@else
-<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
-@endif
-{{ $comp_cv }}%</span>
-</span>
-</p>
-<p class="my-1 opacity-color-purple text-center"><i class="fas fa-times"></i></p>
-<p class="overflow-hidden opacity-bg-purple m-0 px-3 py-2 rounded-lg text-center text-dark">
 <span>広告費用</span>
 <span class="d-block h5 mb-1 font-weight-bold text-dark"><i class="fas fa-yen-sign mr-1"></i>{{ number_format($cost) }}</span>
 <span class="d-block">
@@ -130,6 +117,19 @@ $general = 0;
 <span class="opacity-color-red"><i class="fas fa-caret-up mr-1"></i>
 @endif
 {{ $comp_cost }}%</span>
+</span>
+</p>
+<p class="my-1 opacity-color-purple text-center"><i class="fas fa-divide"></i></p>
+<p class="overflow-hidden opacity-bg-purple m-0 px-3 py-2 rounded-lg text-center text-dark">
+<span>コンバージョン数</span>
+<span class="d-block h5 mb-1 font-weight-bold text-dark">{{ $cv }}</span>
+<span class="d-block">
+@if($comp_cv >= 0)
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+@else
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+@endif
+{{ $comp_cv }}%</span>
 </span>
 </p>
 </div>
@@ -156,7 +156,7 @@ $general = 0;
 </tr>
 </thead>
 <tbody>
-<?php foreach ($ga_result[1] as $key => $val): ?>
+@foreach ($ga_result[1] as $key => $val)
 <tr>
 <td><span class="text-dark">{{ $val[0][0][0][0] }}</span></td>
 <td class="text-right">
@@ -266,7 +266,7 @@ $comp = 0;
 </p>
 </td>
 </tr>
-<?php endforeach; ?>
+@endforeach
 </tbody>
 </table>
 </div>
