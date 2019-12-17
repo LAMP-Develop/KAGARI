@@ -23,8 +23,10 @@
 <img class="d-inline-block align-middle" src="https://www.google.com/s2/favicons?domain={{ $site->url }}" width="16" height="16">
 </figure>
 <div class="ml-2">
+<a href="{{ route('sites-edit', $site->id) }}">
 <span class="d-block text-dark">{{ $site->site_name }}</span>
 <span class="d-block"><small>{{ $site->url }}</small></span>
+</a>
 </div>
 </div>
 </td>
