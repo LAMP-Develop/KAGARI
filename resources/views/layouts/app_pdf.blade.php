@@ -3,12 +3,12 @@
 <head>
 @yield('head')
 <meta name="viewport" content="width=1140">
-@stack('style')
 @stack('scripts')
 <style media="screen">
   body {
     margin: 0 auto;
     width: 1140px !important;
+    background-color: #fafafa;
   }
   .container {
     width: 1080px !important;
@@ -21,6 +21,19 @@
     height: 1612px;
     background-color: #fff;
     margin-bottom: 60px;
+  }
+  #target1 .container {
+    position: relative;
+  }
+  #target1 .logo {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    max-height: 100px;
+  }
+  #target1 .logo img {
+    max-width: 300px;
+    max-height: 100px;
   }
   .spinner {
     z-index: 999;

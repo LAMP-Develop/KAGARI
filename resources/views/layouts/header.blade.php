@@ -34,7 +34,13 @@ $req = $_SERVER['REQUEST_URI'];
 @endif
 <h1 class="head-ttl m-0 font-weight-bold h5">@yield('title')</h1>
 @if(strpos($_SERVER['REQUEST_URI'], 'report'))
-<a href="{{ route('ga-pdf', $site_id) }}" class="pdf-btn btn btn-sm btn-outline-secondary d-inline-block ml-auto" style="margin-right:5rem" target="_blank"><i class="fas fa-file-pdf mr-2"></i>PDFでレポート出力</a>
+<?php
+$param = strstr($_SERVER["REQUEST_URI"], '?');
+if (!$param) {
+    $param = '';
+}
+?>
+<a href="{{ route('ga-pdf', $site_id) }}{{ $param }}" class="pdf-btn btn btn-sm btn-outline-secondary d-inline-block ml-auto" style="margin-right:5rem" target="_blank"><i class="fas fa-file-pdf mr-2"></i>PDFでレポート出力</a>
 @endif
 <input class="l-drawer__checkbox" id="drawerCheckbox" type="checkbox">
 <!-- ドロワーアイコン -->

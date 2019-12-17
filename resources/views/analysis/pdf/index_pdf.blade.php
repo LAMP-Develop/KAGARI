@@ -1,15 +1,6 @@
 @push('scripts')
 <script src="{{ mix('/js/report.js') }}"></script>
 @endpush
-
-@push('style')
-<style media="screen">
-  body {
-    background-color: #fafafa;
-  }
-</style>
-@endpush
-
 {{-- 変数定義 --}}
 @php
 $route_name = Route::current()->getName();

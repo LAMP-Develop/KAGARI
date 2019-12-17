@@ -76,7 +76,6 @@ class AddSitesController extends Controller
         ])->get();
         if (!count($flag) > 0) {
             if (!isset($request['site-id'])) {
-                $path = $request->file('image_file')->store('public/logos');
                 $add_sites = new AddSites();
                 $add_sites->user_id = $user->id;
                 $add_sites->site_name = $request['site-name'];
@@ -84,7 +83,10 @@ class AddSitesController extends Controller
                 $add_sites->industry = $request['industries'];
                 $add_sites->category = $request['genre'];
                 $add_sites->url = $site_url;
-                $add_sites->logo_path = basename($path);
+                if ($request->file('image_file') != '' || $request->file('image_file') != null) {
+                    $path = $request->file('image_file')->store('public/logos');
+                    $add_sites->logo_path = basename($path);
+                }
                 $add_sites->created_at = date('Y-m-d H:i:s');
                 $add_sites->updated_at = date('Y-m-d H:i:s');
                 $add_sites->save();

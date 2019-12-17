@@ -10,6 +10,9 @@ $screenshot = str_replace('-', '+', $screenshot);
 @section('content_top')
 <section class="top_page">
 <div class="container">
+<div class="logo">
+<img src="{{ $logo }}" alt="">
+</div>
 <h1 class="text-black font-weight-bold">アクセス解析レポート</h1>
 <h2 class="py-4 font-weight-bold">ANARYTICS REPORT</h2>
 <img src="data:image/png;base64,{{ $screenshot }}">
