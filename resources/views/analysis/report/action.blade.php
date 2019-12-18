@@ -189,8 +189,11 @@ $comp = 0;
 </span>
 </div>
 <div class="col-11">
+<div class="d-flex justify-content-between pb-2">
 <h3 class="font-weight-bold h5 mt-2">ユーザー行動分析の総評</h3>
-<textarea class="border form-control text-secondary" name="name" rows="4">
+<button id="comment_btn" type="button" name="button" class="btn btn-primary" onclick="saveTextarea('action',document.getElementById('comment_action'))">更新</button>
+</div>
+<textarea id="comment_action" class="border form-control text-secondary" name="name" rows="4" onfocus="textareaBtn()">
 ・「{{ $ga_result[0][0][0][0][0] }}」ページが指定期間で一番多くのユーザーが訪れています。
 ・@if($general_comment > 0)
 各ページ全体ではユーザーの流入が増加しており、上昇傾向にあります。

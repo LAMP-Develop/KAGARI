@@ -11749,6 +11749,10 @@ body > nav {
   min-height: 56px;
 }
 
+#comment_btn {
+  display: none;
+}
+
 .line-height-1 {
   line-height: 1;
 }

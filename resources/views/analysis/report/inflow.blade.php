@@ -126,8 +126,11 @@ $comp = 0;
 </span>
 </div>
 <div class="col-11">
+<div class="d-flex justify-content-between pb-2">
 <h3 class="font-weight-bold h5 mt-2">流入元分析の総評</h3>
-<textarea class="border form-control text-secondary" name="name" rows="4">
+<button id="comment_btn" type="button" name="button" class="btn btn-primary" onclick="saveTextarea('inflow',document.getElementById('comment_inflow'))">更新</button>
+</div>
+<textarea id="comment_inflow" class="border form-control text-secondary" name="name" rows="4" onfocus="textareaBtn()">
 ・{{ $channel[0][0] }}からの流入が多くを占めています。
 ・{{ $sns[0][0] }}からの流入が多くを占めています。
 ・{{ $link[0][0] }}からの流入が多くを占めています。

@@ -279,9 +279,16 @@ $comp = 0;
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">コンバージョン分析の総評</h3>
-<textarea class="border-0 form-control text-secondary" name="name" rows="4">
-@if($comp_cv > 0)・コンバージョン獲得数が増加しています。@else・コンバージョン獲得数が減少しています。@endifその中でも「{{ $ga_result_conversion[0][0][0][0][0][0] }}」からのコンバージョン獲得が多くなっています。
-</textarea>
+<p id="comment_conversion">
+@if($comp_cv > 0)
+・コンバージョン獲得数が増加しています。
+<br>
+@else
+・コンバージョン獲得数が減少しています。
+<br>
+@endif
+その中でも「{{ $ga_result_conversion[0][0][0][0][0][0] }}」からのコンバージョン獲得が多くなっています。
+</p>
 </div>
 </div>
 </div>

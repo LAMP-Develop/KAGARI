@@ -285,9 +285,17 @@ $comp = 0;
 </span>
 </div>
 <div class="col-11">
+<div class="d-flex justify-content-between pb-2">
 <h3 class="font-weight-bold h5 mt-2">コンバージョン分析の総評</h3>
-<textarea class="border form-control text-secondary" name="name" rows="4">
-@if($comp_cv > 0)・コンバージョン獲得数が増加しています。@else・コンバージョン獲得数が減少しています。@endifその中でも「{{ $ga_result[0][0][0][0][0][0] }}」からのコンバージョン獲得が多くなっています。
+<button id="comment_btn" type="button" name="button" class="btn btn-primary" onclick="saveTextarea('conversion',document.getElementById('comment_conversion'))">更新</button>
+</div>
+<textarea id="comment_conversion" class="border form-control text-secondary" name="name" rows="4" onfocus="textareaBtn()">
+@if($comp_cv > 0)
+・コンバージョン獲得数が増加しています。
+@else
+・コンバージョン獲得数が減少しています。
+@endif
+その中でも「{{ $ga_result[0][0][0][0][0][0] }}」からのコンバージョン獲得が多くなっています。
 </textarea>
 </div>
 </div>
