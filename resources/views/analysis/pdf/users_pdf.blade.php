@@ -309,11 +309,13 @@ if ($area[$key][2] != 0) {
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">ユーザー属性の総評</h3>
-<textarea class="border-0 form-control px-0 text-secondary" name="name" rows="4">
+<p id="comment_user">
 ・{{ $new_users }}% が初めてサイトに訪れているユーザーです。
+<br>
 ・{{ $age[0][0] }}歳のユーザーが多く、@if($female_str > 50)女性@else男性@endifのユーザーが大半を占めています。
+<br>
 ・{{ $country[0][0] }}、{{ $area[0][0] }}の地域からの流入が多くなっています。
-</textarea>
+</p>
 </div>
 </div>
 </div>

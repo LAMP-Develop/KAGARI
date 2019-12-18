@@ -115,8 +115,8 @@ eval("$(function () {\n  // 変数定義\n  var csrf = $('meta[name=\"csrf-token
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/root_kagari/resources/js/ajax.js */"./resources/js/ajax.js");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/root_kagari/resources/js/ajax-stop.js */"./resources/js/ajax-stop.js");
+__webpack_require__(/*! /Applications/KAGARI_NOW/KAGARI/resources/js/ajax.js */"./resources/js/ajax.js");
+module.exports = __webpack_require__(/*! /Applications/KAGARI_NOW/KAGARI/resources/js/ajax-stop.js */"./resources/js/ajax-stop.js");
 
 
 /***/ })

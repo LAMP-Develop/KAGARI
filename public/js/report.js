@@ -1545,7 +1545,7 @@ eval("__webpack_require__(/*! chart.js */ \"./node_modules/chart.js/dist/Chart.j
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/root_kagari/resources/js/app-report.js */"./resources/js/app-report.js");
+module.exports = __webpack_require__(/*! /Applications/KAGARI_NOW/KAGARI/resources/js/app-report.js */"./resources/js/app-report.js");
 
 
 /***/ })

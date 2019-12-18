@@ -273,8 +273,11 @@ $comp_bounce_rate = $ga_result['comp'][7];
 </span>
 </div>
 <div class="col-11">
+<div class="d-flex justify-content-between pb-2">
 <h3 class="font-weight-bold h5 mt-2">解析結果の総評</h3>
-<textarea class="border form-control text-secondary" name="name" rows="4">
+<button id="comment_btn" type="button" name="button" class="btn btn-primary" onclick="saveTextarea('sumally',document.getElementById('comment_sumally'))">更新</button>
+</div>
+<textarea id="comment_sumally" class="border form-control text-secondary" name="name" rows="4" onfocus="textareaBtn()">
 @if (($comp_users+$comp_session+$comp_pv) > 0)
 ・アクセス状況は上昇傾向にあります。
 @else

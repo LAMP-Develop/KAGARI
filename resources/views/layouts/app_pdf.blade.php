@@ -110,11 +110,56 @@
 <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
 <script>
 $(window).on('load', function() {
+  getTextarea();
   downloadImage();
   setTimeout(function(){
      $('.spinner').css('display', 'none');
   },5500);
 });
+
+function getTextarea(){
+  // for (var i = 0; i < localStorage.length; i++) {
+  //   let key_array = [];
+  //   key_array.push.localStorage.key(i);
+  // }
+  // console.log(key_array);
+  if (localStorage.getItem('sumally') != null) {
+    let val_sumally = localStorage.getItem('sumally');
+    let target_sumally = document.getElementById("comment_sumally");
+    target_sumally.innerHTML = val_sumally.replace(/\r?\n/g, "<br>");
+    localStorage.removeItem('sumally');
+  }
+  if (localStorage.getItem('user') != null) {
+    let val_user = localStorage.getItem('user');
+    let target_user = document.getElementById("comment_user");
+    target_user.innerHTML = val_user.replace(/\r?\n/g, "<br>");
+    localStorage.removeItem('user');
+  }
+  if (localStorage.getItem('inflow') != null) {
+    let val_inflow = localStorage.getItem('inflow');
+    let target_inflow = document.getElementById("comment_inflow");
+    target_inflow.innerHTML = val_inflow.replace(/\r?\n/g, "<br>");
+    localStorage.removeItem('inflow');
+  }
+  if (localStorage.getItem('action') != null) {
+    let val_action = localStorage.getItem('action');
+    let target_action = document.getElementById("comment_action");
+    target_action.innerHTML = val_action.replace(/\r?\n/g, "<br>");
+    localStorage.removeItem('action');
+  }
+  if (localStorage.getItem('conversion') != null) {
+    let val_conversion = localStorage.getItem('conversion');
+    let target_conversion = document.getElementById("comment_conversion");
+    target_conversion.innerHTML = val_conversion.replace(/\r?\n/g, "<br>");
+    localStorage.removeItem('conversion');
+  }
+  if (localStorage.getItem('ad') != null) {
+    let val_ad = localStorage.getItem('ad');
+    let target_ad = document.getElementById("comment_ad");
+    target_ad.innerHTML = val_ad.replace(/\r?\n/g, "<br>");
+    localStorage.removeItem('ad');
+  }
+}
 function downloadImage(){
   var pdf = new jsPDF('p', 'pt', 'letter');
   for (var j = 1; j <= 7; j++) {

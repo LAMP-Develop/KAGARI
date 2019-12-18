@@ -190,14 +190,15 @@ $comp = 0;
 </div>
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">ユーザー行動分析の総評</h3>
-<textarea class="border-0 form-control text-secondary" name="name" rows="4">
+<p id="comment_action">
 ・「{{ $ga_result_action[0][0][0][0][0] }}」ページが指定期間で一番多くのユーザーが訪れています。
+<br>
 ・@if($general_comment > 0)
 各ページ全体ではユーザーの流入が増加しており、上昇傾向にあります。
 @else
 各ページ全体ではユーザーの流入が減少しており、下降傾向にあります。
 @endif
-</textarea>
+</p>
 </div>
 </div>
 </div>

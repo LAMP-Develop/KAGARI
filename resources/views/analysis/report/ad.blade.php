@@ -283,8 +283,11 @@ $comp = 0;
 </span>
 </div>
 <div class="col-11">
+<div class="d-flex justify-content-between pb-2">
 <h3 class="font-weight-bold h5 mt-2">広告分析の総評</h3>
-<textarea class="border form-control text-secondary" name="name" rows="4">
+<button id="comment_btn" type="button" name="button" class="btn btn-primary" onclick="saveTextarea('ad',document.getElementById('comment_ad'))">更新</button>
+</div>
+<textarea id="comment_ad" class="border form-control text-secondary" name="name" rows="4" onfocus="textareaBtn()">
 ・広告費用が比較期間よりも@if($comp_cost > 0)高くなっており、@else低くなっており、@endifクリック単価が@if($comp_price > 0)高くなっています。@else低くなっています。@endif
 
 ・各キーワードにおけるコンバージョン獲得率は@if($general > 0)増加傾向にあり、@else減少傾向にあり、@endifクリック数が一番多いキーワードは「{{ $ga_result[1][0][0][0][0][0] }}」となっています。
