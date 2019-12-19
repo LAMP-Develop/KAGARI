@@ -137,13 +137,12 @@ class PdfController extends Controller
         $comp_array = [];
         foreach ($resultUsers as $i => $resultUser) {
             $day = date('Y-m-d', strtotime($resultUser->dimensions[0]));
-            if ($i <= 29) {
-                $user = $resultUser->metrics[1]->values[0];
-                $arrayUser['compare'][(string)$day] = (int)$user;
-            }
-            if ($i >=30) {
+            if ($resultUser->metrics[1]->values[0] == 0) {
                 $user = $resultUser->metrics[0]->values[0];
                 $arrayUser['original'][(string)$day] = (int)$user;
+            } else {
+                $user = $resultUser->metrics[1]->values[0];
+                $arrayUser['compare'][(string)$day] = (int)$user;
             }
             $i++;
         }

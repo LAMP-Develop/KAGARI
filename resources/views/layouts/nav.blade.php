@@ -80,7 +80,7 @@ if (!$param) {
 <span class="opacity-color-blue d-inline-block align-middle mr-2">解析</span>
 <div class="row">
 <div class="col">
-<input type="text" class="form-control datepicker" id="start" name="start" value="{{ $start }}">
+<input type="text" class="form-control datepicker check_date" id="start" name="start" value="{{ $start }}">
 </div>
 <div class="col-1">
 <span>~</span>
@@ -102,12 +102,13 @@ if (!$param) {
 <span>~</span>
 </div>
 <div class="col">
-<input type="text" class="form-control datepicker" id="com_end" name="com_end" value="{{ $com_end }}">
+<input type="text" class="form-control datepicker check_date" id="com_end" name="com_end" value="{{ $com_end }}">
 </div>
 </div>
 </p>
 </div>
 </div>
+<p id="check_range"></p>
 </div>
 <div class="modal-footer">
 <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">閉じる</button>
