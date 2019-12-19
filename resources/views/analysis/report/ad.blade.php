@@ -13,7 +13,11 @@ if ($bool) {
     $old_cost = $ga_result[0][1][0];
     $old_click = $ga_result[0][1][1];
     $old_cv = $ga_result[0][1][2];
-    $old_price = round($old_cost/$old_click, 1);
+    if ($old_click != 0) {
+      $old_price = round($old_cost/$old_click, 1);
+    } else {
+      $old_price = 0;
+    }
     $comp_price = round(($price / $old_price - 1) * 100, 2);
     $comp_click = round(($click / $old_click - 1) * 100, 2);
     $comp_cost = round(($cost / $old_cost - 1) * 100, 2);
