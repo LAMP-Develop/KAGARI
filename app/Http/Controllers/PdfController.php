@@ -278,12 +278,21 @@ class PdfController extends Controller
         $requestMedium->setDimensions($medium);
         $requestMedium->setOrderBys($orderBy);
 
+        $filter_social = new \Google_Service_AnalyticsReporting_DimensionFilter();
+        $filter_social->setDimensionName( 'ga:socialNetwork' );
+        $filter_social->setNot(true);
+        $filter_social->setExpressions( ["(not set)"] );
+
+        $filters_social = new \Google_Service_AnalyticsReporting_DimensionFilterClause();
+        $filters_social->setFilters([$filter_social]);
+
         $requestSocial = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestSocial->setViewId($VIEW_ID);
         $requestSocial->setDateRanges(array($dateRange,$dateRangeTwo));
         $requestSocial->setMetrics($ss);
         $requestSocial->setPageSize('5');
         $requestSocial->setDimensions($social);
+        $requestSocial->setDimensionFilterClauses($filters_social);
         $requestSocial->setOrderBys($orderBy);
 
         $filter = new Google_Service_AnalyticsReporting_DimensionFilter();

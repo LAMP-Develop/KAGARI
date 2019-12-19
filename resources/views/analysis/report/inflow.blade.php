@@ -16,7 +16,7 @@ $link = $ga_result[2];
 <span class="opacity-item opacity-bg-blue">
 <i class="fas fa-project-diagram opacity-color-blue"></i>
 </span>
-<h4 class="h6 text-dark mt-3 mb-4">流入チャネル</h4>
+<h4 class="h6 text-dark mt-3 mb-4">流入チャネルaaaaa</h4>
 @foreach ($channel as $key => $value)
 <p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
 <div class="progress">
