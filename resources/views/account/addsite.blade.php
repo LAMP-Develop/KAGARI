@@ -93,7 +93,7 @@ data-property="{{ $prop['name'] }}"><i class="fas fa-globe-asia mr-3"></i>{{ $pr
 </div>
 <div class="form-group mb-4">
 <label for="images">サイトのロゴ</label>
-<input type="file" class="form-control-file" accept="image/*" name="image_file" id="images">
+<input type="file" class="form-control-file" accept="image/*" name="image_file" id="images" required>
 </div>
 <input id="view-id" type="hidden" name="view-id" value="">
 <input id="site-url" type="hidden" name="site-url" value="">
