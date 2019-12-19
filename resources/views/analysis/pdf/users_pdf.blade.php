@@ -330,7 +330,7 @@ if ($area[$key][2] != 0) {
   var userData = [{{ $new_user_data }}, {{ $re_user_data }}];
   let myChart1 = new Chart(don, {
     type: 'doughnut',
-    animation: true,
+    animation: false,
     data: {
       labels: [
         '新規ユーザー', '既存ユーザー'
@@ -355,7 +355,7 @@ if ($area[$key][2] != 0) {
   var userData = [{{ $male_str }}, {{ $female_str }}];
   let myChart2 = new Chart(don2, {
     type: 'doughnut',
-    animation: true,
+    animation: false,
     data: {
       labels: [
         '男性', '女性'
@@ -380,7 +380,7 @@ if ($area[$key][2] != 0) {
   var userData = [{{ $mobile }}, {{ $desktop }}, {{ $tablet }}];
   let myChart3 = new Chart(don3, {
     type: 'doughnut',
-    animation: true,
+    animation: false,
     data: {
       labels: [
         "モバイル", "PC", "タブレット"

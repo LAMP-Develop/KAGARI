@@ -327,7 +327,7 @@ $comp_bounce_rate = $ga_result_data['comp'][7];
   }
   let myChart = new Chart(ctx, {
     type: 'line',
-    animation: true,
+    animation: false,
     data: {
       labels: arrayLabel,
       datasets: [
