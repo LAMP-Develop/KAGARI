@@ -137,7 +137,11 @@ rsort($arr_time);
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ number_format($val[0][0][1]) }}</span>
 <div class="progress">
+@if($arr_cv[0] == 0)
+<div class="progress-bar ka-bg-orange" style="width:0" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+@else
 <div class="progress-bar ka-bg-orange" style="width:{{ ($val[0][0][1]/$arr_cv[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][1]/$arr_cv[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+@endif
 </div>
 <p class="text-right mb-0">
 @php
@@ -158,7 +162,11 @@ $comp = 0;
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ round($val[0][0][2], 2) }}%</span>
 <div class="progress">
+@if($arr_cv_r[0] == 0)
+<div class="progress-bar ka-bg-purple" style="width:0" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+@else
 <div class="progress-bar ka-bg-purple" style="width:{{ ($val[0][0][2]/$arr_cv_r[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][2]/$arr_cv_r[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+@endif
 </div>
 <p class="text-right mb-0">
 @php
