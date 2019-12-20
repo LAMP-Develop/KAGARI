@@ -307,7 +307,6 @@ let arrayLabel = [];
 let arrayLabel2 = [];
 let arrayDataOne = [];
 let arrayDataTwo = [];
-console.log(originUser,compareUser);
 for (var key in originUser) {
   arrayLabel.push(key);
   arrayDataOne.push(originUser[key]);
@@ -316,7 +315,6 @@ for (var key in compareUser) {
   arrayLabel2.push(key);
   arrayDataTwo.push(compareUser[key]);
 }
-// console.log(arrayLabel,arrayDataOne,arrayDataTwo);
 let myChart = new Chart(ctx, {
   type: 'line',
   animation: true,

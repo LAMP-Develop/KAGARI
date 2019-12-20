@@ -67,43 +67,6 @@ $(function() {
     exportButtons: false
   });
 
-  // 課題ハイライト
-  // $('#highlight').on('click', function() {
-  //   if ($(this).hasClass('active')) {
-  //     $(this).removeClass('active')
-  //     $('.highlight').removeClass('on');
-  //   } else {
-  //     $(this).addClass('active')
-  //     $('.highlight').addClass('on');
-  //   }
-  // });
-  // $('[data-name="click"].highlight').attr('data-content', 'クリック数に課題があります。<br><a href="https://seo.kagari.ai/blog/clicks/" target="_blank">改善方法をみる</a>');
-  // $('[data-name="impressions"].highlight').attr('data-content', '表示回数に課題があります。<br><a href="https://seo.kagari.ai/blog/impressions/" target="_blank">改善方法をみる</a>');
-  // $('[data-name="ctr"].highlight').attr('data-content', 'CTRに課題があります。<br><a href="https://seo.kagari.ai/blog/ctr/" target="_blank">改善方法をみる</a>');
-  // $('[data-name="position"].highlight').attr('data-content', '掲載順位に課題があります。<br><a href="https://seo.kagari.ai/blog/position/" target="_blank">改善方法をみる</a>');
-  // $('[data-name="ps"].highlight').attr('data-content', 'ページ/セッションに課題があります。<br><a href="https://seo.kagari.ai/blog/sessions/" target="_blank">改善方法をみる</a>');
-  // $('[data-name="time"].highlight').attr('data-content', '平均ページ滞在時間に課題があります。<br><a href="https://seo.kagari.ai/blog/page-stay-time/" target="_blank">改善方法をみる</a>');
-  // $('[data-name="br"].highlight').attr('data-content', '直帰率に課題があります。<br><a href="https://seo.kagari.ai/blog/bounce-rate/" target="_blank">改善方法をみる</a>');
-  // $('.highlight').popover({
-  //   html: true,
-  //   trigger: 'manual'
-  // }).on('mouseenter', function() {
-  //   if ($(this).hasClass('on')) {
-  //     var _this = this;
-  //     $(this).popover('show');
-  //     $('.popover').on('mouseleave', function() {
-  //       $(_this).popover('hide');
-  //     });
-  //   }
-  // }).on('mouseleave', function() {
-  //   var _this = this;
-  //   setTimeout(function() {
-  //     if (!$('.popover:hover').length) {
-  //       $(_this).popover('hide')
-  //     }
-  //   }, 100);
-  // });
-
   // テーブルスクロール
   $('.horizontal-scroll li').on('click', function() {
     const wrap = $('#seo-report-detail .table-responsive');
@@ -168,19 +131,19 @@ $(function() {
       if (com_end >= start) {
         console.log(start, com_end);
         target.innerHTML = '期間の範囲指定が正しくありません';
-      }else{
+      } else {
         target.innerHTML = '';
       }
     }
     if ($(this).attr('id') == 'com_end') {
-        let start = $('#start').val();
-        let com_end = $(this).val();
-        if (com_end >= start) {
-          console.log(start, com_end);
-          target.innerHTML = '期間の範囲指定が正しくありません';
-        }else{
-          target.innerHTML = '';
-        }
+      let start = $('#start').val();
+      let com_end = $(this).val();
+      if (com_end >= start) {
+        console.log(start, com_end);
+        target.innerHTML = '期間の範囲指定が正しくありません';
+      } else {
+        target.innerHTML = '';
+      }
     }
   });
 

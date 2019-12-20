@@ -118,11 +118,6 @@ $(window).on('load', function() {
 });
 
 function getTextarea(){
-  // for (var i = 0; i < localStorage.length; i++) {
-  //   let key_array = [];
-  //   key_array.push.localStorage.key(i);
-  // }
-  // console.log(key_array);
   if (localStorage.getItem('sumally') != null) {
     let val_sumally = localStorage.getItem('sumally');
     let target_sumally = document.getElementById("comment_sumally");
