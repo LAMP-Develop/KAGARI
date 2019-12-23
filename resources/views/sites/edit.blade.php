@@ -37,7 +37,8 @@ $site = $add_sites[0];
 <label for="exampleFormControlFile1">サイトロゴ</label>
 <input type="file" name="image_file" class="form-control-file" id="exampleFormControlFile1">
 </div>
-<button type="submit" class="btn btn-primary mt-5">変更する</button>
+<button type="submit" class="btn btn-primary mt-4">変更する</button>
+<a class="btn btn-secondary mt-4 ml-3" href="{{ route('dashboard') }}">戻る</a>
 </form>
 </div>
 </section>
