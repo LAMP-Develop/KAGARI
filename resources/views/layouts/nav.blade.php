@@ -74,39 +74,33 @@ if (!$param) {
 </div>
 <form class="" method="get">
 <div class="modal-body">
-<div class="row mx-0">
-<div class="col">
+<div class="mb-4">
 <p class="m-0">
-<span class="opacity-color-blue d-inline-block align-middle mr-2">解析</span>
-<div class="row">
-<div class="col">
+<span class="opacity-color-blue d-inline-block align-middle mr-2">解析期間</span>
+<div class="row align-items-center">
+<div class="col-3">
 <input type="text" class="form-control datepicker check_date" id="start" name="start" value="{{ $start }}">
 </div>
-<div class="col-1">
-<span>~</span>
-</div>
-<div class="col">
+<div class="col-1 p-0 text-center">〜</div>
+<div class="col-3">
 <input type="text" class="form-control datepicker" id="end" name="end" value="{{ $end }}">
 </div>
 </div>
 </p>
 </div>
-<div class="col">
+<div class="">
 <p class="m-0">
-<span class="opacity-color-red d-inline-block align-middle mr-2">比較</span>
-<div class="row">
-<div class="col">
+<span class="opacity-color-red d-inline-block align-middle mr-2">比較期間</span>
+<div class="row align-items-center">
+<div class="col-3">
 <input type="text" class="form-control datepicker" id="com_start" name="com_start" value="{{ $com_start }}">
 </div>
-<div class="col-1">
-<span>~</span>
-</div>
-<div class="col">
+<div class="col-1 p-0 text-center">〜</div>
+<div class="col-3">
 <input type="text" class="form-control datepicker check_date" id="com_end" name="com_end" value="{{ $com_end }}">
 </div>
 </div>
 </p>
-</div>
 </div>
 <p id="check_range"></p>
 </div>

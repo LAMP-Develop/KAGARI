@@ -1,6 +1,7 @@
-<?php
+@php
 $req = $_SERVER['REQUEST_URI'];
-?>
+@endphp
+
 @section('header')
 <nav class="position-relative navbar navbar-expand-md navbar-light bg-white border-bottom px-5">
 @if (strpos($req, 'report') != false)
@@ -10,8 +11,8 @@ $req = $_SERVER['REQUEST_URI'];
 </span>
 <div class="dropdown-menu" aria-labelledby="switch">
 <a class="dropdown-item" href="{{ route('seo-report', $site_id) }}">
-  <img src="{{ asset('/img/kagari-seo.svg') }}" alt="{{ setting('site.title') }}" width="120">
-  <small class="d-block line-hegiht-1 mt-1 text-center">SEOを分析する</small>
+<img src="{{ asset('/img/kagari-seo.svg') }}" alt="{{ setting('site.title') }}" width="120">
+<small class="d-block line-hegiht-1 mt-1 text-center">SEOを分析する</small>
 </a>
 </div>
 </div>
@@ -22,8 +23,8 @@ $req = $_SERVER['REQUEST_URI'];
 </span>
 <div class="dropdown-menu" aria-labelledby="switch">
 <a class="dropdown-item" href="{{ route('ga-report', $site_id) }}">
-  <img src="{{ asset('/img/kagari-report.svg') }}" alt="{{ setting('site.title') }}" width="120">
-  <small class="d-block line-hegiht-1 mt-1 text-center">レポートを作成</small>
+<img src="{{ asset('/img/kagari-report.svg') }}" alt="{{ setting('site.title') }}" width="120">
+<small class="d-block line-hegiht-1 mt-1 text-center">レポートを作成</small>
 </a>
 </div>
 </div>
@@ -37,7 +38,7 @@ $req = $_SERVER['REQUEST_URI'];
 <?php
 $param = strstr($_SERVER["REQUEST_URI"], '?');
 if (!$param) {
-    $param = '';
+$param = '';
 }
 ?>
 <a href="{{ route('ga-pdf', $site_id) }}{{ $param }}" class="pdf-btn btn btn-sm btn-outline-secondary d-inline-block ml-auto" style="margin-right:5rem" target="_blank"><i class="fas fa-file-pdf mr-2"></i>PDFでレポート出力</a>
@@ -57,6 +58,9 @@ if (!$param) {
 @if (Route::has('register'))
 <li class="l-drawer__item">
 <a class="l-drawer__item-inner text-muted" href="{{ route('register') }}">{{ __('Register') }}</a>
+</li>
+<li class="l-drawer__item">
+<a class="l-drawer__item-inner text-muted" href="{{ route('login') }}"><i class="fas fa-sign-in-alt mr-3"></i>ログイン</a>
 </li>
 @endif
 @endguest

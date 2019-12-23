@@ -28,6 +28,9 @@
 </tr>
 </tbody>
 </table>
+<div class="mt-5 text-center">
+<a class="btn btn-primary" href="{{ route('dashboard') }}">トップへ戻る</a>
+</div>
 </div>
 </div>
 </section>
