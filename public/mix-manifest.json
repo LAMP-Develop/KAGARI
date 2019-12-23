@@ -1,6 +1,9 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/js/report.js": "/js/report.js",
-    "/js/seo.js": "/js/seo.js"
+    "/js/app.js": "/js/app.js?id=e045309187319dd2036a",
+    "/css/app.css": "/css/app.css?id=9c02425f2f86c2b28bac",
+    "/js/app.js.map": "/js/app.js.map?id=72418b26d410c7141997",
+    "/js/report.js": "/js/report.js?id=08c184d3e9d6204cf7d5",
+    "/js/report.js.map": "/js/report.js.map?id=8fb87f805ff4b9610153",
+    "/js/seo.js": "/js/seo.js?id=808477d78743f35b4e33",
+    "/js/seo.js.map": "/js/seo.js.map?id=e9f69f577c3774182b38"
 }
