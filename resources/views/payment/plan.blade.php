@@ -11,8 +11,8 @@
 @csrf
 <section class="wrap">
 <div class="container">
-<h2 class="text-muted h5 font-weight-bold mb-4">サイトのプランを選択してください</h2>
-<p>1サイトごとの税込料金です。登録サイトごとに料金プランをお選びいただけます。</p>
+<h2 class="text-muted h5 font-weight-bold mb-4 text-center">サイトのプランを選択してください</h2>
+<p class="text-center">1サイトごとの税込料金です。登録サイトごとに料金プランをお選びいただけます。</p>
 @if ($e_message != '')
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
 @php
@@ -31,6 +31,17 @@ echo $message;
 <a class="ml-2" href="{{ url('/') }}">トップへ戻る<i class="ml-1 fas fa-chevron-right"></i></a>
 </div>
 @endif
+
+<div class="col-8 mx-auto">
+<div class="card mb-4">
+<div class="card-body">
+<h4 class="text-center h5 font-weight-bold mb-4">お試し期間</h4>
+<p class="text-center m-0 h2 font-weight-bold">14<span class="h5 mx-1 font-weight-bold">日間</span>無料トライアル</p>
+<p class="text-center mt-3">期間中に解約された場合でも一切ご請求はございません。</p>
+</div>
+</div>
+</div>
+
 <ul class="nav nav-pills mt-5 justify-content-center">
 <li class="nav-item">
 <a href="#annual" class="nav-link active" data-toggle="tab">年間契約</a>
@@ -245,7 +256,6 @@ echo $message;
 </div>
 </div>
 </div>
-<p class="text-center mt-4 font-weight-bold">全プラン14日間無料トライアル付き</p>
 </div>
 </section>
 <input type="hidden" name="site-id" value="{{ $site_id }}">

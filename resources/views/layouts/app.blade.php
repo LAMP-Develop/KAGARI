@@ -5,7 +5,7 @@
 @stack('style')
 @stack('scripts')
 </head>
-<body class="drawer drawer--right">
+<body>
 @yield('header')
 <main class="py-5">
 @yield('nav')
