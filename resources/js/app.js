@@ -10,36 +10,21 @@ require('tablesorter');
 require('xlsx');
 require('file-saverjs');
 require('tableexport');
+require('jquery.quicksearch');
 
 $(function() {
   // Tooltips
   $('[data-toggle="tooltip"]').tooltip();
 
-  // サイト追加
-  const $searchElem = $('.accounts');
-  const excludedClass = 'is-excluded';
+  // サイト検索フォーム
   let $searchInput = $('#ga-search');
+  $searchInput.quicksearch('#ga-accounts>.accounts');
+  $searchInput.on('input', function() {
+    $('.collapse').collapse('hide');
+  });
 
-  function extraction() {
-    var keywordArr = $searchInput.val().toLowerCase().replace('　', ' ').split(' ');
-    $searchElem.removeClass(excludedClass).show();
-    for (var i = 0; i < keywordArr.length; i++) {
-      for (var j = 0; j < $searchElem.length; j++) {
-        var thisString = $searchElem.eq(j).text().toLowerCase();
-        if (thisString.indexOf(keywordArr[i]) == -1) {
-          $searchElem.eq(j).addClass(excludedClass);
-        }
-      }
-    }
-    $('.' + excludedClass).hide();
-  }
-  $searchInput.on('load keyup blur', function() {
-    extraction();
-  });
-  $('.accounts').on('click', function() {
-    $(this).children('.fas');
-  });
-  $('[data-toggle="modal"]').on('click', function() {
+  // モーダル
+  $('.addsite-modal').on('click', function() {
     let account_name = $(this).attr('data-name');
     let property_name = $(this).attr('data-property');
     let view_id = $(this).attr('data-id');

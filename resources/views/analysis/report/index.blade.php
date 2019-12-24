@@ -4,9 +4,9 @@
 
 @push('style')
 <style media="screen">
-  body {
-    background-color: #fafafa;
-  }
+body {
+  background-color: #fafafa;
+}
 </style>
 @endpush
 

@@ -40,7 +40,7 @@
 <div id="collapse-{{ $key }}" class="collapse list-group list-group-flush pl-4 property-name">
 @foreach ($property['data'] as $key_id => $prop)
 <a href="#"
-class="list-group-item list-group-item-action text-body"
+class="list-group-item list-group-item-action text-body addsite-modal"
 data-toggle="modal"
 data-target="#addsite-form"
 data-name="{{ $property['account_name'] }}"
@@ -92,9 +92,9 @@ data-property="{{ $prop['name'] }}"><i class="fas fa-globe-asia mr-3"></i>{{ $pr
 </select>
 </div>
 <div class="form-group mb-4">
-<label for="images">サイトのロゴ<small class="ml-2">※3MBまで、.jpg,.png,.gifのみ</small></label>
+<label class="not-must" for="images">レポートに表示するロゴ<small class="ml-2">※3MBまで、.jpg,.png,.gifのみ</small></label>
 <input type="hidden" name="MAX_FILE_SIZE" value="3145728">
-<input type="file" class="form-control-file" accept="image/*" name="image_file" id="images" required>
+<input type="file" class="form-control-file" accept="image/*" name="image_file" id="images">
 </div>
 <input id="view-id" type="hidden" name="view-id" value="">
 <input id="site-url" type="hidden" name="site-url" value="">

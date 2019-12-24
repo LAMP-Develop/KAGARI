@@ -4,7 +4,7 @@ $req = $_SERVER['REQUEST_URI'];
 
 @section('header')
 <nav class="position-relative navbar navbar-expand-md navbar-light bg-white border-bottom px-5">
-@if (strpos($req, 'report') != false)
+@if (strpos($req, 'report') != false && isset($plan) && $plan%2 == 0)
 <div class="dropdown switch-drop rounded-lg">
 <span class="dropdown-toggle" id="switch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 <img src="{{ asset('/img/kagari-report.svg') }}" alt="{{ setting('site.title') }}" width="170">
@@ -16,7 +16,7 @@ $req = $_SERVER['REQUEST_URI'];
 </a>
 </div>
 </div>
-@elseif (strpos($req, 'seo') != false)
+@elseif (strpos($req, 'seo') != false && isset($plan) && $plan%2 == 0)
 <div class="dropdown switch-drop rounded-lg">
 <span class="dropdown-toggle" id="switch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 <img src="{{ asset('/img/kagari-seo.svg') }}" alt="{{ setting('site.title') }}" width="140">

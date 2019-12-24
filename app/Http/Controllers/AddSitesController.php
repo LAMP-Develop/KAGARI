@@ -84,7 +84,7 @@ class AddSitesController extends Controller
                 $add_sites->industry = $request['industries'];
                 $add_sites->category = $request['genre'];
                 $add_sites->url = $site_url;
-                if ($request->file('image_file') != '' || $request->file('image_file') != null) {
+                if ($request->file('image_file') != null) {
                     $path = $request->file('image_file')->store('public/logos');
                     $add_sites->logo_path = basename($path);
                 }

@@ -14,7 +14,7 @@ class UpdateAddSitesTable extends Migration
     public function up()
     {
         Schema::table('add_sites', function (Blueprint $table) {
-            $table->string('logo_path');
+            $table->string('logo_path')->default('');
         });
     }
 

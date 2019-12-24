@@ -31,10 +31,10 @@ if ($plan_id == 1 || $plan_id == 2) {
 <input class="form-check-input" type="radio" name="payment_methods" id="inlineRadio1" value="1" checked>
 <label class="form-check-label" for="inlineRadio1">クレジットカード</label>
 </div>
-<div class="form-check">
+<!-- <div class="form-check">
 <input class="form-check-input" type="radio" name="payment_methods" id="inlineRadio2" value="2">
 <label class="form-check-label" for="inlineRadio2">請求書支払い</label>
-</div>
+</div> -->
 </div>
 </div>
 <div class="form-group row align-items-start mt-5">

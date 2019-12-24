@@ -42,6 +42,7 @@ class ReportController extends Controller
         $site_name = $add_site->site_name;
         $view_id =(string)$add_site->VIEW_ID;
         $url = $add_site->url;
+        $plan = $add_site->plan;
 
         // AnalyticsReporting API インスタンス
         $gsa = $request->ga_report;
@@ -76,6 +77,7 @@ class ReportController extends Controller
 
         return view('analysis.report.index')->with([
           'site_id' => $sites,
+          'plan' => $plan,
           'ga_result' => $ga_result,
           'add_site' => $add_site,
           'end' => $end,
