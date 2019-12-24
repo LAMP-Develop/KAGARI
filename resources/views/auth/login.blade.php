@@ -30,20 +30,19 @@
 </div>
 <!-- ログイン記憶 -->
 <div class="form-group">
-<div class="custom-control custom-switch">
-<input class="custom-control-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-<label class="custom-control-label" for="remember">{{ __('Remember Me') }}</label>
+<div class="form-check">
+<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+<label class="form-check-label" for="remember">{{ __('Remember Me') }}</label>
 </div>
 </div>
 <!-- ログイン・忘れた -->
 <div class="form-group mt-5 mb-0">
-<p class="text-center">
-<button type="submit" class="btn btn-primary btn-block">{{ __('Login') }}</button>
-</p>
+<p class="text-center mb-4"><button type="submit" class="btn btn-primary btn-block">{{ __('Login') }}</button></p>
+<p class="m-0 text-center"><a href="{{ route('register') }}">新規会員登録</a></p>
 @if (Route::has('password.request'))
 <p class="m-0 text-center">
 <a class="btn btn-link" href="{{ route('password.request') }}">
-<small>{{ __('Forgot Your Password?') }}</small>
+<small class="text-body">{{ __('Forgot Your Password?') }}</small>
 </a>
 </p>
 @endif
