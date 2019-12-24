@@ -11,7 +11,11 @@ $screenshot = str_replace('-', '+', $screenshot);
 <section class="top_page">
 <div class="container">
 <div class="logo">
+<?php if ($logo != ''): ?>
 <img src="{{ $logo }}" alt="">
+<?php else: ?>
+<h2 class="font-weight-bold">{{ $site_name }}</h2>
+<?php endif; ?>
 </div>
 <h1 class="text-black font-weight-bold">アクセス解析レポート</h1>
 <h2 class="py-4 font-weight-bold">ANARYTICS REPORT</h2>

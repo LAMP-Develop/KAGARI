@@ -46,7 +46,11 @@ class PdfController extends Controller
         $site_name = $add_site->site_name;
         $view_id =(string)$add_site->VIEW_ID;
         $url = $add_site->url;
-        $logo = '/storage/logos/'.$add_site->logo_path;
+        if ($add_site->logo_path != '') {
+            $logo = '/storage/logos/'.$add_site->logo_path;
+        } else {
+            $logo = '';
+        }
 
         // AnalyticsReporting API インスタンス
         $gsa = $request->ga_report;

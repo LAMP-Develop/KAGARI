@@ -110,7 +110,7 @@
 </div>
 </main>
 <script src="{{ asset('/js/html2canvas.min.js') }}"></script>
-<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+<script src="{{ asset('/js/jspdf.min.js') }}"></script>
 <script>
 $(window).on('load', function() {
   $.when(
