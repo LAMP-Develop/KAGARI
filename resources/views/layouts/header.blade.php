@@ -38,24 +38,26 @@ $param = '';
 </a>
 </li>
 
-@if (isset($plan) && $plan%2 == 0)
+@if (isset($plan))
 @if (strpos($req, 'report') != false || strpos($req, 'seo') != false)
 <li class="l-drawer__item l-drawer__app mb-2">
 <a class="l-drawer__item-inner text-white text-center active" href="{{ route('ga-report', $site_id) }}">
-@if (strpos($req, 'report') != false && isset($plan))
+@if (strpos($req, 'report') != false)
 <i class="fas fa-caret-right mr-2"></i>
 @endif
 レポートを作成する
 </a>
 </li>
+@if ($plan%2 == 0)
 <li class="l-drawer__item l-drawer__app">
 <a class="l-drawer__item-inner text-white text-center active" href="{{ route('seo-report', $site_id) }}">
-@if (strpos($req, 'seo') != false && isset($plan) && $plan%2 == 0)
+@if (strpos($req, 'seo') != false)
 <i class="fas fa-caret-right mr-2"></i>
 @endif
 SEO分析する
 </a>
 </li>
+@endif
 <li class="l-drawer__item"><hr></li>
 @endif
 @endif
@@ -75,7 +77,7 @@ SEO分析する
 @auth
 <li class="l-drawer__item">
 <a class="l-drawer__item-inner text-white" href="{{ route('dashboard') }}">
-<span><i class="fas fa-list-ul"></i></span>登録サイト一覧
+<span><i class="fas fa-home"></i></span>登録サイト一覧
 </a>
 </li>
 <li class="l-drawer__item">
