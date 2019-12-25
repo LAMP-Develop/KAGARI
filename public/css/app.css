@@ -11589,6 +11589,10 @@ a.text-dark:focus {
   height: 0.4rem;
 }
 
+.list-group-item-action:hover {
+  cursor: pointer;
+}
+
 /*ドロワー*/
 
 .l-drawer {

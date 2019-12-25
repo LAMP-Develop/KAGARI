@@ -42,3 +42,9 @@
 .progress {
   height: 0.4rem;
 }
+
+.list-group-item-action {
+  &:hover {
+    cursor: pointer;
+  }
+}
