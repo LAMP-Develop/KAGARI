@@ -53,7 +53,7 @@
             </div>
             <div class="">
               <a href="#" class="btn btn-sm btn-outline-secondary mr-2">プランの変更</a>
-              <a href="#" class="btn btn-sm btn-outline-secondary">サイト情報変更</a>
+              <a href="{{ route('sites-edit', $site->id) }}" class="btn btn-sm btn-outline-secondary">サイト情報変更</a>
             </div>
           </div>
         </div>

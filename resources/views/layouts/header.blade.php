@@ -6,13 +6,13 @@ $req = $_SERVER['REQUEST_URI'];
 <nav class="position-relative navbar navbar-expand-md navbar-light bg-white border-bottom px-5">
 <h1 class="head-ttl m-0 font-weight-bold h5">@yield('title')</h1>
 @if(strpos($_SERVER['REQUEST_URI'], 'report'))
-<?php
+@php
 $param = strstr($_SERVER["REQUEST_URI"], '?');
 if (!$param) {
-$param = '';
+    $param = '';
 }
-?>
-<a href="{{ route('ga-pdf', $site_id) }}{{ $param }}" class="pdf-btn btn btn-sm btn-outline-secondary d-inline-block ml-auto" style="margin-right:5rem" target="_blank"><i class="fas fa-file-pdf mr-2"></i>PDFでレポート出力</a>
+@endphp
+<a href="{{ route('ga-pdf', $site_id) }}{{ $param }}" class="pdf-btn btn btn-sm btn-outline-secondary d-inline-block ml-auto" target="_blank"><i class="fas fa-file-pdf mr-2"></i>レポートを出力</a>
 @endif
 <input class="l-drawer__checkbox" id="drawerCheckbox" type="checkbox">
 <!-- ドロワーアイコン -->

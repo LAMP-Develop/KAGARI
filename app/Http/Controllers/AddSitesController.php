@@ -46,9 +46,9 @@ class AddSitesController extends Controller
             foreach ($property as $key => $val) {
                 if ($id == $val['accountId']) {
                     $temp_array[$val['defaultProfileId']] = [
-                    'name' => $val['name'],
-                    'url' => $val['websiteUrl']
-                  ];
+                      'name' => $val['name'],
+                      'url' => $val['websiteUrl']
+                    ];
                 }
             }
             $properties[$id] = [
@@ -111,6 +111,7 @@ class AddSitesController extends Controller
         ]);
     }
 
+    // サイトの情報変更
     public function edit($sites)
     {
         $user = Auth::user();
@@ -127,27 +128,29 @@ class AddSitesController extends Controller
         ]);
     }
 
-    public function update($sites,Request $request)
+    // サイトの情報更新
+    public function update($sites, Request $request)
     {
-      $categories = Category::all();
-      $industries = Industry::all();
-      $plans = Plans::all();
-      $user = Auth::user();
-      $user_id = $user->id;
-      $add_sites = AddSites::where('user_id', $user_id)->get();
-      $add_site = AddSites::where('id', $sites)->get();
-      $site = $add_site[0];
-      $path = '/public/logos/'.$site->logo_path;
-      if (isset($request['image_file'])) {
-      Storage::delete($path);
-      $path = $request->file('image_file')->store('public/logos');
-      $site->logo_path = basename($path);
-      }
-      $site->site_name = $request['site_name'];
-      $site->category = $request['genre'];
-      $site->save();
+        $categories = Category::all();
+        $industries = Industry::all();
+        $plans = Plans::all();
+        $user = Auth::user();
+        $user_id = $user->id;
+        $add_sites = AddSites::where('user_id', $user_id)->get();
+        $add_site = AddSites::where('id', $sites)->get();
+        $site = $add_site[0];
+        $path = '/public/logos/'.$site->logo_path;
+        if (isset($request['image_file'])) {
+            Storage::delete($path);
+            $path = $request->file('image_file')->store('public/logos');
+            $site->logo_path = basename($path);
+        }
+        $site->site_name = $request['site_name'];
+        $site->category = $request['genre'];
+        $site->industry = $request['industries'];
+        $site->save();
 
-      return redirect('/')->with([
+        return redirect('/')->with([
           'add_sites' => $add_sites,
           'categories' => $categories,
           'industries' => $industries,

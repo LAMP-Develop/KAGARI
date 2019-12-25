@@ -30,6 +30,18 @@ $site = $add_sites[0];
 @endforeach
 </select>
 </div>
+<div class="form-group">
+<label for="exampleFormControlSelect1">サイトの業種</label>
+<select id="industries" class="form-control" name="industries" required>
+@foreach ($industries as $key_i => $industry)
+@if($site->industry == $key_i+1)
+<option value="{{ ($key_i+1) }}" selected>{{ $industry->name }}</option>
+@else
+<option value="{{ ($key_i+1) }}">{{ $industry->name }}</option>
+@endif
+@endforeach
+</select>
+</div>
 <!-- <div class="form-group">
 <label for="exampleFormControlSelect2">ご契約プラン</label>
 </div> -->
