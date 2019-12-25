@@ -325,80 +325,77 @@ if ($area[$key][2] != 0) {
 </section>
 
 <script>
-// ctxをdonに変えています
-  let don = $('#doughnut-chart-1');
-  var userData = [{{ $new_user_data }}, {{ $re_user_data }}];
-  let myChart1 = new Chart(don, {
-    type: 'doughnut',
-    animation: false,
-    data: {
-      labels: [
-        '新規ユーザー', '既存ユーザー'
-      ],
-      datasets: [
-        {
-          data: userData,
-          backgroundColor: ['rgba(255, 59, 48, 1)', 'rgba(255, 59, 48, 0.6)']
-        }
-      ]
+let don = $('#doughnut-chart-1');
+var userData = [{{ $new_user_data }}, {{ $re_user_data }}];
+let myChart1 = new Chart(don, {
+  type: 'doughnut',
+  animation: false,
+  data: {
+    labels: [
+      '新規ユーザー', '既存ユーザー'
+    ],
+    datasets: [
+      {
+        data: userData,
+        backgroundColor: ['rgba(255, 59, 48, 1)', 'rgba(255, 59, 48, 0.6)']
+      }
+    ]
+  },
+  options: {
+    legend: {
+      display: false
     },
-    options: {
-      legend: {
-        display: false
-      },
-      responsive: false,
-      cutoutPercentage: 85
-    }
-  });
-
-  let don2 = $('#doughnut-chart-2');
-  var userData = [{{ $male_str }}, {{ $female_str }}];
-  let myChart2 = new Chart(don2, {
-    type: 'doughnut',
-    animation: false,
-    data: {
-      labels: [
-        '男性', '女性'
-      ],
-      datasets: [
-        {
-          data: userData,
-          backgroundColor: ['#007AFF', '#FF2D55']
-        }
-      ]
+    responsive: false,
+    cutoutPercentage: 85
+  }
+});
+let don2 = $('#doughnut-chart-2');
+var userData = [{{ $male_str }}, {{ $female_str }}];
+let myChart2 = new Chart(don2, {
+  type: 'doughnut',
+  animation: false,
+  data: {
+    labels: [
+      '男性', '女性'
+    ],
+    datasets: [
+      {
+        data: userData,
+        backgroundColor: ['#007AFF', '#FF2D55']
+      }
+    ]
+  },
+  options: {
+    legend: {
+      display: false
     },
-    options: {
-      legend: {
-        display: false
-      },
-      responsive: false,
-      cutoutPercentage: 85
-    }
-  });
-
-  let don3 = $('#doughnut-chart-3');
-  var userData = [{{ $mobile }}, {{ $desktop }}, {{ $tablet }}];
-  let myChart3 = new Chart(don3, {
-    type: 'doughnut',
-    animation: false,
-    data: {
-      labels: [
-        "モバイル", "PC", "タブレット"
-      ],
-      datasets: [
-        {
-          data: userData,
-          backgroundColor: ['#007AFF', '#007AFF99', '#007AFF66']
-        }
-      ]
+    responsive: false,
+    cutoutPercentage: 85
+  }
+});
+let don3 = $('#doughnut-chart-3');
+var userData = [{{ $mobile }}, {{ $desktop }}, {{ $tablet }}];
+let myChart3 = new Chart(don3, {
+  type: 'doughnut',
+  animation: false,
+  data: {
+    labels: [
+      "モバイル", "PC", "タブレット"
+    ],
+    datasets: [
+      {
+        data: userData,
+        backgroundColor: ['#007AFF', '#007AFF99', '#007AFF66']
+      }
+    ]
+  },
+  options: {
+    legend: {
+      display: false
     },
-    options: {
-      legend: {
-        display: false
-      },
-      responsive: false,
-      cutoutPercentage: 85
-    }
-  });
+    responsive: false,
+    cutoutPercentage: 85
+  }
+});
 </script>
 @endsection

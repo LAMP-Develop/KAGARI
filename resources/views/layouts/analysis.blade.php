@@ -33,7 +33,7 @@ echo $ga_message;
 </div>
 </div>
 </form>
-<div class="col-2 p-0 text-right">
+<!-- <div class="col-2 p-0 text-right">
 <div class="dropdown">
 <button class="btn btn-primary btn-sm dropdown-toggle load" type="button" id="export" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-spinner mr-1"></i>エクスポート</button>
 <div class="dropdown-menu" aria-labelledby="export">
@@ -42,7 +42,7 @@ echo $ga_message;
 <button tableexport-id="399d2dcb-txt" class="dropdown-item text-muted" type="button"><i class="fas fa-file-alt mr-1"></i>TXT</button>
 </div>
 </div>
-</div>
+</div> -->
 </div>
 <!-- スクロールとハイライト -->
 <div class="row justify-content-between align-items-end mt-3 mx-0">
@@ -141,7 +141,7 @@ array_push($url_array, $page_url);
 <td class="No">{{ $no }}</td>
 <td class="page-name" data-toggle="modal" data-target="#seo-detail">{{ $page_name }}</td>
 <!-- seo -->
-<td id="kyes-{{ $num }}" class="keyword-seo" data-toggle="modal" data-target="#seo-detail"></td>
+<td id="kyes-{{ $num }}" class="keyword-seo load" data-toggle="modal" data-target="#seo-detail"><i class="fas fa-spinner mr-1"></i></td>
 <td data-name="click" class="unit-kai <?php if ((int)str_replace(',','',$click) < 5) echo 'highlight'; ?>">{{ $click }}</td>
 <td data-name="impressions" class="unit-kai <?php if ((int)str_replace(',','',$impressions) < 10) echo 'highlight'; ?>">{{ $impressions }}</td>
 <td data-name="ctr" class="unit-par <?php if ((float)$ctr < 1) echo 'highlight'; ?>">{{ $ctr }}</td>
