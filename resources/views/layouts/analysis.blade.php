@@ -200,7 +200,7 @@ $end = $_GET['end'];
 </a>
 </h5>
 <div class="dropdown text-right" style="position:absolute; right:1rem; bottom:1rem;">
-<button class="btn btn-primary btn-sm dropdown-toggle load" type="button" id="export-kyes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-spinner mr-1"></i>エクスポート</button>
+<button class="btn btn-outline-secondary btn-sm dropdown-toggle load" type="button" id="export-kyes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-spinner mr-1"></i>エクスポート</button>
 <div class="dropdown-menu" aria-labelledby="export-kyes">
 <button tableexport-id="42dbd70a-xlsx" class="dropdown-item text-muted" type="button"><i class="fas fa-file-excel mr-1"></i>Excel</button>
 <button tableexport-id="ec3a69f-csv" class="dropdown-item text-muted" type="button"><i class="fas fa-file-csv mr-1"></i>CSV</button>

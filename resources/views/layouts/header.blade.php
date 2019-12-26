@@ -12,7 +12,8 @@ if (!$param) {
     $param = '';
 }
 @endphp
-<a href="{{ route('ga-pdf', $site_id) }}{{ $param }}" class="pdf-btn btn btn-sm btn-outline-secondary d-inline-block ml-auto" target="_blank"><i class="fas fa-file-pdf mr-2"></i>レポートを出力</a>
+<a href="{{ route('send-setting', $site_id) }}" class="pdf-btn btn btn-sm btn-outline-secondary d-inline-block ml-auto mr-2" target="_blank">レポート受信設定</a>
+<a href="{{ route('ga-pdf', $site_id) }}{{ $param }}" class="pdf-btn btn btn-sm btn-outline-secondary d-inline-block" target="_blank"><i class="fas fa-file-pdf mr-2"></i>レポートを出力</a>
 @elseif (strpos($_SERVER['REQUEST_URI'], 'seo'))
 <div class="dropdown d-inline-block ml-auto">
 <button class="pdf-btn btn btn-sm btn-outline-secondary dropdown-toggle load" type="button" id="export" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-spinner mr-1"></i>エクスポート</button>
