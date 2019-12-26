@@ -92,6 +92,9 @@ Route::group(['prefix' => 'report'], function () {
     Route::get('/ad/{AddSites}', 'ReportController@index', function ($sites) {
         return $sites;
     })->middleware('analytics.reporting')->name('ga-ad');
+    Route::get('/query/{AddSites}', 'ReportController@index', function ($sites) {
+        return $sites;
+    })->middleware('webmaster')->name('sc-query');
     // pdf
     Route::get('/{AddSites}/pdf', 'PdfController@index', function ($sites) {
         return $sites;

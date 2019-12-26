@@ -59,6 +59,11 @@ if (localStorage.getItem('ad') != null) {
   let target_ad = document.getElementById("comment_ad");
   target_ad.innerHTML = val_ad;
 }
+if (localStorage.getItem('query') != null) {
+  let val_ad = localStorage.getItem('query');
+  let target_ad = document.getElementById("comment_query");
+  target_ad.innerHTML = val_ad;
+}
 </script>
 @endif
 

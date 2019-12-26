@@ -39,4 +39,6 @@ $site_name = $add_site->site_name;
   @include('analysis.report.conversion')
 @elseif ($route_name == 'ga-ad')
   @include('analysis.report.ad')
+@elseif ($route_name == 'sc-query')
+  @include('analysis.report.query')
 @endif

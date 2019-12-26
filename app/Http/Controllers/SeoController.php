@@ -48,6 +48,7 @@ class SeoController extends Controller
         $view_id = (String)$site[0]->VIEW_ID;
         $url = $site[0]->url;
         $plan = $site[0]->plan;
+        $name = $site[0]->site_name;
         $sc_result = [];
         if (!isset($request->start)) {
             $start = date('Y-m-d', strtotime('-32 day'));
@@ -107,6 +108,7 @@ class SeoController extends Controller
             'ga' => $ga_results,
             'sc' => $sc_result,
             'url' => $url,
+            'name' => $name,
             'plan' => $plan,
             'start' => $start,
             'end' => $end,
