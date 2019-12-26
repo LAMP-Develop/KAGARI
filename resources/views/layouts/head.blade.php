@@ -1,5 +1,6 @@
 @section('head')
 <meta charset="utf-8">
+<meta name="robots" content="noindex">
 <meta name="viewport" content="width=1366,initial-scale=1">
 
 <!-- CSRF Token -->
