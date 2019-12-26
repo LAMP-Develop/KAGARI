@@ -1,9 +1,9 @@
-<?php
+@php
 $param = strstr($_SERVER["REQUEST_URI"], '?');
 if (!$param) {
     $param = '';
 }
-?>
+@endphp
 
 @section('nav')
 <section class="mb-3 mt-n4">

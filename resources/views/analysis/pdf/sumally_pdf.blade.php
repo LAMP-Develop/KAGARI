@@ -77,7 +77,7 @@ $comp_bounce_rate = $ga_result_data['comp'][7];
 <span class="opacity-item opacity-bg-blue">
 <img src="{{asset('/img/fa-user_blue_16.png')}}" alt="fa-user">
 </span>
-<h4 class="h6 text-dark mt-3">ユーザー</h4>
+<h4 class="h6 text-dark mt-3">ユーザー数</h4>
 <p class="h4 font-weight-bold text-dark">{{ $users_str }}</p>
 <p class="m-0">
 <span class="text-secondary"><img class="mr-1" src="{{asset('/img/fa-arrows-alt-h_text-secondary_14.png')}}" alt="fa-arrows">
@@ -102,7 +102,7 @@ $comp_bounce_rate = $ga_result_data['comp'][7];
 <span class="opacity-item opacity-bg-orange">
 <img src="{{ asset('/img/fa-bolt_orange_16.png') }}" alt="">
 </span>
-<h4 class="h6 text-dark mt-3">セッション</h4>
+<h4 class="h6 text-dark mt-3">セッション数</h4>
 <p class="h4 font-weight-bold text-dark">{{ $session_str }}</p>
 <p class="m-0">
 <span class="text-secondary"><img class="mr-1" src="{{asset('/img/fa-arrows-alt-h_text-secondary_14.png')}}" alt="fa-arrows">
@@ -242,7 +242,7 @@ $comp_bounce_rate = $ga_result_data['comp'][7];
 {{ $comp_exit_rate }}%</span>
 </p>
 <hr>
-<small class="d-block text-left text-secondary">1ページあたりのユーザーの滞在時間。</small>
+<small class="d-block text-left text-secondary">他のページに移動することなくサイトを離脱したセッションの割合。</small>
 </div>
 </div>
 </div>

@@ -46,6 +46,14 @@ Route::group(['prefix' => 'dashboard'], function () {
             Route::post('/edit_data/{AddSites}/', 'AddSitesController@update', function ($sites) {
                 return $sites;
             })->name('sites-update');
+
+            // レポートメール受信設定
+            Route::get('/send-setting/{AddSites}/', 'AddSitesController@send_setting', function ($sites) {
+                return $sites;
+            })->name('send-setting');
+            Route::post('/send-setting-update/{AddSites}/', 'AddSitesController@send_setting_update', function ($sites) {
+                return $sites;
+            })->name('send-setting-update');
         });
 
         // サイト追加

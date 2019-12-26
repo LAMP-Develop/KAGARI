@@ -13,10 +13,12 @@ class CreateReportScheduleTable extends Migration
      */
     public function up()
     {
-        Schema::create('report_schedule', function (Blueprint $table) {
+        Schema::create('report_send_mail', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('site_id')->unsigned();
             $table->foreign('site_id')->references('id')->on('add_sites')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('mailaddress')->default('');
+            $table->boolean('to_cc')->default(0);
             $table->timestamps();
         });
     }

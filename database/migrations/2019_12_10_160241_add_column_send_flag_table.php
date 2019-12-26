@@ -15,6 +15,7 @@ class AddColumnSendFlagTable extends Migration
     {
         Schema::table('add_sites', function (Blueprint $table) {
             $table->boolean('send_flag')->default(0);
+            $table->boolean('comparison_flag')->default(0);
         });
     }
 

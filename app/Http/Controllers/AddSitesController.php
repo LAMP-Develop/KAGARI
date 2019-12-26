@@ -8,8 +8,11 @@ use App\AddSites;
 use App\Category;
 use App\Industry;
 use App\Plans;
+use App\ReportSendDays;
+use App\ReportSendMail;
 use Auth;
 use DB;
+use App\Rules\AlphaNumHalf;
 use Illuminate\Support\Facades\Storage;
 
 class AddSitesController extends Controller
@@ -92,6 +95,18 @@ class AddSitesController extends Controller
                 $add_sites->updated_at = date('Y-m-d H:i:s');
                 $add_sites->save();
                 $site_id = $add_sites->id;
+
+                $send_days = new ReportSendDays();
+                $send_days->site_id = $site_id;
+                $send_days->created_at = date('Y-m-d H:i:s');
+                $send_days->updated_at = date('Y-m-d H:i:s');
+                $send_days->save();
+
+                $send_mail = new ReportSendMail();
+                $send_mail->site_id = $site_id;
+                $send_mail->created_at = date('Y-m-d H:i:s');
+                $send_mail->updated_at = date('Y-m-d H:i:s');
+                $send_mail->save();
             }
         }
         try {
@@ -131,9 +146,6 @@ class AddSitesController extends Controller
     // サイトの情報更新
     public function update($sites, Request $request)
     {
-        $categories = Category::all();
-        $industries = Industry::all();
-        $plans = Plans::all();
         $user = Auth::user();
         $user_id = $user->id;
         $add_sites = AddSites::where('user_id', $user_id)->get();
@@ -150,11 +162,99 @@ class AddSitesController extends Controller
         $site->industry = $request['industries'];
         $site->save();
 
-        return redirect('/')->with([
-          'add_sites' => $add_sites,
-          'categories' => $categories,
-          'industries' => $industries,
-          'plans' => $plans,
-      ]);
+        return redirect(route('dashboard'));
+    }
+
+    // レポート結果受信
+    public function send_setting($sites)
+    {
+        $add_sites = AddSites::where('id', $sites)->first();
+        $site_id = $add_sites->id;
+
+        $mail = [];
+        $mail['cc'] = '';
+        $days = [];
+        $mail_setting = ReportSendMail::where('site_id', $site_id)->get();
+        $days_setting = ReportSendDays::where('site_id', $site_id)->get();
+
+        foreach ($mail_setting as $key => $val) {
+            if ($val->to_cc == 0) {
+                $mail['to'] = $val->mailaddress;
+            } else {
+                $mail['cc'] .= $val->mailaddress.',';
+            }
+        }
+        $mail['cc'] = rtrim($mail['cc'], ',');
+
+        foreach ($days_setting as $key => $val) {
+            $days["$val->days"] = 1;
+        }
+
+        return view('sites.send')->with([
+            'add_sites' => $add_sites,
+            'mail' => $mail,
+            'days' => $days,
+        ]);
+    }
+
+    // レポート結果受信スケジュール更新
+    public function send_setting_update($sites, Request $request)
+    {
+        $validatedData = $request->validate([
+            'to_email' => 'required|string|email|max:255'
+        ]);
+
+        $site_id = $sites;
+        $send_flag = $request->send_flag;
+        $to_email = $request->to_email;
+        $cc_email = explode(',', $request->cc_email);
+        $analyzing_period = $request->analyzing_period;
+        $comparison_flag = $request->comparison_flag;
+
+        // toメールの更新
+        $mail_setting_to = ReportSendMail::where([
+            ['site_id', '=', $site_id],
+            ['to_cc', '=', 0],
+        ])->first();
+        if ($mail_setting_to->mailaddress != $to_email) {
+            $mail_setting_to->mailaddress = $to_email;
+            $mail_setting_to->updated_at = date('Y-m-d H:i:s');
+            $mail_setting_to->save();
+        }
+
+        // ccメールの更新
+        ReportSendMail::where([
+            ['site_id', '=', $site_id],
+            ['to_cc', '=', 1],
+        ])->delete();
+        foreach ($cc_email as $key => $val) {
+            $mail_setting_cc = new ReportSendMail;
+            $mail_setting_cc->site_id = $site_id;
+            $mail_setting_cc->mailaddress = $val;
+            $mail_setting_cc->to_cc = 1;
+            $mail_setting_cc->created_at = date('Y-m-d H:i:s');
+            $mail_setting_cc->updated_at = date('Y-m-d H:i:s');
+            $mail_setting_cc->save();
+        }
+
+        // 送信スパンの更新
+        ReportSendDays::where('site_id', $site_id)->delete();
+        foreach ($analyzing_period as $key => $val) {
+            $send_days = new ReportSendDays;
+            $send_days->site_id = $site_id;
+            $send_days->days = $val;
+            $send_days->created_at = date('Y-m-d H:i:s');
+            $send_days->updated_at = date('Y-m-d H:i:s');
+            $send_days->save();
+        }
+
+        // フラグの更新
+        $site = AddSites::where('id', $site_id)->first();
+        $site->send_flag = $send_flag;
+        $site->comparison_flag = $comparison_flag;
+        $site->updated_at = date('Y-m-d H:i:s');
+        $site->save();
+
+        return redirect(route('send-setting', $site_id))->with('message', '正しく更新されました。');
     }
 }
