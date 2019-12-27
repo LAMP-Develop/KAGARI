@@ -52,7 +52,17 @@
 @endif
 </div>
 <div class="">
-<a href="#" class="btn btn-sm btn-outline-secondary mr-2">プランの変更</a>
+<form class="d-inline-block mr-2" action="{{ route('plan') }}" method="post">
+@csrf
+<button class="btn btn-sm btn-outline-secondary" type="submit">プランの変更</button>
+<input type="hidden" name="site-id" value="{{ $site->id }}">
+<input type="hidden" name="view-id" value="{{ $site->VIEW_ID }}">
+<input type="hidden" name="site-url" value="{{ $site->url }}">
+<input type="hidden" name="site-name" value="{{ $site->site_name }}">
+<input type="hidden" name="industries" value="{{ $site->industry }}">
+<input type="hidden" name="genre" value="{{ $site->category }}">
+<input type="hidden" name="update" value="{{ $site->plan }}">
+</form>
 <a href="{{ route('sites-edit', $site->id) }}" class="btn btn-sm btn-outline-secondary mr-2">サイト情報変更</a>
 <a href="{{ route('send-setting', $site->id) }}" class="btn btn-sm btn-outline-secondary">レポート受信設定</a>
 </div>

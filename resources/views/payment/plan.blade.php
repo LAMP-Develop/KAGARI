@@ -6,6 +6,14 @@
 @include('layouts.header')
 @include('layouts.footer')
 
+@php
+if(isset($_POST['update'])) {
+    $btn_str = 'このプランに変更する';
+} else {
+    $btn_str = 'このプランで登録する';
+}
+@endphp
+
 @section('content')
 <form action="{{ route('payment') }}" method="post">
 @csrf
@@ -32,6 +40,7 @@ echo $message;
 </div>
 @endif
 
+@if(!isset($_POST['update']))
 <div class="col-8 mx-auto">
 <div class="card mb-4">
 <div class="card-body">
@@ -41,6 +50,7 @@ echo $message;
 </div>
 </div>
 </div>
+@endif
 
 <ul class="nav nav-pills mt-5 justify-content-center">
 <li class="nav-item">
@@ -82,7 +92,7 @@ echo $message;
 <li class="border-0 p-0 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>AI改善提案</li>
 </ul>
 <div class="mt-5 text-left">
-<button type="submit" name="plan" value="1" class="btn btn-outline-primary">このプランで登録する</button>
+<button type="submit" name="plan" value="1" class="btn btn-outline-primary">{{ $btn_str }}</button>
 </div>
 </div>
 </div>
@@ -110,9 +120,9 @@ echo $message;
 </ul>
 <div class="mt-5 text-left">
 @if ($e_message != '')
-<button type="submit" name="plan" value="2" class="btn btn-outline-primary" disabled>このプランで登録する</button>
+<button type="submit" name="plan" value="2" class="btn btn-outline-primary" disabled>{{ $btn_str }}</button>
 @else
-<button type="submit" name="plan" value="2" class="btn btn-outline-primary">このプランで登録する</button>
+<button type="submit" name="plan" value="2" class="btn btn-outline-primary">{{ $btn_str }}</button>
 @endif
 <p class="text-left mt-1 mb-0"><small>※Search Consoleと連携します</small></p>
 </div>
@@ -149,7 +159,7 @@ echo $message;
 <li class="border-0 p-0 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>AI改善提案</li>
 </ul>
 <div class="mt-5 text-left">
-<button type="submit" name="plan" value="3" class="btn btn-outline-primary">このプランで登録する</button>
+<button type="submit" name="plan" value="3" class="btn btn-outline-primary">{{ $btn_str }}</button>
 </div>
 </div>
 </div>
@@ -177,9 +187,9 @@ echo $message;
 </ul>
 <div class="mt-5 text-left">
 @if ($e_message != '')
-<button type="submit" name="plan" value="4" class="btn btn-outline-primary" disabled>このプランで登録する</button>
+<button type="submit" name="plan" value="4" class="btn btn-outline-primary" disabled>{{ $btn_str }}</button>
 @else
-<button type="submit" name="plan" value="4" class="btn btn-outline-primary">このプランで登録する</button>
+<button type="submit" name="plan" value="4" class="btn btn-outline-primary">{{ $btn_str }}</button>
 @endif
 <p class="text-left mt-1 mb-0"><small>※Search Consoleと連携します</small></p>
 </div>
@@ -216,7 +226,7 @@ echo $message;
 <li class="border-0 p-0 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>AI改善提案</li>
 </ul>
 <div class="mt-5 text-left">
-<button type="submit" name="plan" value="5" class="btn btn-outline-primary">このプランで登録する</button>
+<button type="submit" name="plan" value="5" class="btn btn-outline-primary">{{ $btn_str }}</button>
 </div>
 </div>
 </div>
@@ -244,9 +254,9 @@ echo $message;
 </ul>
 <div class="mt-5 text-left">
 @if ($e_message != '')
-<button type="submit" name="plan" value="6" class="btn btn-outline-primary" disabled>このプランで登録する</button>
+<button type="submit" name="plan" value="6" class="btn btn-outline-primary" disabled>{{ $btn_str }}</button>
 @else
-<button type="submit" name="plan" value="6" class="btn btn-outline-primary">このプランで登録する</button>
+<button type="submit" name="plan" value="6" class="btn btn-outline-primary">{{ $btn_str }}</button>
 @endif
 <p class="text-left mt-1 mb-0"><small>※Search Consoleと連携します</small></p>
 </div>

@@ -155,7 +155,8 @@ class ReportController extends Controller
         }
         foreach ($result as $key => $value) {
             $value = $value->values;
-            array_push($array, $value);
+            $array[] = $value;
+            // array_push($array, $value);
         }
         foreach ($array[0] as $key => $val) {
             if ((float)$array[1][$key] != 0) {
@@ -289,9 +290,9 @@ class ReportController extends Controller
         $requestMedium->setOrderBys($orderBy);
 
         $filter_social = new \Google_Service_AnalyticsReporting_DimensionFilter();
-        $filter_social->setDimensionName( 'ga:socialNetwork' );
+        $filter_social->setDimensionName('ga:socialNetwork');
         $filter_social->setNot(true);
-        $filter_social->setExpressions( ["(not set)"] );
+        $filter_social->setExpressions(["(not set)"]);
 
         $filters_social = new \Google_Service_AnalyticsReporting_DimensionFilterClause();
         $filters_social->setFilters([$filter_social]);
@@ -427,9 +428,10 @@ class ReportController extends Controller
         $array = [];
         foreach ($reportsTwo as $value) {
             $value = $value->values;
-            array_push($array, $value);
+            $array[] = $value;
+            // array_push($array, $value);
         }
-        return [$number,$array];
+        return [$number, $array];
     }
 
     // 広告
@@ -477,7 +479,8 @@ class ReportController extends Controller
         $array = [];
         foreach ($result as $value) {
             $value = $value->values;
-            array_push($array, $value);
+            $array[] = $value;
+            // array_push($array, $value);
         }
         foreach ($resultTwo as $key => $report) {
             $number[$key][0][] = [$report->dimensions,$report->metrics[0]->values[0],$report->metrics[0]->values[1],$report->metrics[0]->values[2],$report->metrics[0]->values[3],$report->metrics[0]->values[4]];
@@ -543,7 +546,6 @@ class ReportController extends Controller
                 'ctr' => max($max_ctr),
                 'position' => min($max_position)
             ];
-
         } catch (\Exception $e) {
             return $e;
         }

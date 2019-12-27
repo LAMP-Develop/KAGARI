@@ -82,8 +82,8 @@
 <label class="form-check-label not-must" for="comparison_flag_true">する</label>
 </div>
 <div class="form-check form-check-inline">
-<input class="form-check-input" type="radio" name="comparison_flag" id="comparison_flag_false" value="0" <?php if($add_sites->comparison_flag == 0) echo 'checked' ?>>
-<label class="form-check-label not-must" for="comparison_flag_false">しない</label>
+<input class="form-check-input" type="radio" name="comparison_flag" id="comparison_flag_false" value="0" <?php if($add_sites->comparison_flag == 0) echo 'checked' ?> disabled>
+<label class="form-check-label not-must" for="comparison_flag_false">しない<small>※準備中</small></label>
 </div>
 </div>
 
