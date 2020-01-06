@@ -92,7 +92,7 @@ echo $message;
 <li class="border-0 p-0 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>AI改善提案</li>
 </ul>
 <div class="mt-5 text-left">
-<button type="submit" name="plan" value="1" class="btn btn-outline-primary">{{ $btn_str }}</button>
+<button type="submit" name="plan" value="1" class="btn btn-outline-primary" <?php if ($site_plan == 1) echo 'disabled'; ?>>{{ $btn_str }}</button>
 </div>
 </div>
 </div>
@@ -122,7 +122,7 @@ echo $message;
 @if ($e_message != '')
 <button type="submit" name="plan" value="2" class="btn btn-outline-primary" disabled>{{ $btn_str }}</button>
 @else
-<button type="submit" name="plan" value="2" class="btn btn-outline-primary">{{ $btn_str }}</button>
+<button type="submit" name="plan" value="2" class="btn btn-outline-primary" <?php if ($site_plan == 2) echo 'disabled'; ?>>{{ $btn_str }}</button>
 @endif
 <p class="text-left mt-1 mb-0"><small>※Search Consoleと連携します</small></p>
 </div>
@@ -159,7 +159,7 @@ echo $message;
 <li class="border-0 p-0 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>AI改善提案</li>
 </ul>
 <div class="mt-5 text-left">
-<button type="submit" name="plan" value="3" class="btn btn-outline-primary">{{ $btn_str }}</button>
+<button type="submit" name="plan" value="3" class="btn btn-outline-primary" <?php if ($site_plan == 3) echo 'disabled'; ?>>{{ $btn_str }}</button>
 </div>
 </div>
 </div>
@@ -189,7 +189,7 @@ echo $message;
 @if ($e_message != '')
 <button type="submit" name="plan" value="4" class="btn btn-outline-primary" disabled>{{ $btn_str }}</button>
 @else
-<button type="submit" name="plan" value="4" class="btn btn-outline-primary">{{ $btn_str }}</button>
+<button type="submit" name="plan" value="4" class="btn btn-outline-primary" <?php if ($site_plan == 4) echo 'disabled'; ?>>{{ $btn_str }}</button>
 @endif
 <p class="text-left mt-1 mb-0"><small>※Search Consoleと連携します</small></p>
 </div>
@@ -226,7 +226,7 @@ echo $message;
 <li class="border-0 p-0 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>AI改善提案</li>
 </ul>
 <div class="mt-5 text-left">
-<button type="submit" name="plan" value="5" class="btn btn-outline-primary">{{ $btn_str }}</button>
+<button type="submit" name="plan" value="5" class="btn btn-outline-primary" <?php if ($site_plan == 5) echo 'disabled'; ?>>{{ $btn_str }}</button>
 </div>
 </div>
 </div>
@@ -256,7 +256,7 @@ echo $message;
 @if ($e_message != '')
 <button type="submit" name="plan" value="6" class="btn btn-outline-primary" disabled>{{ $btn_str }}</button>
 @else
-<button type="submit" name="plan" value="6" class="btn btn-outline-primary">{{ $btn_str }}</button>
+<button type="submit" name="plan" value="6" class="btn btn-outline-primary" <?php if ($site_plan == 6) echo 'disabled'; ?>>{{ $btn_str }}</button>
 @endif
 <p class="text-left mt-1 mb-0"><small>※Search Consoleと連携します</small></p>
 </div>

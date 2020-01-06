@@ -108,6 +108,9 @@ class AddSitesController extends Controller
                 $send_mail->updated_at = date('Y-m-d H:i:s');
                 $send_mail->save();
             }
+            $plan = null;
+        } else {
+            $plan = $flag[0]->plan;
         }
         try {
             $sc_site = $request->sc->sites->get($site_url)->siteUrl;
@@ -123,6 +126,7 @@ class AddSitesController extends Controller
           'site_id' => $site_id,
           'e_message' => $e_message,
           'message' => $message,
+          'site_plan' => $plan,
         ]);
     }
 
