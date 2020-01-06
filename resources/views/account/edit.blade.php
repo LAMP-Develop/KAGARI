@@ -35,6 +35,7 @@
 </div>
 <div class="form-group mb-0 text-center mt-5">
 <button id="btn-account-edit" type="button" class="btn btn-primary">変更する</button>
+<a href="{{ route('account') }}" class="btn btn-outline-secondary ml-2">戻る</a>
 </div>
 
 <input type="hidden" name="user_id" value="{{ $user->id }}">
