@@ -283,7 +283,7 @@ $comp_bounce_rate = $ga_result_data['comp'][7];
 </span>
 </div>
 <div class="col-11">
-<h3 class="font-weight-bold h5 mt-2">解析結果の総評</h3>
+<h3 class="font-weight-bold h5 mt-2">サマリーの総評</h3>
 <p id="comment_sumally">
 @if (($comp_users+$comp_session+$comp_pv) > 0)
 ・アクセス状況は上昇傾向にあります。

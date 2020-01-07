@@ -88,7 +88,7 @@
 </div>
 
 <button type="submit" class="btn btn-primary mt-4">変更する</button>
-<a class="btn btn-sm btn-outline-secondary mt-4 ml-3" href="{{ route('dashboard') }}">戻る</a>
+<a class="btn btn-sm btn-outline-secondary mt-4 ml-3" href="{{ route('dashboard') }}">ダッシュボードへ戻る</a>
 </form>
 </div>
 </section>

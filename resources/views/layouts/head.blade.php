@@ -5,6 +5,8 @@
 
 <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
+
+<!-- Title -->
 <title>@yield('title') - {{ setting('site.title') }}</title>
 
 <!-- Fonts -->
