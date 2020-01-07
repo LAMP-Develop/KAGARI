@@ -396,12 +396,14 @@ let myChart3 = new Chart(ctx3, {
 @endsection
 @else
 @section('content')
+<section class="reports">
 <div class="container">
 <div class="col-12">
 <div class="alert alert-warning">
-<p class="m-0">This is test.</p>
+<p class="m-0">ユーザーの属性情報が取得できませんでした。Google Analyticsの設定をご確認ください。</p>
 </div>
 </div>
 </div>
+</section>
 @endsection
 @endif

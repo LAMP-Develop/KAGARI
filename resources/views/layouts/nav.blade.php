@@ -52,11 +52,11 @@ if (!$param) {
 <a class="nav-link @php if(Route::current()->getName() == 'ga-conversion') echo 'active'; @endphp" href="{{ route('ga-conversion', $site_id) }}{{ $param }}"><i class="fas fa-flag mr-1"></i>コンバージョン分析</a>
 </li>
 <li class="nav-item">
-<a class="nav-link @php if(Route::current()->getName() == 'ga-ad') echo 'active'; @endphp" href="{{ route('ga-ad', $site_id) }}"><i class="fas fa-ad mr-1"></i>広告分析</a>
+<a class="nav-link @php if(Route::current()->getName() == 'ga-ad') echo 'active'; @endphp" href="{{ route('ga-ad', $site_id) }}{{ $param }}"><i class="fas fa-ad mr-1"></i>広告分析</a>
 </li>
 @if($plan%2 == 0)
 <li class="nav-item">
-<a class="nav-link @php if(Route::current()->getName() == 'sc-query') echo 'active'; @endphp" href="{{ route('sc-query', $site_id) }}"><i class="fab fa-searchengin mr-1"></i>検索分析</a>
+<a class="nav-link @php if(Route::current()->getName() == 'sc-query') echo 'active'; @endphp" href="{{ route('sc-query', $site_id) }}{{ $param }}"><i class="fab fa-searchengin mr-1"></i>検索分析</a>
 </li>
 @endif
 </ul>
