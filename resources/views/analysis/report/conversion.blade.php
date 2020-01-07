@@ -51,9 +51,9 @@ rsort($arr_time);
 <i class="fas fa-flag opacity-color-orange"></i>
 </span>
 <h4 class="h6 text-dark mt-3">コンバージョン数</h4>
-<p class="h4 font-weight-bold text-dark">{{ $cv }}</p>
+<p class="h4 font-weight-bold text-dark">{{ number_format($cv) }}</p>
 <p class="m-0">
-<span class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ $old_cv }}</span>
+<span class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ number_format($old_cv) }}</span>
 </p>
 <p class="m-0">
 @if($comp_cv >= 0)
