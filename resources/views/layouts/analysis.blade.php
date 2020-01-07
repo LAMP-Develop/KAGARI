@@ -74,7 +74,7 @@ echo $ga_message;
 <tr class="column-head">
 <th class="No">No.</th>
 <th class="page-name">ページタイトル</th>
-<th class="keyword-seo">最も多くヒットした<br>検索キーワード</th>
+<th class="keyword-seo">最も多くクリックされた<br>検索キーワード</th>
 <th>検索結果で<br>クリックされた数</th>
 <th>検索結果の<br>表示回数</th>
 <th>検索結果で<br>クリックされた率</th>
