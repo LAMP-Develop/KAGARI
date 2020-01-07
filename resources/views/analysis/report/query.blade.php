@@ -8,10 +8,10 @@
 <div class="card-body">
 <div class="row align-items-center">
 <div class="col-3 text-center">
-<span class="opacity-item opacity-bg-blue">
-<i class="fas fa-mouse-pointer opacity-color-blue"></i>
+<span class="opacity-item opacity-bg-green">
+<i class="fas fa-tv opacity-color-green"></i>
 </span>
-<h3 class="text-dark font-weight-bold h6 mt-3">クリック数</h3>
+<h3 class="text-dark font-weight-bold h6 mt-3">検索結果表示回数</h3>
 <p class="m-0">
 <small><i class="far fa-calendar-alt opacity-color-blue mr-1"></i>{{ $start }} ~ {{ $end }}</small>
 </p>
@@ -37,8 +37,8 @@
 <tr>
 <th class="font-weight-normal align-top"></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-orange"><i class="fas fa-mouse-pointer opacity-color-orange"></i></span><small class="mt-2 d-block">クリック数</small></th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-green"><i class="fas fa-tv opacity-color-green"></i></span><small class="mt-2 d-block">表示回数</small></th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue-2"><i class="fas fa-mouse opacity-color-blue-2"></i></span><small class="mt-2 d-block">平均CTR</th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-green"><i class="fas fa-tv opacity-color-green"></i></span><small class="mt-2 d-block">検索結果<br>表示回数</small></th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue-2"><i class="fas fa-mouse opacity-color-blue-2"></i></span><small class="mt-2 d-block">平均クリック率</th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue"><i class="fas fa-crown opacity-color-blue"></i></span><small class="mt-2 d-block">平均掲載順位</small></th>
 </tr>
 </thead>
@@ -112,8 +112,8 @@ $position = round($val->position, 2);
 
 <script>
 let ctx = $('#user-chart');
-let clicks = @json($sc_result['clicks'], JSON_PRETTY_PRINT);
-let clicks_comp = @json($sc_result['comp']['clicks'], JSON_PRETTY_PRINT);
+let clicks = @json($sc_result['impressions'], JSON_PRETTY_PRINT);
+let clicks_comp = @json($sc_result['comp']['impressions'], JSON_PRETTY_PRINT);
 let arrayLabel = @json($sc_result['date'], JSON_PRETTY_PRINT);
 let myChart = new Chart(ctx, {
   type: 'line',
