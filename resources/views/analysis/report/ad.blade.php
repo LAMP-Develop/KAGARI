@@ -168,6 +168,7 @@ $general = 0;
 <thead>
 <tr>
 <th class="font-weight-normal align-top"></th>
+<th class="font-weight-normal align-top"></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue"><i class="fas fa-mouse-pointer opacity-color-blue"></i></span><small class="mt-2 d-block">クリック数</small></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-purple-2"><i class="fas fa-yen-sign opacity-color-purple-2"></i></span><small class="mt-2 d-block">費用</small></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue-2"><i class="fas fa-yen-sign opacity-color-blue-2"></i></span><small class="mt-2 d-block">クリック単価</small></th>
@@ -178,6 +179,7 @@ $general = 0;
 <tbody>
 @foreach ($ga_result[1] as $key => $val)
 <tr>
+<td class="table_number">{{ $key+1 }}</td>
 <td><span class="text-dark">{{ $val[0][0][0][0] }}</span></td>
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ number_format($val[0][0][1]) }}</span>

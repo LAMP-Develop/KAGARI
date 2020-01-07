@@ -32,6 +32,7 @@ $general_comment = 0;
 <thead>
 <tr>
 <th class="font-weight-normal align-top"></th>
+<th class="font-weight-normal align-top"></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-orange"><i class="fas fa-bolt opacity-color-orange"></i></span><small class="mt-2 d-block">セッション数</small></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-green"><i class="fas fa-eye opacity-color-green"></i></span><small class="mt-2 d-block">PV数</small></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue-2"><i class="fas fa-pager opacity-color-blue-2"></i></span><small class="mt-2 d-block">ページ/<br>セッション</small></th>
@@ -43,6 +44,7 @@ $general_comment = 0;
 <tbody>
 @foreach ($ga_result as $key => $val)
 <tr>
+<td class="table_number">{{ $key+1 }}</td>
 <td><span class="text-dark">{{ $val[0][0][0][0] }}</span></td>
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ number_format($val[0][0][1]) }}</span>

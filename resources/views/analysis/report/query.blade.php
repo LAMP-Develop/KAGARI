@@ -36,6 +36,7 @@
 <thead>
 <tr>
 <th class="font-weight-normal align-top"></th>
+<th class="font-weight-normal align-top"></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-orange"><i class="fas fa-mouse-pointer opacity-color-orange"></i></span><small class="mt-2 d-block">クリック数</small></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-green"><i class="fas fa-tv opacity-color-green"></i></span><small class="mt-2 d-block">検索結果<br>表示回数</small></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue-2"><i class="fas fa-mouse opacity-color-blue-2"></i></span><small class="mt-2 d-block">平均クリック率</th>
@@ -52,6 +53,7 @@ $ctr = round($val->ctr*100, 2);
 $position = round($val->position, 2);
 ?>
 <tr>
+<td class="table_number">{{ $key+1 }}</td>
 <td><span class="text-dark">{{ $query }}</span></td>
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ $click }}</span>

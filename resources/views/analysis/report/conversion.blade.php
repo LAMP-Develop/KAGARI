@@ -121,6 +121,7 @@ rsort($arr_time);
 <thead>
 <tr>
 <th class="font-weight-normal align-top"></th>
+<th class="font-weight-normal align-top"></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-orange"><i class="fas fa-flag opacity-color-orange"></i></span><small class="mt-2 d-block">コンバージョン<br>数</small></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-purple"><i class="far fa-flag opacity-color-purple"></i></span><small class="mt-2 d-block">コンバージョン<br>率</small></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue"><i class="fas fa-user opacity-color-blue"></i></span><small class="mt-2 d-block">ユーザー数</small></th>
@@ -132,6 +133,7 @@ rsort($arr_time);
 <tbody>
 <?php foreach ($ga_result[0] as $key => $val): ?>
 <tr>
+<td class="table_number">{{ $key+1 }}</td>
 <td><span class="text-dark">{{ $val[0][0][0][0] }}</span></td>
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ number_format($val[0][0][1]) }}</span>
