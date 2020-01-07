@@ -1,3 +1,4 @@
+@if(count($ga_result[0]) == 3 && count($ga_result[1]) == 3)
 @php
 // ユーザー数
 $new_user_data = $ga_result[0][0]['New Visitor'][0];
@@ -393,3 +394,14 @@ let myChart3 = new Chart(ctx3, {
 });
 </script>
 @endsection
+@else
+@section('content')
+<div class="container">
+<div class="col-12">
+<div class="alert alert-warning">
+<p class="m-0">This is test.</p>
+</div>
+</div>
+</div>
+@endsection
+@endif
