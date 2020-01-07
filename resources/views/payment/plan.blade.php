@@ -26,6 +26,7 @@ if(isset($_POST['update'])) {
 @php
 echo $e_message;
 @endphp
+<br><a href="{{ route('dashboard') }}">一覧へ戻る</a>
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 <span aria-hidden="true">&times;</span>
 </button>
