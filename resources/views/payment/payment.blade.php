@@ -22,22 +22,23 @@ if ($plan_id == 1 || $plan_id == 2) {
 <div class="container">
 
 <h2 class="text-center text-muted h5 font-weight-bold mb-5">お支払い方法を選択してください</h2>
-<form class="payment-form" action="{{ route('payment-done') }}" method="post">
+<form class="payment-form" action="{{ route('payment-done') }}" method="post" name="payment_kagari">
 @csrf
 <div class="form-group row align-items-start">
 <legend class="ml-auto col-form-label col-3 pt-0 font-weight-bold">支払い方法</legend>
 <div class="col-7 mr-auto">
 <div class="form-check">
-<input class="form-check-input" type="radio" name="payment_methods" id="inlineRadio1" value="1" checked>
-<label class="form-check-label" for="inlineRadio1">クレジットカード</label>
+<input class="form-check-input" type="radio" name="payment_methods" id="inlineRadio1" value="1" onclick="changeForm();" checked>
+<label id="credit_card" class="form-check-label" for="inlineRadio1">クレジットカード</label>
 </div>
-<!-- <div class="form-check">
-<input class="form-check-input" type="radio" name="payment_methods" id="inlineRadio2" value="2">
-<label class="form-check-label" for="inlineRadio2">請求書支払い</label>
-<small class="form-text text-muted">※請求書払いの場合は下記のクレジットカード情報は未記入で構いません。</small>
-</div> -->
+<div class="form-check">
+<input class="form-check-input" type="radio" name="payment_methods" id="inlineRadio2" value="2" onclick="changeForm();">
+<label id="billing_sheet" class="form-check-label" for="inlineRadio2">請求書支払い</label>
+<!-- <small class="form-text text-muted">※請求書払いの場合は下記のクレジットカード情報は未記入で構いません。</small> -->
 </div>
 </div>
+</div>
+<div id="card_info">
 <div class="form-group row align-items-start mt-5">
 <legend class="ml-auto col-form-label col-3 pt-0 font-weight-bold">カード番号</legend>
 <div class="col-7 mr-auto">
@@ -83,6 +84,21 @@ if ($plan_id == 1 || $plan_id == 2) {
 </div>
 </div>
 </div>
+</div>
+<div id="bill_info" style="display:none;">
+<div class="form-group row align-items-start mt-5">
+<legend class="ml-auto col-form-label col-3 pt-0 font-weight-bold">会社名</legend>
+<div class="col-7 mr-auto">
+<input type="text" class="form-control" id="com_name" name="cn" placeholder="株式会社KAGARI" required>
+</div>
+</div>
+<div class="form-group row align-items-start mt-5">
+<legend class="ml-auto col-form-label col-3 pt-0 font-weight-bold">宛名</legend>
+<div class="col-7 mr-auto">
+<input type="text" class="form-control" id="per_name" name="pn" placeholder="かがり 太郎" required>
+</div>
+</div>
+</div>
 <div class="mt-5 col-11 mx-auto">
 <table class="table">
 <tbody>
@@ -116,4 +132,17 @@ if ($plan_id == 1 || $plan_id == 2) {
 </form>
 </div>
 </section>
+<script>
+  // 支払い方法切り替え
+  function changeForm(){
+    var radio = document.getElementsByName('payment_methods');
+    if(radio[0].checked){
+      document.getElementById('card_info').style.display = "";
+      document.getElementById('bill_info').style.display = "none";
+    }else if(radio[1].checked){
+      document.getElementById('card_info').style.display = "none";
+      document.getElementById('bill_info').style.display = "";
+    }
+  }
+</script>
 @endsection

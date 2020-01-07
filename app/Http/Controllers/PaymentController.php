@@ -56,6 +56,15 @@ class PaymentController extends Controller
             'payment_methods' => (int)$request['payment_methods'],
         ]);
 
+        if(isset($request->cn)){
+          DB::table('billing_sheet')
+          ->insert([
+            'name' => $request['pn'],
+            'company' => $request['cn'],
+            'site_id' => $request['site_id']
+          ]);
+        }
+
         return view('payment.done')->with([
             'site_id' => $request['site_id'],
             'site_name' => $request['site_name'],
