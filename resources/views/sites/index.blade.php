@@ -83,4 +83,9 @@
 @endif
 </div>
 </section>
+<script>
+  if(localStorage != null){
+    localStorage.clear()
+  }
+</script>
 @endsection
