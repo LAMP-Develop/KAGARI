@@ -81,7 +81,6 @@ class ReportController extends Controller
             $ga_result = $this->get_ga_ad($gsa, $view_id, $start, $end, $com_start, $com_end);
         } else {
             $sc_result = $this->get_sc_query($sc, $url, 10, $start, $end, $com_start, $com_end);
-            // dd($sc_result);
         }
 
         return view('analysis.report.index')->with([
@@ -128,15 +127,15 @@ class ReportController extends Controller
         $orderBy->setFieldName('ga:sessions');
         $request = new Google_Service_AnalyticsReporting_ReportRequest();
         $request->setViewId($VIEW_ID);
-        $request->setDateRanges(array($dateRange,$dateRangeTwo));
-        $request->setMetrics(array($ss, $ps, $up, $time, $br, $aveSs, $pv, $exit));
+        $request->setDateRanges([$dateRange, $dateRangeTwo]);
+        $request->setMetrics([$ss, $ps, $up, $time, $br, $aveSs, $pv, $exit]);
         $requestUser = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestUser->setViewId($VIEW_ID);
-        $requestUser->setDateRanges(array($dateRange, $dateRangeTwo));
+        $requestUser->setDateRanges([$dateRange, $dateRangeTwo]);
         $requestUser->setMetrics($up);
         $requestUser->setDimensions($date);
         $body = new Google_Service_AnalyticsReporting_GetReportsRequest();
-        $body->setReportRequests(array($request, $requestUser));
+        $body->setReportRequests([$request, $requestUser]);
         $result = $analytics->reports->batchGet($body)->reports[0]->data->totals;
         $resultUsers = $analytics->reports->batchGet($body)->reports[1]->data->rows;
         $arrayUser = [];
@@ -156,7 +155,6 @@ class ReportController extends Controller
         foreach ($result as $key => $value) {
             $value = $value->values;
             $array[] = $value;
-            // array_push($array, $value);
         }
         foreach ($array[0] as $key => $val) {
             if ((float)$array[1][$key] != 0) {
@@ -201,46 +199,46 @@ class ReportController extends Controller
         $orderBy->setSortOrder('DESCENDING');
         $requestCity = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestCity->setViewId($VIEW_ID);
-        $requestCity->setDateRanges(array($dateRange,$dateRangeTwo));
+        $requestCity->setDateRanges([$dateRange, $dateRangeTwo]);
         $requestCity->setMetrics($ss);
         $requestCity->setDimensions($city);
         $requestCity->setOrderBys($orderBy);
         $requestCity->setPageSize('5');
         $requestCountry = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestCountry->setViewId($VIEW_ID);
-        $requestCountry->setDateRanges(array($dateRange,$dateRangeTwo));
+        $requestCountry->setDateRanges([$dateRange, $dateRangeTwo]);
         $requestCountry->setMetrics($ss);
         $requestCountry->setDimensions($country);
         $requestCountry->setOrderBys($orderBy);
         $requestCountry->setPageSize('5');
         $requestGender = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestGender->setViewId($VIEW_ID);
-        $requestGender->setDateRanges(array($dateRange,$dateRangeTwo));
+        $requestGender->setDateRanges([$dateRange, $dateRangeTwo]);
         $requestGender->setMetrics($ss);
         $requestGender->setDimensions($gender);
         $requestGender->setOrderBys($orderBy);
         $requestAge = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestAge->setViewId($VIEW_ID);
-        $requestAge->setDateRanges(array($dateRange,$dateRangeTwo));
+        $requestAge->setDateRanges([$dateRange, $dateRangeTwo]);
         $requestAge->setMetrics($ss);
         $requestAge->setDimensions($age);
         $requestAge->setOrderBys($orderBy);
         $requestAge->setPageSize('5');
         $requestDevice = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestDevice->setViewId($VIEW_ID);
-        $requestDevice->setDateRanges(array($dateRange,$dateRangeTwo));
+        $requestDevice->setDateRanges([$dateRange, $dateRangeTwo]);
         $requestDevice->setMetrics($ss);
         $requestDevice->setDimensions($device);
         $requestDevice->setOrderBys($orderBy);
         $requestUserType = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestUserType->setViewId($VIEW_ID);
-        $requestUserType->setDateRanges(array($dateRange,$dateRangeTwo));
+        $requestUserType->setDateRanges([$dateRange, $dateRangeTwo]);
         $requestUserType->setMetrics($ss);
         $requestUserType->setDimensions($userType);
         $body = new Google_Service_AnalyticsReporting_GetReportsRequest();
-        $body->setReportRequests(array($requestCountry, $requestCity, $requestAge));
+        $body->setReportRequests([$requestCountry, $requestCity, $requestAge]);
         $bodyTwo = new Google_Service_AnalyticsReporting_GetReportsRequest();
-        $bodyTwo->setReportRequests(array($requestUserType, $requestDevice, $requestGender));
+        $bodyTwo->setReportRequests([$requestUserType, $requestDevice, $requestGender]);
         $reports = $analytics->reports->batchGet($body)->reports;
         $reportsTwo = $analytics->reports->batchGet($bodyTwo)->reports;
         $number = [];
@@ -261,6 +259,7 @@ class ReportController extends Controller
         return [$number, $numberUser];
     }
 
+    // 流入元分析
     public function get_ga_inflow($analytics, $VIEW_ID, $start, $end, $comStart, $comEnd)
     {
         $dateRange = new Google_Service_AnalyticsReporting_DateRange();
@@ -275,31 +274,32 @@ class ReportController extends Controller
         $social->setName('ga:socialNetwork');
         $referral = new Google_Service_AnalyticsReporting_Dimension();
         $referral->setName('ga:fullReferrer');
+        $engine = new Google_Service_AnalyticsReporting_Dimension();
+        $engine->setName('ga:source');
         $ss = new Google_Service_AnalyticsReporting_Metric();
         $ss->setExpression('ga:sessions');
         $ss->setAlias('ss');
         $orderBy = new Google_Service_AnalyticsReporting_OrderBy();
         $orderBy->setFieldName('ga:sessions');
         $orderBy->setSortOrder('DESCENDING');
+
         $requestMedium = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestMedium->setViewId($VIEW_ID);
-        $requestMedium->setDateRanges(array($dateRange,$dateRangeTwo));
+        $requestMedium->setDateRanges([$dateRange, $dateRangeTwo]);
         $requestMedium->setMetrics($ss);
         $requestMedium->setPageSize('5');
         $requestMedium->setDimensions($medium);
         $requestMedium->setOrderBys($orderBy);
 
-        $filter_social = new \Google_Service_AnalyticsReporting_DimensionFilter();
+        $filter_social = new Google_Service_AnalyticsReporting_DimensionFilter();
         $filter_social->setDimensionName('ga:socialNetwork');
         $filter_social->setNot(true);
         $filter_social->setExpressions(["(not set)"]);
-
-        $filters_social = new \Google_Service_AnalyticsReporting_DimensionFilterClause();
+        $filters_social = new Google_Service_AnalyticsReporting_DimensionFilterClause();
         $filters_social->setFilters([$filter_social]);
-
         $requestSocial = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestSocial->setViewId($VIEW_ID);
-        $requestSocial->setDateRanges(array($dateRange,$dateRangeTwo));
+        $requestSocial->setDateRanges([$dateRange, $dateRangeTwo]);
         $requestSocial->setMetrics($ss);
         $requestSocial->setPageSize('5');
         $requestSocial->setDimensions($social);
@@ -313,21 +313,40 @@ class ReportController extends Controller
         $filters->setFilters($filter);
         $requestReferral = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestReferral->setViewId($VIEW_ID);
-        $requestReferral->setDateRanges(array($dateRange,$dateRangeTwo));
+        $requestReferral->setDateRanges([$dateRange, $dateRangeTwo]);
         $requestReferral->setMetrics($ss);
         $requestReferral->setDimensions($referral);
         $requestReferral->setDimensionFilterClauses($filters);
         $requestReferral->setOrderBys($orderBy);
         $requestReferral->setPageSize('5');
+
+        $engine_filter = new Google_Service_AnalyticsReporting_DimensionFilter();
+        $engine_filter->setDimensionName('ga:medium');
+        $engine_filter->setExpressions(['organic']);
+        $engine_filters = new Google_Service_AnalyticsReporting_DimensionFilterClause();
+        $engine_filters->setFilters($engine_filter);
+        $search_engine = new Google_Service_AnalyticsReporting_ReportRequest();
+        $search_engine->setViewId($VIEW_ID);
+        $search_engine->setDateRanges([$dateRange, $dateRangeTwo]);
+        $search_engine->setMetrics($ss);
+        $search_engine->setDimensions($engine);
+        $search_engine->setOrderBys($orderBy);
+        $search_engine->setDimensionFilterClauses($engine_filters);
+        $search_engine->setPageSize('5');
+
         $body = new Google_Service_AnalyticsReporting_GetReportsRequest();
-        $body->setReportRequests(array($requestMedium,$requestSocial,$requestReferral));
+        $body->setReportRequests([$requestMedium, $requestSocial, $requestReferral, $search_engine]);
         $reports = $analytics->reports->batchGet($body)->reports;
         $number = [];
         $result = [];
         foreach ($reports as $i => $value) {
             $rows = $value->data->rows;
             foreach ($rows as $key => $val) {
-                $number[$i][] = [$val->dimensions[0], $val->metrics[0]->values[0],$val->metrics[1]->values[0]];
+                $number[$i][] = [
+                  $val->dimensions[0],
+                  $val->metrics[0]->values[0],
+                  $val->metrics[1]->values[0]
+                ];
             }
         }
         return $number;
@@ -363,13 +382,13 @@ class ReportController extends Controller
         $orderBy->setSortOrder('DESCENDING');
         $request = new Google_Service_AnalyticsReporting_ReportRequest();
         $request->setViewId($VIEW_ID);
-        $request->setDateRanges(array($dateRange, $dateRangeTwo));
+        $request->setDateRanges([$dateRange, $dateRangeTwo]);
         $request->setDimensions([$action, $path]);
-        $request->setMetrics(array($ss,$pv,$ps,$up,$time,$br));
+        $request->setMetrics([$ss,$pv,$ps,$up,$time,$br]);
         $request->setOrderBys($orderBy);
         $request->setPageSize('10');
         $body = new Google_Service_AnalyticsReporting_GetReportsRequest();
-        $body->setReportRequests(array($request));
+        $body->setReportRequests([$request]);
         $reports = $analytics->reports->batchGet($body);
         $reports = $reports[0]->data->rows;
         foreach ($reports as $key => $report) {
@@ -409,17 +428,17 @@ class ReportController extends Controller
         $orderBy->setSortOrder('DESCENDING');
         $request = new Google_Service_AnalyticsReporting_ReportRequest();
         $request->setViewId($VIEW_ID);
-        $request->setDateRanges(array($dateRange, $dateRangeTwo));
+        $request->setDateRanges([$dateRange, $dateRangeTwo]);
         $request->setDimensions($action);
-        $request->setMetrics(array($cv,$cvr,$up,$br,$ps,$time));
+        $request->setMetrics([$cv,$cvr,$up,$br,$ps,$time]);
         $request->setOrderBys($orderBy);
         $request->setPageSize('10');
         $requestTwo = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestTwo->setViewId($VIEW_ID);
-        $requestTwo->setDateRanges(array($dateRange,$dateRangeTwo));
-        $requestTwo->setMetrics(array($ss, $cv, $cvr, $br));
+        $requestTwo->setDateRanges([$dateRange, $dateRangeTwo]);
+        $requestTwo->setMetrics([$ss, $cv, $cvr, $br]);
         $body = new Google_Service_AnalyticsReporting_GetReportsRequest();
-        $body->setReportRequests(array($request, $requestTwo));
+        $body->setReportRequests([$request, $requestTwo]);
         $reports = $analytics->reports->batchGet($body);
         $reportsOne = $reports[0]->data->rows;
         $reportsTwo = $reports[1]->data->totals;
@@ -431,7 +450,6 @@ class ReportController extends Controller
         foreach ($reportsTwo as $value) {
             $value = $value->values;
             $array[] = $value;
-            // array_push($array, $value);
         }
         return [$number, $array];
     }
@@ -464,17 +482,17 @@ class ReportController extends Controller
         $orderBy->setSortOrder('DESCENDING');
         $request = new Google_Service_AnalyticsReporting_ReportRequest();
         $request->setViewId($VIEW_ID);
-        $request->setDateRanges(array($dateRange,$dateRangeTwo));
-        $request->setMetrics(array($adCost, $adClicks, $cv));
+        $request->setDateRanges([$dateRange, $dateRangeTwo]);
+        $request->setMetrics([$adCost, $adClicks, $cv]);
         $requestTwo = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestTwo->setViewId($VIEW_ID);
-        $requestTwo->setDateRanges(array($dateRange, $dateRangeTwo));
+        $requestTwo->setDateRanges([$dateRange, $dateRangeTwo]);
         $requestTwo->setDimensions($query);
-        $requestTwo->setMetrics(array($adClicks,$adCost,$ss,$cv,$cvr));
+        $requestTwo->setMetrics([$adClicks,$adCost,$ss,$cv,$cvr]);
         $requestTwo->setOrderBys($orderBy);
         $requestTwo->setPageSize('10');
         $body = new Google_Service_AnalyticsReporting_GetReportsRequest();
-        $body->setReportRequests(array($request, $requestTwo));
+        $body->setReportRequests([$request, $requestTwo]);
         $result = $analytics->reports->batchGet($body);
         $result = $analytics->reports->batchGet($body)->reports[0]->data->totals;
         $resultTwo = $analytics->reports->batchGet($body)->reports[1]->data->rows;
@@ -482,7 +500,6 @@ class ReportController extends Controller
         foreach ($result as $value) {
             $value = $value->values;
             $array[] = $value;
-            // array_push($array, $value);
         }
         foreach ($resultTwo as $key => $report) {
             $number[$key][0][] = [$report->dimensions,$report->metrics[0]->values[0],$report->metrics[0]->values[1],$report->metrics[0]->values[2],$report->metrics[0]->values[3],$report->metrics[0]->values[4]];

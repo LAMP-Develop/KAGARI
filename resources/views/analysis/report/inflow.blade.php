@@ -5,25 +5,28 @@ $channel = $ga_result[0];
 $sns = $ga_result[1];
 // リファラル
 $link = $ga_result[2];
+// 検索エンジン
+$engine = $ga_result[3];
 @endphp
 @section('content')
 <section class="reports">
 <div class="container">
 <div class="row mx-0 mb-3">
-<div class="col-4">
+
+<div class="col-4 mb-3">
 <div class="card">
 <div class="card-body text-center">
-<span class="opacity-item opacity-bg-blue">
-<i class="fas fa-project-diagram opacity-color-blue"></i>
+<span class="opacity-item opacity-bg-blue-2">
+<i class="fas fa-project-diagram opacity-color-blue-2"></i>
 </span>
 <h4 class="h6 text-dark mt-3 mb-4">流入チャネル</h4>
 @foreach ($channel as $key => $value)
 <p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
 <div class="progress">
 @if ($key == 0)
-<div class="progress-bar ka-bg-blue" style="width:100%" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+<div class="progress-bar ka-bg-blue-2" style="width:100%" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 @else
-<div class="progress-bar ka-bg-blue" style="width:{{ ($value[1]/$channel[0][1]*100) }}%" role="progressbar" aria-valuenow="{{ ($value[1]/$channel[0][1]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+<div class="progress-bar ka-bg-blue-2" style="width:{{ ($value[1]/$channel[0][1]*100) }}%" role="progressbar" aria-valuenow="{{ ($value[1]/$channel[0][1]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 @endif
 </div>
 <p class="mb-3 text-right">
@@ -45,7 +48,43 @@ $comp = 0;
 </div>
 </div>
 </div>
-<div class="col-4">
+
+<div class="col-4 mb-3">
+<div class="card">
+<div class="card-body text-center">
+<span class="opacity-item opacity-bg-blue">
+<i class="fas fa-search opacity-color-blue"></i>
+</span>
+<h4 class="h6 text-dark mt-3 mb-4">検索エンジン別の流入</h4>
+@foreach ($engine as $key => $value)
+<p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
+<div class="progress">
+@if ($key == 0)
+<div class="progress-bar ka-bg-blue" style="width:100%" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+@else
+<div class="progress-bar ka-bg-blue" style="width:{{ ($value[1]/$engine[0][1]*100) }}%" role="progressbar" aria-valuenow="{{ ($value[1]/$engine[0][1]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+@endif
+</div>
+<p class="mb-3 text-right">
+@php
+if ($engine[$key][2] != 0) {
+$comp = round(($value[1] / (int)$engine[$key][2] - 1) * 100, 2);
+} else {
+$comp = 0;
+}
+@endphp
+@if($comp >= 0)
+<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+@else
+<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+@endif
+{{ $comp }}%</span>
+</p>
+@endforeach
+</div>
+</div>
+</div>
+<div class="col-4 mb-3">
 <div class="card">
 <div class="card-body text-center">
 <span class="opacity-item opacity-bg-purple-2">
@@ -86,7 +125,7 @@ $comp = 0;
 <span class="opacity-item opacity-bg-purple">
 <i class="fas fa-link opacity-color-purple"></i>
 </span>
-<h4 class="h6 text-dark mt-3 mb-4">他サイトからのリンク</h4>
+<h4 class="h6 text-dark mt-3 mb-4">他サイトからの流入</h4>
 @foreach ($link as $key => $value)
 <p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
 <div class="progress">
