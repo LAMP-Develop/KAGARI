@@ -344,6 +344,8 @@ class ReportController extends Controller
         $dateRangeTwo->setEndDate($comEnd);
         $action = new Google_Service_AnalyticsReporting_Dimension();
         $action->setName('ga:pageTitle');
+        $path = new Google_Service_AnalyticsReporting_Dimension();
+        $path->setName('ga:pagePath');
         $up = new Google_Service_AnalyticsReporting_Metric();
         $up->setExpression('ga:users');
         $br = new Google_Service_AnalyticsReporting_Metric();
@@ -362,7 +364,7 @@ class ReportController extends Controller
         $request = new Google_Service_AnalyticsReporting_ReportRequest();
         $request->setViewId($VIEW_ID);
         $request->setDateRanges(array($dateRange, $dateRangeTwo));
-        $request->setDimensions($action);
+        $request->setDimensions([$action, $path]);
         $request->setMetrics(array($ss,$pv,$ps,$up,$time,$br));
         $request->setOrderBys($orderBy);
         $request->setPageSize('10');

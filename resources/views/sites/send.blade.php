@@ -48,7 +48,7 @@
 <strong>{{ $message }}</strong>
 </span>
 @enderror
-<small id="emailHelp" class="form-text text-muted">メールアドレスを半角カンマ(,)区切りで入力してください</small>
+<small id="emailHelp" class="form-text text-muted">※メールアドレスを半角カンマ(,)区切りで入力してください</small>
 </div>
 
 <div class="form-group mb-4">
@@ -75,6 +75,20 @@
 </div>
 </div>
 
+<div class="form-group mb-4">
+<label for="" class="d-block">レポートを受信する日付</label>
+<select class="custom-select custom-select-sm w-50" name="send_day">
+@for ($i=1; $i<=31; $i++)
+@if($send_day === $i)
+<option value="{{ $i }}" selected>{{ $i }}日</option>
+@else
+<option value="{{ $i }}">{{ $i }}日</option>
+@endif
+@endfor
+</select>
+<small class="form-text text-muted">※レポートを受信する頻度が「毎週」の場合は毎週”月曜日”になります。</small>
+</div>
+
 <div class="form-group">
 <label for="send_flag" class="d-block">前の期間との比較</label>
 <div class="form-check form-check-inline">
@@ -86,6 +100,8 @@
 <label class="form-check-label not-must" for="comparison_flag_false">しない<small>※準備中</small></label>
 </div>
 </div>
+
+<input type="hidden" name="comparison_flag" value="0">
 
 <button type="submit" class="btn btn-primary mt-4">変更する</button>
 <a class="btn btn-sm btn-outline-secondary mt-4 ml-3" href="{{ route('dashboard') }}">ダッシュボードへ戻る</a>

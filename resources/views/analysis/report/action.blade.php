@@ -44,7 +44,8 @@ $general_comment = 0;
 @foreach ($ga_result as $key => $val)
 <tr>
 <td class="table_number">{{ $key+1 }}</td>
-<td><span class="text-dark">{{ $val[0][0][0][0] }}</span></td>
+<td><span class="text-dark">@php mb_strlen($val[0][0][0][0]) > 40 ? print mb_substr($val[0][0][0][0], 0, 40).'...' : print $val[0][0][0][0]; @endphp</span>
+<br><small class="text-secondary">{{ $val[0][0][0][1] }}</small></td>
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ number_format($val[0][0][1]) }}</span>
 <div class="progress">

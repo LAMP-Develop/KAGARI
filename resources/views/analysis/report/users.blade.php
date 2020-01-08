@@ -40,6 +40,12 @@ $comp_desktop = round($desktop_str - $old_desktop_str, 2);
 $comp_tablet = round($tablet_str - $old_tablet_str, 2);
 // 年齢
 $age = $ga_result[1][2];
+$age_max = $age[0][1];
+$sort = [];
+foreach ($age as $key => $value) {
+    $sort[$key] = $value[0];
+}
+array_multisort($sort, SORT_ASC, $age);
 // 国
 $country = $ga_result[1][0];
 // 地域
@@ -197,11 +203,7 @@ $area = $ga_result[1][1];
 @foreach ($age as $key => $value)
 <p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
 <div class="progress">
-@if ($key == 0)
-<div class="progress-bar ka-bg-blue" style="width:100%" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-@else
-<div class="progress-bar ka-bg-blue" style="width:{{ ($value[1]/$age[0][1]*100) }}%" role="progressbar" aria-valuenow="{{ ($value[1]/$age[0][1]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
-@endif
+<div class="progress-bar ka-bg-blue" style="width:{{ ($value[1]/$age_max*100) }}%" role="progressbar" aria-valuenow="{{ ($value[1]/$age_max*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
 <p class="mb-3 text-right">
 @php
@@ -397,7 +399,7 @@ let myChart3 = new Chart(ctx3, {
 <div class="container">
 <div class="col-12">
 <div class="alert alert-warning">
-<p class="m-0">ユーザーの属性情報が取得できませんでした。Google Analyticsの設定をご確認ください。</p>
+<p class="m-0">ユーザーの属性情報が取得できませんでした。Google Analyticsの設定をご確認ください。<a class="ml-2" href="https://support.google.com/analytics/answer/2819948?hl=ja" target="_blank"><i class="fas fa-link mr-1"></i>設定方法を確認する（公式ヘルプ）</a></p>
 </div>
 </div>
 </div>

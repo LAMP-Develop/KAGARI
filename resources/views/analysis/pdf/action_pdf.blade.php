@@ -31,7 +31,7 @@ $general_comment = 0;
 <table class="table table-striped table-borderless table-sm">
 <thead>
 <tr>
-<th class="font-weight-normal align-top"></th>
+<th class="font-weight-bold align-center" colspan="2">アクセス上位10ページ</th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-orange"><img src="{{ asset('/img/fa-bolt_orange_16.png') }}"></span><small class="mt-2 d-block">セッション数</small></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-green"><img src="{{ asset('/img/fa-eye_green_16.png') }}"></span><small class="mt-2 d-block">PV数</small></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue-2"><img src="{{ asset('/img/fa-pager_blue-2_16.png') }}"></span><small class="mt-2 d-block">ページ/<br>セッション</small></th>
@@ -43,7 +43,9 @@ $general_comment = 0;
 <tbody>
 @foreach ($ga_result_action as $key => $val)
 <tr>
-<td><span class="text-dark">{{ $val[0][0][0][0] }}</span></td>
+<td class="table_number">{{ $key+1 }}</td>
+<td><span class="text-dark">@php mb_strlen($val[0][0][0][0]) > 40 ? print mb_substr($val[0][0][0][0], 0, 40).'...' : print $val[0][0][0][0]; @endphp</span>
+<br><small class="text-secondary">{{ $val[0][0][0][1] }}</small></td>
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ number_format($val[0][0][1]) }}</span>
 <div class="progress">

@@ -121,7 +121,7 @@ rsort($arr_time);
 <table class="table table-striped table-borderless table-sm">
 <thead>
 <tr>
-<th class="font-weight-normal align-top"></th>
+<th class="font-weight-bold align-center" colspan="2">上位10件の流入元</th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-orange"><img src="{{ asset('/img/fa-flag_orange_16.png') }}"></span><small class="mt-2 d-block">コンバージョン<br>数</small></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-purple"><img src="{{ asset('/img/fa-flag_purple_16.png') }}"></span><small class="mt-2 d-block">コンバージョン<br>率</small></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue"><img src="{{ asset('/img/fa-user_blue_16.png') }}"></span><small class="mt-2 d-block">ユーザー数</small></th>
@@ -133,6 +133,7 @@ rsort($arr_time);
 <tbody>
 @foreach ($ga_result_conversion[0] as $key => $val)
 <tr>
+<td class="table_number">{{ $key+1 }}</td>
 <td><span class="text-dark">{{ $val[0][0][0][0] }}</span></td>
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ number_format($val[0][0][1]) }}</span>

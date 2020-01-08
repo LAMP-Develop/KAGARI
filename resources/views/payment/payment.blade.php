@@ -89,13 +89,13 @@ if ($plan_id == 1 || $plan_id == 2) {
 <div class="form-group row align-items-start mt-5">
 <legend class="ml-auto col-form-label col-3 pt-0 font-weight-bold">会社名</legend>
 <div class="col-7 mr-auto">
-<input type="text" class="form-control" id="com_name" name="cn" placeholder="株式会社KAGARI" required>
+<input type="text" class="form-control" id="com_name" name="cn" placeholder="株式会社KAGARI">
 </div>
 </div>
 <div class="form-group row align-items-start mt-5">
 <legend class="ml-auto col-form-label col-3 pt-0 font-weight-bold">宛名</legend>
 <div class="col-7 mr-auto">
-<input type="text" class="form-control" id="per_name" name="pn" placeholder="かがり 太郎" required>
+<input type="text" class="form-control" id="per_name" name="pn" placeholder="">
 </div>
 </div>
 </div>

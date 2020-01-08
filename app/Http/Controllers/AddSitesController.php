@@ -178,6 +178,7 @@ class AddSitesController extends Controller
         $mail = [];
         $mail['cc'] = '';
         $days = [];
+        $send_day = 0;
         $mail_setting = ReportSendMail::where('site_id', $site_id)->get();
         $days_setting = ReportSendDays::where('site_id', $site_id)->get();
 
@@ -192,12 +193,14 @@ class AddSitesController extends Controller
 
         foreach ($days_setting as $key => $val) {
             $days["$val->days"] = 1;
+            $send_day = $val->send_day;
         }
 
         return view('sites.send')->with([
             'add_sites' => $add_sites,
             'mail' => $mail,
             'days' => $days,
+            'send_day' => $send_day,
         ]);
     }
 
@@ -214,6 +217,7 @@ class AddSitesController extends Controller
         $cc_email = explode(',', $request->cc_email);
         $analyzing_period = $request->analyzing_period;
         $comparison_flag = $request->comparison_flag;
+        $send_day = $request->send_day;
 
         // toメールの更新
         $mail_setting_to = ReportSendMail::where([
@@ -247,6 +251,7 @@ class AddSitesController extends Controller
             $send_days = new ReportSendDays;
             $send_days->site_id = $site_id;
             $send_days->days = $val;
+            $send_days->send_day = $send_day;
             $send_days->created_at = date('Y-m-d H:i:s');
             $send_days->updated_at = date('Y-m-d H:i:s');
             $send_days->save();

@@ -40,6 +40,12 @@ $comp_desktop = round($desktop_str - $old_desktop_str, 2);
 $comp_tablet = round($tablet_str - $old_tablet_str, 2);
 // 年齢
 $age = $ga_result_user[1][2];
+$age_max = $age[0][1];
+$sort = [];
+foreach ($age as $key => $value) {
+    $sort[$key] = $value[0];
+}
+array_multisort($sort, SORT_ASC, $age);
 // 国
 $country = $ga_result_user[1][0];
 // 地域
@@ -199,11 +205,7 @@ $area = $ga_result_user[1][1];
 @foreach ($age as $key => $value)
 <p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
 <div class="progress">
-@if ($key == 0)
-<div class="progress-bar ka-bg-blue" style="width:100%" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-@else
-<div class="progress-bar ka-bg-blue" style="width:{{ ($value[1]/$age[0][1]*100) }}%" role="progressbar" aria-valuenow="{{ ($value[1]/$age[0][1]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
-@endif
+<div class="progress-bar ka-bg-blue" style="width:{{ ($value[1]/$age_max*100) }}%" role="progressbar" aria-valuenow="{{ ($value[1]/$age_max*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
 <p class="mb-3 text-right">
 @php
