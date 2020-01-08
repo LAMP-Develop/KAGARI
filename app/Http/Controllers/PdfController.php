@@ -19,13 +19,14 @@ use Route;
 use Google_Service_AnalyticsReporting_DateRange;
 use Google_Service_AnalyticsReporting_Metric;
 use Google_Service_AnalyticsReporting_Dimension;
-use Google_Service_AnalyticsReporting_SegmentDimensionFilter;
 use Google_Service_AnalyticsReporting_DimensionFilter;
 use Google_Service_AnalyticsReporting_DimensionFilterClause;
 use Google_Service_AnalyticsReporting_OrderBy;
 use Google_Service_AnalyticsReporting_ReportRequest;
 use Google_Service_AnalyticsReporting_GetReportsRequest;
 use Google_Service_Webmasters_SearchAnalyticsQueryRequest;
+use Google_Service_Webmasters_ApiDimensionFilter;
+use Google_Service_Webmasters_ApiDimensionFilterGroup;
 
 class PdfController extends Controller
 {
@@ -277,12 +278,15 @@ class PdfController extends Controller
         $social->setName('ga:socialNetwork');
         $referral = new Google_Service_AnalyticsReporting_Dimension();
         $referral->setName('ga:fullReferrer');
+        $engine = new Google_Service_AnalyticsReporting_Dimension();
+        $engine->setName('ga:source');
         $ss = new Google_Service_AnalyticsReporting_Metric();
         $ss->setExpression('ga:sessions');
         $ss->setAlias('ss');
         $orderBy = new Google_Service_AnalyticsReporting_OrderBy();
         $orderBy->setFieldName('ga:sessions');
         $orderBy->setSortOrder('DESCENDING');
+
         $requestMedium = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestMedium->setViewId($VIEW_ID);
         $requestMedium->setDateRanges(array($dateRange,$dateRangeTwo));
@@ -321,15 +325,34 @@ class PdfController extends Controller
         $requestReferral->setDimensionFilterClauses($filters);
         $requestReferral->setOrderBys($orderBy);
         $requestReferral->setPageSize('5');
+
+        $engine_filter = new Google_Service_AnalyticsReporting_DimensionFilter();
+        $engine_filter->setDimensionName('ga:medium');
+        $engine_filter->setExpressions(['organic']);
+        $engine_filters = new Google_Service_AnalyticsReporting_DimensionFilterClause();
+        $engine_filters->setFilters($engine_filter);
+        $search_engine = new Google_Service_AnalyticsReporting_ReportRequest();
+        $search_engine->setViewId($VIEW_ID);
+        $search_engine->setDateRanges([$dateRange, $dateRangeTwo]);
+        $search_engine->setMetrics($ss);
+        $search_engine->setDimensions($engine);
+        $search_engine->setOrderBys($orderBy);
+        $search_engine->setDimensionFilterClauses($engine_filters);
+        $search_engine->setPageSize('5');
+
         $body = new Google_Service_AnalyticsReporting_GetReportsRequest();
-        $body->setReportRequests(array($requestMedium,$requestSocial,$requestReferral));
+        $body->setReportRequests(array($requestMedium,$requestSocial,$requestReferral, $search_engine));
         $reports = $analytics->reports->batchGet($body)->reports;
         $number = [];
         $result = [];
         foreach ($reports as $i => $value) {
             $rows = $value->data->rows;
             foreach ($rows as $key => $val) {
-                $number[$i][] = [$val->dimensions[0], $val->metrics[0]->values[0],$val->metrics[1]->values[0]];
+                $number[$i][] = [
+                  $val->dimensions[0],
+                  $val->metrics[0]->values[0],
+                  $val->metrics[1]->values[0]
+                ];
             }
         }
         return $number;

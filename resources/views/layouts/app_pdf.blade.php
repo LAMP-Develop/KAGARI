@@ -20,6 +20,9 @@ if($ga_result_ad[0][0][0] == 0){
     width: 1140px !important;
     background-color: #fafafa;
   }
+  a{
+    pointer-events: none;
+  }
   .container {
     width: 1080px !important;
     max-width: 1080px !important;

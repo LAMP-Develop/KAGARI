@@ -37,26 +37,26 @@ if (!$param) {
 
 <ul class="nav nav-tabs report-nav">
 <li class="nav-item">
-<a class="nav-link ac_sumally" href="{{ route('ga-report', $site_id) }}{{ $param }}">サマリー</a>
+<a class="nav-link ac_sumally" >サマリー</a>
 </li>
 <li class="nav-item">
-<a class="nav-link ac_user" href="{{ route('ga-user', $site_id) }}{{ $param }}">ユーザー属性</a>
+<a class="nav-link ac_user" >ユーザー属性</a>
 </li>
 <li class="nav-item">
-<a class="nav-link ac_inflow" href="{{ route('ga-inflow', $site_id) }}{{ $param }}">流入元分析</a>
+<a class="nav-link ac_inflow" >流入元分析</a>
 </li>
 <li class="nav-item">
-<a class="nav-link ac_action" href="{{ route('ga-action', $site_id) }}{{ $param }}">ユーザー行動分析</a>
+<a class="nav-link ac_action" >ユーザー行動分析</a>
 </li>
 <li class="nav-item">
-<a class="nav-link ac_conv" href="{{ route('ga-conversion', $site_id) }}{{ $param }}">コンバージョン分析</a>
+<a class="nav-link ac_conv" >コンバージョン分析</a>
 </li>
 <li class="nav-item">
-<a class="nav-link ac_ad" href="{{ route('ga-ad', $site_id) }}">広告分析</a>
+<a class="nav-link ac_ad">広告分析</a>
 </li>
 @if($plan%2 == 0)
 <li class="nav-item">
-<a class="nav-link ac_query" href="{{ route('sc-query', $site_id) }}{{ $param }}">検索分析</a>
+<a class="nav-link ac_query" >検索分析</a>
 </li>
 @endif
 </ul>

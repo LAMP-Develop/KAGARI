@@ -9,7 +9,7 @@
 <div class="row align-items-center">
 <div class="col-3 text-center">
 <span class="opacity-item opacity-bg-green">
-<i class="fas fa-tv opacity-color-green"></i>
+<i class="fas fa-search opacity-color-green"></i>
 </span>
 <h3 class="text-dark font-weight-bold h6 mt-3">検索結果表示回数</h3>
 <p class="m-0">
@@ -36,10 +36,10 @@
 <thead>
 <tr>
 <th class="font-weight-bold align-center" colspan="2">クリック数上位10キーワード</th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-orange"><i class="fas fa-mouse-pointer opacity-color-orange"></i></span><small class="mt-2 d-block">クリック数</small></th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-green"><i class="fas fa-tv opacity-color-green"></i></span><small class="mt-2 d-block">検索結果<br>表示回数</small></th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-orange"><i class="fas fa-search opacity-color-orange"></i></span><small class="mt-2 d-block">クリック数</small></th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-green"><i class="fas fa-search opacity-color-green"></i></span><small class="mt-2 d-block">検索結果<br>表示回数</small></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue-2"><i class="fas fa-mouse opacity-color-blue-2"></i></span><small class="mt-2 d-block">平均クリック率</th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue"><i class="fas fa-crown opacity-color-blue"></i></span><small class="mt-2 d-block">平均掲載順位</small></th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue"><i class="fas fa-list-ol opacity-color-blue"></i></span><small class="mt-2 d-block">平均掲載順位</small></th>
 </tr>
 </thead>
 <tbody>

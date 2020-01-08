@@ -295,8 +295,10 @@ class ReportController extends Controller
         $filter_social->setDimensionName('ga:socialNetwork');
         $filter_social->setNot(true);
         $filter_social->setExpressions(["(not set)"]);
+
         $filters_social = new Google_Service_AnalyticsReporting_DimensionFilterClause();
         $filters_social->setFilters([$filter_social]);
+
         $requestSocial = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestSocial->setViewId($VIEW_ID);
         $requestSocial->setDateRanges([$dateRange, $dateRangeTwo]);
