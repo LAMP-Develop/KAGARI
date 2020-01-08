@@ -33,16 +33,6 @@ echo $ga_message;
 </div>
 </div>
 </form>
-<!-- <div class="col-2 p-0 text-right">
-<div class="dropdown">
-<button class="btn btn-primary btn-sm dropdown-toggle load" type="button" id="export" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-spinner mr-1"></i>エクスポート</button>
-<div class="dropdown-menu" aria-labelledby="export">
-<button tableexport-id="2280ca-xlsx" class="dropdown-item text-muted" type="button"><i class="fas fa-file-excel mr-1"></i>Excel</button>
-<button tableexport-id="3a8efbb5-csv" class="dropdown-item text-muted" type="button"><i class="fas fa-file-csv mr-1"></i>CSV</button>
-<button tableexport-id="399d2dcb-txt" class="dropdown-item text-muted" type="button"><i class="fas fa-file-alt mr-1"></i>TXT</button>
-</div>
-</div>
-</div> -->
 </div>
 <!-- スクロールとハイライト -->
 <div class="row justify-content-between align-items-end mt-3 mx-0">
@@ -53,12 +43,6 @@ echo $ga_message;
 <li class="site"><i class="fas fa-chart-bar mr-1"></i>サイト</li>
 </ul>
 </div>
-<!-- <div class="col p-0 text-right">
-<div class="custom-control custom-switch">
-<input type="checkbox" class="custom-control-input" id="highlight">
-<label class="custom-control-label" for="highlight">課題ハイライト</label>
-</div>
-</div> -->
 </div>
 </header>
 <!-- 解析テーブル -->
