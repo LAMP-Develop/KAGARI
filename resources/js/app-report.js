@@ -16,9 +16,9 @@ $(function() {
       let end = $('#end').val();
       let com_start = $('#com_start').val();
       if (start <= com_end
-        || start > end
-        || com_start > com_end
-        || com_start > end) {
+        || start >= end
+        || com_start >= com_end
+        || com_start >= end) {
         console.log(start, end, com_start, com_end);
         target.innerHTML = '期間の範囲指定が正しくありません';
         change_btn.disabled = "disabled";
