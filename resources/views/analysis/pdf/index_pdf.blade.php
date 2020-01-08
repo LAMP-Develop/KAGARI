@@ -24,3 +24,6 @@ $site_name = $add_site->site_name;
 @include('analysis.pdf.action_pdf')
 @include('analysis.pdf.conversion_pdf')
 @include('analysis.pdf.ad_pdf')
+@if($plan%2 == 0)
+@include('analysis.pdf.query_pdf')
+@endif

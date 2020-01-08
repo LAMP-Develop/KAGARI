@@ -25,6 +25,7 @@ use Google_Service_AnalyticsReporting_DimensionFilterClause;
 use Google_Service_AnalyticsReporting_OrderBy;
 use Google_Service_AnalyticsReporting_ReportRequest;
 use Google_Service_AnalyticsReporting_GetReportsRequest;
+use Google_Service_Webmasters_SearchAnalyticsQueryRequest;
 
 class PdfController extends Controller
 {
@@ -45,6 +46,7 @@ class PdfController extends Controller
         $add_site = AddSites::where('id', $sites)->get()[0];
         $site_name = $add_site->site_name;
         $view_id =(string)$add_site->VIEW_ID;
+        $plan = $add_site->plan;
         $url = $add_site->url;
         if ($add_site->logo_path != '') {
             $logo = '/storage/logos/'.$add_site->logo_path;
@@ -54,6 +56,7 @@ class PdfController extends Controller
 
         // AnalyticsReporting API インスタンス
         $gsa = $request->ga_report;
+        $sc = $request->sc;
 
         // 期間指定
         if (isset($request->start)) {
@@ -75,6 +78,11 @@ class PdfController extends Controller
         $ga_result_action = $this->get_ga_action($gsa, $view_id, $start, $end, $com_start, $com_end);
         $ga_result_conversion = $this->get_ga_conversion($gsa, $view_id, $start, $end, $com_start, $com_end);
         $ga_result_ad = $this->get_ga_ad($gsa, $view_id, $start, $end, $com_start, $com_end);
+        if($plan%2 == 0){
+          $sc_result = $this->get_sc_query($sc, $url, 10, $start, $end, $com_start, $com_end);
+        }else{
+          $sc_result = null;
+        }
 
         return view('analysis.pdf.index_pdf')->with([
           'ga_result_data'=>$ga_result_data,
@@ -83,6 +91,7 @@ class PdfController extends Controller
           'ga_result_action'=>$ga_result_action,
           'ga_result_conversion'=>$ga_result_conversion,
           'ga_result_ad'=>$ga_result_ad,
+          'sc_result'=>$sc_result,
           'add_site' => $add_site,
           'end' => $end,
           'start' => $start,
@@ -90,7 +99,8 @@ class PdfController extends Controller
           'com_start' => $com_start,
           'url' => $url,
           'logo' => $logo,
-          'site_name' => $site_name
+          'site_name' => $site_name,
+          'plan' => $plan
         ]);
     }
 
@@ -479,5 +489,69 @@ class PdfController extends Controller
             $number[$key][1][]= [$report->dimensions,$report->metrics[1]->values[0],$report->metrics[1]->values[1],$report->metrics[1]->values[2],$report->metrics[1]->values[3],$report->metrics[1]->values[4]];
         }
         return [$array, $number];
+    }
+
+    public function get_sc_query($sc, $url, $limit = 10, $start, $end, $com_start, $com_end)
+    {
+        $resulets = [];
+        try {
+            $query_date = new Google_Service_Webmasters_SearchAnalyticsQueryRequest();
+            $query_date->setDimensions(['date']);
+            $query_date->setStartDate($start);
+            $query_date->setEndDate($end);
+            $date_query = $sc->searchanalytics->query($url, $query_date)->rows;
+            foreach ($date_query as $key => $val) {
+                $resulets['date'][] = $val->keys[0];
+                $resulets['clicks'][] = $val->clicks;
+                $resulets['impressions'][] = $val->impressions;
+            }
+
+            $query_date_comp = new Google_Service_Webmasters_SearchAnalyticsQueryRequest();
+            $query_date_comp->setDimensions(['date']);
+            $query_date_comp->setStartDate($com_start);
+            $query_date_comp->setEndDate($com_end);
+            $date_query = $sc->searchanalytics->query($url, $query_date_comp)->rows;
+            foreach ($date_query as $key => $val) {
+                $resulets['comp']['date'][] = $val->keys[0];
+                $resulets['comp']['clicks'][] = $val->clicks;
+                $resulets['comp']['impressions'][] = $val->impressions;
+            }
+
+            $query = new Google_Service_Webmasters_SearchAnalyticsQueryRequest();
+            $query->setRowLimit($limit);
+            $query->setDimensions(['query']);
+            $query->setStartDate($start);
+            $query->setEndDate($end);
+            $resulets['original'] = $sc->searchanalytics->query($url, $query)->rows;
+
+            $query_comp = new Google_Service_Webmasters_SearchAnalyticsQueryRequest();
+            $query_comp->setRowLimit($limit);
+            $query_comp->setDimensions(['query']);
+            $query_comp->setStartDate($com_start);
+            $query_comp->setEndDate($com_end);
+            $resulets['comparison'] = $sc->searchanalytics->query($url, $query_comp)->rows;
+
+            // 最大値取得
+            $max_clicks = [];
+            $max_impressions = [];
+            $max_ctr = [];
+            $max_position = [];
+            foreach ($resulets['original'] as $key => $val) {
+                $max_clicks[] = $val->clicks;
+                $max_impressions[] = $val->impressions;
+                $max_ctr[] = $val->ctr;
+                $max_position[] = $val->position;
+            }
+            $resulets['max'] = [
+                'clicks' => max($max_clicks),
+                'impressions' => max($max_impressions),
+                'ctr' => max($max_ctr),
+                'position' => min($max_position)
+            ];
+        } catch (\Exception $e) {
+            return $e;
+        }
+
+        return $resulets;
     }
 }

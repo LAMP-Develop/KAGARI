@@ -98,7 +98,7 @@ Route::group(['prefix' => 'report'], function () {
     // pdf
     Route::get('/{AddSites}/pdf', 'PdfController@index', function ($sites) {
         return $sites;
-    })->middleware('analytics.reporting')->name('ga-pdf');
+    })->middleware(['analytics.reporting', 'webmaster'])->name('ga-pdf');
 });
 
 // SEO解析系

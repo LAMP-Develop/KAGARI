@@ -1,3 +1,13 @@
+@php
+$user_flag = true;
+$ad_flag = true;
+if(count($ga_result_user[0]) != 3 || count($ga_result_user[1]) != 3){
+  $user_flag = false;
+}
+if($ga_result_ad[0][0][0] == 0){
+  $ad_flag = false;
+}
+@endphp
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -68,9 +78,15 @@
     color: #007aff;
     border-bottom: solid 3px #007aff;
   }
+  #target8 .nav-item .ac_query{
+    color: #007aff;
+    border-bottom: solid 3px #007aff;
+  }
+
 </style>
 </head>
 <body class="drawer drawer--right">
+<input type="hidden" id="plan_flag" value="{{ $plan }}">
 <div class="my-5 text-center">
 <a href="#" class="btn btn-sm btn-outline-secondary" onclick="downloadImage()"><i class="fas fa-file-pdf mr-2"></i>もう一度PDFを生成する</a>
 </div>
@@ -108,6 +124,12 @@
 @yield('nav_pdf')
 @yield('content_ad')
 </div>
+@if($plan%2 == 0)
+<div id="target8">
+@yield('nav_pdf')
+@yield('content_query')
+</div>
+@endif
 </main>
 <script src="{{ asset('/js/html2canvas.min.js') }}"></script>
 <script src="{{ asset('/js/jspdf.min.js') }}"></script>
@@ -158,12 +180,27 @@ function getTextarea(){
     target_ad.innerHTML = val_ad.replace(/\r?\n/g, "<br>");
     localStorage.removeItem('ad');
   }
+  if (localStorage.getItem('query') != null) {
+    let val_query = localStorage.getItem('query');
+    let target_query = document.getElementById("comment_query");
+    target_query.innerHTML = val_query.replace(/\r?\n/g, "<br>");
+    localStorage.removeItem('query');
+  }
 }
+var plan_flag = document.getElementById('plan_flag').value;
 function downloadImage(){
-  var pdf = new jsPDF('p', 'pt', 'letter');
-  for (var j = 1; j <= 7; j++) {
-    var getId = "target" + j;
-    toCanvas(pdf, getId, j);
+  if(plan_flag%2 == 0){
+    var pdf = new jsPDF('p', 'pt', 'letter');
+    for (var j = 1; j <= 8; j++) {
+      var getId = "target" + j;
+      toCanvas(pdf, getId, j);
+    }
+  }else{
+    var pdf = new jsPDF('p', 'pt', 'letter');
+    for (var j = 1; j <= 7; j++) {
+      var getId = "target" + j;
+      toCanvas(pdf, getId, j);
+    }
   }
 }
 function toCanvas(pdf, getId, j) {
@@ -176,9 +213,16 @@ function toCanvas(pdf, getId, j) {
     var imgData = canvas.toDataURL();
     var width = pdf.internal.pageSize.width;
     pdf.addImage(canvas, 'JPEG', 0, 20, width, 0);
-    if (j == 7) {
-      pdf.save('kagari_report.pdf');
+    if (plan_flag%2 == 0) {
+      if (j == 8) {
+        pdf.save('kagari_report.pdf');
+      }
+    }else {
+      if (j == 7) {
+        pdf.save('kagari_report.pdf');
+      }
     }
+
   });
 }
 </script>
