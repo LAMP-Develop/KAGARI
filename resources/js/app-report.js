@@ -1,11 +1,12 @@
 require('chart.js');
+// require('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.ja.min.js');
 
 $(function() {
   // datepicker
   $('.datepicker, .input-daterange').datepicker({
+    language:'ja',
     autoclose: true,
     format: 'yyyy-mm-dd',
-    language: 'ja',
     endDate: '-1d',
   }).on('changeDate', function(e) {
     let target = document.getElementById("check_range");

@@ -6,6 +6,7 @@ FontAwesomeConfig = {
 require('@fortawesome/fontawesome-free/js/all.js');
 require('./bootstrap');
 require('bootstrap-datepicker');
+require('bootstrap-datepicker/dist/locales/bootstrap-datepicker.ja.min.js');
 require('tablesorter');
 require('xlsx');
 require('file-saverjs');

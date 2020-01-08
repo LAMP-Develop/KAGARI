@@ -89,6 +89,7 @@ if($ga_result_ad[0][0][0] == 0){
 </style>
 </head>
 <body class="drawer drawer--right">
+  <input type="hidden" id="site_name" value="{{ $site_name }}">
 <input type="hidden" id="plan_flag" value="{{ $plan }}">
 <div class="my-5 text-center">
 <a href="#" class="btn btn-sm btn-outline-secondary" onclick="downloadImage()"><i class="fas fa-file-pdf mr-2"></i>もう一度PDFを生成する</a>
@@ -216,13 +217,19 @@ function toCanvas(pdf, getId, j) {
     var imgData = canvas.toDataURL();
     var width = pdf.internal.pageSize.width;
     pdf.addImage(canvas, 'JPEG', 0, 20, width, 0);
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = today.getMonth()+1;
+    var day = today.getDate();
+    var pdf_name = year+'-'+month+'-'+day;
+    var site_name = document.getElementById('site_name').value;
     if (plan_flag%2 == 0) {
       if (j == 8) {
-        pdf.save('kagari_report.pdf');
+        pdf.save(pdf_name+'_'+site_name);
       }
     }else {
       if (j == 7) {
-        pdf.save('kagari_report.pdf');
+        pdf.save(pdf_name);
       }
     }
 
