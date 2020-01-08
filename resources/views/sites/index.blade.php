@@ -64,7 +64,7 @@
 <input type="hidden" name="update" value="{{ $site->plan }}">
 </form>
 <a href="{{ route('sites-edit', $site->id) }}" class="btn btn-sm btn-outline-secondary mr-2">サイト情報変更</a>
-<a href="{{ route('send-setting', $site->id) }}" class="btn btn-sm btn-outline-secondary">レポート受信設定</a>
+<a href="{{ route('send-setting', $site->id) }}" class="btn btn-sm btn-outline-secondary">メール受信設定</a>
 </div>
 </div>
 </div>

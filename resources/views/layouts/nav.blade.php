@@ -107,11 +107,11 @@ if (!$param) {
 </div>
 </p>
 </div>
-<p id="check_range"></p>
+<p id="check_range" class="opacity-color-red font-weight-bold"></p>
 </div>
 <div class="modal-footer">
 <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">閉じる</button>
-<button type="submit" class="btn btn-sm btn-primary">期間を変更</button>
+<button id="data_change_btn" type="submit" class="btn btn-sm btn-primary">期間を変更</button>
 </div>
 </form>
 </div>
