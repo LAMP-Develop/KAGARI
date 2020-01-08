@@ -324,7 +324,6 @@ let ctx = $('#doughnut-chart-1');
 var userData = [{{ $new_user_data }}, {{ $re_user_data }}];
 let myChart1 = new Chart(ctx, {
   type: 'doughnut',
-  animation: true,
   data: {
     labels: [
       '新規ユーザー', '既存ユーザー'
@@ -348,7 +347,6 @@ let ctx2 = $('#doughnut-chart-2');
 var userData = [{{ $male_str }}, {{ $female_str }}];
 let myChart2 = new Chart(ctx2, {
   type: 'doughnut',
-  animation: true,
   data: {
     labels: [
       '男性', '女性'
@@ -372,7 +370,6 @@ let ctx3 = $('#doughnut-chart-3');
 var userData = [{{ $mobile }}, {{ $desktop }}, {{ $tablet }}];
 let myChart3 = new Chart(ctx3, {
   type: 'doughnut',
-  animation: true,
   data: {
     labels: [
       "モバイル", "PC", "タブレット"

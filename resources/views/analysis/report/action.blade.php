@@ -31,8 +31,7 @@ $general_comment = 0;
 <table class="table table-striped table-borderless">
 <thead>
 <tr>
-<th class="font-weight-normal align-top"></th>
-<th class="font-weight-normal align-top"></th>
+<th class="font-weight-bold align-center" colspan="2">アクセス上位10ページ</th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-orange"><i class="fas fa-bolt opacity-color-orange"></i></span><small class="mt-2 d-block">セッション数</small></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-green"><i class="fas fa-eye opacity-color-green"></i></span><small class="mt-2 d-block">PV数</small></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue-2"><i class="fas fa-pager opacity-color-blue-2"></i></span><small class="mt-2 d-block">ページ/<br>セッション</small></th>

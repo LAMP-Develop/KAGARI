@@ -120,8 +120,7 @@ rsort($arr_time);
 <table class="table table-striped table-borderless">
 <thead>
 <tr>
-<th class="font-weight-normal align-top"></th>
-<th class="font-weight-normal align-top"></th>
+<th class="font-weight-bold align-center" colspan="2">上位10件の流入元</th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-orange"><i class="fas fa-flag opacity-color-orange"></i></span><small class="mt-2 d-block">コンバージョン<br>数</small></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-purple"><i class="far fa-flag opacity-color-purple"></i></span><small class="mt-2 d-block">コンバージョン<br>率</small></th>
 <th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue"><i class="fas fa-user opacity-color-blue"></i></span><small class="mt-2 d-block">ユーザー数</small></th>
@@ -131,7 +130,7 @@ rsort($arr_time);
 </tr>
 </thead>
 <tbody>
-<?php foreach ($ga_result[0] as $key => $val): ?>
+@foreach ($ga_result[0] as $key => $val)
 <tr>
 <td class="table_number">{{ $key+1 }}</td>
 <td><span class="text-dark">{{ $val[0][0][0][0] }}</span></td>
@@ -270,7 +269,7 @@ $comp = 0;
 </p>
 </td>
 </tr>
-<?php endforeach; ?>
+@endforeach
 </tbody>
 </table>
 </div>

@@ -61,7 +61,9 @@ class PaymentController extends Controller
           ->insert([
             'name' => $request['pn'],
             'company' => $request['cn'],
-            'site_id' => $request['site_id']
+            'site_id' => $request['site_id'],
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
           ]);
         }
 

@@ -330,7 +330,6 @@ let don = $('#doughnut-chart-1');
 var userData = [{{ $new_user_data }}, {{ $re_user_data }}];
 let myChart1 = new Chart(don, {
   type: 'doughnut',
-  animation: false,
   data: {
     labels: [
       '新規ユーザー', '既存ユーザー'
@@ -347,14 +346,14 @@ let myChart1 = new Chart(don, {
       display: false
     },
     responsive: false,
-    cutoutPercentage: 85
+    cutoutPercentage: 85,
+    animation: false
   }
 });
 let don2 = $('#doughnut-chart-2');
 var userData = [{{ $male_str }}, {{ $female_str }}];
 let myChart2 = new Chart(don2, {
   type: 'doughnut',
-  animation: false,
   data: {
     labels: [
       '男性', '女性'
@@ -371,14 +370,14 @@ let myChart2 = new Chart(don2, {
       display: false
     },
     responsive: false,
-    cutoutPercentage: 85
+    cutoutPercentage: 85,
+    animation: false
   }
 });
 let don3 = $('#doughnut-chart-3');
 var userData = [{{ $mobile }}, {{ $desktop }}, {{ $tablet }}];
 let myChart3 = new Chart(don3, {
   type: 'doughnut',
-  animation: false,
   data: {
     labels: [
       "モバイル", "PC", "タブレット"
@@ -395,7 +394,8 @@ let myChart3 = new Chart(don3, {
       display: false
     },
     responsive: false,
-    cutoutPercentage: 85
+    cutoutPercentage: 85,
+    animation: false
   }
 });
 </script>
