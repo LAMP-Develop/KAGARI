@@ -54,6 +54,7 @@
 <div class="">
 <form class="d-inline-block mr-2" action="{{ route('plan') }}" method="post">
 @csrf
+<a href="{{ route('send-setting', $site->id) }}" class="btn btn-sm btn-outline-secondary">メール受信設定</a>
 <button class="btn btn-sm btn-outline-secondary" type="submit">プランの変更</button>
 <input type="hidden" name="site-id" value="{{ $site->id }}">
 <input type="hidden" name="view-id" value="{{ $site->VIEW_ID }}">
@@ -64,7 +65,6 @@
 <input type="hidden" name="update" value="{{ $site->plan }}">
 </form>
 <a href="{{ route('sites-edit', $site->id) }}" class="btn btn-sm btn-outline-secondary mr-2">サイト情報変更</a>
-<a href="{{ route('send-setting', $site->id) }}" class="btn btn-sm btn-outline-secondary">メール受信設定</a>
 </div>
 </div>
 </div>
