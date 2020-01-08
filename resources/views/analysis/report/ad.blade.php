@@ -44,11 +44,11 @@ if ($bool) {
     $arr_cv = [];
     $arr_cv_r = [];
     foreach ($ga_result[1] as $key => $val) {
-        $arr_click[] = $val[0][0][1];
-        $arr_cost[] = $val[0][0][2];
-        $arr_price[] = $val[0][0][3];
-        $arr_cv[] = $val[0][0][4];
-        $arr_cv_r[] = $val[0][0][5];
+        $val[0][0][1] == 0 ? $arr_click[] = 1 : $arr_click[] = $val[0][0][1];
+        $val[0][0][2] == 0 ? $arr_cost[] = 1 : $arr_cost[] = $val[0][0][2];
+        $val[0][0][3] == 0 ? $arr_price[] = 1 : $arr_price[] = $val[0][0][3];
+        $val[0][0][4] == 0 ? $arr_cv[] = 1 : $arr_cv[] = $val[0][0][4];
+        $val[0][0][5] == 0 ? $arr_cv_r[] = 1 : $arr_cv_r[] = $val[0][0][5];
     }
     rsort($arr_click);
     rsort($arr_cost);
