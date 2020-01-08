@@ -54,6 +54,11 @@ if (!$param) {
 <li class="nav-item">
 <a class="nav-link ac_ad" href="{{ route('ga-ad', $site_id) }}">広告分析</a>
 </li>
+@if($plan%2 == 0)
+<li class="nav-item">
+<a class="nav-link ac_query" href="{{ route('sc-query', $site_id) }}{{ $param }}">検索分析</a>
+</li>
+@endif
 </ul>
 
 </div>

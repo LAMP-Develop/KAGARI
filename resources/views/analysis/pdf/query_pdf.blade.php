@@ -1,4 +1,4 @@
-@section('content')
+@section('content_query')
 <section class="reports">
 <div class="container">
 
@@ -9,18 +9,18 @@
 <div class="row align-items-center">
 <div class="col-3 text-center">
 <span class="opacity-item opacity-bg-green">
-<i class="fas fa-tv opacity-color-green"></i>
+<img src="{{ asset('/img/fa-search_green_16.png') }}" alt="">
 </span>
 <h3 class="text-dark font-weight-bold h6 mt-3">検索結果表示回数</h3>
 <p class="m-0">
-<small><i class="far fa-calendar-alt opacity-color-blue mr-1"></i>{{ $start }} ~ {{ $end }}</small>
+<small><img class="mr-1" src="{{ asset('/img/fa-calendar-alt-h_red_11.png') }}" alt="fa-calendar">{{ $start }} ~ {{ $end }}</small>
 </p>
 <p class="m-0">
-<small><i class="fas fa-arrows-alt-h opacity-color-red mr-1"></i>{{ $com_start }} ~ {{ $com_end }}</small>
+<small><img class="mr-1" src="{{asset('/img/fa-arrows-alt-h_red_11.png')}}" alt="fa-arrows">{{ $com_start }} ~ {{ $com_end }}</small>
 </p>
 </div>
 <div class="col-9">
-<canvas id="user-chart" class="line-chart" width="900" height="200"></canvas>
+<canvas id="query-chart" class="line-chart" width="900" height="200"></canvas>
 </div>
 </div>
 </div>
@@ -36,10 +36,10 @@
 <thead>
 <tr>
 <th class="font-weight-bold align-center" colspan="2">クリック数上位10キーワード</th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-orange"><i class="fas fa-mouse-pointer opacity-color-orange"></i></span><small class="mt-2 d-block">クリック数</small></th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-green"><i class="fas fa-tv opacity-color-green"></i></span><small class="mt-2 d-block">検索結果<br>表示回数</small></th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue-2"><i class="fas fa-mouse opacity-color-blue-2"></i></span><small class="mt-2 d-block">平均クリック率</th>
-<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue"><i class="fas fa-crown opacity-color-blue"></i></span><small class="mt-2 d-block">平均掲載順位</small></th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-orange"><img src="{{ asset('/img/fa-search_orange_16.png') }}"></span><small class="mt-2 d-block">クリック数</small></th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-green"><img src="{{ asset('/img/fa-search_green_16.png') }}" alt=""></span><small class="mt-2 d-block">検索結果<br>表示回数</small></th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue-2"><img src="{{ asset('/img/fa_mouse_sky_16.png') }}"></span><small class="mt-2 d-block">平均クリック率</th>
+<th class="font-weight-normal text-center align-top"><span class="opacity-item opacity-bg-blue"><img src="{{ asset('/img/fa-list-ol_blue_16.png') }}"></span><small class="mt-2 d-block">平均掲載順位</small></th>
 </tr>
 </thead>
 <tbody>
@@ -94,15 +94,13 @@ $position = round($val->position, 2);
 <div class="row">
 <div class="col-1 text-center">
 <span class="opacity-item opacity-bg-orange">
-<i class="fas fa-comment-dots opacity-color-orange"></i>
+<img src="{{ asset('/img/fa-comment-dots_orange_16.png') }}" alt="">
 </span>
 </div>
 <div class="col-11">
-<div class="d-flex justify-content-between pb-2">
 <h3 class="font-weight-bold h5 mt-2">検索分析の総評</h3>
-<button id="comment_btn" type="button" name="button" class="btn btn-primary" onclick="saveTextarea('query',document.getElementById('comment_query'))">更新</button>
-</div>
-<textarea id="comment_query" class="border form-control text-secondary" name="name" rows="4" onfocus="textareaBtn()"></textarea>
+<p id="comment_query">
+</p>
 </div>
 </div>
 </div>
@@ -112,15 +110,15 @@ $position = round($val->position, 2);
 </section>
 
 <script>
-let ctx = $('#user-chart');
+let ctx_query = $('#query-chart');
 let clicks = @json($sc_result['impressions'], JSON_PRETTY_PRINT);
 let clicks_comp = @json($sc_result['comp']['impressions'], JSON_PRETTY_PRINT);
-let arrayLabel = @json($sc_result['date'], JSON_PRETTY_PRINT);
-let myChart = new Chart(ctx, {
+let arrayLabel_query = @json($sc_result['date'], JSON_PRETTY_PRINT);
+let myChart_query = new Chart(ctx_query, {
   type: 'line',
-  animation: true,
+  animation: false,
   data: {
-    labels: arrayLabel,
+    labels: arrayLabel_query,
     datasets: [
       {
         label: '今期間',
