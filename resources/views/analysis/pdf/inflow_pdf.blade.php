@@ -17,7 +17,7 @@ $engine = $ga_result_inflow[3];
 <div class="card">
 <div class="card-body text-center">
 <span class="opacity-item opacity-bg-blue">
-<img src="{{ asset('/img/fa-project-diagram_blue_16.png') }}" alt="">
+<img src="{{ asset('/img/fa-project-diagram_sky_16.png') }}" alt="">
 </span>
 <h4 class="h6 text-dark mt-3">流入チャネル</h4>
 @foreach ($channel as $key => $value)
@@ -53,7 +53,7 @@ $comp = 0;
 <div class="card">
 <div class="card-body text-center">
 <span class="opacity-item opacity-bg-blue">
-<i class="fas fa-search opacity-color-blue"></i>
+<img src="{{ asset('/img/fa-search_blue_16.png') }}" alt="">
 </span>
 <h4 class="h6 text-dark mt-3 mb-4">検索エンジン別の流入</h4>
 @foreach ($engine as $key => $value)
