@@ -19,6 +19,15 @@
 @enderror
 </div>
 <div class="form-group mb-4">
+<label class="not-must" for="post">部署名</label>
+<input id="post" type="text" class="form-control @error('post') is-invalid @enderror" placeholder="マーケティング部" name="post" value="{{ old('post') }}">
+@error('name')
+<span class="invalid-feedback" role="alert">
+<strong>{{ $message }}</strong>
+</span>
+@enderror
+</div>
+<div class="form-group mb-4">
 <label for="name">{{ __('Name') }}</label>
 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="山田 太郎" required autocomplete="name">
 @error('name')

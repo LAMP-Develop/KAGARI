@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed', new AlphaNumHalf],
             'company' => ['required','string'],
             'tel' => ['required', 'numeric', 'digits_between:8,12'],
+            // 'post' => ['string'],
         ]);
     }
 
@@ -70,6 +71,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'company' => $data['company'],
+            'post' => $data['post'],
             'tel' => $data['tel'],
             'password' => Hash::make($data['password']),
         ]);
