@@ -17,6 +17,10 @@ if ($bool) {
         $cvcost = round($cost / $cv, 0);
         $old_cvcost = round($old_cost/$old_cv, 0);
         $comp_all_cvcost = round(($cvcost / $old_cvcost - 1) * 100, 2);
+    } else {
+        $cvcost = 0;
+        $old_cvcost = 0;
+        $comp_all_cvcost = 0;
     }
     if ($old_cost != 0) {
         $comp_all_cost = round(($cost / $old_cost - 1) * 100, 2);
