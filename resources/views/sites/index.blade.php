@@ -37,6 +37,14 @@
 </form>
 @else
 {{ $plans[($site->plan - 1)]->name }}
+@if($site->plan_created_at != null)
+<span class="d-block"><small>更新日：
+@php
+$plan_date = strtotime($site->plan_created_at);
+echo date('Y年n月j日',strtotime('+1 year',$plan_date));
+@endphp
+</small></span>
+@endif
 @endif
 </div>
 </div>
@@ -54,7 +62,7 @@
 <div class="">
 <form class="d-inline-block mr-2" action="{{ route('plan') }}" method="post">
 @csrf
-<a href="{{ route('send-setting', $site->id) }}" class="btn btn-sm btn-outline-secondary">メール受信設定</a>
+<a href="{{ route('send-setting', $site->id) }}" class="btn btn-sm btn-outline-secondary mr-2">メール受信設定</a>
 <button class="btn btn-sm btn-outline-secondary" type="submit">プランの変更</button>
 <input type="hidden" name="site-id" value="{{ $site->id }}">
 <input type="hidden" name="view-id" value="{{ $site->VIEW_ID }}">
@@ -64,7 +72,7 @@
 <input type="hidden" name="genre" value="{{ $site->category }}">
 <input type="hidden" name="update" value="{{ $site->plan }}">
 </form>
-<a href="{{ route('sites-edit', $site->id) }}" class="btn btn-sm btn-outline-secondary mr-2">サイト情報変更</a>
+<a href="{{ route('sites-edit', $site->id) }}" class="btn btn-sm btn-outline-secondary">サイト情報変更</a>
 </div>
 </div>
 </div>

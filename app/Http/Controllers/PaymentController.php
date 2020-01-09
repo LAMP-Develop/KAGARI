@@ -54,6 +54,8 @@ class PaymentController extends Controller
         AddSites::where('id', (int)$request['site_id'])->update([
             'plan' => (int)$request['plan_id'],
             'payment_methods' => (int)$request['payment_methods'],
+            'plan_created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
         ]);
 
         if(isset($request->cn)){
