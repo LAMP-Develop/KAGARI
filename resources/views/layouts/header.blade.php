@@ -75,9 +75,6 @@ SEO分析する
 @guest
 @if (Route::has('register'))
 <li class="l-drawer__item">
-<a class="l-drawer__item-inner text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
-</li>
-<li class="l-drawer__item">
 <a class="l-drawer__item-inner text-white" href="{{ route('login') }}">
 <span><i class="fas fa-sign-in-alt"></i></span>ログイン
 </a>
@@ -107,10 +104,17 @@ SEO分析する
 <span><i class="fas fa-book-open"></i></span>マニュアル
 </a>
 </li>
-<li class="l-drawer__item"><hr></li>
-<li class="l-drawer__item contact">
-<a class="l-drawer__item-inner text-white" href="https://kagari.ai/contact/" target="_blank">お問い合わせ</a>
+<li class="l-drawer__item">
+<a class="l-drawer__item-inner text-white mb-0" href="#collapse-menu" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-menu"><span><i class="fas fa-user-cog"></i></span>サポート</a>
+<ul id="collapse-menu" class="collapse">
+<li><a class="l-drawer__item-inner text-white" href="http://lamp-inc.sakura.ne.jp/kagari_re/master/contact/" target="_blank"><small>お問い合わせ</small></a></li>
+<li><a class="l-drawer__item-inner text-white" href="http://lamp-inc.sakura.ne.jp/kagari_re/master/faq/" target="_blank"><small>よくあるご質問</small></a></li>
+<li><a class="l-drawer__item-inner text-white" href="https://kagari.ai/privacy-policy/" target="_blank"><small>プライバシーポリシー</small></a></li>
+<li><a class="l-drawer__item-inner text-white" href="https://kagari.ai/business-deal/" target="_blank"><small>特定商取引法に基づく表記</small></a></li>
+<li><a class="l-drawer__item-inner text-white" href="https://kagari.ai/terms/" target="_blank"><small>利用規約</small></a></li>
+</ul>
 </li>
+<li class="l-drawer__item"><hr></li>
 @auth
 <li class="l-drawer__item">
 <a class="l-drawer__item-inner text-white" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
