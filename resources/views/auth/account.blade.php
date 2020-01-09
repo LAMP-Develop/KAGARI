@@ -46,11 +46,11 @@
 <a class="btn btn-sm btn-block btn-outline-secondary" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt mr-1"></i>{{ __('Logout') }}</a>
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
 </div>
-<!-- <div class="text-right mt-2">
-<a class="text-secondary" href="{{ route('delete') }}">
+<div class="text-right mt-2">
+<a class="text-secondary" href="{{ route('unsubscribe.form') }}">
 <small><i class="fas fa-door-open mr-1"></i>退会する</small>
 </a>
-</div> -->
+</div>
 </div>
 </div>
 </section>

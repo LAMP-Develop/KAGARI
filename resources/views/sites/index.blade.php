@@ -56,21 +56,17 @@ echo date('Y年n月j日',strtotime('+1 year',$plan_date));
 <a href="{{ route('ga-report', $site->id) }}" class="btn btn-sm btn-primary mr-2">レポートを作成する</a>
 @endif
 @if ($site->plan % 2 == 0 && $site->plan != null)
-<a href="{{ route('seo-report', $site->id) }}" class="btn btn-sm btn-secondary">SEO分析する</a>
+<a href="{{ route('seo-report', $site->id) }}" class="btn btn-sm btn-outline-primary">SEO分析する</a>
 @endif
 </div>
 <div class="">
-<form class="d-inline-block mr-2" action="{{ route('plan') }}" method="post">
-@csrf
 <a href="{{ route('send-setting', $site->id) }}" class="btn btn-sm btn-outline-secondary mr-2">メール受信設定</a>
+<form class="d-inline-block mr-2" action="{{ route('change-plan.form') }}" method="post">
+@csrf
 <button class="btn btn-sm btn-outline-secondary" type="submit">プランの変更</button>
-<input type="hidden" name="site-id" value="{{ $site->id }}">
-<input type="hidden" name="view-id" value="{{ $site->VIEW_ID }}">
-<input type="hidden" name="site-url" value="{{ $site->url }}">
-<input type="hidden" name="site-name" value="{{ $site->site_name }}">
-<input type="hidden" name="industries" value="{{ $site->industry }}">
-<input type="hidden" name="genre" value="{{ $site->category }}">
-<input type="hidden" name="update" value="{{ $site->plan }}">
+<input type="hidden" name="site_id" value="{{ $site->id }}">
+<input type="hidden" name="site_url" value="{{ $site->url }}">
+<input type="hidden" name="site_name" value="{{ $site->site_name }}">
 </form>
 <a href="{{ route('sites-edit', $site->id) }}" class="btn btn-sm btn-outline-secondary">サイト情報変更</a>
 </div>

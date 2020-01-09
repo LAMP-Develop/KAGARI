@@ -114,6 +114,10 @@ Route::group(['prefix' => 'form'], function () {
     Route::get('/unsubscribe', 'FormController@unsubscribe_form')->name('unsubscribe.form');
     Route::post('/unsubscribe/confirm', 'FormController@unsubscribe_confirm')->name('unsubscribe.confirm');
     Route::post('/unsubscribe/send', 'FormController@unsubscribe_send')->name('unsubscribe.send');
+    // プラン変更
+    Route::post('/change-plan', 'FormController@changeplan_form')->name('change-plan.form');
+    Route::post('/change-plan/confirm', 'FormController@changeplan_confirm')->name('change-plan.confirm');
+    Route::post('/change-plan/send', 'FormController@changeplan_send')->name('change-plan.send');
 });
 
 // Ajax
