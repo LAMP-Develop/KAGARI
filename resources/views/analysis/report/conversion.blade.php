@@ -11,7 +11,7 @@ if($old_cv != 0) {
 $cv_r = round($ga_result[1][0][2], 2);
 $old_cv_r = round($ga_result[1][1][2], 2);
 if($old_cv_r != 0) {
-  $comp_cv_r = round(($cv/$old_cv-1)*100, 2);
+  $comp_cv_r = $old_cv_r - $cv_r;
 } else {
   $comp_cv_r = 0;
 }
@@ -77,13 +77,13 @@ rsort($arr_time);
 <h4 class="h6 text-dark mt-3">コンバージョン率</h4>
 <p class="h4 font-weight-bold text-dark">{{ $cv_r }}<small class="ml-1">%</small></p>
 <p class="m-0">
-<span class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ $old_cv_r }}</span>
+<span class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ $old_cv_r }}%</span>
 </p>
 <p class="m-0">
 @if($comp_cv_r >= 0)
-<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+<span class="opacity-color-red"><i class="fas fa-caret-up mr-1"></i>
 @else
-<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+<span class="opacity-color-green"><i class="fas fa-caret-down mr-1"></i>
 @endif
 {{ $comp_cv_r }}%</span>
 </p>

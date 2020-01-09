@@ -11,7 +11,7 @@ if($old_cv != 0) {
 $cv_r = round($ga_result_conversion[1][0][2], 2);
 $old_cv_r = round($ga_result_conversion[1][1][2], 2);
 if($old_cv_r != 0) {
-  $comp_cv_r = round(($cv/$old_cv-1)*100, 2);
+  $comp_cv_r = $old_cv_r - $cv_r;
 } else {
   $comp_cv_r = 0;
 }
@@ -81,9 +81,9 @@ rsort($arr_time);
 </p>
 <p class="m-0">
 @if($comp_cv_r >= 0)
-<span class="opacity-color-green"><span class="mr-1">↑</span>
+<span class="opacity-color-red"><span class="mr-1">↑</span>
 @else
-<span class="opacity-color-red"><span class="mr-1">↓</span>
+<span class="opacity-color-green"><span class="mr-1">↓</span>
 @endif
 {{ $comp_cv_r }}%</span>
 </p>

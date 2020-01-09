@@ -85,7 +85,7 @@ $comp = 0;
 </div>
 </div>
 
-<div class="col-4 mt-3">
+<div class="col-4">
 <div class="card">
 <div class="card-body text-center">
 <span class="opacity-item opacity-bg-purple-2">
@@ -121,7 +121,7 @@ $comp = 0;
 </div>
 </div>
 
-<div class="col-4">
+<div class="col-4 mt-3">
 <div class="card">
 <div class="card-body text-center">
 <span class="opacity-item opacity-bg-purple">
