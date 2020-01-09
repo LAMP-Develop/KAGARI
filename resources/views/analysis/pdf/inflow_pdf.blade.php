@@ -74,9 +74,9 @@ $comp = 0;
 }
 @endphp
 @if($comp >= 0)
-<span class="opacity-color-green"><i class="fas fa-caret-up mr-1"></i>
+<span class="opacity-color-green mr-1">↑</i>
 @else
-<span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
+<span class="opacity-color-red mr-1">↓</i>
 @endif
 {{ $comp }}%</span>
 </p>
