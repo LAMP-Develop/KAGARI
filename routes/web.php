@@ -108,6 +108,14 @@ Route::group(['prefix' => 'seo'], function () {
     })->middleware('webmaster')->name('seo-report');
 });
 
+// フォーム
+Route::group(['prefix' => 'form'], function () {
+    // 退会
+    Route::get('/unsubscribe', 'FormController@unsubscribe_form')->name('unsubscribe.form');
+    Route::post('/unsubscribe/confirm', 'FormController@unsubscribe_confirm')->name('unsubscribe.confirm');
+    Route::post('/unsubscribe/send', 'FormController@unsubscribe_send')->name('unsubscribe.send');
+});
+
 // Ajax
 Route::post('/seo-detail/{AddSites}', 'AjaxController@get_seo_detail', function ($sites) { // 個別ページのSEO
     return $sites;
