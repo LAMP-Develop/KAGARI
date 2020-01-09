@@ -13,6 +13,14 @@ if ($bool) {
     $old_cost = $ga_result[0][1][0];
     $old_click = $ga_result[0][1][1];
     $old_cv = $ga_result[0][1][2];
+    if ($old_cv != 0 && $cv != 0) {
+        $cvcost = round($cost / $cv, 0);
+        $old_cvcost = round($old_cost/$old_cv, 0);
+        $comp_all_cvcost = round(($cvcost / $old_cvcost - 1) * 100, 2);
+    }
+    if ($old_cost != 0) {
+        $comp_all_cost = round(($cost / $old_cost - 1) * 100, 2);
+    }
     if ($old_click != 0) {
         $old_price = round($old_cost / $old_click, 1);
     } else {
@@ -74,6 +82,15 @@ $general = 0;
 <h4 class="h6 text-dark mt-3">広告費用</h4>
 <p class="h4 font-weight-bold text-dark"><i class="fas fa-yen-sign mr-1"></i>{{ number_format(round($cost, 0)) }}</p>
 <p class="m-0"><small class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ number_format(round($old_cost, 0)) }}</small></p>
+<span class="d-block">
+@if($comp_all_cost <= 0)
+<span class="opacity-color-green"><i class="fas fa-caret-down mr-1"></i>
+@else
+<span class="opacity-color-red"><i class="fas fa-caret-up mr-1"></i>
+@endif
+{{ $comp_all_cost }}%</span>
+</span>
+</span>
 </div>
 <div class="col-1">
 <p class="m-0"><i class="fas fa-equals opacity-color-blue"></i></p>
@@ -90,6 +107,7 @@ $general = 0;
 @endif
 {{ $comp_price }}%</span>
 </span>
+</span>
 </p>
 <p class="my-1 opacity-color-blue text-center"><i class="fas fa-times"></i></p>
 <p class="overflow-hidden opacity-bg-blue m-0 px-3 py-2 rounded-lg text-center text-dark">
@@ -102,6 +120,7 @@ $general = 0;
 <span class="opacity-color-red"><i class="fas fa-caret-down mr-1"></i>
 @endif
 {{ $comp_click }}%</span>
+</span>
 </span>
 </p>
 </div>
@@ -120,8 +139,17 @@ $general = 0;
 <i class="fas fa-yen-sign opacity-color-purple"></i>
 </span>
 <h4 class="h6 text-dark mt-3">コンバージョン単価</h4>
-<p class="h4 font-weight-bold text-dark"><i class="fas fa-yen-sign mr-1"></i>{{ number_format(round($cost/$cv, 0)) }}</p>
-<p class="m-0"><small class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ number_format(round($old_cost/$old_cv, 0)) }}</small></p>
+<p class="h4 font-weight-bold text-dark"><i class="fas fa-yen-sign mr-1"></i>{{ number_format($cvcost) }}</p>
+<p class="m-0"><small class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ number_format($old_cvcost) }}</small></p>
+<span class="d-block">
+@if($comp_all_cvcost <= 0)
+<span class="opacity-color-green"><i class="fas fa-caret-down mr-1"></i>
+@else
+<span class="opacity-color-red"><i class="fas fa-caret-up mr-1"></i>
+@endif
+{{ $comp_all_cvcost }}%</span>
+</span>
+</span>
 </div>
 <div class="col-1">
 <p class="m-0"><i class="fas fa-equals opacity-color-purple"></i></p>
@@ -137,6 +165,7 @@ $general = 0;
 <span class="opacity-color-red"><i class="fas fa-caret-up mr-1"></i>
 @endif
 {{ $comp_cost }}%</span>
+</span>
 </span>
 </p>
 <p class="my-1 opacity-color-purple text-center"><i class="fas fa-divide"></i></p>
