@@ -356,7 +356,23 @@ let myChart = new Chart(ctx, {
             display: false
           },
           ticks: {
-            display: false
+            callback: function(value,index,values){
+              value = value.slice(5).replace('-','/');
+              if(values.length > 10){
+                var devide_num = Math.round(values.length/10);
+                if(index % devide_num === 0){
+                  return value;
+                }else{
+                  return '';
+                }
+              }else{
+                return value;
+              }
+
+            },
+            autoSkip: false,
+            maxRotation: 0,
+            minRotation: 0,
           }
         }
       ],
