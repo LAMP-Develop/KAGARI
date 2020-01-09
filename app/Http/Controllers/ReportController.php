@@ -459,6 +459,12 @@ class ReportController extends Controller
     // 広告
     public function get_ga_ad($analytics, $VIEW_ID, $start, $end, $comStart, $comEnd)
     {
+        $filter = new Google_Service_AnalyticsReporting_DimensionFilter();
+        $filter->setDimensionName('ga:medium');
+        $filter->setExpressions(['cpc']);
+        $filters = new Google_Service_AnalyticsReporting_DimensionFilterClause();
+        $filters->setFilters($filter);
+
         $dateRange = new Google_Service_AnalyticsReporting_DateRange();
         $dateRange->setStartDate($start);
         $dateRange->setEndDate($end);
@@ -477,20 +483,19 @@ class ReportController extends Controller
         $adCost->setExpression('ga:adCost');
         $adClicks = new Google_Service_AnalyticsReporting_Metric();
         $adClicks->setExpression('ga:adClicks');
-        // $goalValue = new Google_Service_AnalyticsReporting_Metric();
-        // $goalValue->setExpression('ga:goalValueAll');
         $orderBy = new Google_Service_AnalyticsReporting_OrderBy();
         $orderBy->setFieldName('ga:adClicks');
         $orderBy->setSortOrder('DESCENDING');
         $request = new Google_Service_AnalyticsReporting_ReportRequest();
         $request->setViewId($VIEW_ID);
+        $request->setDimensionFilterClauses($filters);
         $request->setDateRanges([$dateRange, $dateRangeTwo]);
         $request->setMetrics([$adCost, $adClicks, $cv]);
         $requestTwo = new Google_Service_AnalyticsReporting_ReportRequest();
         $requestTwo->setViewId($VIEW_ID);
         $requestTwo->setDateRanges([$dateRange, $dateRangeTwo]);
         $requestTwo->setDimensions($query);
-        $requestTwo->setMetrics([$adClicks,$adCost,$ss,$cv,$cvr]);
+        $requestTwo->setMetrics([$adClicks, $adCost, $ss, $cv, $cvr]);
         $requestTwo->setOrderBys($orderBy);
         $requestTwo->setPageSize('10');
         $body = new Google_Service_AnalyticsReporting_GetReportsRequest();

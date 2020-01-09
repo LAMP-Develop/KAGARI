@@ -85,7 +85,7 @@ $general = 0;
 </span>
 <h4 class="h6 text-dark mt-3">広告費用</h4>
 <p class="h4 font-weight-bold text-dark"><i class="fas fa-yen-sign mr-1"></i>{{ number_format(round($cost, 0)) }}</p>
-<p class="m-0"><small class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ number_format(round($old_cost, 0)) }}</small></p>
+<p class="m-0"><small class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i><i class="fas fa-yen-sign"></i>{{ number_format(round($old_cost, 0)) }}</small></p>
 <span class="d-block">
 @if($comp_all_cost <= 0)
 <span class="opacity-color-green"><i class="fas fa-caret-down mr-1"></i>
@@ -144,7 +144,7 @@ $general = 0;
 </span>
 <h4 class="h6 text-dark mt-3">コンバージョン単価</h4>
 <p class="h4 font-weight-bold text-dark"><i class="fas fa-yen-sign mr-1"></i>{{ number_format($cvcost) }}</p>
-<p class="m-0"><small class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i>{{ number_format($old_cvcost) }}</small></p>
+<p class="m-0"><small class="text-secondary"><i class="fas fa-arrows-alt-h mr-1"></i><i class="fas fa-yen-sign"></i>{{ number_format($old_cvcost) }}</small></p>
 <span class="d-block">
 @if($comp_all_cvcost <= 0)
 <span class="opacity-color-green"><i class="fas fa-caret-down mr-1"></i>
