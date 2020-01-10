@@ -56,6 +56,7 @@ class FormController extends Controller
             'site_id' => $request->site_id,
             'site_url' => $request->site_url,
             'site_name' => $request->site_name,
+            'site_plan' => $request->site_plan,
             'plan' => $plan
         ]);
     }

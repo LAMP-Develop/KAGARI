@@ -29,14 +29,11 @@
 </div>
 
 <div class="ga-properties mt-4" data-spy="scroll" data-offset="0">
-
 <div id="ga-accounts" class="sites-list list-group list-group-flush list">
 @foreach ($properties as $key => $property)
-
 <a class="accounts list-group-item list-group-item-action text-body account-name" href="#collapse-{{ $key }}" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-{{ $key }}">
 {{ $property['account_name'] }}
 </a>
-
 <div id="collapse-{{ $key }}" class="collapse list-group list-group-flush pl-4 property-name">
 @foreach ($property['data'] as $key_id => $prop)
 <a href="#"
@@ -49,12 +46,9 @@ data-url="{{ $prop['url'] }}"
 data-property="{{ $prop['name'] }}"><i class="fas fa-globe-asia mr-3"></i>{{ $prop['name'] }}</a>
 @endforeach
 </div>
-
 @endforeach
 </div>
-
 </div>
-
 </div>
 </section>
 
@@ -69,7 +63,7 @@ data-property="{{ $prop['name'] }}"><i class="fas fa-globe-asia mr-3"></i>{{ $pr
 </button>
 </div>
 <div class="modal-body">
-<form id="addsite-form" class="form register-form" method="post" action="{{ route('plan') }}" enctype="multipart/form-data">
+<form id="addsite-form" class="form register-form" method="post" action="{{ route('trial') }}" enctype="multipart/form-data">
 @csrf
 <div class="form-group mb-4">
 <label for="site-name">サイト名</label>
@@ -91,15 +85,15 @@ data-property="{{ $prop['name'] }}"><i class="fas fa-globe-asia mr-3"></i>{{ $pr
 @endforeach
 </select>
 </div>
-<div class="form-group mb-4">
-<label class="not-must" for="images">レポートに表示するロゴ<small class="ml-2">※3MBまで、.jpg,.png,.gifのみ</small></label>
+<div id="images-input" class="form-group mb-4">
+<label class="not-must" for="images">レポートに表示するロゴ<small class="ml-2">※3MBまで、.jpg,.pngのみ</small></label>
 <input type="hidden" name="MAX_FILE_SIZE" value="3145728">
 <input type="file" class="form-control-file" accept="image/*" name="image_file" id="images">
 </div>
 <input id="view-id" type="hidden" name="view-id" value="">
 <input id="site-url" type="hidden" name="site-url" value="">
 <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-<button id="formsubmit" type="submit" class="btn btn-primary">このサイトを追加しプラン選択へ進む</button>
+<button id="formsubmit" type="submit" class="btn btn-primary">このサイトを追加する</button>
 </form>
 </div>
 <div class="modal-footer">
@@ -107,4 +101,14 @@ data-property="{{ $prop['name'] }}"><i class="fas fa-globe-asia mr-3"></i>{{ $pr
 </div>
 </div>
 </div>
+<script>
+$('input#images').on('change', function() {
+    $('#images-input').children('#images-error').remove();
+    let file = $(this).prop('files')[0];
+    let size = file.size;
+    if (size > 3145728) {
+      $('#images-input').append('<p id="images-error" class="m-0"><small class="text-danger">ファイルサイズが大きすぎます</small></p>');
+    }
+});
+</script>
 @endsection

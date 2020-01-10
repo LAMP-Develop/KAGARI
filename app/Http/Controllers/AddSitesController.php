@@ -66,67 +66,93 @@ class AddSitesController extends Controller
         ]);
     }
 
+    // トライアル
+    public function trial(Request $request)
+    {
+        $user = Auth::user();
+        $inputs = $request->all();
+        $site_id = $request['site-id'];
+        $site_url = $request['site-url'];
+        $message = false;
+        $e_message = false;
+
+        $flag = AddSites::where([
+            ['user_id', $user->id],
+            ['VIEW_ID', $request['view-id']]
+        ])->get();
+
+        if (count($flag) > 0) {
+            $message = true;
+        }
+
+        try {
+            $sc_site = $request->sc->sites->get($site_url)->siteUrl;
+        } catch (\Exception $e) {
+            $e_message = true;
+        }
+
+        return view('payment.trial')->with([
+          'e_message' => $e_message,
+          'message' => $message,
+          'inputs' => $inputs,
+        ]);
+    }
+
+    // トライアル開始
+    public function trial_done(Request $request)
+    {
+        $user = Auth::user();
+        // 新規サイト追加
+        $add_sites = new AddSites();
+        $add_sites->user_id = $user->id;
+        $add_sites->site_name = $request['site-name'];
+        $add_sites->url = $request['site-url'];
+        $add_sites->plan = $request['plan'];
+        $add_sites->VIEW_ID = $request['view-id'];
+        $add_sites->industry = $request['industries'];
+        $add_sites->category = $request['genre'];
+        if ($request->file('image_file') != null) {
+            $path = $request->file('image_file')->store('public/logos');
+            $add_sites->logo_path = basename($path);
+        }
+        $add_sites->created_at = date('Y-m-d H:i:s');
+        $add_sites->updated_at = date('Y-m-d H:i:s');
+        $add_sites->trial_at = date('Y-m-d H:i:s');
+        $add_sites->save();
+        $site_id = $add_sites->id;
+
+        $send_days = new ReportSendDays();
+        $send_days->site_id = $site_id;
+        $send_days->created_at = date('Y-m-d H:i:s');
+        $send_days->updated_at = date('Y-m-d H:i:s');
+        $send_days->save();
+
+        $send_mail = new ReportSendMail();
+        $send_mail->site_id = $site_id;
+        $send_mail->created_at = date('Y-m-d H:i:s');
+        $send_mail->updated_at = date('Y-m-d H:i:s');
+        $send_mail->save();
+
+        return redirect(route('dashboard'));
+    }
+
     // プラン選択
     public function plan(Request $request)
     {
         $user = Auth::user();
-        $site_id = $request['site-id'];
-        $site_url = $request['site-url'];
-        $e_message = '';
-        $sc_site = '';
-        $flag = DB::table('add_sites')->where([
-          ['user_id', $user->id],
-          ['VIEW_ID', $request['view-id']]
-        ])->get();
-        if (!count($flag) > 0) {
-            if (!isset($request['site-id'])) {
-                $add_sites = new AddSites();
-                $add_sites->user_id = $user->id;
-                $add_sites->site_name = $request['site-name'];
-                $add_sites->VIEW_ID = $request['view-id'];
-                $add_sites->industry = $request['industries'];
-                $add_sites->category = $request['genre'];
-                $add_sites->url = $site_url;
-                if ($request->file('image_file') != null) {
-                    $path = $request->file('image_file')->store('public/logos');
-                    $add_sites->logo_path = basename($path);
-                }
-                $add_sites->created_at = date('Y-m-d H:i:s');
-                $add_sites->updated_at = date('Y-m-d H:i:s');
-                $add_sites->save();
-                $site_id = $add_sites->id;
+        $site_id = $request->site_id;
+        $site_url = $request->site_url;
+        $e_message = false;
 
-                $send_days = new ReportSendDays();
-                $send_days->site_id = $site_id;
-                $send_days->created_at = date('Y-m-d H:i:s');
-                $send_days->updated_at = date('Y-m-d H:i:s');
-                $send_days->save();
-
-                $send_mail = new ReportSendMail();
-                $send_mail->site_id = $site_id;
-                $send_mail->created_at = date('Y-m-d H:i:s');
-                $send_mail->updated_at = date('Y-m-d H:i:s');
-                $send_mail->save();
-            }
-            $plan = null;
-        } else {
-            $plan = $flag[0]->plan;
-        }
         try {
             $sc_site = $request->sc->sites->get($site_url)->siteUrl;
         } catch (\Exception $e) {
-            $e_message = '選ばれたサイトはSearch Consoleに登録されていません。SEOのプランをご契約される際にはSearch Consoleへサイトをご登録ください。';
-        }
-        if (!isset($site_id)) {
-            $message = '選択されたサイトは既に登録済みです。';
-        } else {
-            $message = '';
+            $e_message = true;
         }
         return view('payment.plan')->with([
-          'site_id' => $site_id,
-          'e_message' => $e_message,
-          'message' => $message,
-          'site_plan' => $plan,
+            'e_message' => $e_message,
+            'site_id' => $site_id,
+            'site_url' => $site_url,
         ]);
     }
 

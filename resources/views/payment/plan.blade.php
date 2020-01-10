@@ -15,43 +15,22 @@ if(isset($_POST['update'])) {
 @endphp
 
 @section('content')
-<form action="{{ route('payment') }}" method="post">
-@csrf
-<section class="wrap">
-<div class="container">
-<h2 class="text-muted h5 font-weight-bold mb-4 text-center">サイトのプランを選択してください</h2>
-<p class="text-center">1サイトごとの税込料金です。登録サイトごとに料金プランをお選びいただけます。</p>
-@if ($e_message != '')
+@if ($e_message)
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-@php
-echo $e_message;
-@endphp
+選ばれたサイトはSearch Consoleに登録されていません。SEO解析付きのプランを活用される際にはSearch Consoleへサイトをご登録ください。
 <br><a href="https://support.google.com/webmasters/topic/9455938?hl=ja&ref_topic=4558844" target="_blank"><i class="fas fa-link mr-1"></i>設定方法を確認する（公式ヘルプ）</a>
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 <span aria-hidden="true">&times;</span>
 </button>
 </div>
 @endif
-@if ($message != '')
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-@php
-echo $message;
-@endphp
-<a class="ml-2" href="{{ url('/') }}">トップへ戻る<i class="ml-1 fas fa-chevron-right"></i></a>
-</div>
-@endif
-
-@if(!isset($_POST['update']))
-<div class="col-8 mx-auto">
-<div class="card mb-4">
-<div class="card-body">
-<h4 class="text-center h5 font-weight-bold mb-4">お試し期間</h4>
-<p class="text-center m-0 h2 font-weight-bold">14<span class="h5 mx-1 font-weight-bold">日間</span>無料トライアル</p>
-<p class="text-center mt-3">期間中に解約された場合でも一切ご請求はございません。</p>
-</div>
-</div>
-</div>
-@endif
+<form action="{{ route('payment') }}" method="post">
+@csrf
+<section class="wrap">
+<div class="container">
+<h2 class="text-muted h5 font-weight-bold mb-4 text-center">サイトのプランを選択してください</h2>
+<p class="text-center mb-0">1サイトごとの税込料金です。登録サイトごとに料金プランをお選びいただけます。</p>
+<p class="text-center text-muted"><small>※全ての料金は税込価格です。</small></p>
 
 <ul class="nav nav-pills mt-5 justify-content-center">
 <li class="nav-item">
@@ -93,7 +72,7 @@ echo $message;
 <li class="border-0 p-0 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>AI改善提案</li>
 </ul>
 <div class="mt-5 text-left">
-<button type="submit" name="plan" value="1" class="btn btn-outline-primary" <?php if ($site_plan == 1) echo 'disabled'; ?>>{{ $btn_str }}</button>
+<button type="submit" name="plan" value="1" class="btn btn-outline-primary">{{ $btn_str }}</button>
 </div>
 </div>
 </div>
@@ -120,10 +99,10 @@ echo $message;
 <li class="border-0 p-0 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>ページごとのSEO解析</li>
 </ul>
 <div class="mt-5 text-left">
-@if ($e_message != '')
+@if ($e_message)
 <button type="submit" name="plan" value="2" class="btn btn-outline-primary" disabled>{{ $btn_str }}</button>
 @else
-<button type="submit" name="plan" value="2" class="btn btn-outline-primary" <?php if ($site_plan == 2) echo 'disabled'; ?>>{{ $btn_str }}</button>
+<button type="submit" name="plan" value="2" class="btn btn-outline-primary">{{ $btn_str }}</button>
 @endif
 <p class="text-left mt-1 mb-0"><small>※Search Consoleと連携します</small></p>
 </div>
@@ -160,7 +139,7 @@ echo $message;
 <li class="border-0 p-0 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>AI改善提案</li>
 </ul>
 <div class="mt-5 text-left">
-<button type="submit" name="plan" value="3" class="btn btn-outline-primary" <?php if ($site_plan == 3) echo 'disabled'; ?>>{{ $btn_str }}</button>
+<button type="submit" name="plan" value="3" class="btn btn-outline-primary">{{ $btn_str }}</button>
 </div>
 </div>
 </div>
@@ -187,10 +166,10 @@ echo $message;
 <li class="border-0 p-0 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>ページごとのSEO解析</li>
 </ul>
 <div class="mt-5 text-left">
-@if ($e_message != '')
+@if ($e_message)
 <button type="submit" name="plan" value="4" class="btn btn-outline-primary" disabled>{{ $btn_str }}</button>
 @else
-<button type="submit" name="plan" value="4" class="btn btn-outline-primary" <?php if ($site_plan == 4) echo 'disabled'; ?>>{{ $btn_str }}</button>
+<button type="submit" name="plan" value="4" class="btn btn-outline-primary">{{ $btn_str }}</button>
 @endif
 <p class="text-left mt-1 mb-0"><small>※Search Consoleと連携します</small></p>
 </div>
@@ -227,7 +206,7 @@ echo $message;
 <li class="border-0 p-0 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>AI改善提案</li>
 </ul>
 <div class="mt-5 text-left">
-<button type="submit" name="plan" value="5" class="btn btn-outline-primary" <?php if ($site_plan == 5) echo 'disabled'; ?>>{{ $btn_str }}</button>
+<button type="submit" name="plan" value="5" class="btn btn-outline-primary">{{ $btn_str }}</button>
 </div>
 </div>
 </div>
@@ -254,10 +233,10 @@ echo $message;
 <li class="border-0 p-0 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>ページごとのSEO解析</li>
 </ul>
 <div class="mt-5 text-left">
-@if ($e_message != '')
+@if ($e_message)
 <button type="submit" name="plan" value="6" class="btn btn-outline-primary" disabled>{{ $btn_str }}</button>
 @else
-<button type="submit" name="plan" value="6" class="btn btn-outline-primary" <?php if ($site_plan == 6) echo 'disabled'; ?>>{{ $btn_str }}</button>
+<button type="submit" name="plan" value="6" class="btn btn-outline-primary">{{ $btn_str }}</button>
 @endif
 <p class="text-left mt-1 mb-0"><small>※Search Consoleと連携します</small></p>
 </div>

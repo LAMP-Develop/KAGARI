@@ -1,21 +1,21 @@
-<?php
+@php
 $pic_url = "https://www.googleapis.com/pagespeedonline/v2/runPagespeed?screenshot=true&strategy=desktop&url=".$url;
 $json = file_get_contents($pic_url);
 $data = json_decode($json, true);
 $screenshot = $data['screenshot']['data'];
 $screenshot = str_replace('_', '/', $screenshot);
 $screenshot = str_replace('-', '+', $screenshot);
-?>
+@endphp
 
 @section('content_top')
 <section class="top_page">
 <div class="container">
 <div class="logo">
-<?php if ($logo != ''): ?>
+@if ($logo != '')
 <img src="{{ $logo }}" alt="">
-<?php else: ?>
+@else
 <h2 class="font-weight-bold">{{ $site_name }}</h2>
-<?php endif; ?>
+@endif
 </div>
 <h1 class="text-black font-weight-bold">アクセス解析レポート</h1>
 <h2 class="py-4 font-weight-bold">ANARYTICS REPORT</h2>

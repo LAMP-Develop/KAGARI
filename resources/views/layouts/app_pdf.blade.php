@@ -89,11 +89,11 @@ if($ga_result_ad[0][0][0] == 0){
 </style>
 </head>
 <body class="drawer drawer--right">
-  <input type="hidden" id="site_name" value="{{ $site_name }}">
+<input type="hidden" id="site_name" value="{{ $site_name }}">
 <input type="hidden" id="plan_flag" value="{{ $plan }}">
-<div class="my-5 text-center">
+<!-- <div class="my-5 text-center">
 <a href="#" class="btn btn-sm btn-outline-secondary" onclick="downloadImage()"><i class="fas fa-file-pdf mr-2"></i>もう一度PDFを生成する</a>
-</div>
+</div> -->
 <div class="spinner">
 <div class="spinner-grow text-primary" role="status">
 <span class="sr-only">Loading...</span>

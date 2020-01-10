@@ -63,6 +63,10 @@ Route::group(['prefix' => 'dashboard'], function () {
             // プラン選択
             Route::group(['prefix' => 'plan'], function () {
                 Route::post('/', 'AddSitesController@plan')->middleware('webmaster')->name('plan');
+                // トライアル
+                Route::post('/trial', 'AddSitesController@trial')->middleware('webmaster')->name('trial');
+                // トライアル開始
+                Route::post('/trial/done', 'AddSitesController@trial_done')->name('trial-done');
                 // 支払い
                 Route::post('/payment', 'PaymentController@index')->name('payment');
                 // プラン登録・支払い完了

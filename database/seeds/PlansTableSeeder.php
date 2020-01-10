@@ -18,6 +18,8 @@ class PlansTableSeeder extends Seeder
             ['name' => 'SEOプラン（半年契約）', 'price' => '48000', 'contract_period' => '6'],
             ['name' => 'レポートプラン（月間契約）', 'price' => '6000', 'contract_period' => '1'],
             ['name' => 'SEO（月間契約）', 'price' => '9000', 'contract_period' => '1'],
+            ['name' => 'レポートプラン（トライアル）', 'price' => '0', 'contract_period' => '1'],
+            ['name' => 'SEOプラン（トライアル）', 'price' => '0', 'contract_period' => '1'],
         ]);
     }
 }

@@ -32,7 +32,7 @@
 
 <div class="form-group mb-4">
 <label for="to_email">受信メールアドレス</label>
-<input type="email" name="to_email" value="{{ $mail['to'] }}" class="form-control @error('to_email') is-invalid @enderror" id="to_email" placeholder="info@example.com" required>
+<input type="email" name="to_email" value="{{ $mail['to'] }}" class="form-control @error('to_email') is-invalid @enderror" id="to_email" placeholder="info@example.com">
 @error('to_email')
 <span class="invalid-feedback" role="alert">
 <strong>{{ $message }}</strong>
@@ -58,7 +58,7 @@
 <label class="form-check-label not-must" for="week">毎週</label>
 </div>
 <div class="form-check form-check-inline">
-<input class="form-check-input" type="checkbox" name="analyzing_period[]" id="month" value="30" <?php if(isset($days['30'])) echo 'checked'; ?>>
+<input class="form-check-input" type="checkbox" name="analyzing_period[]" id="month" value="30" checked>
 <label class="form-check-label not-must" for="month">毎月</label>
 </div>
 <div class="form-check form-check-inline">
@@ -92,13 +92,13 @@
 <div class="form-group">
 <label for="send_flag" class="d-block">前の期間との比較</label>
 <div class="form-check form-check-inline">
-<input class="form-check-input" type="radio" name="comparison_flag" id="comparison_flag_true" value="1" <?php if($add_sites->comparison_flag == 1) echo 'checked' ?>>
+<input class="form-check-input" type="radio" name="comparison_flag" id="comparison_flag_true" value="1" checked>
 <label class="form-check-label not-must" for="comparison_flag_true">する</label>
 </div>
-<div class="form-check form-check-inline">
+<!-- <div class="form-check form-check-inline">
 <input class="form-check-input" type="radio" name="comparison_flag" id="comparison_flag_false" value="0" <?php if($add_sites->comparison_flag == 0) echo 'checked' ?> disabled>
 <label class="form-check-label not-must" for="comparison_flag_false">しない<small>※準備中</small></label>
-</div>
+</div> -->
 </div>
 
 <input type="hidden" name="comparison_flag" value="0">

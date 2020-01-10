@@ -3,7 +3,6 @@
 @include('layouts.head')
 @include('layouts.header')
 @include('layouts.footer')
-
 @section('content')
 <section class="wrap">
 <div class="container">
@@ -29,7 +28,7 @@
 <strong>{{ $message }}</strong>
 </span>
 @enderror
-<small class="form-text text-muted">※こちらのメールアドレスに退会確認のメールが送信されます。</small>
+<small class="form-text text-muted">※こちらのメールアドレスにプラン変更確認のメールが送信されます。</small>
 </div>
 
 <div class="form-group mb-4">
@@ -43,12 +42,15 @@
 </div>
 
 <div class="form-group mb-4">
-<label class="font-weight-bold" for="plan">変更したいプラン</label>
+<label class="font-weight-bold" for="plan">変更したいプラン／解約</label>
 <select class="form-control" id="plan" name="plan_name">
 @foreach ($plan as $key => $val)
+<!-- $site_plan -->
 <option value="{{ $val->name }}">{{ $val->name }}</option>
 @endforeach
+<option value="解約">解約</option>
 </select>
+<small class="form-text text-muted">現在ご契約のプラン：{{ $plan[($site_plan - 1)]->name }}</small>
 </div>
 
 <input type="hidden" name="site_id" value="{{ $site_id }}">

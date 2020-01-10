@@ -11,6 +11,21 @@
 </li>
 @if (count($add_sites) != 0)
 @foreach ($add_sites as $key => $site)
+@php
+if ($site->trial_at != null) {
+    $trial_flag = true;
+    $regi = date('Y-m-d', strtotime($site->trial_at));
+    $remaining = intval(strtotime(date('Y-m-d', strtotime($regi.' +10 days'))) - strtotime(date('Y-m-d'))) / (60*60*24);
+    if ($remaining > 0) {
+        $remaining_flag = true;
+    } else {
+        $remaining_flag = false;
+    }
+} else {
+    $trial_flag = false;
+}
+$plan_date = null;
+@endphp
 <li class="list-group-item list-group-item-action" data-toggle="collapse" href="#collapse-{{ $key }}" role="button" aria-expanded="false" aria-controls="collapse-{{ $key }}">
 <div class="row align-items-center">
 <div class="col-4 d-flex align-items-center">
@@ -24,26 +39,27 @@
 </div>
 <div class="col-3">{{ $categories[($site->category - 1)]->cat }}</div>
 <div class="col-3">
-@if ($site->plan == null)
-<form class="" action="{{ route('plan') }}" method="post">
-@csrf
-<button type="submit" class="btn btn-link p-0">プランを登録する</button>
-<input type="hidden" name="site-id" value="{{ $site->id }}">
-<input type="hidden" name="view-id" value="{{ $site->VIEW_ID }}">
-<input type="hidden" name="site-url" value="{{ $site->url }}">
-<input type="hidden" name="site-name" value="{{ $site->site_name }}">
-<input type="hidden" name="industries" value="{{ $site->industry }}">
-<input type="hidden" name="genre" value="{{ $site->category }}">
-</form>
+@if ($trial_flag && ($site->plan == 7 || $site->plan == 8))
+@if ($remaining_flag)
+無料トライアル：残り{{ $remaining }}日
+@else
+無料トライアル：終了
+@endif
 @else
 {{ $plans[($site->plan - 1)]->name }}
 @if($site->plan_created_at != null)
-<span class="d-block"><small>更新日：
 @php
 $plan_date = strtotime($site->plan_created_at);
-echo date('Y年n月j日',strtotime('+1 year',$plan_date));
+$site_plan = $site->plan;
+if ($site_plan == 1 || $site_plan == 2) {
+    $plus = '12';
+} elseif ($site_plan == 3 || $site_plan == 4) {
+    $plus = '6';
+} elseif ($site_plan == 5 || $site_plan == 6) {
+    $plus = '1';
+}
 @endphp
-</small></span>
+<span class="d-block"><small>更新日：{{ date('Y年n月1日', strtotime('+'.$plus.' month', $plan_date)) }}</small></span>
 @endif
 @endif
 </div>
@@ -52,22 +68,35 @@ echo date('Y年n月j日',strtotime('+1 year',$plan_date));
 <hr>
 <div class="d-flex justify-content-between align-items-center">
 <div class="">
+@if ($remaining_flag || $plan_date != null)
 @if ($site->plan != null)
 <a href="{{ route('ga-report', $site->id) }}" class="btn btn-sm btn-primary mr-2">レポートを作成する</a>
 @endif
 @if ($site->plan % 2 == 0 && $site->plan != null)
 <a href="{{ route('seo-report', $site->id) }}" class="btn btn-sm btn-outline-primary">SEO分析する</a>
 @endif
+@endif
 </div>
 <div class="">
 <a href="{{ route('send-setting', $site->id) }}" class="btn btn-sm btn-outline-secondary mr-2">メール受信設定</a>
+@if ($trial_flag && ($site->plan == 7 || $site->plan == 8))
+<form class="d-inline-block mr-2" action="{{ route('plan') }}" method="post">
+@csrf
+<button class="btn btn-sm btn-outline-secondary" type="submit">プランを選択する</button>
+<input type="hidden" name="site_id" value="{{ $site->id }}">
+<input type="hidden" name="site_url" value="{{ $site->url }}">
+<input type="hidden" name="site_name" value="{{ $site->site_name }}">
+</form>
+@else
 <form class="d-inline-block mr-2" action="{{ route('change-plan.form') }}" method="post">
 @csrf
 <button class="btn btn-sm btn-outline-secondary" type="submit">プランの変更</button>
 <input type="hidden" name="site_id" value="{{ $site->id }}">
 <input type="hidden" name="site_url" value="{{ $site->url }}">
 <input type="hidden" name="site_name" value="{{ $site->site_name }}">
+<input type="hidden" name="site_plan" value="{{ $site->plan }}">
 </form>
+@endif
 <a href="{{ route('sites-edit', $site->id) }}" class="btn btn-sm btn-outline-secondary">サイト情報変更</a>
 </div>
 </div>
