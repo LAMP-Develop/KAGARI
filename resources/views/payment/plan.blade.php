@@ -104,7 +104,7 @@ if(isset($_POST['update'])) {
 @else
 <button type="submit" name="plan" value="2" class="btn btn-outline-primary">{{ $btn_str }}</button>
 @endif
-<p class="text-left mt-1 mb-0"><small>※Search Consoleと連携します</small></p>
+
 </div>
 </div>
 </div>
@@ -171,7 +171,7 @@ if(isset($_POST['update'])) {
 @else
 <button type="submit" name="plan" value="4" class="btn btn-outline-primary">{{ $btn_str }}</button>
 @endif
-<p class="text-left mt-1 mb-0"><small>※Search Consoleと連携します</small></p>
+
 </div>
 </div>
 </div>
@@ -238,7 +238,7 @@ if(isset($_POST['update'])) {
 @else
 <button type="submit" name="plan" value="6" class="btn btn-outline-primary">{{ $btn_str }}</button>
 @endif
-<p class="text-left mt-1 mb-0"><small>※Search Consoleと連携します</small></p>
+
 </div>
 </div>
 </div>

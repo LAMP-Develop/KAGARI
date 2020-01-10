@@ -233,10 +233,6 @@ class AddSitesController extends Controller
     // レポート結果受信スケジュール更新
     public function send_setting_update($sites, Request $request)
     {
-        $validatedData = $request->validate([
-            'to_email' => 'required|string|email|max:255'
-        ]);
-
         $site_id = $sites;
         $send_flag = $request->send_flag;
         $to_email = $request->to_email;
@@ -250,25 +246,27 @@ class AddSitesController extends Controller
             ['site_id', '=', $site_id],
             ['to_cc', '=', 0],
         ])->first();
-        if ($mail_setting_to->mailaddress != $to_email) {
+        if ($mail_setting_to->mailaddress != $to_email && $to_email != null) {
             $mail_setting_to->mailaddress = $to_email;
             $mail_setting_to->updated_at = date('Y-m-d H:i:s');
             $mail_setting_to->save();
         }
 
-        // ccメールの更新
-        ReportSendMail::where([
+        if ($to_email != null) {
+            // ccメールの更新
+            ReportSendMail::where([
             ['site_id', '=', $site_id],
             ['to_cc', '=', 1],
         ])->delete();
-        foreach ($cc_email as $key => $val) {
-            $mail_setting_cc = new ReportSendMail;
-            $mail_setting_cc->site_id = $site_id;
-            $mail_setting_cc->mailaddress = $val;
-            $mail_setting_cc->to_cc = 1;
-            $mail_setting_cc->created_at = date('Y-m-d H:i:s');
-            $mail_setting_cc->updated_at = date('Y-m-d H:i:s');
-            $mail_setting_cc->save();
+            foreach ($cc_email as $key => $val) {
+                $mail_setting_cc = new ReportSendMail;
+                $mail_setting_cc->site_id = $site_id;
+                $mail_setting_cc->mailaddress = $val;
+                $mail_setting_cc->to_cc = 1;
+                $mail_setting_cc->created_at = date('Y-m-d H:i:s');
+                $mail_setting_cc->updated_at = date('Y-m-d H:i:s');
+                $mail_setting_cc->save();
+            }
         }
 
         // 送信スパンの更新

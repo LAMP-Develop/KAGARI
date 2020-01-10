@@ -104,10 +104,12 @@ data-property="{{ $prop['name'] }}"><i class="fas fa-globe-asia mr-3"></i>{{ $pr
 <script>
 $('input#images').on('change', function() {
     $('#images-input').children('#images-error').remove();
+    $('#formsubmit').removeAttr('disabled');
     let file = $(this).prop('files')[0];
     let size = file.size;
     if (size > 3145728) {
       $('#images-input').append('<p id="images-error" class="m-0"><small class="text-danger">ファイルサイズが大きすぎます</small></p>');
+      $('#formsubmit').attr('disabled', 'disabled');
     }
 });
 </script>
