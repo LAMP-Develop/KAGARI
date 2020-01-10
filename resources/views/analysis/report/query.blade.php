@@ -43,6 +43,10 @@
 </tr>
 </thead>
 <tbody>
+@php
+$max_imp = [];
+$max_imp_tmp = 0;
+@endphp
 @foreach ($sc_result['original'] as $key => $val)
 @php
 $query = $val->keys[0];
@@ -50,6 +54,10 @@ $click = (int)$val->clicks;
 $impressions = (int)$val->impressions;
 $ctr = round($val->ctr*100, 2);
 $position = round($val->position, 2);
+if ($max_imp_tmp < $impressions) {
+    $max_imp[0] = [$query, $impressions];
+    $max_imp_tmp = $impressions;
+}
 @endphp
 <tr>
 <td class="table_number">{{ $key+1 }}</td>
@@ -102,7 +110,11 @@ $position = round($val->position, 2);
 <h3 class="font-weight-bold h5 mt-2">検索分析の総評</h3>
 <button id="comment_btn" type="button" name="button" class="btn btn-primary" onclick="saveTextarea('query',document.getElementById('comment_query'))">更新</button>
 </div>
-<textarea id="comment_query" class="border form-control text-secondary" name="name" rows="4" onfocus="textareaBtn()"></textarea>
+<textarea id="comment_query" class="border form-control text-secondary" name="name" rows="4" onfocus="textareaBtn()">
+・「{{ $sc_result['original'][0]['keys'][0] }}」が期間内で一番多くクリックされています。
+・「{{ $max_imp[0][0] }}」が期間内で一番多く検索結果に表示されています。
+@if ($sc_result['sum']['original'] - $sc_result['sum']['comp'] > 0)・検索表示回数が上昇傾向にあります。@else・検索表示回数が下降傾向にあります。@endif
+</textarea>
 </div>
 </div>
 </div>

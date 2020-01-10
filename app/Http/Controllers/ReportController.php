@@ -518,6 +518,8 @@ class ReportController extends Controller
     public function get_sc_query($sc, $url, $limit = 10, $start, $end, $com_start, $com_end)
     {
         $resulets = [];
+        $impressions_sum = 0;
+        $impressions_sum_comp = 0;
         try {
             $query_date = new Google_Service_Webmasters_SearchAnalyticsQueryRequest();
             $query_date->setDimensions(['date']);
@@ -528,6 +530,7 @@ class ReportController extends Controller
                 $resulets['date'][] = $val->keys[0];
                 $resulets['clicks'][] = $val->clicks;
                 $resulets['impressions'][] = $val->impressions;
+                $impressions_sum += $val->impressions;
             }
 
             $query_date_comp = new Google_Service_Webmasters_SearchAnalyticsQueryRequest();
@@ -539,6 +542,7 @@ class ReportController extends Controller
                 $resulets['comp']['date'][] = $val->keys[0];
                 $resulets['comp']['clicks'][] = $val->clicks;
                 $resulets['comp']['impressions'][] = $val->impressions;
+                $impressions_sum_comp += $val->impressions;
             }
 
             $query = new Google_Service_Webmasters_SearchAnalyticsQueryRequest();
@@ -571,6 +575,10 @@ class ReportController extends Controller
                 'impressions' => max($max_impressions),
                 'ctr' => max($max_ctr),
                 'position' => min($max_position)
+            ];
+            $resulets['sum'] = [
+                'original' => $impressions_sum,
+                'comp' => $impressions_sum_comp
             ];
         } catch (\Exception $e) {
             return $e;
