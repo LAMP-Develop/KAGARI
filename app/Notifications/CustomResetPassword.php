@@ -6,19 +6,27 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Auth\Notifications\ResetPassword;
 
-class SendNotification extends Notification implements ShouldQueue
+class CustomResetPassword extends Notification
 {
+    /**
+      * The password reset token.
+      * @var string
+    */
+    public $token;
+
     use Queueable;
 
     /**
      * Create a new notification instance.
      *
+     * @param  string  $token
      * @return void
      */
-    public function __construct()
+    public function __construct($token)
     {
-        //
+        $this->token = $token;
     }
 
     /**
@@ -41,9 +49,9 @@ class SendNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+        ->from('info@kagari.ai', config('app.name'))
+        ->subject('アクセス解析ツール 「KAGARI」｜パスワードリセットのお知らせ')
+        ->action('パスワード再設定', url(config('app.url').route('password.reset', $this->token, false)));
     }
 
     /**
