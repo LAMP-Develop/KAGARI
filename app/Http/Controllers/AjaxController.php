@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Crypt;
 
 use App\User;
 use App\AddSites;
 use App\Plans;
+use App\Settlement;
 use Auth;
 use Google;
 use DB;
@@ -185,5 +187,34 @@ class AjaxController extends Controller
         $site = AddSites::where('id', $request->id)->get()[0];
         $site->send_flag = $request->flag;
         $site->update();
+    }
+
+    // クレジット登録
+    public function add_card(Request $request)
+    {
+        $user = Auth::user();
+        $user_id = $user->id;
+
+        $inputs = $request->all();
+
+        $validator = Validator::make($inputs, [
+            'cn' => 'required',
+            'ln' => 'required',
+            'fn' => 'required',
+            'ed_month' => 'required',
+            'ed_year' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()->all()]);
+        } else {
+            $cn = Crypt::encryptString($inputs['cn']);
+            $settlement = new Settlement;
+            $settlement->user_id = $user_id;
+            $settlement->numbers = $cn;
+            $settlement->holder = $inputs['ln'].' '.$inputs['fn'];
+            $settlement->month = $inputs['ed_month'];
+            $settlement->year = $inputs['ed_year'];
+            $settlement->save();
+        }
     }
 }

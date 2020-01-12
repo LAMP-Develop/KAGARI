@@ -34,31 +34,20 @@ if ($plan_id == 1 || $plan_id == 2) {
 <div class="form-check">
 <input class="form-check-input" type="radio" name="payment_methods" id="inlineRadio2" value="2" onclick="changeForm();">
 <label id="billing_sheet" class="form-check-label" for="inlineRadio2">請求書支払い</label>
-<!-- <small class="form-text text-muted">※請求書払いの場合は下記のクレジットカード情報は未記入で構いません。</small> -->
 </div>
 </div>
 </div>
 <div id="card_info">
 <div class="form-group row align-items-start mt-5">
-<legend class="ml-auto col-form-label col-3 pt-0 font-weight-bold">カード番号</legend>
-<div class="col-7 mr-auto">
-<input type="text" class="form-control" id="cardnum" name="cn" placeholder="0000111122223333">
-<small class="form-text text-muted">※半角英数字(空白なし)でご入力ください</small>
-<div class="mt-2">
-<img src="{{ asset('/img/credit-card.gif') }}" alt="クレジットカード" width="244">
+<legend class="ml-auto col-form-label col-3 pt-0 font-weight-bold">ご登録クレジットカード</legend>
+<div class="col-7 mr-auto row m-0">
+<div class="col-8 p-0">
+<select class="form-control">
+<option>---</option>
+</select>
 </div>
-</div>
-</div>
-<div class="form-group row align-items-start mt-5">
-<legend class="ml-auto col-form-label col-3 pt-0 font-weight-bold">有効期限(月/年)</legend>
-<div class="col-7 mr-auto">
-<div class="row">
-<div class="col-3 m-0">
-<input id="ed_month" class="form-control" type="text" name="ed_month" value="" placeholder="01">
-</div>
-<div class="col-3 m-0">
-<input id="ed_year" class="form-control" type="text" name="ed_year" value="" placeholder="20">
-</div>
+<div class="col-4">
+<button type="button" class="btn btn-primary text-white" data-toggle="modal" data-target="#payment-form">追加</button>
 </div>
 </div>
 </div>
@@ -69,19 +58,6 @@ if ($plan_id == 1 || $plan_id == 2) {
 <input id="cvv" class="form-control" type="text" name="cvv" value="" placeholder="123">
 </div>
 <small class="form-text text-muted">※カードの裏面にある数字の下3桁を半角数字で入力ください</small>
-</div>
-</div>
-<div class="form-group row align-items-start mt-5">
-<legend class="ml-auto col-form-label col-3 pt-0 font-weight-bold">カード名義</legend>
-<div class="col-7 mr-auto">
-<div class="row">
-<div class="col">
-<input id="ln" class="form-control" type="text" name="ln" value="" placeholder="性（例：KAGARI）">
-</div>
-<div class="col">
-<input id="fn" class="form-control" type="text" name="fn" value="" placeholder="名（例：TAROU）">
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -132,17 +108,96 @@ if ($plan_id == 1 || $plan_id == 2) {
 </form>
 </div>
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="payment-form" tabindex="-1" role="dialog" aria-labelledby="credit-card-regi" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title font-weight-bold" id="credit-card-regi">クレジットカード追加</h5>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div id="card-form" class="modal-body">
+<div class="form-group row align-items-start mt-4">
+<legend class="ml-auto col-form-label col-3 pt-0 font-weight-bold">カード番号</legend>
+<div class="col-7 mr-auto">
+<input type="text" class="form-control @error('cn') is-invalid @enderror" id="cardnum" name="cn" placeholder="0000111122223333">
+<small class="form-text text-muted">※半角英数字(空白なし)でご入力ください</small>
+<div class="mt-2">
+<img src="{{ asset('/img/credit-card.gif') }}" alt="クレジットカード" width="244">
+</div>
+</div>
+</div>
+<div class="form-group row align-items-start mt-5">
+<legend class="ml-auto col-form-label col-3 pt-0 font-weight-bold">有効期限(月/年)</legend>
+<div class="col-7 mr-auto">
+<div class="row">
+<div class="col-3 m-0">
+<input id="ed_month" class="form-control @error('ed_month') is-invalid @enderror" type="text" name="ed_month" value="" placeholder="01">
+</div>
+<div class="col-3 m-0">
+<input id="ed_year" class="form-control @error('ed_year') is-invalid @enderror" type="text" name="ed_year" value="" placeholder="20">
+</div>
+</div>
+</div>
+</div>
+<div class="form-group row align-items-start mt-5">
+<legend class="ml-auto col-form-label col-3 pt-0 font-weight-bold">カード名義</legend>
+<div class="col-7 mr-auto">
+<div class="row">
+<div class="col">
+<input id="ln" class="form-control @error('ln') is-invalid @enderror" type="text" name="ln" value="" placeholder="性（例：KAGARI）">
+</div>
+<div class="col">
+<input id="fn" class="form-control @error('fn') is-invalid @enderror" type="text" name="fn" value="" placeholder="名（例：TAROU）">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<button id="addcard" type="submit" class="btn btn-primary">保存する</button>
+<button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+</div>
+</div>
+</div>
+</div>
+
 <script>
-  // 支払い方法切り替え
-  function changeForm(){
-    var radio = document.getElementsByName('payment_methods');
-    if(radio[0].checked){
-      document.getElementById('card_info').style.display = "";
-      document.getElementById('bill_info').style.display = "none";
-    }else if(radio[1].checked){
-      document.getElementById('card_info').style.display = "none";
-      document.getElementById('bill_info').style.display = "";
-    }
+// 支払い方法切り替え
+function changeForm() {
+  var radio = document.getElementsByName('payment_methods');
+  if(radio[0].checked){
+    document.getElementById('card_info').style.display = "";
+    document.getElementById('bill_info').style.display = "none";
+  } else if(radio[1].checked){
+    document.getElementById('card_info').style.display = "none";
+    document.getElementById('bill_info').style.display = "";
   }
+}
+
+$('#addcard').on('click', function() {
+  const csrf = $('meta[name="csrf-token"]').attr('content');
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': csrf
+    }
+  });
+  $.ajax({
+    url: "{{ route('add.card') }}",
+    type: 'post',
+    datatype: 'json',
+    data: {
+      cn: $('#cardnum').val(),
+      ed_month: $('#ed_month').val(),
+      ed_year: $('#ed_year').val(),
+      ln: $('#ln').val(),
+      fn: $('#fn').val()
+    }
+  }).done(function(data) {
+  });
+});
 </script>
 @endsection

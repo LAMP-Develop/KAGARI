@@ -122,8 +122,8 @@ SEO分析する
 </li>
 @endauth
 <li class="l-drawer__item">
-<a class="l-drawer__item-inner" href="https://marketing.kagari.ai" target="_blank">
-<img class="img-fluid" src="{{ asset('img/banner_marketing.png') }}" alt="KAGARI Marketing">
+<a class="l-drawer__item-inner" href="https://consulting.kagari.ai" target="_blank">
+<img class="img-fluid" src="{{ asset('img/banner_consulting.png') }}" alt="KAGARI Consulting">
 </a>
 </li>
 </ul>

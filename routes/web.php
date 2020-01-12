@@ -138,6 +138,7 @@ Route::post('/sc-all/{AddSites}', 'AjaxController@get_sc_all', function ($sites)
     return $sites;
 });
 Route::post('/send-flag', 'AjaxController@set_send_flag'); // PDF送付のフラグ
+Route::post('/add-card', 'AjaxController@add_card')->name('add.card'); // クレジットカード
 
 // Voyager
 Route::group(['prefix' => 'admin'], function () {
