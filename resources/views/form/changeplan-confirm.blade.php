@@ -14,27 +14,29 @@
 <div class="form-group mb-4">
 <label class="not-must font-weight-bold" for="name">{{ __('Name') }}</label>
 <p class="m-0">{{ $inputs['name'] }}</p>
-<input type="hidden" name="name" value="{{ $inputs['name'] }}">
 </div>
 
 <div class="form-group mb-4">
 <label class="not-must font-weight-bold" for="email">{{ __('E-Mail Address') }}</label>
 <p class="m-0">{{ $inputs['email'] }}</p>
-<input type="hidden" name="email" value="{{ $inputs['email'] }}">
 </div>
 
 <div class="form-group mb-4">
 <label class="not-must font-weight-bold" for="site">対象サイト</label>
-<p class="m-0">{{ $inputs['site'] }}</p>
-<input type="hidden" name="site" value="{{ $inputs['site'] }}">
+<p class="m-0">{{ $inputs['site_name'] }}</p>
 </div>
 
 <div class="form-group mb-4">
-<label class="not-must font-weight-bold" for="plan_name">変更したいプラン</label>
+<label class="not-must font-weight-bold" for="plan_name">変更したいプラン／解約</label>
 <p class="m-0">{{ $inputs['plan_name'] }}</p>
-<input type="hidden" name="plan_name" value="{{ $inputs['plan_name'] }}">
 </div>
 
+<input type="hidden" name="name" value="{{ $inputs['name'] }}">
+<input type="hidden" name="email" value="{{ $inputs['email'] }}">
+<input type="hidden" name="site_name" value="{{ $inputs['site_name'] }}">
+<input type="hidden" name="site_url" value="{{ $inputs['site_url'] }}">
+<input type="hidden" name="plan_name" value="{{ $inputs['plan_name'] }}">
+<input type="hidden" name="now" value="{{ $inputs['now'] }}">
 <input type="hidden" name="site_id" value="{{ $inputs['site_id'] }}">
 
 <div class="form-group mb-0 text-center mt-5">

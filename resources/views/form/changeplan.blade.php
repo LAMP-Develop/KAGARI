@@ -33,7 +33,7 @@
 
 <div class="form-group mb-4">
 <label class="font-weight-bold" for="site">対象サイト</label>
-<input id="site" type="text" class="form-control @error('site') is-invalid @enderror" name="site" value="{{ $site_name }}" required autocomplete="site">
+<input id="site" type="text" class="form-control @error('site') is-invalid @enderror" name="site_name" value="{{ $site_name }}" required autocomplete="site">
 @error('site')
 <span class="invalid-feedback" role="alert">
 <strong>{{ $message }}</strong>
@@ -45,7 +45,11 @@
 <label class="font-weight-bold" for="plan">変更したいプラン／解約</label>
 <select class="form-control" id="plan" name="plan_name">
 @foreach ($plan as $key => $val)
-<!-- $site_plan -->
+@php
+if ($key == 6 || $key == 7) {
+    continue;
+}
+@endphp
 <option value="{{ $val->name }}">{{ $val->name }}</option>
 @endforeach
 <option value="解約">解約</option>
@@ -54,6 +58,8 @@
 </div>
 
 <input type="hidden" name="site_id" value="{{ $site_id }}">
+<input type="hidden" name="site_url" value="{{ $site_url }}">
+<input type="hidden" name="now" value="{{ $plan[($site_plan - 1)]->name }}">
 
 <div class="form-group mb-0 text-center mt-5">
 <button type="submit" class="btn btn-primary">確認する</button>

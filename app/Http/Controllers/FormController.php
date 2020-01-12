@@ -72,9 +72,10 @@ class FormController extends Controller
 
     public function changeplan_send(Request $request)
     {
+        $user = Auth::user();
         $inputs = $request->all();
-        \Mail::to($inputs['email'])->send(new PlanSendmail($inputs));
-        \Mail::to('kagari-changeplan@kagari.ai')->send(new PlanAdminSendmail($inputs));
+        \Mail::to($inputs['email'])->send(new PlanSendmail($inputs, $user));
+        \Mail::to('kagari-changeplan@kagari.ai')->send(new PlanAdminSendmail($inputs, $user));
         return view('form.changeplan-send', [
             'inputs' => $inputs,
         ]);

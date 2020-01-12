@@ -11,14 +11,18 @@ class PlanAdminSendmail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
+    private $inputs;
+    private $user;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($inputs, $user)
     {
-        //
+        $this->inputs = $inputs;
+        $this->user = $user;
     }
 
     /**
@@ -28,8 +32,17 @@ class PlanAdminSendmail extends Mailable implements ShouldQueue
      */
     public function build()
     {
+        if ($this->inputs['plan_name'] == '解約') {
+            $subject = '【KAGARI】プラン解約申請がありました';
+        } else {
+            $subject = '【KAGARI】プラン変更申請がありました';
+        }
         return $this
-        ->subject('【KAGARI】退会申請がありました')
-        ->view('mail.changeplan-admin-mail');
+        ->subject($subject)
+        ->view('mail.changeplan-admin-mail')
+        ->with([
+            'inputs' => $this->inputs,
+            'user' => $this->user,
+        ]);
     }
 }
