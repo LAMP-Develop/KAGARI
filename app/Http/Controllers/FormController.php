@@ -38,9 +38,10 @@ class FormController extends Controller
 
     public function unsubscribe_send(Request $request)
     {
+        $user = Auth::user();
         $inputs = $request->all();
-        \Mail::to($inputs['email'])->send(new FormSendmail($inputs));
-        \Mail::to('kagari-unsub@kagari.ai')->send(new FormAdminSendmail($inputs));
+        \Mail::to($inputs['email'])->send(new FormSendmail($user));
+        \Mail::to('kagari-unsub@kagari.ai')->send(new FormAdminSendmail($inputs, $user));
         return view('form.unsubsc-send', [
             'inputs' => $inputs,
         ]);

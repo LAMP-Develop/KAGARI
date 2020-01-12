@@ -11,16 +11,16 @@ class FormSendmail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    private $email;
+    private $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($inputs)
+    public function __construct($user)
     {
-        $this->email = $inputs['email'];
+        $this->user = $user;
     }
 
     /**
@@ -31,10 +31,10 @@ class FormSendmail extends Mailable implements ShouldQueue
     public function build()
     {
         return $this
-        ->subject('【KAGARI】退会申請受付のお知らせ')
+        ->subject('アクセス解析ツール 「KAGARI」｜退会申請を受け付けました。')
         ->view('mail.unsubsc-mail')
         ->with([
-            'email' => $this->email,
+            'user' => $this->user,
         ]);
     }
 }
