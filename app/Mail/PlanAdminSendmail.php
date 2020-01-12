@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class PlanAdminSendmail extends Mailable
+class PlanAdminSendmail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -30,6 +30,6 @@ class PlanAdminSendmail extends Mailable
     {
         return $this
         ->subject('【KAGARI】退会申請がありました')
-        ->view('form.changeplan-admin-mail');
+        ->view('mail.changeplan-admin-mail');
     }
 }

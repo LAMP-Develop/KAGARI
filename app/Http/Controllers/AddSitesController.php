@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\User;
 use App\AddSites;
 use App\Category;
@@ -10,10 +11,10 @@ use App\Industry;
 use App\Plans;
 use App\ReportSendDays;
 use App\ReportSendMail;
+use App\Rules\AlphaNumHalf;
+use App\Mail\TrialStartSendmail;
 use Auth;
 use DB;
-use App\Rules\AlphaNumHalf;
-use Illuminate\Support\Facades\Storage;
 
 class AddSitesController extends Controller
 {
@@ -132,6 +133,8 @@ class AddSitesController extends Controller
         $send_mail->created_at = date('Y-m-d H:i:s');
         $send_mail->updated_at = date('Y-m-d H:i:s');
         $send_mail->save();
+
+        \Mail::to($user->email)->send(new TrialStartSendmail($user, $add_sites));
 
         return redirect(route('dashboard'));
     }

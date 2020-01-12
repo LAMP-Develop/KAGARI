@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class FormAdminSendmail extends Mailable
+class FormAdminSendmail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -38,7 +38,7 @@ class FormAdminSendmail extends Mailable
     {
         return $this
         ->subject('【KAGARI】退会申請がありました')
-        ->view('form.unsubsc-admin-mail')
+        ->view('mail.unsubsc-admin-mail')
         ->with([
             'email' => $this->email,
             'name' => $this->name,

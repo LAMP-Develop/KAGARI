@@ -7,20 +7,22 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class FormSendmail extends Mailable implements ShouldQueue
+class TrialStartSendmail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    private $email;
+    private $user;
+    private $add_sites;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($inputs)
+    public function __construct($user, $add_sites)
     {
-        $this->email = $inputs['email'];
+        $this->user = $user;
+        $this->add_sites = $add_sites;
     }
 
     /**
@@ -31,10 +33,11 @@ class FormSendmail extends Mailable implements ShouldQueue
     public function build()
     {
         return $this
-        ->subject('【KAGARI】退会申請受付のお知らせ')
-        ->view('mail.unsubsc-mail')
+        ->subject('アクセス解析ツール 「KAGARI」｜新規会員登録 / トライアル開始のお知らせ')
+        ->view('mail.trial-start')
         ->with([
-            'email' => $this->email,
+            'user' => $this->user,
+            'add_sites' => $this->add_sites
         ]);
     }
 }

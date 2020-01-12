@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class PlanSendmail extends Mailable
+class PlanSendmail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -30,6 +30,6 @@ class PlanSendmail extends Mailable
     {
         return $this
         ->subject('【KAGARI】プラン変更受付のお知らせ')
-        ->view('form.changeplan-mail');
+        ->view('mail.changeplan-mail');
     }
 }
