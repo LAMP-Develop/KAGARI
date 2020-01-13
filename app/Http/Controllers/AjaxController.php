@@ -217,4 +217,12 @@ class AjaxController extends Controller
             $settlement->save();
         }
     }
+
+    // クレジット編集
+    public function edit_cards(Request $request)
+    {
+        foreach ($request->cards as $key => $val) {
+            Settlement::find($val)->delete();
+        }
+    }
 }

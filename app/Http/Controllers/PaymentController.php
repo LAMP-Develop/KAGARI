@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\AddSites;
 use App\Plans;
+use App\Settlement;
 use App\Mail\PaymentDonemail;
 use Auth;
 use DB;
@@ -31,6 +32,8 @@ class PaymentController extends Controller
      */
     public function index(Request $request)
     {
+        $user = Auth::user();
+
         $site_id = $request['site-id'];
         $site = AddSites::where('id', $site_id)->get();
         $site_name = $site[0]->site_name;
@@ -39,6 +42,9 @@ class PaymentController extends Controller
         $plan_name = $plan[0]->name;
         $plan_price = number_format((int)$plan[0]->price);
         $plan_period = $plan[0]->contract_period;
+
+        $card = Settlement::where('user_id', $user->id)->get();
+
         return view('payment.payment')->with([
             'site_id' => $site_id,
             'site_name' => $site_name,
@@ -47,6 +53,7 @@ class PaymentController extends Controller
             'plan_name' => $plan_name,
             'plan_price' => $plan_price,
             'plan_period' => $plan_period,
+            'card' => $card,
         ]);
     }
 

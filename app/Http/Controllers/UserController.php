@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\AddSites;
 use App\User;
+use App\Settlement;
 use Auth;
 
 class UserController extends Controller
@@ -70,8 +71,14 @@ class UserController extends Controller
     }
 
     // 退会処理
-    public function account_delete()
+    public function cards()
     {
-        return 'aaa';
+        $user = Auth::user();
+        $card = Settlement::where('user_id', $user->id)->get();
+
+        return view('account.cards')->with([
+            'user' => $user,
+            'card' => $card,
+        ]);
     }
 }

@@ -42,12 +42,18 @@ if ($plan_id == 1 || $plan_id == 2) {
 <legend class="ml-auto col-form-label col-3 pt-0 font-weight-bold">ご登録クレジットカード</legend>
 <div class="col-7 mr-auto row m-0">
 <div class="col-8 p-0">
-<select class="form-control">
+<select class="form-control" name="cards">
 <option>---</option>
+@foreach ($card as $key => $val)
+@php
+$nums = 'カード番号下4桁（'.substr(\Crypt::decryptString($val->numbers), -4).'）';
+@endphp
+<option value="{{ $val->id }}">{{ $nums }}</option>
+@endforeach
 </select>
 </div>
 <div class="col-4">
-<button type="button" class="btn btn-primary text-white" data-toggle="modal" data-target="#payment-form">追加</button>
+<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#payment-form">カード追加</button>
 </div>
 </div>
 </div>
@@ -123,7 +129,7 @@ if ($plan_id == 1 || $plan_id == 2) {
 <div class="form-group row align-items-start mt-4">
 <legend class="ml-auto col-form-label col-3 pt-0 font-weight-bold">カード番号</legend>
 <div class="col-7 mr-auto">
-<input type="text" class="form-control @error('cn') is-invalid @enderror" id="cardnum" name="cn" placeholder="0000111122223333">
+<input type="text" class="form-control @error('cn') is-invalid @enderror" id="cardnum" name="cn" placeholder="0000111122223333" required>
 <small class="form-text text-muted">※半角英数字(空白なし)でご入力ください</small>
 <div class="mt-2">
 <img src="{{ asset('/img/credit-card.gif') }}" alt="クレジットカード" width="244">
@@ -135,10 +141,10 @@ if ($plan_id == 1 || $plan_id == 2) {
 <div class="col-7 mr-auto">
 <div class="row">
 <div class="col-3 m-0">
-<input id="ed_month" class="form-control @error('ed_month') is-invalid @enderror" type="text" name="ed_month" value="" placeholder="01">
+<input id="ed_month" class="form-control @error('ed_month') is-invalid @enderror" type="text" name="ed_month" value="" placeholder="01" required>
 </div>
 <div class="col-3 m-0">
-<input id="ed_year" class="form-control @error('ed_year') is-invalid @enderror" type="text" name="ed_year" value="" placeholder="20">
+<input id="ed_year" class="form-control @error('ed_year') is-invalid @enderror" type="text" name="ed_year" value="" placeholder="20" required>
 </div>
 </div>
 </div>
@@ -148,10 +154,10 @@ if ($plan_id == 1 || $plan_id == 2) {
 <div class="col-7 mr-auto">
 <div class="row">
 <div class="col">
-<input id="ln" class="form-control @error('ln') is-invalid @enderror" type="text" name="ln" value="" placeholder="性（例：KAGARI）">
+<input id="ln" class="form-control @error('ln') is-invalid @enderror" type="text" name="ln" value="" placeholder="性（例：KAGARI）" required>
 </div>
 <div class="col">
-<input id="fn" class="form-control @error('fn') is-invalid @enderror" type="text" name="fn" value="" placeholder="名（例：TAROU）">
+<input id="fn" class="form-control @error('fn') is-invalid @enderror" type="text" name="fn" value="" placeholder="名（例：TAROU）" required>
 </div>
 </div>
 </div>
@@ -197,6 +203,7 @@ $('#addcard').on('click', function() {
       fn: $('#fn').val()
     }
   }).done(function(data) {
+    location.reload();
   });
 });
 </script>

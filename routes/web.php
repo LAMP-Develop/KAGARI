@@ -35,6 +35,9 @@ Route::group(['prefix' => 'dashboard'], function () {
         // アカウント情報編集
         Route::get('/edit', 'UserController@account_form')->name('edit');
         Route::post('/edit-data', 'AjaxController@edit_account')->name('edit-ajax');
+        // カード情報編集
+        Route::get('/edit-cards', 'UserController@cards')->name('edit.cards');
+        Route::post('/edit-cards-data', 'AjaxController@edit_cards')->name('edit.cards-ajax');
         // 退会フォーム
         Route::view('/delete', 'auth.delete')->name('delete');
 

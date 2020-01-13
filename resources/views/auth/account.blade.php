@@ -37,6 +37,10 @@
 <td class="text-right"><a href="{{ route('password.request') }}"><i class="fas fa-key mr-1"></i>再設定する</a></td>
 </tr>
 <tr>
+<th>登録済みカード</th>
+<td class="text-right"><a href="{{ route('edit.cards') }}"><i class="far fa-edit mr-1"></i>編集する</a></td>
+</tr>
+<tr>
 <th>登録サイト数</th>
 <td class="text-right">{{ $add_sites }} サイト</td>
 </tr>
