@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\AddSites;
 use App\Plans;
+use App\Mail\PaymentDonemail;
 use Auth;
 use DB;
 
@@ -51,6 +52,7 @@ class PaymentController extends Controller
 
     public function done(Request $request)
     {
+
         AddSites::where('id', (int)$request['site_id'])->update([
             'plan' => (int)$request['plan_id'],
             'payment_methods' => (int)$request['payment_methods'],
@@ -61,13 +63,31 @@ class PaymentController extends Controller
         if(isset($request->cn)){
           DB::table('billing_sheet')
           ->insert([
-            'name' => $request['pn'],
-            'company' => $request['cn'],
-            'site_id' => $request['site_id'],
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
+              'name' => $request['pn'],
+              'company' => $request['cn'],
+              'site_id' => $request['site_id'],
+              'created_at' => date('Y-m-d H:i:s'),
+              'updated_at' => date('Y-m-d H:i:s')
           ]);
         }
+
+        $user = Auth::user();
+        $plan = Plans::where('id', ((int)$request['plan_id'] - 1))->first();
+        $plan_name = $plan->name;
+        $plan_price = number_format((int)$plan->price);
+        $plan_period = $plan->contract_period;
+        $site = AddSites::where('id', (int)$request['site_id'])->first();
+        $site_name = $site->site_name;
+        $updated_date = date('Y年n月1日', strtotime('+'.$plan_period.' month'));
+        $inputs = [
+            'plan_name' => $plan_name,
+            'plan_price' => $plan_price,
+            'plan_period' => $plan_period,
+            'site_name' => $site_name,
+            'updated_date' => $updated_date
+        ];
+
+        \Mail::to($user->email)->send(new PaymentDonemail($inputs, $user));
 
         return view('payment.done')->with([
             'site_id' => $request['site_id'],
