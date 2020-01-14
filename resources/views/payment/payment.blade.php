@@ -22,7 +22,7 @@ if ($plan_id == 1 || $plan_id == 2) {
 <div class="container">
 
 <h2 class="text-center text-muted h5 font-weight-bold mb-5">お支払い方法を選択してください</h2>
-<form class="payment-form" action="{{ route('payment-done') }}" method="post" name="payment_kagari">
+<form id="mainform" class="payment-form" action="{{ route('payment-done') }}" method="post" name="payment_kagari">
 @csrf
 <div class="form-group row align-items-start">
 <legend class="ml-auto col-form-label col-3 pt-0 font-weight-bold">支払い方法</legend>
@@ -42,13 +42,21 @@ if ($plan_id == 1 || $plan_id == 2) {
 <legend class="ml-auto col-form-label col-3 pt-0 font-weight-bold">ご登録クレジットカード</legend>
 <div class="col-7 mr-auto row m-0">
 <div class="col-8 p-0">
-<select class="form-control" name="cards">
+<select id="cn-select" class="form-control" name="cards">
 <option>---</option>
 @foreach ($card as $key => $val)
 @php
 $nums = 'カード番号下4桁（'.substr(\Crypt::decryptString($val->numbers), -4).'）';
+$holder = explode(' ', $val->holder);
 @endphp
-<option value="{{ $val->id }}">{{ $nums }}</option>
+<option
+value="{{ $val->id }}"
+data-cn="{{ \Crypt::decryptString($val->numbers) }}"
+data-ln="{{ $holder[0] }}"
+data-fn="{{ $holder[1] }}"
+data-month="{{ $val->month }}"
+data-year="{{ $val->year }}"
+>{{ $nums }}</option>
 @endforeach
 </select>
 </div>
@@ -123,7 +131,7 @@ $nums = 'カード番号下4桁（'.substr(\Crypt::decryptString($val->numbers),
 </div>
 
 <div class="mt-5 text-center">
-<button type="submit" class="btn btn-primary">上記の内容で登録する</button>
+<button id="payment-submit" type="button" class="btn btn-primary">上記の内容で登録する</button>
 </div>
 
 <input type="hidden" name="site_id" value="{{ $site_id }}">
@@ -133,6 +141,17 @@ $nums = 'カード番号下4桁（'.substr(\Crypt::decryptString($val->numbers),
 <input type="hidden" name="plan_name" value="{{ $plan_name }}">
 <input type="hidden" name="plan_price" value="{{ $plan_price }}">
 <input type="hidden" name="plan_period" value="{{ $plan_period }}">
+
+<input id="tkn" type="hidden" name="tkn" value="">
+<input id="pn" type="hidden" name="pn" value="{{ $user->tel }}">
+<input id="em" type="hidden" name="em" value="{{ $user->email }}">
+<input id="aid" type="hidden" name="aid" value="117213">
+<input id="iid" type="hidden" name="iid" value="kagari_report_0{{ $plan_id }}">
+<input id="main_cn" type="hidden" name="cn" value="">
+<input id="main_ed_month" type="hidden" name="ed_month" value="">
+<input id="main_ed_year" type="hidden" name="ed_year" value="">
+<input id="main_ln" type="hidden" name="ln" value="">
+<input id="main_fn" type="hidden" name="fn" value="">
 
 </form>
 </div>
@@ -194,10 +213,11 @@ $nums = 'カード番号下4桁（'.substr(\Crypt::decryptString($val->numbers),
 </div>
 </div>
 
+<script src="//credit.j-payment.co.jp/gateway/js/CPToken.js"></script>
 <script>
 // 支払い方法切り替え
 function changeForm() {
-  var radio = document.getElementsByName('payment_methods');
+  let radio = document.getElementsByName('payment_methods');
   if(radio[0].checked){
     document.getElementById('card_info').style.display = "";
     document.getElementById('bill_info').style.display = "none";
@@ -229,5 +249,58 @@ $('#addcard').on('click', function() {
     location.reload();
   });
 });
+
+$('#cn-select').on('change', function() {
+  let data_cn = $('#cn-select option:selected').attr('data-cn');
+  let data_ln = $('#cn-select option:selected').attr('data-ln');
+  let data_fn = $('#cn-select option:selected').attr('data-fn');
+  let data_month = $('#cn-select option:selected').attr('data-month');
+  let data_year = $('#cn-select option:selected').attr('data-year');
+
+  $('#main_cn').val(data_cn);
+  $('#main_ln').val(data_ln);
+  $('#main_fn').val(data_fn);
+  $('#main_ed_month').val(data_month);
+  $('#main_ed_year').val(data_year);
+});
+
+$('#payment-submit').on('click', function() {
+  let radio = document.getElementsByName('payment_methods');
+  if (radio[1].checked) {
+    $('#mainform').submit();
+  } else {
+    doPurchase();
+  }
+});
+
+// クレジット処理
+function doPurchase() {
+  CPToken.TokenCreate({
+    aid: '117213',
+    cn: $('#main_cn').val(),
+    ed: String($('#main_ed_year').val()) + String($('#main_ed_month').val()),
+    fn: $('#main_fn').val(),
+    ln: $('#main_ln').val(),
+    cvv: $('#cvv').val(),
+    md: '10'
+  }, execPurchase);
+}
+
+// コールバック関数
+function execPurchase(resultCode, errMsg) {
+  if (resultCode != "Success") {
+    window.alert(errMsg);
+  } else {
+    // カード情報を消去
+    $('#main_cn').val("");
+    $('#main_ed_year').val("");
+    $('#main_ed_month').val("");
+    $('#main_fn').val("");
+    $('#main_ln').val("");
+    $('#cvv').val("");
+    // スクリプトからフォームをsubmit
+    $('#mainform').submit();
+  }
+}
 </script>
 @endsection

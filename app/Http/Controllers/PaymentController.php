@@ -46,6 +46,7 @@ class PaymentController extends Controller
         $card = Settlement::where('user_id', $user->id)->get();
 
         return view('payment.payment')->with([
+            'user' => $user,
             'site_id' => $site_id,
             'site_name' => $site_name,
             'site_url' => $site_url,
@@ -59,44 +60,78 @@ class PaymentController extends Controller
 
     public function done(Request $request)
     {
+        $url = 'https://credit.j-payment.co.jp/gateway/gateway_token.aspx';
+        $data = [
+            'aid' => $request->aid,
+            'rt' => 0,
+            'tkn' => $request->tkn,
+            'pn' => $request->pn,
+            'em' => $request->em,
+            'iid' => $request->iid
+        ];
+        $data = http_build_query($data, "", "&");
+        $header = [
+            "Content-Type: application/x-www-form-urlencoded",
+            "Content-Length: ".strlen($data)
+        ];
+        $options = [
+            'http' => [
+                'method' => 'GET',
+                'content' => $data,
+                'header' => implode("\r\n", $header),
+            ]
+        ];
+        $options = stream_context_create($options);
+        $contents = str_replace("\r", "", file_get_contents($url, false, $options));
+        $error = true;
 
-        AddSites::where('id', (int)$request['site_id'])->update([
-            'plan' => (int)$request['plan_id'],
-            'payment_methods' => (int)$request['payment_methods'],
-            'plan_created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
-        ]);
+        if ($contents == 'ok') {
+            AddSites::where('id', (int)$request['site_id'])->update([
+                'plan' => (int)$request['plan_id'],
+                'payment_methods' => (int)$request['payment_methods'],
+                'plan_created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
 
-        if(isset($request->cn)){
-          DB::table('billing_sheet')
-          ->insert([
-              'name' => $request['pn'],
-              'company' => $request['cn'],
-              'site_id' => $request['site_id'],
-              'created_at' => date('Y-m-d H:i:s'),
-              'updated_at' => date('Y-m-d H:i:s')
-          ]);
+            if(isset($request->cn)){
+              DB::table('billing_sheet')
+              ->insert([
+                  'name' => $request['pn'],
+                  'company' => $request['cn'],
+                  'site_id' => $request['site_id'],
+                  'created_at' => date('Y-m-d H:i:s'),
+                  'updated_at' => date('Y-m-d H:i:s')
+              ]);
+            }
+
+            $user = Auth::user();
+            $plan = Plans::where('id', ((int)$request['plan_id'] - 1))->first();
+            $plan_name = $plan->name;
+            $plan_price = number_format((int)$plan->price);
+            $plan_period = $plan->contract_period;
+            $site = AddSites::where('id', (int)$request['site_id'])->first();
+            $site_name = $site->site_name;
+            $updated_date = date('Y年n月1日', strtotime('+'.$plan_period.' month'));
+            $inputs = [
+                'plan_name' => $plan_name,
+                'plan_price' => $plan_price,
+                'plan_period' => $plan_period,
+                'site_name' => $site_name,
+                'updated_date' => $updated_date
+            ];
+
+            // メール送信
+            \Mail::to($user->email)->send(new PaymentDonemail($inputs, $user));
+        } else {
+            $error = false;
         }
 
-        $user = Auth::user();
-        $plan = Plans::where('id', ((int)$request['plan_id'] - 1))->first();
-        $plan_name = $plan->name;
-        $plan_price = number_format((int)$plan->price);
-        $plan_period = $plan->contract_period;
-        $site = AddSites::where('id', (int)$request['site_id'])->first();
-        $site_name = $site->site_name;
-        $updated_date = date('Y年n月1日', strtotime('+'.$plan_period.' month'));
-        $inputs = [
-            'plan_name' => $plan_name,
-            'plan_price' => $plan_price,
-            'plan_period' => $plan_period,
-            'site_name' => $site_name,
-            'updated_date' => $updated_date
-        ];
-
-        \Mail::to($user->email)->send(new PaymentDonemail($inputs, $user));
+        // 2重送信対策
+        $request->session()->regenerateToken();
 
         return view('payment.done')->with([
+            'error_str' => $contents,
+            'error' => $error,
             'site_id' => $request['site_id'],
             'site_name' => $request['site_name'],
             'site_url' => $request['site_url'],

@@ -16,12 +16,14 @@ if(isset($_POST['update'])) {
 
 @section('content')
 @if ($e_message)
+<div class="col-6 mx-auto mb-5">
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
 選ばれたサイトはSearch Consoleに登録されていません。SEO解析付きのプランを活用される際にはSearch Consoleへサイトをご登録ください。
 <br><a href="https://support.google.com/webmasters/topic/9455938?hl=ja&ref_topic=4558844" target="_blank"><i class="fas fa-link mr-1"></i>設定方法を確認する（公式ヘルプ）</a>
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 <span aria-hidden="true">&times;</span>
 </button>
+</div>
 </div>
 @endif
 <form action="{{ route('payment') }}" method="post">
