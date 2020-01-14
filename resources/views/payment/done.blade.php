@@ -1,4 +1,12 @@
-@section('title', 'お支払い完了')
+@php
+if ($error) {
+    $ttl = 'お支払い完了';
+} else {
+    $ttl = 'エラー';
+}
+@endphp
+
+@section('title', $ttl)
 
 @extends('layouts.app')
 
@@ -9,7 +17,7 @@
 @section('content')
 <section class="wrap">
 <div class="container">
-<?php if ($error): ?>
+@if ($error)
 <h2 class="text-center text-muted h4 font-weight-bold mb-5">ご登録ありがとうございます</h2>
 <div class="mt-5 col-11 mx-auto">
 <h3 class="h5 font-weight-bold mb-4">ご登録内容詳細</h3>
@@ -29,11 +37,11 @@
 </tr>
 </tbody>
 </table>
-<?php else: ?>
+@else
 <h2 class="text-center text-muted h4 font-weight-bold mb-5">正しく決済ができませんでした。</h2>
 <p class="text-center">大変お手数ですがクレジットカード情報をご確認の上、再度決済をやり直してください。</p>
 <p class="m-0 text-center">エラーコード：{{ $error_str }}</p>
-<?php endif; ?>
+@endif
 <div class="mt-5 text-center">
 <a class="btn btn-primary" href="{{ route('dashboard') }}">サイト一覧に戻る</a>
 </div>
