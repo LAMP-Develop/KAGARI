@@ -107,7 +107,7 @@ class PaymentController extends Controller
             }
 
             $user = Auth::user();
-            $plan = Plans::where('id', ((int)$request['plan_id'] - 1))->first();
+            $plan = Plans::where('id', ((int)$request['plan_id']))->first();
             $plan_name = $plan->name;
             $plan_price = number_format((int)$plan->price);
             $plan_period = $plan->contract_period;
