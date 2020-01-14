@@ -99,6 +99,29 @@ $nums = 'カード番号下4桁（'.substr(\Crypt::decryptString($val->numbers),
 </tbody>
 </table>
 </div>
+
+<div class="card">
+<div class="card-body">
+<p>下記の注意事項に同意いただける方のみチェックを入れ次へお進みください。
+<br>
+<br><b>【プラン変更に関して】</b>
+<br>・プラン変更の完了には2営業日いただいております。
+<br>
+<br><b>【解約/退会に関して】</b>
+<br>・クレジットカード決済の方
+<br>　ご登録サイトの解約/KAGARIの退会には2営業日いただいております。
+<br>　希望日の2営業日前に申請をお願いします。
+<br>　解約/退会完了が翌月を越えた場合は自動的に課金されますので、予めご了承ください。
+<br>
+<br>・請求書払いの方
+<br>　解約/退会いただいた月の翌月の5日迄にご登録メールアドレスへ請求書をお送りいたします。</p>
+<div class="form-group form-check m-0">
+<input type="checkbox" class="form-check-input" id="agreement" required>
+<label class="form-check-label" for="agreement">上記の注意事項に同意する</label>
+</div>
+</div>
+</div>
+
 <div class="mt-5 text-center">
 <button type="submit" class="btn btn-primary">上記の内容で登録する</button>
 </div>

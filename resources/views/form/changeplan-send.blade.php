@@ -8,7 +8,7 @@
 <section class="wrap">
 <div class="container">
 <h2 class="text-center font-weight-bold mb-4">送信が完了しました。</h2>
-<p class="text-center mb-0">改めて担当者よりご連絡差し上げます。</p>
+<p class="text-center mb-0">ご入力されましたメールアドレスにプラン変更申請の内容を<br>お送り致しましたのでご確認のほどよろしくお願い申し上げます。</p>
 </div>
 </section>
 @endsection
