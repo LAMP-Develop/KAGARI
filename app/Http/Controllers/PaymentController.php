@@ -85,7 +85,7 @@ class PaymentController extends Controller
         $contents = str_replace("\r", "", file_get_contents($url, false, $options));
         $error = true;
 
-        dd($contents);
+        // dd($contents);
 
         if ($contents == 'OK') {
             AddSites::where('id', (int)$request['site_id'])->update([
