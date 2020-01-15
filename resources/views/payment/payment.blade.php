@@ -66,7 +66,7 @@ data-year="{{ $val->year }}"
 </div>
 </div>
 <div class="form-group row align-items-start mt-5">
-<legend class="ml-auto col-form-label col-3 pt-0 font-weight-bold">セキュリティコード</legend>
+<legend class="ml-auto col-form-label col-3 pt-0 font-weight-bold">セキュリティコード/CVV</legend>
 <div class="col-7 mr-auto">
 <div class="col-3 m-0 p-0">
 <input id="cvv" class="form-control" type="text" name="cvv" value="" placeholder="123">
