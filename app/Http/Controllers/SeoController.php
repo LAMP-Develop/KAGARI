@@ -81,44 +81,53 @@ class SeoController extends Controller
 
         // GAのレポート結果
         $ga_result = $this->get_ga_data($ga, $view_id, $start, $end, (String)$page);
-        if ($ga_result == 'error') {
-            $counts = 0;
-            $all_pages = 0;
-            $ga_results = [];
-            $ga_message = '期間設定に誤りがあります。';
-        } else {
-            $ga_results = $ga_result['rows'];
-            $counts = $ga_result['counts'][0];
-            $all_pages = ceil($counts / 100);
-            $ga_message = '';
+        // dd($ga_result['counts'][0] != null);
+        if($ga_result['counts'][0] != null){
+          if ($ga_result == 'error') {
+              $counts = 0;
+              $all_pages = 0;
+              $ga_results = [];
+              $ga_message = '期間設定に誤りがあります。';
+          } else {
+              $ga_results = $ga_result['rows'];
+              $counts = $ga_result['counts'][0];
+              $all_pages = ceil($counts / 100);
+              $ga_message = '';
 
-            // SCのレポート結果
-            $sc_results = $this->get_sc_data($sc, $url, 9999, $start, $end);
-            foreach ($sc_results as $key => $val) {
-                $sc_result[$val['keys'][0]] = [
-                    'clicks' => $val['clicks'],
-                    'ctr' => round(($val['ctr']*100), 1),
-                    'impressions' => $val['impressions'],
-                    'position' => round($val['position'], 1),
-                ];
-            }
+              // SCのレポート結果
+              $sc_results = $this->get_sc_data($sc, $url, 9999, $start, $end);
+              foreach ($sc_results as $key => $val) {
+                  $sc_result[$val['keys'][0]] = [
+                      'clicks' => $val['clicks'],
+                      'ctr' => round(($val['ctr']*100), 1),
+                      'impressions' => $val['impressions'],
+                      'position' => round($val['position'], 1),
+                  ];
+              }
+          }
+        }else{
+          $ga_results = [];
+          $sc_result = [];
+          $all_pages = 0;
+          $ga_message = '';
         }
 
-        return view('analysis.seo.index')->with([
-            'ga' => $ga_results,
-            'sc' => $sc_result,
-            'url' => $url,
-            'name' => $name,
-            'plan' => $plan,
-            'start' => $start,
-            'end' => $end,
-            'today' => $today,
-            'all_pages' => $all_pages,
-            'this_page' => $this_page,
-            'view_id' => $view_id,
-            'site_id' => $sites,
-            'ga_message' => $ga_message,
-        ]);
+          return view('analysis.seo.index')->with([
+              'ga' => $ga_results,
+              'sc' => $sc_result,
+              'url' => $url,
+              'name' => $name,
+              'plan' => $plan,
+              'start' => $start,
+              'end' => $end,
+              'today' => $today,
+              'all_pages' => $all_pages,
+              'this_page' => $this_page,
+              'view_id' => $view_id,
+              'site_id' => $sites,
+              'ga_message' => $ga_message,
+          ]);
+
     }
 
     // GAの値取得

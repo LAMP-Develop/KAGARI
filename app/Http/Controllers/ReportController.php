@@ -65,7 +65,6 @@ class ReportController extends Controller
             $com_end = date('Y-m-d', strtotime('-1 day', strtotime($start)));
             $com_start = date('Y-m-d', strtotime('-29 days', strtotime($com_end)));
         }
-
         // ルートごとの返り値変更
         if ($route_name == 'ga-report') {
             $ga_result = $this->get_ga_data($gsa, $view_id, $start, $end, $com_start, $com_end);
@@ -82,7 +81,6 @@ class ReportController extends Controller
         } else {
             $sc_result = $this->get_sc_query($sc, $url, 10, $start, $end, $com_start, $com_end);
         }
-
         return view('analysis.report.index')->with([
           'site_id' => $sites,
           'plan' => $plan,
@@ -367,6 +365,7 @@ class ReportController extends Controller
                 ];
             }
         }
+
         return $number;
     }
 
@@ -409,6 +408,7 @@ class ReportController extends Controller
         $body->setReportRequests([$request]);
         $reports = $analytics->reports->batchGet($body);
         $reports = $reports[0]->data->rows;
+        $number = [];
         foreach ($reports as $key => $report) {
             $number[$key][0][] = [$report->dimensions,$report->metrics[0]->values[0],$report->metrics[0]->values[1],$report->metrics[0]->values[2],$report->metrics[0]->values[3],$report->metrics[0]->values[4],$report->metrics[0]->values[5]];
             $number[$key][1][]= [$report->dimensions,$report->metrics[1]->values[0],$report->metrics[1]->values[1],$report->metrics[1]->values[2],$report->metrics[1]->values[3],$report->metrics[1]->values[4],$report->metrics[1]->values[5]];
@@ -460,6 +460,7 @@ class ReportController extends Controller
         $reports = $analytics->reports->batchGet($body);
         $reportsOne = $reports[0]->data->rows;
         $reportsTwo = $reports[1]->data->totals;
+        $number = [];
         foreach ($reportsOne as $key => $report) {
             $number[$key][0][] = [$report->dimensions,$report->metrics[0]->values[0],$report->metrics[0]->values[1],$report->metrics[0]->values[2],$report->metrics[0]->values[3],$report->metrics[0]->values[4],$report->metrics[0]->values[5]];
             $number[$key][1][]= [$report->dimensions,$report->metrics[1]->values[0],$report->metrics[1]->values[1],$report->metrics[1]->values[2],$report->metrics[1]->values[3],$report->metrics[1]->values[4],$report->metrics[1]->values[5]];
@@ -520,6 +521,7 @@ class ReportController extends Controller
         $result = $analytics->reports->batchGet($body)->reports[0]->data->totals;
         $resultTwo = $analytics->reports->batchGet($body)->reports[1]->data->rows;
         $array = [];
+        $number = [];
         foreach ($result as $value) {
             $value = $value->values;
             $array[] = $value;
@@ -597,7 +599,7 @@ class ReportController extends Controller
                 'comp' => $impressions_sum_comp
             ];
         } catch (\Exception $e) {
-            return $e;
+            return [];
         }
 
         return $resulets;

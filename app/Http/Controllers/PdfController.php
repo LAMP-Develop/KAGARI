@@ -598,7 +598,7 @@ class PdfController extends Controller
                 'comp' => $impressions_sum_comp
             ];
         } catch (\Exception $e) {
-            return $e;
+            return [];
         }
 
         return $resulets;

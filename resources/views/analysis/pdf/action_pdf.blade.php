@@ -21,6 +21,7 @@ rsort($time);
 rsort($br);
 $general_comment = 0;
 @endphp
+@if($ss[0] > 10)
 @section('content_action')
 <section class="reports">
 <div class="container">
@@ -209,3 +210,16 @@ $comp = 0;
 </div>
 </section>
 @endsection
+@else
+@section('content')
+<section class="reports">
+<div class="container">
+<div class="col-12">
+<div class="alert alert-warning">
+<p class="m-0">レポート作成に必要な情報が不足しているため出力できませんでした。</p>
+</div>
+</div>
+</div>
+</section>
+@endsection
+@endif
