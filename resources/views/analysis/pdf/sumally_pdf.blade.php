@@ -352,6 +352,9 @@ $comp_bounce_rate = $ga_result_data['comp'][7];
       ]
     },
     options: {
+      tooltips: {
+        enabled: false
+      },
       animation: false,
       legend: {
         display: false

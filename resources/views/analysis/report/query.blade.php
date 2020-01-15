@@ -156,6 +156,9 @@ let myChart = new Chart(ctx, {
     ]
   },
   options: {
+    tooltips: {
+      enabled: false
+    },
     legend: {
       display: false
     },
