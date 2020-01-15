@@ -153,6 +153,8 @@ data-year="{{ $val->year }}"
 <input id="main_ln" type="hidden" name="ln" value="">
 <input id="main_fn" type="hidden" name="fn" value="">
 
+<input type="submit" style="display:none" name="submitBtn">
+
 </form>
 </div>
 </section>
@@ -299,7 +301,7 @@ function execPurchase(resultCode, errMsg) {
     $('#main_ln').val("");
     $('#cvv').val("");
     // スクリプトからフォームをsubmit
-    $('#mainform').submit();
+    $('input[name="submitBtn"]').click();
   }
 }
 </script>
