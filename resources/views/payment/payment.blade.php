@@ -43,7 +43,7 @@ if ($plan_id == 1 || $plan_id == 2) {
 <div class="col-7 mr-auto row m-0">
 <div class="col-8 p-0">
 <select id="cn-select" class="form-control" name="cards">
-<option>---</option>
+<option value="1">---</option>
 @foreach ($card as $key => $val)
 @php
 $nums = 'カード番号下4桁（'.substr(\Crypt::decryptString($val->numbers), -4).'）';
@@ -300,6 +300,7 @@ function execPurchase(resultCode, errMsg) {
     $('#main_fn').val("");
     $('#main_ln').val("");
     $('#cvv').val("");
+    $('#cn-select').val(1);
     // スクリプトからフォームをsubmit
     $('input[name="submitBtn"]').click();
   }
