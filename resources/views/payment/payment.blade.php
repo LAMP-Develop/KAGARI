@@ -124,7 +124,7 @@ data-year="{{ $val->year }}"
 <br>・請求書払いの方
 <br>　解約/退会いただいた月の翌月の5日迄にご登録メールアドレスへ請求書をお送りいたします。</p>
 <div class="form-group form-check m-0">
-<input type="checkbox" class="form-check-input" id="agreement" required>
+<input type="checkbox" class="form-check-input" name="agreement" id="agreement" required>
 <label class="form-check-label" for="agreement">上記の注意事項に同意する</label>
 </div>
 </div>
