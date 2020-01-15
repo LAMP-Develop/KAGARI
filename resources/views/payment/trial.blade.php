@@ -48,8 +48,8 @@ $btn_str = 'トライアルを始める';
 <input type="hidden" name="view-id" value="{{ $inputs['view-id'] }}">
 <input type="hidden" name="industries" value="{{ $inputs['industries'] }}">
 <input type="hidden" name="genre" value="{{ $inputs['genre'] }}">
-@if (isset($inputs['image_file']))
-<input type="hidden" name="image_file" value="{{ $inputs['image_file'] }}">
+@if ($logo_path !== '')
+<input type="hidden" name="image_file" value="{{ $logo_path }}">
 @endif
 <div class="row justify-content-center">
 <div class="col-lg-4 col">

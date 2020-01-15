@@ -77,6 +77,12 @@ class AddSitesController extends Controller
         $message = false;
         $e_message = false;
 
+        if ($request->file('image_file') !== null) {
+            $path = $request->file('image_file')->store('public/logos');
+        } else {
+            $path = '';
+        }
+
         $flag = AddSites::where([
             ['user_id', $user->id],
             ['VIEW_ID', $request['view-id']]
@@ -96,6 +102,7 @@ class AddSitesController extends Controller
           'e_message' => $e_message,
           'message' => $message,
           'inputs' => $inputs,
+          'logo_path' => basename($path),
         ]);
     }
 
@@ -112,9 +119,10 @@ class AddSitesController extends Controller
         $add_sites->VIEW_ID = $request['view-id'];
         $add_sites->industry = $request['industries'];
         $add_sites->category = $request['genre'];
-        if ($request->file('image_file') != null) {
-            $path = $request->file('image_file')->store('public/logos');
-            $add_sites->logo_path = basename($path);
+        if (isset($request['image_file'])) {
+            $add_sites->logo_path = $request['image_file'];
+        } else {
+            $add_sites->logo_path = '';
         }
         $add_sites->created_at = date('Y-m-d H:i:s');
         $add_sites->updated_at = date('Y-m-d H:i:s');

@@ -191,15 +191,15 @@ function getTextarea(){
     localStorage.removeItem('query');
   }
 }
-var plan_flag = document.getElementById('plan_flag').value;
-function downloadImage(){
+let plan_flag = document.getElementById('plan_flag').value;
+function downloadImage() {
   if(plan_flag%2 == 0){
     var pdf = new jsPDF('p', 'pt', 'letter');
     for (var j = 1; j <= 8; j++) {
       var getId = "target" + j;
       toCanvas(pdf, getId, j);
     }
-  }else{
+  } else {
     var pdf = new jsPDF('p', 'pt', 'letter');
     for (var j = 1; j <= 7; j++) {
       var getId = "target" + j;
@@ -227,12 +227,11 @@ function toCanvas(pdf, getId, j) {
       if (j == 8) {
         pdf.save(pdf_name+'_'+site_name);
       }
-    }else {
+    } else {
       if (j == 7) {
         pdf.save(pdf_name);
       }
     }
-
   });
 }
 </script>
