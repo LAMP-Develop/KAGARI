@@ -1,4 +1,4 @@
-@section('title', 'ダッシュボード')
+@section('title', 'マイページ')
 
 @extends('layouts.app')
 
