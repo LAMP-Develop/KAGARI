@@ -141,6 +141,8 @@ class ReportController extends Controller
         $arrayUser = [];
         $array = [];
         $comp_array = [];
+        $arrayUser['original'] = [];
+        $arrayUser['compare'] = [];
         foreach ($resultUsers as $i => $resultUser) {
             $day = date('Y-m-d', strtotime($resultUser->dimensions[0]));
             if ($resultUser->metrics[1]->values[0] == 0) {

@@ -1,12 +1,28 @@
 @php
 // 流入チャネル
-$channel = $ga_result_inflow[0];
+if (isset($ga_result_inflow[0])) {
+    $channel = $ga_result_inflow[0];
+} else {
+    $channel = [];
+}
 // sns
-$sns = $ga_result_inflow[1];
+if (isset($ga_result_inflow[1])) {
+    $sns = $ga_result_inflow[1];
+} else {
+    $sns = [];
+}
 // リファラル
-$link = $ga_result_inflow[2];
+if (isset($ga_result_inflow[2])) {
+    $link = $ga_result_inflow[2];
+} else {
+    $link = [];
+}
 // 検索エンジン
-$engine = $ga_result_inflow[3];
+if (isset($ga_result_inflow[3])) {
+    $engine = $ga_result_inflow[3];
+} else {
+    $engine = [];
+}
 @endphp
 @section('content_inflow')
 <section class="reports">
@@ -171,11 +187,9 @@ $comp = 0;
 <div class="col-11">
 <h3 class="font-weight-bold h5 mt-2">流入元分析の総評</h3>
 <p id="comment_inflow">
-・{{ $channel[0][0] }}からの流入が多くを占めています。
-<br>
-・{{ $sns[0][0] }}からの流入が多くを占めています。
-<br>
-・{{ $link[0][0] }}からの流入が多くを占めています。
+@if(isset($channel[0][0]))・{{ $channel[0][0] }}からの流入が多くを占めています。<br>@endif
+@if(isset($sns[0][0]))・{{ $sns[0][0] }}からの流入が多くを占めています。<br>@endif
+@if(isset($link[0][0]))・{{ $link[0][0] }}からの流入が多くを占めています。@endif
 </p>
 </div>
 </div>

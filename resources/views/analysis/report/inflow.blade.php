@@ -1,12 +1,28 @@
 @php
 // 流入チャネル
-$channel = $ga_result[0];
+if (isset($ga_result[0])) {
+    $channel = $ga_result[0];
+} else {
+  $channel = [];
+}
 // sns
-$sns = $ga_result[1];
+if (isset($ga_result[1])) {
+    $sns = $ga_result[1];
+} else {
+  $sns = [];
+}
 // リファラル
-$link = $ga_result[2];
+if (isset($ga_result[2])) {
+    $link = $ga_result[2];
+} else {
+  $link = [];
+}
 // 検索エンジン
-$engine = $ga_result[3];
+if (isset($ga_result[3])) {
+    $engine = $ga_result[3];
+} else {
+  $engine = [];
+}
 @endphp
 @section('content')
 <section class="reports">
@@ -171,9 +187,9 @@ $comp = 0;
 <button id="comment_btn" type="button" name="button" class="btn btn-primary" onclick="saveTextarea('inflow',document.getElementById('comment_inflow'))">更新</button>
 </div>
 <textarea id="comment_inflow" class="border form-control text-secondary" name="name" rows="4" onfocus="textareaBtn()">
-・{{ $channel[0][0] }}からの流入が多くを占めています。
-・{{ $sns[0][0] }}からの流入が多くを占めています。
-・{{ $link[0][0] }}からの流入が多くを占めています。
+@if(isset($channel[0][0]))・{{ $channel[0][0] }}からの流入が多くを占めています。@endif
+@if(isset($sns[0][0]))・{{ $sns[0][0] }}からの流入が多くを占めています。@endif
+@if(isset($link[0][0]))・{{ $link[0][0] }}からの流入が多くを占めています。@endif
 </textarea>
 </div>
 </div>
