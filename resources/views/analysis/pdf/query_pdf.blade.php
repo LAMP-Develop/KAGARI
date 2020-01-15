@@ -1,3 +1,4 @@
+@if($sc_result != [])
 @section('content_query')
 <section class="reports">
 <div class="container">
@@ -206,3 +207,16 @@ let myChart_query = new Chart(ctx_query, {
 });
 </script>
 @endsection
+@else
+@section('content')
+<section class="reports">
+<div class="container">
+<div class="col-12">
+<div class="alert alert-warning">
+<p class="m-0">レポート作成に必要な情報が不足しているため出力できませんでした。</p>
+</div>
+</div>
+</div>
+</section>
+@endsection
+@endif

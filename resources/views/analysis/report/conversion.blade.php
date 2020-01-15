@@ -1,4 +1,8 @@
 @php
+$ss = $ga_result[1][0][0];
+@endphp
+@if($ss)
+@php
 // cv数
 $cv = $ga_result[1][0][1];
 $old_cv = $ga_result[1][1][1];
@@ -104,7 +108,11 @@ rsort($arr_time);
 <span class="float-left line-height">サイト内閲覧数</span>
 <span class="float-right font-weight-bold h5 line-height m-0">{{ number_format(round($ss * (100 - $ex) / 100, 0)) }}</span>
 </p>
+@if($cv || $ss)
 <p class="text-right my-2 text-dark"><i class="fas fa-long-arrow-alt-down mr-2"></i>{{ round($cv / round($ss * (100 - $ex) / 100, 0) * 100, 2) }}%</p>
+@else
+<p class="text-right my-2 text-dark"><i class="fas fa-long-arrow-alt-down mr-2"></i></p>
+@endif
 <p class="overflow-hidden opacity-bg-blue opacity-color-blue m-0 p-3 rounded-lg">
 <span class="float-left line-height">コンバージョン数</span>
 <span class="float-right font-weight-bold h5 line-height m-0">{{ $cv }}</span>
@@ -308,3 +316,14 @@ $comp = 0;
 </div>
 </section>
 @endsection
+@else
+<section class="reports">
+<div class="container">
+<div class="col-12">
+<div class="alert alert-warning">
+<p class="m-0">レポート作成に必要な情報が不足しているため出力できませんでした。</p>
+</div>
+</div>
+</div>
+</section>
+@endif

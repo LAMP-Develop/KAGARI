@@ -78,7 +78,11 @@ $comp = 0;
 @if ($key == 0)
 <div class="progress-bar ka-bg-blue" style="width:100%" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 @else
+@if($engine[0][1]*100 != 0)
 <div class="progress-bar ka-bg-blue" style="width:{{ ($value[1]/$engine[0][1]*100) }}%" role="progressbar" aria-valuenow="{{ ($value[1]/$engine[0][1]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+@else
+<div class="progress-bar ka-bg-blue" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+@endif
 @endif
 </div>
 <p class="mb-3 text-right">

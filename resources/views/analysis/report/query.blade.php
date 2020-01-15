@@ -1,3 +1,4 @@
+@if($sc_result != [])
 @section('content')
 <section class="reports">
 <div class="container">
@@ -65,26 +66,34 @@ if ($max_imp_tmp < $impressions) {
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ $click }}</span>
 <div class="progress">
+@if($sc_result['max']['clicks'])
 <div class="progress-bar ka-bg-orange" style="width:{{ $click/$sc_result['max']['clicks']*100 }}%" role="progressbar" aria-valuenow="{{ $click/$sc_result['original'][0]['clicks']*100 }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
+@endif
 </td>
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ $impressions }}</span>
 <div class="progress">
+@if($sc_result['max']['impressions'])
 <div class="progress-bar ka-bg-green" style="width:{{ $impressions/$sc_result['max']['impressions']*100 }}%" role="progressbar" aria-valuenow="{{ $impressions/$sc_result['max']['impressions']*100 }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
+@endif
 </td>
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ $ctr }}%</span>
 <div class="progress">
+@if($sc_result['max']['ctr'])
 <div class="progress-bar ka-bg-blue-2" style="width:{{ ($ctr*100)/($sc_result['max']['ctr']*100) }}%" role="progressbar" aria-valuenow="{{ ($ctr*100)/($sc_result['max']['ctr']*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
+@endif
 </td>
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ $position }}位</span>
 <div class="progress">
+@if($sc_result['max']['position'])
 <div class="progress-bar ka-bg-blue" style="width:{{ $sc_result['max']['position']/$position*100 }}%" role="progressbar" aria-valuenow="{{ $sc_result['max']['position']/$position*100 }}" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
+@endif
 </td>
 </tr>
 @endforeach
@@ -111,9 +120,11 @@ if ($max_imp_tmp < $impressions) {
 <button id="comment_btn" type="button" name="button" class="btn btn-primary" onclick="saveTextarea('query',document.getElementById('comment_query'))">更新</button>
 </div>
 <textarea id="comment_query" class="border form-control text-secondary" name="name" rows="4" onfocus="textareaBtn()">
+@if($sc_result != [])
 ・「{{ $sc_result['original'][0]['keys'][0] }}」が期間内で一番多くクリックされています。
 ・「{{ $max_imp[0][0] }}」が期間内で一番多く検索結果に表示されています。
 @if ($sc_result['sum']['original'] - $sc_result['sum']['comp'] > 0)・検索表示回数が上昇傾向にあります。@else・検索表示回数が下降傾向にあります。@endif
+@endif
 </textarea>
 </div>
 </div>
@@ -122,7 +133,6 @@ if ($max_imp_tmp < $impressions) {
 </div>
 </div>
 </section>
-
 <script>
 let ctx = $('#user-chart');
 let clicks = @json($sc_result['impressions'], JSON_PRETTY_PRINT);
@@ -210,3 +220,16 @@ let myChart = new Chart(ctx, {
 });
 </script>
 @endsection
+@else
+@section('content')
+<section class="reports">
+<div class="container">
+<div class="col-12">
+<div class="alert alert-warning">
+<p class="m-0">レポート作成に必要な情報が不足しているため出力できませんでした。</p>
+</div>
+</div>
+</div>
+</section>
+@endsection
+@endif
