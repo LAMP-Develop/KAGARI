@@ -38,7 +38,7 @@ class AnalyticsProperties
                   'approval_prompt' => 'force'
                 ];
                 return Socialite::driver('google')
-                ->scopes(['https://www.googleapis.com/auth/analytics.readonly', 'https://www.googleapis.com/auth/webmasters.readonly'])
+                ->scopes(['https://www.googleapis.com/auth/analytics', 'https://www.googleapis.com/auth/webmasters.readonly'])
                 ->with($parameters)
                 ->redirect();
             } else {
