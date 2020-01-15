@@ -150,6 +150,8 @@ class PdfController extends Controller
         $arrayUser = [];
         $array = [];
         $comp_array = [];
+        $origindaydiff = abs(strtotime($end) - strtotime($start))/(60 * 60* 24) +1;
+        $comparedaydiff = abs(strtotime($comEnd)  - strtotime($comStart))/(60 * 60* 24) +1;
         foreach ($resultUsers as $i => $resultUser) {
             $day = date('Y-m-d', strtotime($resultUser->dimensions[0]));
             if ($resultUser->metrics[1]->values[0] == 0) {
@@ -159,7 +161,18 @@ class PdfController extends Controller
                 $user = $resultUser->metrics[1]->values[0];
                 $arrayUser['compare'][(string)$day] = (int)$user;
             }
-            $i++;
+        }
+        $a = $origindaydiff - count($arrayUser['original']) + 1;
+        $b = $comparedaydiff - count($arrayUser['compare']) + 1;
+        $a_key=array_key_last($arrayUser['original']);
+        $b_key=array_key_last($arrayUser['compare']);
+        for ($i=1; $i < $a; $i++){
+          $c = date("Y-m-d", strtotime("$a_key +$i day"));
+          $arrayUser['original'][$c] = 0;
+        }
+        for ($i=1; $i < $b; $i++){
+          $d = date("Y-m-d", strtotime("$b_key +$i day"));
+          $arrayUser['compare'][$d] = 0;
         }
         foreach ($result as $key => $value) {
             $value = $value->values;

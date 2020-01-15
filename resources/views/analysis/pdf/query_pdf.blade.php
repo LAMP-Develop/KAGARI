@@ -153,6 +153,9 @@ let myChart_query = new Chart(ctx_query, {
     ]
   },
   options: {
+    tooltips: {
+      enabled: false
+    },
     legend: {
       display: false
     },

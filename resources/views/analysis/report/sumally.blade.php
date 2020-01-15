@@ -304,6 +304,8 @@ let ctx = $('#user-chart');
 let originUser = @json($ga_result['transition']['original'], JSON_PRETTY_PRINT);
 let compareUser = @json($ga_result['transition']['compare'], JSON_PRETTY_PRINT);
 let arrayLabel = [];
+console.log(originUser);
+console.log(compareUser);
 let arrayLabel2 = [];
 let arrayDataOne = [];
 let arrayDataTwo = [];
@@ -343,6 +345,9 @@ let myChart = new Chart(ctx, {
     ]
   },
   options: {
+    tooltips: {
+      enabled: false
+    },
     legend: {
       display: false
     },
