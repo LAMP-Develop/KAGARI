@@ -41,9 +41,8 @@ $btn_str = 'トライアルを始める';
 @endif
 
 @if (!$message)
-<form action="{{ route('trial-done') }}" method="post">
+<form id="trial-form" action="{{ route('trial-done') }}" method="post" onSubmit="return checkDoubleClick();">
 @csrf
-
 <input type="hidden" name="site-name" value="{{ $inputs['site-name'] }}">
 <input type="hidden" name="site-url" value="{{ $inputs['site-url'] }}">
 <input type="hidden" name="view-id" value="{{ $inputs['view-id'] }}">
@@ -52,7 +51,6 @@ $btn_str = 'トライアルを始める';
 @if (isset($inputs['image_file']))
 <input type="hidden" name="image_file" value="{{ $inputs['image_file'] }}">
 @endif
-
 <div class="row justify-content-center">
 <div class="col-lg-4 col">
 <div class="card p-4 shadow-sm rounded-lg h-100">
@@ -117,4 +115,17 @@ $btn_str = 'トライアルを始める';
 
 </div>
 </section>
+
+<script>
+// 初期値
+var Submit = false;
+function checkDoubleClick() {
+  if(Submit) { // 2回目以降のクリック時
+    return false;
+  } else { // 1回目のクリック時
+    Submit= true;
+    return true;
+  }
+}
+</script>
 @endsection
