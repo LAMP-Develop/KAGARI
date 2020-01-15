@@ -14,7 +14,6 @@ if (!$param) {
 <div class="row mx-0 mb-4">
 <div class="col">
 <h2 class="font-weight-bold h5 text-dark">
-<img class="mr-1 d-inline-block align-middle" src="https://www.google.com/s2/favicons?domain={{ $site_url }}" width="16" height="16">
 <span class="d-inline-block align-middle">{{ $site_name }}</span>
 </h2>
 <p class="m-0">{{ $site_url }}</p>

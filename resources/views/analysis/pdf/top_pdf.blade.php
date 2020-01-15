@@ -11,8 +11,8 @@ $screenshot = str_replace('-', '+', $screenshot);
 <section class="top_page">
 <div class="container">
 <div class="logo">
-@if ($logo != '' && $logo != null)
-<img src="{{ $logo }}" alt="">
+@if ($logo != '')
+<img src="{{ $logo }}">
 @else
 <h2 class="font-weight-bold">{{ $site_name }}</h2>
 @endif
