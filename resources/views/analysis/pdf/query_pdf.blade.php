@@ -208,7 +208,7 @@ let myChart_query = new Chart(ctx_query, {
 </script>
 @endsection
 @else
-@section('content')
+@section('content_query')
 <section class="reports">
 <div class="container">
 <div class="col-12">
