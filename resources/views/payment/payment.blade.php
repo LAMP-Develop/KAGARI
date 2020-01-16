@@ -33,7 +33,7 @@ if ($plan_id == 1 || $plan_id == 2) {
 </div>
 <div class="form-check">
 <input class="form-check-input" type="radio" name="payment_methods" id="inlineRadio2" value="2" onclick="changeForm();">
-<label id="billing_sheet" class="form-check-label" for="inlineRadio2">請求書支払い</label>
+<label id="billing_sheet" class="form-check-label" for="inlineRadio2">請求書支払い（法人のみ）</label>
 </div>
 </div>
 </div>
