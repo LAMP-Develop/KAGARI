@@ -36,6 +36,7 @@
 </a>
 <div id="collapse-{{ $key }}" class="collapse list-group list-group-flush pl-4 property-name">
 @foreach ($property['data'] as $key_id => $prop)
+@if($key_id != null)
 <a href="#"
 class="list-group-item list-group-item-action text-body addsite-modal"
 data-toggle="modal"
@@ -44,6 +45,9 @@ data-name="{{ $property['account_name'] }}"
 data-id="{{ $key_id }}"
 data-url="{{ $prop['url'] }}"
 data-property="{{ $prop['name'] }}"><i class="fas fa-globe-asia mr-3"></i>{{ $prop['name'] }}</a>
+@else
+<del class="list-group-item text-body addsite-modal">{{ $prop['name'] }}<small>※このサイトは追加できません。</small></del>
+@endif
 @endforeach
 </div>
 @endforeach
