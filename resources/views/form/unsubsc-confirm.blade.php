@@ -46,6 +46,7 @@ $cause_input = rtrim($cause_input, '、')
 </div>
 
 <div class="form-group mb-0 text-center mt-5">
+<button type="button" class="btn btn-sm btn-outline-secondary mr-2 px-4" onclick="history.back()">戻る</button>
 <button type="submit" class="btn btn-primary">送信する</button>
 </div>
 

@@ -34,6 +34,14 @@
 
 <div class="form-group mb-4">
 <label class="font-weight-bold" for="cause">KAGARIは常にサービス向上に努めております。<br>よろしければ退会理由をお聞かせください（複数回答可）</label>
+@error('cause')
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+こちらの内容は必須項目です。
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+@enderror
 <div class="form-check">
 <input class="form-check-input" type="checkbox" value="他社のツールに乗り換えるから" id="check1" name="cause[]">
 <label class="form-check-label not-must" for="check1">他社のツールに乗り換えるから</label>
@@ -62,6 +70,7 @@
 </div>
 
 <div class="form-group mb-0 text-center mt-5">
+<button type="button" class="btn btn-sm btn-outline-secondary mr-2" onclick="history.back()">キャンセル</button>
 <button type="submit" class="btn btn-primary">確認する</button>
 </div>
 
