@@ -43,7 +43,7 @@ $plan_date = null;
 @if ($remaining_flag)
 無料トライアル：残り{{ $remaining }}日
 @else
-無料トライアル：終了
+再開はプランを選択
 @endif
 @else
 {{ $plans[($site->plan - 1)]->name }}
