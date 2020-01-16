@@ -28,10 +28,10 @@ $(function() {
       target.innerHTML = '解析期間の開始日を比較期間の終了日以降に設定してください';
       change_btn.disabled = 'disabled';
     } else if(start > end) {
-      target.innerHTML = '解析機関の終了日を解析期間の開始日以降に設定してください';
+      target.innerHTML = '解析期間の終了日を解析期間の開始日以降に設定してください';
       change_btn.disabled = 'disabled';
     } else if(com_start > com_end) {
-      target.innerHTML = '比較機関の終了日を比較期間の開始日以降に設定してください';
+      target.innerHTML = '比較期間の終了日を比較期間の開始日以降に設定してください';
       change_btn.disabled = 'disabled';
     } else if(com_start >= end) {
       target.innerHTML = '解析期間の終了日を比較期間の開始日以降に設定してください';
