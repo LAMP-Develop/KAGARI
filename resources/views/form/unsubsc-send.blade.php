@@ -9,7 +9,7 @@
 <div class="container">
 <h2 class="text-center font-weight-bold mb-4">退会申請を承りました。</h2>
 <p class="text-center mb-0">退会手続き完了し次第、改めて担当よりご連絡致します。
-<br><small>※退会の完了には2営業日いただいております。</small></p>
+<br><small>※退会の完了には2営業日いただいております。<br>営業日はこちら（https://kagari.ai/faq/others/2308/）からご確認ください。</small></p>
 </div>
 </section>
 @endsection
