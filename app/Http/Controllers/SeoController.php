@@ -81,13 +81,13 @@ class SeoController extends Controller
 
         // GAのレポート結果
         $ga_result = $this->get_ga_data($ga, $view_id, $start, $end, (String)$page);
-        // dd($ga_result['counts'][0] != null);
+        // dd($ga_result);
         if($ga_result['counts'][0] != null){
-          if ($ga_result == 'error') {
+          if ($ga_result['counts'][0] == 'error') {
               $counts = 0;
               $all_pages = 0;
               $ga_results = [];
-              $ga_message = '期間設定に誤りがあります。';
+              $ga_message = '終了日が開始日よりも以前になっています。開始日以降を設定してください';
           } else {
               $ga_results = $ga_result['rows'];
               $counts = $ga_result['counts'][0];
@@ -202,7 +202,9 @@ class SeoController extends Controller
             }
             return $result;
         } catch (\Exception $e) {
-            return 'error';
+            $result = [];
+            $result['counts'][0] = 'error';
+            return $result;
         }
     }
 
