@@ -192,7 +192,9 @@ $comp = 0;
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ number_format($val[0][0][3]) }}</span>
 <div class="progress">
+@if($arr_uu[0] !=0)
 <div class="progress-bar ka-bg-blue" style="width:{{ ($val[0][0][3]/$arr_uu[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][3]/$arr_uu[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+@endif
 </div>
 <p class="text-right mb-0">
 @php
@@ -213,7 +215,9 @@ $comp = 0;
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ round($val[0][0][4], 2) }}%</span>
 <div class="progress">
+@if($arr_ex[0] !=0)
 <div class="progress-bar ka-bg-purple-2" style="width:{{ ($val[0][0][4]/$arr_ex[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][4]/$arr_ex[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+@endif
 </div>
 <p class="text-right mb-0">
 @php
@@ -234,7 +238,9 @@ $comp = 0;
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ round($val[0][0][5], 2) }}</span>
 <div class="progress">
+@if($arr_ps[0] != 0)
 <div class="progress-bar ka-bg-blue-2" style="width:{{ ($val[0][0][5]/$arr_ps[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][5]/$arr_ps[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+@endif
 </div>
 <p class="text-right mb-0">
 @php
@@ -255,7 +261,9 @@ $comp = 0;
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ round($val[0][0][6], 1) }}秒</span>
 <div class="progress">
+@if($arr_time[0] != 0)
 <div class="progress-bar ka-bg-red" style="width:{{ ($val[0][0][6]/$arr_time[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][6]/$arr_time[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+@endif
 </div>
 <p class="text-right mb-0">
 @php

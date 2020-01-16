@@ -217,7 +217,9 @@ $general = 0;
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ number_format($val[0][0][1]) }}</span>
 <div class="progress">
+@if($arr_click[0] != 0)
 <div class="progress-bar ka-bg-blue" style="width:{{ ($val[0][0][1]/$arr_click[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][1]/$arr_click[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+@endif
 </div>
 <p class="text-right mb-0">
 @php
@@ -238,7 +240,9 @@ $comp = 0;
 <td class="text-right">
 <span class="text-dark font-weight-bold"><i class="fas fa-yen-sign mr-1"></i>{{ number_format(round($val[0][0][2], 2)) }}</span>
 <div class="progress">
+@if($arr_cost[0] != 0)
 <div class="progress-bar ka-bg-purple-2" style="width:{{ ($val[0][0][2]/$arr_cost[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][2]/$arr_cost[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+@endif
 </div>
 <p class="text-right mb-0">
 @php
@@ -259,7 +263,9 @@ $comp = 0;
 <td class="text-right">
 <span class="text-dark font-weight-bold"><i class="fas fa-yen-sign mr-1"></i>{{ number_format($val[0][0][3]) }}</span>
 <div class="progress">
+@if($arr_price[0] != 0)
 <div class="progress-bar ka-bg-blue-2" style="width:{{ ($val[0][0][3]/$arr_price[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][3]/$arr_price[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+@endif
 </div>
 <p class="text-right mb-0">
 @php
@@ -280,7 +286,9 @@ $comp = 0;
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ number_format($val[0][0][4]) }}</span>
 <div class="progress">
+@if($arr_cv[0] != 0)
 <div class="progress-bar ka-bg-orange" style="width:{{ ($val[0][0][4]/$arr_cv[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][4]/$arr_cv[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+@endif
 </div>
 <p class="text-right mb-0">
 @php
@@ -302,7 +310,9 @@ $general += $comp;
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ round($val[0][0][5], 2) }}%</span>
 <div class="progress">
+@if($arr_cv_r[0] != 0)
 <div class="progress-bar ka-bg-purple" style="width:{{ ($val[0][0][5]/$arr_cv_r[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][5]/$arr_cv_r[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+@endif
 </div>
 <p class="text-right mb-0">
 @php
