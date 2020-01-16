@@ -1,4 +1,8 @@
 @php
+$ss = $ga_result_conversion[1][0][0];
+@endphp
+@if($ss)
+@php
 // cv数
 $cv = $ga_result_conversion[1][0][1];
 $old_cv = $ga_result_conversion[1][1][1];
@@ -308,3 +312,16 @@ $comp = 0;
 </div>
 </section>
 @endsection
+@else
+@section('content_conversion')
+<section class="reports">
+<div class="container">
+<div class="col-12">
+<div class="alert alert-warning">
+<p class="m-0">レポート作成に必要な情報が不足しているため出力できませんでした。</p>
+</div>
+</div>
+</div>
+</section>
+@endsection
+@endif

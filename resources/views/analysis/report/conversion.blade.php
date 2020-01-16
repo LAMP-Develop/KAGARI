@@ -317,6 +317,7 @@ $comp = 0;
 </section>
 @endsection
 @else
+@section('content')
 <section class="reports">
 <div class="container">
 <div class="col-12">
@@ -326,4 +327,5 @@ $comp = 0;
 </div>
 </div>
 </section>
+@endsection
 @endif

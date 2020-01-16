@@ -68,8 +68,8 @@ if ($max_imp_tmp < $impressions) {
 <div class="progress">
 @if($sc_result['max']['clicks'])
 <div class="progress-bar ka-bg-orange" style="width:{{ $click/$sc_result['max']['clicks']*100 }}%" role="progressbar" aria-valuenow="{{ $click/$sc_result['original'][0]['clicks']*100 }}" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
 @endif
+</div>
 </td>
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ $impressions }}</span>

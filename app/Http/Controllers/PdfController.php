@@ -150,6 +150,8 @@ class PdfController extends Controller
         $arrayUser = [];
         $array = [];
         $comp_array = [];
+        $arrayUser['original'] = [];
+        $arrayUser['compare'] = [];
         $origindaydiff = abs(strtotime($end) - strtotime($start))/(60 * 60* 24) +1;
         $comparedaydiff = abs(strtotime($comEnd)  - strtotime($comStart))/(60 * 60* 24) +1;
         foreach ($resultUsers as $i => $resultUser) {
@@ -164,22 +166,30 @@ class PdfController extends Controller
         }
         $a = $origindaydiff - count($arrayUser['original']) + 1;
         $b = $comparedaydiff - count($arrayUser['compare']) + 1;
-        $a_key=array_key_last($arrayUser['original']);
-        $b_key=array_key_last($arrayUser['compare']);
-        for ($i=1; $i < $a; $i++){
-          $c = date("Y-m-d", strtotime("$a_key +$i day"));
-          $arrayUser['original'][$c] = 0;
+        for ($i=1; $i < $a; $i++) {
+            $c = date("Y-m-d", strtotime("$start +$i day"));
+            if (!isset($arrayUser['original'][$c])) {
+                $arrayUser['original'][$c] = 0;
+            }
         }
-        for ($i=1; $i < $b; $i++){
-          $d = date("Y-m-d", strtotime("$b_key +$i day"));
-          $arrayUser['compare'][$d] = 0;
+        ksort($arrayUser['original']);
+        for ($i=1; $i < $b; $i++) {
+            $d = date("Y-m-d", strtotime("$comStart +$i day"));
+            if (!isset($arrayUser['compare'][$d])) {
+                $arrayUser['compare'][$d] = 0;
+            }
         }
+        ksort($arrayUser['compare']);
         foreach ($result as $key => $value) {
             $value = $value->values;
             array_push($array, $value);
         }
         foreach ($array[0] as $key => $val) {
-            $comp_array[] = round(((float)$val / (float)$array[1][$key] - 1) * 100, 2);
+            if ((float)$array[1][$key] != 0) {
+                $comp_array[] = round(((float)$val / (float)$array[1][$key] - 1) * 100, 2);
+            } else {
+                $comp_array[] = 0;
+            }
         }
         return [
           'transition' => $arrayUser,
@@ -410,6 +420,7 @@ class PdfController extends Controller
         $body->setReportRequests(array($request));
         $reports = $analytics->reports->batchGet($body);
         $reports = $reports[0]->data->rows;
+        $number = [];
         foreach ($reports as $key => $report) {
             $number[$key][0][] = [$report->dimensions,$report->metrics[0]->values[0],$report->metrics[0]->values[1],$report->metrics[0]->values[2],$report->metrics[0]->values[3],$report->metrics[0]->values[4],$report->metrics[0]->values[5]];
             $number[$key][1][]= [$report->dimensions,$report->metrics[1]->values[0],$report->metrics[1]->values[1],$report->metrics[1]->values[2],$report->metrics[1]->values[3],$report->metrics[1]->values[4],$report->metrics[1]->values[5]];
@@ -461,6 +472,7 @@ class PdfController extends Controller
         $reports = $analytics->reports->batchGet($body);
         $reportsOne = $reports[0]->data->rows;
         $reportsTwo = $reports[1]->data->totals;
+        $number = [];
         foreach ($reportsOne as $key => $report) {
             $number[$key][0][] = [$report->dimensions,$report->metrics[0]->values[0],$report->metrics[0]->values[1],$report->metrics[0]->values[2],$report->metrics[0]->values[3],$report->metrics[0]->values[4],$report->metrics[0]->values[5]];
             $number[$key][1][]= [$report->dimensions,$report->metrics[1]->values[0],$report->metrics[1]->values[1],$report->metrics[1]->values[2],$report->metrics[1]->values[3],$report->metrics[1]->values[4],$report->metrics[1]->values[5]];
@@ -521,6 +533,7 @@ class PdfController extends Controller
         $result = $analytics->reports->batchGet($body)->reports[0]->data->totals;
         $resultTwo = $analytics->reports->batchGet($body)->reports[1]->data->rows;
         $array = [];
+        $number = [];
         foreach ($result as $value) {
             $value = $value->values;
             array_push($array, $value);

@@ -1,10 +1,15 @@
 @php
-$pic_url = "https://www.googleapis.com/pagespeedonline/v2/runPagespeed?screenshot=true&strategy=desktop&url=".$url;
-$json = file_get_contents($pic_url);
-$data = json_decode($json, true);
-$screenshot = $data['screenshot']['data'];
-$screenshot = str_replace('_', '/', $screenshot);
-$screenshot = str_replace('-', '+', $screenshot);
+try {
+  $pic_url = "https://www.googleapis.com/pagespeedonline/v2/runPagespeed?screenshot=true&strategy=desktop&url=".$url;
+  $json = file_get_contents($pic_url);
+  $data = json_decode($json, true);
+  $screenshot = $data['screenshot']['data'];
+  $screenshot = str_replace('_', '/', $screenshot);
+  $screenshot = str_replace('-', '+', $screenshot);
+} catch(\Exception $e) {
+  $screenshot = '';
+}
+
 @endphp
 
 @section('content_top')
@@ -19,7 +24,9 @@ $screenshot = str_replace('-', '+', $screenshot);
 </div>
 <h1 class="text-black font-weight-bold">アクセス解析レポート</h1>
 <h2 class="py-4 font-weight-bold">ANARYTICS REPORT</h2>
+@if($screenshot != '')
 <img src="data:image/png;base64,{{ $screenshot }}">
+@endif
 <table class="table table-borderless">
 <tbody>
 <tr>

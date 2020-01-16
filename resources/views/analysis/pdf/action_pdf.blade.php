@@ -21,7 +21,7 @@ rsort($time);
 rsort($br);
 $general_comment = 0;
 @endphp
-@if($ss[0] > 10)
+@if((isset($ss[0]) && $ss[0] > 10) || count($ss) != 0)
 @section('content_action')
 <section class="reports">
 <div class="container">

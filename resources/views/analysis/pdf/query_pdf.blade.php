@@ -66,7 +66,9 @@ if ($max_imp_tmp < $impressions) {
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ $click }}</span>
 <div class="progress">
+@if($sc_result['max']['clicks'])
 <div class="progress-bar ka-bg-orange" style="width:{{ $click/$sc_result['max']['clicks']*100 }}%" role="progressbar" aria-valuenow="{{ $click/$sc_result['original'][0]['clicks']*100 }}" aria-valuemin="0" aria-valuemax="100"></div>
+@endif
 </div>
 </td>
 <td class="text-right">
@@ -78,7 +80,9 @@ if ($max_imp_tmp < $impressions) {
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ $ctr }}%</span>
 <div class="progress">
+@if($sc_result['max']['ctr'])
 <div class="progress-bar ka-bg-blue-2" style="width:{{ ($ctr*100)/($sc_result['max']['ctr']*100) }}%" role="progressbar" aria-valuenow="{{ ($ctr*100)/($sc_result['max']['ctr']*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
+@endif
 </div>
 </td>
 <td class="text-right">
