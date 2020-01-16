@@ -126,6 +126,8 @@ class PaymentController extends Controller
                 $error = false;
             }
         } else { // 請求書決済
+            $contents = 'OK';
+            $error = true;
             AddSites::where('id', (int)$request['site_id'])->update([
                 'plan' => (int)$request['plan_id'],
                 'payment_methods' => (int)$request['payment_methods'],
