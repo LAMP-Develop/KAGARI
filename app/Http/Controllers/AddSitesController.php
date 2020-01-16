@@ -175,7 +175,7 @@ class AddSitesController extends Controller
         $industries = Industry::all();
         $plans = Plans::all();
         $user_id = $user->id;
-        $add_sites = AddSites::where('id', $sites)->get();
+        $add_sites = AddSites::where('id', $sites)-> first();
         return view('sites.edit')->with([
           'add_sites' => $add_sites,
           'categories' => $categories,

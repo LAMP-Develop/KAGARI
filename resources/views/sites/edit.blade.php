@@ -8,7 +8,12 @@
 @section('content')
 
 @php
-$site = $add_sites[0];
+$site = $add_sites;
+if ($add_sites->logo_path != '') {
+    $logo = '/storage/logos/'.$add_sites->logo_path;
+} else {
+    $logo = '';
+}
 @endphp
 <section class="wrap">
 <div class="container">
@@ -49,8 +54,17 @@ $site = $add_sites[0];
 <label for="image_file">サイトロゴ</label>
 <input type="file" name="image_file" class="form-control-file" id="image_file">
 </div>
+@if($logo != '')
+<img src="{{ $logo }}" class="my-1 logo_now">
+<br>
+<small class="my-1">現在登録中のロゴ</small>
+<br>
+@else
+<small class="my-1">サイトロゴは現在登録されていません</small>
+<br>
+@endif
+<a class="btn btn-sm btn-outline-secondary mt-4 mr-3" href="{{ route('dashboard') }}">キャンセル</a>
 <button type="submit" class="btn btn-primary mt-4">変更する</button>
-<a class="btn btn-sm btn-outline-secondary mt-4 ml-3" href="{{ route('dashboard') }}">キャンセル</a>
 </form>
 </div>
 </section>
