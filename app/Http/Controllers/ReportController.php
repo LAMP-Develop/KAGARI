@@ -156,16 +156,20 @@ class ReportController extends Controller
         }
         $a = $origindaydiff - count($arrayUser['original']) + 1;
         $b = $comparedaydiff - count($arrayUser['compare']) + 1;
-        $a_key = array_key_last($arrayUser['original']);
-        $b_key = array_key_last($arrayUser['compare']);
         for ($i=1; $i < $a; $i++) {
-            $c = date("Y-m-d", strtotime("$a_key +$i day"));
-            $arrayUser['original'][$c] = 0;
+            $c = date("Y-m-d", strtotime("$start +$i day"));
+            if (!isset($arrayUser['original'][$c])) {
+                $arrayUser['original'][$c] = 0;
+            }
         }
+        ksort($arrayUser['original']);
         for ($i=1; $i < $b; $i++) {
-            $d = date("Y-m-d", strtotime("$b_key +$i day"));
-            $arrayUser['compare'][$d] = 0;
+            $d = date("Y-m-d", strtotime("$comStart +$i day"));
+            if (!isset($arrayUser['compare'][$d])) {
+                $arrayUser['compare'][$d] = 0;
+            }
         }
+        ksort($arrayUser['compare']);
         foreach ($result as $key => $value) {
             $value = $value->values;
             $array[] = $value;

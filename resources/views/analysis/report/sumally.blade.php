@@ -302,6 +302,7 @@ $comp_bounce_rate = $ga_result['comp'][7];
 <script>
 let ctx = $('#user-chart');
 let originUser = @json($ga_result['transition']['original'], JSON_PRETTY_PRINT);
+console.log(originUser);
 let compareUser = @json($ga_result['transition']['compare'], JSON_PRETTY_PRINT);
 let arrayLabel = [];
 console.log(originUser);
