@@ -125,9 +125,9 @@ $comp = 0;
 }
 @endphp
 @if($comp >= 0)
-<span class="opacity-color-green"><span class="mr-1">↑</span>
+<span class="opacity-color-green"><span class="mr-1">↑</span></span>
 @else
-<span class="opacity-color-red"><span class="mr-1">↓</span>
+<span class="opacity-color-red"><span class="mr-1">↓</span></span>
 @endif
 {{ $comp }}%</span>
 </p>
@@ -146,9 +146,9 @@ $comp = 0;
 }
 @endphp
 @if($comp >= 0)
-<span class="opacity-color-green"><span class="mr-1">↑</span>
+<span class="opacity-color-green"><span class="mr-1">↑
 @else
-<span class="opacity-color-red"><span class="mr-1">↓</span>
+<span class="opacity-color-red"><span class="mr-1">↓
 @endif
 {{ $comp }}%</span>
 </p>
@@ -211,7 +211,7 @@ $comp = 0;
 </section>
 @endsection
 @else
-@section('content')
+@section('content_action')
 <section class="reports">
 <div class="container">
 <div class="col-12">
