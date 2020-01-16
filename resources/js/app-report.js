@@ -23,12 +23,18 @@ $(function() {
     let com_start = $('#com_start').val();
     com_start = com_start.split('-');
     com_start = new Date(com_start[0], com_start[1] - 1, com_start[2]);
-    
-    if (start <= com_end ||
-      start > end ||
-      com_start > com_end ||
-      com_start >= end) {
-      target.innerHTML = '期間の範囲指定が正しくありません';
+
+    if (start <= com_end) {
+      target.innerHTML = '解析期間の開始日を比較期間の終了日以降に設定してください';
+      change_btn.disabled = 'disabled';
+    } else if(start > end) {
+      target.innerHTML = '解析機関の終了日を解析期間の開始日以降に設定してください';
+      change_btn.disabled = 'disabled';
+    } else if(com_start > com_end) {
+      target.innerHTML = '比較機関の終了日を比較期間の開始日以降に設定してください';
+      change_btn.disabled = 'disabled';
+    } else if(com_start >= end) {
+      target.innerHTML = '解析期間の終了日を比較期間の開始日以降に設定してください';
       change_btn.disabled = 'disabled';
     } else {
       target.innerHTML = '';
