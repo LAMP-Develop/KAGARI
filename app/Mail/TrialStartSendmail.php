@@ -33,7 +33,7 @@ class TrialStartSendmail extends Mailable implements ShouldQueue
     public function build()
     {
         return $this
-        ->subject('アクセス解析ツール 「KAGARI」｜新規会員登録 / トライアル開始のお知らせ')
+        ->subject('アクセス解析ツール「KAGARI」｜トライアル開始のご連絡')
         ->view('mail.trial-start')
         ->with([
             'user' => $this->user,
