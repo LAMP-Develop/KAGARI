@@ -55,7 +55,7 @@
 <label for="" class="d-block">レポートを受信する頻度（複数選択可）</label>
 <div class="form-check form-check-inline">
 <input class="form-check-input" type="checkbox" name="analyzing_period[]" id="week" value="7" <?php if(isset($days['7'])) echo 'checked'; ?>>
-<label class="form-check-label not-must" for="week">毎週</label>
+<label class="form-check-label not-must" for="week">毎週（月曜日）</label>
 </div>
 <div class="form-check form-check-inline">
 <input class="form-check-input" type="checkbox" name="analyzing_period[]" id="month" value="30" checked>
@@ -86,7 +86,8 @@
 @endif
 @endfor
 </select>
-<small class="form-text text-muted">※レポートを受信する頻度が「毎週」の場合は毎週”月曜日”になります。</small>
+<small class="form-text text-muted">※31日が無い月は自動的に末日になります。
+<br>※レポートを受信する頻度が「毎週」の場合は毎週”月曜日”になります。</small>
 </div>
 
 <div class="form-group">
