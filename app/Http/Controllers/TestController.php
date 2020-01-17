@@ -32,8 +32,8 @@ class TestController extends Controller
      */
     public function index(Request $request)
     {
-        $action_url = URL::signedRoute('report-pdf.one-month', ['AddSites' => 24]);
-        $site = AddSites::find(24)->first();
+        $action_url = URL::signedRoute('report-pdf.one-month', ['AddSites' => 36]);
+        $site = AddSites::find(36)->first();
         $site_name = $site->site_name;
         $site_url = $site->url;
         \Mail::to('info@anyushu.com')->send(new CustomerSendmail($site_url, $action_url));
