@@ -24,8 +24,8 @@ class PdfAnalytics
         $result = preg_match($pattern, $subject, $matches);
         $site = AddSites::find($matches[0])->first();
         $google_client = Google::getClient();
-        dd($user);
         $user = User::find($site->user_id)->first();
+        dd($user);
         $user_access_token = $user->google_token;
         $user_refresh_token = $user->google_refresh_token;
         $user_time_created = (int)$user->time_created;
