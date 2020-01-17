@@ -23,8 +23,8 @@ class PdfAnalytics
         $subject = $_SERVER["REQUEST_URI"];
         $result = preg_match($pattern, $subject, $matches);
         // dd($matches[0]);
-        $site = AddSites::find($matches[0])->first();
-        $user = User::find($site->user_id)->first();
+        $site = AddSites::where('id', $matches[0])->first();
+        $user = User::where('id', $site->user_id)->first();
         dd($site);
 
         $google_client = Google::getClient();
