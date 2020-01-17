@@ -46,7 +46,7 @@ class PdfController extends Controller
     public function index(Request $request, $sites)
     {
         // 諸々
-        $add_site = AddSites::where('id', $sites)->get()[0];
+        $add_site = AddSites::where('id', $sites)->first();
         $site_name = $add_site->site_name;
         $view_id =(string)$add_site->VIEW_ID;
         $plan = $add_site->plan;
@@ -61,17 +61,78 @@ class PdfController extends Controller
         $gsa = $request->ga_report;
         $sc = $request->sc;
 
-        // 期間指定
-        if (isset($request->start)) {
-            $end = $request->end;
-            $start = $request->start;
-            $com_end = $request->com_end;
-            $com_start = $request->com_start;
-        } else {
-            $end = date('Y-m-d', strtotime('-1 day', time()));
-            $start = date('Y-m-d', strtotime('-30 days', time()));
-            $com_end = date('Y-m-d', strtotime('-1 day', strtotime($start)));
-            $com_start = date('Y-m-d', strtotime('-29 days', strtotime($com_end)));
+        // レポート送付用
+        $route_name = Route::current()->getName();
+        if ($route_name !== 'ga-pdf') {
+            switch ($route_name) {
+              case 'report-pdf.week':
+                $days = 7;
+                $lastSunday = date('Y-m-d', strtotime('last Sunday'));
+                $start = date('Y-m-d', strtotime("$lastSunday -6 days"));
+                $end = date('Y-m-d', strtotime('+6 day', strtotime($start)));
+                $com_end = date('Y-m-d', strtotime('-1 day', strtotime($start)));
+                $com_start = date('Y-m-d', strtotime('-6 days', strtotime($com_end)));
+                break;
+              case 'report-pdf.one-month':
+                $days = 30;
+                $start = date('Y-m-d', strtotime('first day of previous month'));
+                $end = date('Y-m-d', strtotime('+29 day', strtotime($start)));
+                $com_end = date('Y-m-d', strtotime('-1 day', strtotime($start)));
+                $com_start = date('Y-m-d', strtotime('-29 days', strtotime($com_end)));
+                break;
+              case 'report-pdf.three-month':
+                $days = 90;
+                $last_month = date('Y-m-d', strtotime('first day of previous month'));
+                $start = date('Y-m-d', strtotime('-2 month', strtotime($last_month)));
+                $end = date('Y-m-d', strtotime('last day of previous month'));
+                $com_end = date('Y-m-d', strtotime('-1 day', strtotime($start)));
+                $diff = abs(strtotime($end) - strtotime($start))/(60 * 60* 24);
+                $com_start = date('Y-m-d', strtotime("$com_end -$diff days"));
+                break;
+              case 'report-pdf.six-month':
+                $days = 180;
+                $last_month = date('Y-m-d', strtotime('first day of previous month'));
+                $start = date('Y-m-d', strtotime('-5 month', strtotime($last_month)));
+                $end = date('Y-m-d', strtotime('last day of previous month'));
+                $com_end = date('Y-m-d', strtotime('-1 day', strtotime($start)));
+                $diff = abs(strtotime($end) - strtotime($start))/(60 * 60* 24);
+                $com_start = date('Y-m-d', strtotime("$com_end -$diff days"));
+                break;
+              case 'report-pdf.year':
+                $days = 360;
+                $last_month = date('Y-m-d', strtotime('first day of previous month'));
+                $start = date('Y-m-d', strtotime('-11 month', strtotime($last_month)));
+                $end = date('Y-m-d', strtotime('last day of previous month'));
+                $com_end = date('Y-m-d', strtotime('-1 day', strtotime($start)));
+                $diff = abs(strtotime($end) - strtotime($start))/(60 * 60* 24);
+                $com_start = date('Y-m-d', strtotime("$com_end -$diff days"));
+                break;
+              default:
+                $days = 7;
+                $days = 7;
+                $lastSunday = date('Y-m-d', strtotime('last Sunday'));
+                $start = date('Y-m-d', strtotime("$lastSunday -6 days"));
+                $end = date('Y-m-d', strtotime('+6 day', strtotime($start)));
+                $com_end = date('Y-m-d', strtotime('-1 day', strtotime($start)));
+                $com_start = date('Y-m-d', strtotime('-6 days', strtotime($com_end)));
+                break;
+            }
+            $send_info = DB::table('report_send_days')->where([
+                'site_id' => $sites,
+                'days' => $days,
+            ])->first();
+        } else { // レポート送付用ここまで
+            if (isset($request->start)) {
+                $end = $request->end;
+                $start = $request->start;
+                $com_end = $request->com_end;
+                $com_start = $request->com_start;
+            } else {
+                $end = date('Y-m-d', strtotime('-1 day', time()));
+                $start = date('Y-m-d', strtotime('-30 days', time()));
+                $com_end = date('Y-m-d', strtotime('-1 day', strtotime($start)));
+                $com_start = date('Y-m-d', strtotime('-29 days', strtotime($com_end)));
+            }
         }
 
         // ルートごとの返り値変更
@@ -81,10 +142,10 @@ class PdfController extends Controller
         $ga_result_action = $this->get_ga_action($gsa, $view_id, $start, $end, $com_start, $com_end);
         $ga_result_conversion = $this->get_ga_conversion($gsa, $view_id, $start, $end, $com_start, $com_end);
         $ga_result_ad = $this->get_ga_ad($gsa, $view_id, $start, $end, $com_start, $com_end);
-        if($plan%2 == 0){
-          $sc_result = $this->get_sc_query($sc, $url, 10, $start, $end, $com_start, $com_end);
-        }else{
-          $sc_result = null;
+        if ($plan%2 == 0) {
+            $sc_result = $this->get_sc_query($sc, $url, 10, $start, $end, $com_start, $com_end);
+        } else {
+            $sc_result = null;
         }
 
         return view('analysis.pdf.index_pdf')->with([
@@ -321,9 +382,9 @@ class PdfController extends Controller
         $requestMedium->setOrderBys($orderBy);
 
         $filter_social = new \Google_Service_AnalyticsReporting_DimensionFilter();
-        $filter_social->setDimensionName( 'ga:socialNetwork' );
+        $filter_social->setDimensionName('ga:socialNetwork');
         $filter_social->setNot(true);
-        $filter_social->setExpressions( ["(not set)"] );
+        $filter_social->setExpressions(["(not set)"]);
 
         $filters_social = new \Google_Service_AnalyticsReporting_DimensionFilterClause();
         $filters_social->setFilters([$filter_social]);
