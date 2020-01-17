@@ -14,8 +14,10 @@
 // トッページ無効化
 Route::get('/', 'HomeController@top')->name('top');
 
-// ゲストユーザー用
-Auth::routes();
+// 認証
+Auth::routes([
+  'ga-pdf' => false
+]);
 
 // OAuth認証
 Route::prefix('auth')->group(function () {
@@ -105,7 +107,7 @@ Route::group(['prefix' => 'report'], function () {
     // pdf
     Route::get('/{AddSites}/pdf', 'PdfController@index', function ($sites) {
         return $sites;
-    })->middleware(['analytics.reporting', 'webmaster'])->name('ga-pdf');
+    })->middleware(['pdf.analytics', 'pdf.webmaster'])->name('ga-pdf');
 });
 
 // SEO解析系
