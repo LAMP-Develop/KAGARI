@@ -12,6 +12,7 @@ class CustomerSendmail extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     private $site_url;
+    private $site_name;
     private $action_url;
 
     /**
