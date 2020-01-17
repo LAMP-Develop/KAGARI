@@ -65,21 +65,20 @@ if ($key == 6 || $key == 7) {
 <br>
 <br><b>【プラン変更】</b>
 <br>・プラン変更の完了には2営業日いただいております。
-<br>　同月にプラン変更された場合は、現在ご契約中プランと変更後のプランが合わせて請求となりますので、
-<br>　予めご了承ください。
 <br>
 <br><b>【解約/退会に関して】</b>
 <br>・クレジットカード決済の方
 <br>　ご登録サイトの解約/KAGARIの退会には2営業日いただいております。
 <br>　月をまたぐ解約/退会にはご注意ください。
 <br>
-<br>　解約/退会完了が月を越えた場合は課金が継続されますので、予めご了承ください。
-<br>　例：申請 1月31(金）〜 完了 2月3日（月）の場合は、2月分が自動課金（※土日祝 ・その他休業日は対応不可）
+<br>　解約/退会完了が翌月を越えた場合は自動的に課金されますので、予めご了承ください。
+<br>　例：申請 1月31(金）〜 完了 2月3日（月）の場合は自動課金
+<br>（※土日祝 ・その他休業日は対応不可）
 <br>
-<br>営業日はこちらから（<a href="https://kagari.ai/faq/others/2308/" target="_blank">https://kagari.ai/faq/others/2308/</a>）
+<br>　営業日はこちらから（<a href="https://kagari.ai/faq/others/2308/" target="_blank">https://kagari.ai/faq/others/2308/</a>）
 <br>
 <br>・請求書払いの方
-<br>　解約/退会いただいた月の翌月5日迄にご登録メールアドレスへ請求書をお送りいたします。</p>
+<br>　解約/退会いただいた月の翌月の5日迄にご登録メールアドレスへ請求書をお送りいたします。</p>
 <div class="form-group form-check m-0">
 <input type="checkbox" class="form-check-input" value="1" name="agreement" id="agreement" required>
 <label class="form-check-label" for="agreement">上記の注意事項に同意する</label>
