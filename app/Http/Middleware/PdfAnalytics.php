@@ -22,6 +22,7 @@ class PdfAnalytics
         $pattern = '/[0-9.,０-９．，]+/u';
         $subject = $_SERVER["REQUEST_URI"];
         $result = preg_match($pattern, $subject, $matches);
+        dd($matches[0]);
         $site = AddSites::find($matches[0])->first();
         $google_client = Google::getClient();
         $user = User::find($site->user_id)->first();
