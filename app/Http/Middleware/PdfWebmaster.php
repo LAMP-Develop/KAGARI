@@ -22,9 +22,10 @@ class PdfWebmaster
         $pattern = '/[0-9.,０-９．，]+/u';
         $subject = $_SERVER["REQUEST_URI"];
         $result = preg_match($pattern, $subject, $matches);
-        $site = AddSites::find($matches[0])->first();
+        $site = AddSites::where('id', $matches[0])->first();
+        $user = User::where('id', $site->user_id)->first();
+
         $google_client = Google::getClient();
-        $user = User::find($site->user_id)->first();
         $user_access_token = $user->google_token;
         $user_refresh_token = $user->google_refresh_token;
         $user_time_created = (int)$user->time_created;
