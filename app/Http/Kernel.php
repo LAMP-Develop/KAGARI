@@ -73,6 +73,9 @@ class Kernel extends HttpKernel
         'analytics.properties' => \App\Http\Middleware\AnalyticsProperties::class,
         'analytics.reporting' => \App\Http\Middleware\AnalyticsReport::class,
         'webmaster' => \App\Http\Middleware\webmaster::class,
+        'pdf.analytics' => \App\Http\Middleware\PdfAnalytics::class,
+        'pdf.webmaster' => \App\Http\Middleware\PdfWebmaster::class,
+        'auth.basic' => \App\Http\Middleware\AdminAuthenticate::class,
     ];
 
     /**

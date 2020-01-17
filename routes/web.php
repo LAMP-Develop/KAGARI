@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,8 +16,10 @@
 // トッページ無効化
 Route::get('/', 'HomeController@top')->name('top');
 
-// ゲストユーザー用
-Auth::routes();
+// 認証
+Auth::routes([
+  'report-pdf' => false
+]);
 
 // OAuth認証
 Route::prefix('auth')->group(function () {
@@ -108,6 +112,30 @@ Route::group(['prefix' => 'report'], function () {
     })->middleware(['analytics.reporting', 'webmaster'])->name('ga-pdf');
 });
 
+// メール用PDF
+Route::group(['prefix' => 'report-pdf'], function () {
+    // 毎週
+    Route::get('/week/{AddSites}', 'PdfController@index', function (Request $request, $sites) {
+        return $sites;
+    })->middleware(['signed', 'pdf.analytics', 'pdf.webmaster'])->name('report-pdf.week');
+    // 1ヶ月
+    Route::get('/month/{AddSites}', 'PdfController@index', function (Request $request, $sites) {
+        return $sites;
+    })->middleware(['signed', 'pdf.analytics', 'pdf.webmaster'])->name('report-pdf.one-month');
+    // 3ヶ月
+    Route::get('/month-three/{AddSites}', 'PdfController@index', function (Request $request, $sites) {
+        return $sites;
+    })->middleware(['signed', 'pdf.analytics', 'pdf.webmaster'])->name('report-pdf.three-month');
+    // 6ヶ月
+    Route::get('/month-six/{AddSites}', 'PdfController@index', function (Request $request, $sites) {
+        return $sites;
+    })->middleware(['signed', 'pdf.analytics', 'pdf.webmaster'])->name('report-pdf.six-month');
+    // 1年
+    Route::get('/month-year/{AddSites}', 'PdfController@index', function (Request $request, $sites) {
+        return $sites;
+    })->middleware(['signed', 'pdf.analytics', 'pdf.webmaster'])->name('report-pdf.year');
+});
+
 // SEO解析系
 Route::group(['prefix' => 'seo'], function () {
     Route::get('/{AddSites}', 'SeoController@index', function ($sites) {
@@ -147,3 +175,6 @@ Route::post('/add-card', 'AjaxController@add_card')->name('add.card'); // クレ
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+// TEST
+Route::get('/send-test', 'TestController@index')->name('test.send');
