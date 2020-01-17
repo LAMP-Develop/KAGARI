@@ -22,11 +22,11 @@ class PdfAnalytics
         $pattern = '/[0-9.,０-９．，]+/u';
         $subject = $_SERVER["REQUEST_URI"];
         $result = preg_match($pattern, $subject, $matches);
-        dd($matches[0]);
+        // dd($matches[0]);
         $site = AddSites::find($matches[0])->first();
         $google_client = Google::getClient();
         $user = User::find($site->user_id)->first();
-        dd($user);
+        dd($site->user_id);
         $user_access_token = $user->google_token;
         $user_refresh_token = $user->google_refresh_token;
         $user_time_created = (int)$user->time_created;
