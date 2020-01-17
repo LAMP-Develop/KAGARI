@@ -19,9 +19,10 @@ class CustomerSendmail extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($site_url, $action_url)
+    public function __construct($site_url, $site_name, $action_url)
     {
         $this->site_url = $site_url;
+        $this->site_name = $site_name;
         $this->action_url = $action_url;
     }
 
@@ -37,6 +38,7 @@ class CustomerSendmail extends Mailable implements ShouldQueue
         ->markdown('mail.report-customer')
         ->with([
             'site_url' => $this->site_url,
+            'site_name' => $this->site_name,
             'action_url' => $this->action_url,
         ]);
     }

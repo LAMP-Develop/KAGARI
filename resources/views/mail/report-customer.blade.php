@@ -1,10 +1,11 @@
 @component('mail::message')
-サイト名 ご担当者 様
+{{ $site_name }} ご担当者 様
 <br>
 <br>日頃よりKAGARIをご利用いただき誠にありがとうございます。
 <br>
 <br>「 {{ $site_url }} 」の1ヶ月間のアクセス解析レポートが完成しました。
 <br>下記ボタンより、PDFデータのダウンロードをお願い致します。
+<br>※レポートの生成にはアクセスより30秒ほどかかる場合があります。
 <br>
 @component('mail::button', ['url' => $action_url, 'color' => 'primary'])
 レポートをダウンロード
