@@ -36,6 +36,6 @@ class TestController extends Controller
         $site = AddSites::where('id', 36)->first();
         $site_name = $site->site_name;
         $site_url = $site->url;
-        \Mail::to('anyushu2017@gmail.com')->send(new CustomerSendmail($site_url, $action_url));
+        \Mail::to('sakuradai19921128@gmail.com')->send(new CustomerSendmail($site_url, $action_url));
     }
 }
