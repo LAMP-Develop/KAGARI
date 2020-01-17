@@ -25,7 +25,7 @@ class PdfAnalytics
         // dd($matches[0]);
         $site = AddSites::find($matches[0])->first();
         $user = User::find($site->user_id)->first();
-        dd($site, $site->user_id);
+        dd($site);
 
         $google_client = Google::getClient();
         $user_access_token = $user->google_token;
