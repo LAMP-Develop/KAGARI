@@ -365,7 +365,7 @@ $comp = 0;
 @else
 <div class="col-12">
 <div class="alert alert-warning">
-<p class="m-0">Google広告と連携されていないか、広告設定が正しくありません。<a class="ml-2" href="https://support.google.com/analytics/answer/1032415?hl=ja&ref_topic=6150889" target="_blank"><i class="fas fa-link mr-1"></i>設定方法を確認する（公式ヘルプ）</a></p>
+<p class="m-0">Google広告と連携されていないか、広告設定が正しくありません。<a class="ml-2" href="https://support.google.com/analytics/answer/1033961?hl=ja" target="_blank"><i class="fas fa-link mr-1"></i>設定方法を確認する（公式ヘルプ）</a></p>
 </div>
 </div>
 @endif

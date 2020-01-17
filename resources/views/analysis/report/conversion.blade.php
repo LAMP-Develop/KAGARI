@@ -330,7 +330,8 @@ $comp = 0;
 <div class="container">
 <div class="col-12">
 <div class="alert alert-warning">
-<p class="m-0">レポート作成に必要な情報が不足しているため出力できませんでした。</p>
+<p class="m-0">レポート作成に必要な情報が不足しているか、Google Analyticsのコンバージョン設定がされていないため表示できません
+<br><a href="https://support.google.com/analytics/answer/1032415?hl=ja&ref_topic=6150889" target="_blank"><i class="fas fa-link mr-1"></i>設定方法を確認する（公式ヘルプ）</a></p>
 </div>
 </div>
 </div>
