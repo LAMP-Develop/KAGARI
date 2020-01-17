@@ -75,6 +75,7 @@ class Kernel extends HttpKernel
         'webmaster' => \App\Http\Middleware\webmaster::class,
         'pdf.analytics' => \App\Http\Middleware\PdfAnalytics::class,
         'pdf.webmaster' => \App\Http\Middleware\PdfWebmaster::class,
+        'auth.basic' => \App\Http\Middleware\AdminAuthenticate::class,
     ];
 
     /**

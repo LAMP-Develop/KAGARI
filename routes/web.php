@@ -16,7 +16,7 @@ Route::get('/', 'HomeController@top')->name('top');
 
 // 認証
 Auth::routes([
-  'ga-pdf' => false
+  'report-pdf' => false
 ]);
 
 // OAuth認証
@@ -107,8 +107,13 @@ Route::group(['prefix' => 'report'], function () {
     // pdf
     Route::get('/{AddSites}/pdf', 'PdfController@index', function ($sites) {
         return $sites;
-    })->middleware(['pdf.analytics', 'pdf.webmaster'])->name('ga-pdf');
+    })->middleware(['analytics.reporting', 'webmaster'])->name('ga-pdf');
 });
+
+// メール用PDF
+Route::get('/report-pdf/{AddSites}', 'PdfController@index', function ($sites) {
+    return $sites;
+})->middleware(['auth.basic', 'pdf.analytics', 'pdf.webmaster'])->name('report-pdf');
 
 // SEO解析系
 Route::group(['prefix' => 'seo'], function () {

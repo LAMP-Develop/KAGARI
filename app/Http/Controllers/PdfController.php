@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\AddSites;
 use App\Plans;
-// use Auth;
+use Auth;
 use Google;
 use DB;
 use Route;
@@ -37,8 +37,10 @@ class PdfController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
-        $this->middleware('pdf.analytics');
+        $route_name = Route::current() -> getName();
+        if ($route_name === 'ga-pdf') {
+            $this->middleware('auth');
+        }
     }
 
     public function index(Request $request, $sites)
