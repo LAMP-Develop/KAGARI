@@ -25,7 +25,7 @@
 <br>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 <br>アクセス解析レポートの自動作成・送信ツール「KAGARI Report」
 <br>https://report.kagari.ai/
-<br>ページ毎のSEO分析に特化したマーケティングツール「KAGAR SEO」
+<br>ページ毎のSEO分析に特化したマーケティングツール「KAGARI SEO」
 <br>https://seo.kagari.ai/
 <br>
 <br>※本メールは送信専用アドレスからお送りしています。
