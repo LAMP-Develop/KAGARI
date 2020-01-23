@@ -161,6 +161,7 @@ let myChart_query = new Chart(ctx_query, {
     tooltips: {
       enabled: false
     },
+    animation: false,
     legend: {
       display: false
     },
