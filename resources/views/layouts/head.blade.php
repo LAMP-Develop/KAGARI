@@ -31,5 +31,16 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'UA-79537153-15');
+  gtag('config', 'AW-672878991');
 </script>
+
+@if(Route::current()->getName() == 'payment-done')
+<!-- Event snippet for Repot(月額) conversion page -->
+<script>
+  gtag('event', 'conversion', {
+      'send_to': 'AW-672878991/HniTCJetxL8BEI-j7cAC',
+      'transaction_id': ''
+  });
+</script>
+@endif
 @endsection
