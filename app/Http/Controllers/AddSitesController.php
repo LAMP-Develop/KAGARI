@@ -111,38 +111,43 @@ class AddSitesController extends Controller
     {
         $user = Auth::user();
         // 新規サイト追加
-        $add_sites = new AddSites();
-        $add_sites->user_id = $user->id;
-        $add_sites->site_name = $request['site-name'];
-        $add_sites->url = $request['site-url'];
-        $add_sites->plan = $request['plan'];
-        $add_sites->VIEW_ID = $request['view-id'];
-        $add_sites->industry = $request['industries'];
-        $add_sites->category = $request['genre'];
-        if (isset($request['image_file'])) {
-            $add_sites->logo_path = $request['image_file'];
-        } else {
-            $add_sites->logo_path = '';
+        if (Addsites::where('url', $request['site-url'])->first() == null) {
+            $add_sites = new AddSites();
+            $add_sites->user_id = $user->id;
+            $add_sites->site_name = $request['site-name'];
+            $add_sites->url = $request['site-url'];
+            $add_sites->plan = $request['plan'];
+            $add_sites->VIEW_ID = $request['view-id'];
+            $add_sites->industry = $request['industries'];
+            $add_sites->category = $request['genre'];
+            if (isset($request['image_file'])) {
+                $add_sites->logo_path = $request['image_file'];
+            } else {
+                $add_sites->logo_path = '';
+            }
+            $add_sites->created_at = date('Y-m-d H:i:s');
+            $add_sites->updated_at = date('Y-m-d H:i:s');
+            $add_sites->trial_at = date('Y-m-d H:i:s');
+            $add_sites->save();
+            $site_id = $add_sites->id;
+
+            $send_days = new ReportSendDays();
+            $send_days->site_id = $site_id;
+            $send_days->created_at = date('Y-m-d H:i:s');
+            $send_days->updated_at = date('Y-m-d H:i:s');
+            $send_days->save();
+
+            $send_mail = new ReportSendMail();
+            $send_mail->site_id = $site_id;
+            $send_mail->created_at = date('Y-m-d H:i:s');
+            $send_mail->updated_at = date('Y-m-d H:i:s');
+            $send_mail->save();
+
+            try {
+                \Mail::to($user->email)->send(new TrialStartSendmail($user, $add_sites));
+            } catch (\Exception $e) {
+            }
         }
-        $add_sites->created_at = date('Y-m-d H:i:s');
-        $add_sites->updated_at = date('Y-m-d H:i:s');
-        $add_sites->trial_at = date('Y-m-d H:i:s');
-        $add_sites->save();
-        $site_id = $add_sites->id;
-
-        $send_days = new ReportSendDays();
-        $send_days->site_id = $site_id;
-        $send_days->created_at = date('Y-m-d H:i:s');
-        $send_days->updated_at = date('Y-m-d H:i:s');
-        $send_days->save();
-
-        $send_mail = new ReportSendMail();
-        $send_mail->site_id = $site_id;
-        $send_mail->created_at = date('Y-m-d H:i:s');
-        $send_mail->updated_at = date('Y-m-d H:i:s');
-        $send_mail->save();
-
-        \Mail::to($user->email)->send(new TrialStartSendmail($user, $add_sites));
 
         return redirect(route('dashboard'));
     }
