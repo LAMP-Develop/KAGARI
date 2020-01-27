@@ -40,8 +40,11 @@ class FormController extends Controller
     {
         $user = Auth::user();
         $inputs = $request->all();
-        \Mail::to($inputs['email'])->send(new FormSendmail($user));
-        \Mail::to('kagari-unsub@kagari.ai')->send(new FormAdminSendmail($inputs, $user));
+        try {
+            \Mail::to($inputs['email'])->send(new FormSendmail($user));
+            \Mail::to('kagari-unsub@kagari.ai')->send(new FormAdminSendmail($inputs, $user));
+        } catch (\Exception $e) {
+        }
         return view('form.unsubsc-send', [
             'inputs' => $inputs,
         ]);
@@ -74,8 +77,11 @@ class FormController extends Controller
     {
         $user = Auth::user();
         $inputs = $request->all();
-        \Mail::to($inputs['email'])->send(new PlanSendmail($inputs, $user));
-        \Mail::to('kagari-changeplan@kagari.ai')->send(new PlanAdminSendmail($inputs, $user));
+        try {
+            \Mail::to($inputs['email'])->send(new PlanSendmail($inputs, $user));
+            \Mail::to('kagari-changeplan@kagari.ai')->send(new PlanAdminSendmail($inputs, $user));
+        } catch (\Exception $e) {
+        }
         return view('form.changeplan-send', [
             'inputs' => $inputs,
         ]);

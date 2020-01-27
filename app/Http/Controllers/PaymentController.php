@@ -94,8 +94,8 @@ class PaymentController extends Controller
                     'updated_at' => date('Y-m-d H:i:s')
                 ]);
 
-                if(isset($request->cn)){
-                  DB::table('billing_sheet')
+                if (isset($request->cn)) {
+                    DB::table('billing_sheet')
                   ->insert([
                       'name' => $request['pn'],
                       'company' => $request['cn'],
@@ -121,7 +121,10 @@ class PaymentController extends Controller
                     'updated_date' => $updated_date
                 ];
                 // メール送信
-                \Mail::to($user->email)->send(new PaymentDonemail($inputs, $user));
+                try {
+                    \Mail::to($user->email)->send(new PaymentDonemail($inputs, $user));
+                } catch (\Exception $e) {
+                }
             } else {
                 $error = false;
             }
@@ -135,8 +138,8 @@ class PaymentController extends Controller
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
 
-            if(isset($request->com_name)){
-              DB::table('billing_sheet')
+            if (isset($request->com_name)) {
+                DB::table('billing_sheet')
               ->insert([
                   'company' => $request['com_name'],
                   'name' => $request['per_name'],
@@ -162,7 +165,10 @@ class PaymentController extends Controller
                 'updated_date' => $updated_date
             ];
             // メール送信
-            \Mail::to($user->email)->send(new PaymentDonemail($inputs, $user));
+            try {
+                \Mail::to($user->email)->send(new PaymentDonemail($inputs, $user));
+            } catch (\Exception $e) {
+            }
         }
 
         // 2重送信対策
