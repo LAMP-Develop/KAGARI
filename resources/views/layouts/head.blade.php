@@ -31,6 +31,9 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'UA-79537153-15');
+  @if(Route::current()->getName() == 'register')
+  gtag('config', 'UA-79537153-10')
+  @endif
   gtag('config', 'AW-672878991');
 </script>
 
