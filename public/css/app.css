@@ -11938,8 +11938,8 @@ body > nav {
 }
 
 #seo-report-detail .row-head th.active {
-  background-color: #fff9f0;
-  border-left: 2px solid #EC5F2F;
+  background-color: rgba(236, 95, 47, 0.1);
+  border-bottom: 1px solid #EC5F2F;
   color: #EC5F2F;
 }
 
