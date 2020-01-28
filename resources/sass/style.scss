@@ -220,8 +220,8 @@ body {
   .row-head {
     th {
       &.active {
-        background-color: rgb(255, 249, 240);
-        border-left: 2px solid $primary;
+        background-color: rgba(236, 95, 47, 0.1);
+        border-bottom: 1px solid $primary;
         color: $primary;
       }
     }
