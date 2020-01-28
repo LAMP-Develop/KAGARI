@@ -99,39 +99,39 @@ body {
   margin: 0 auto;
 }
 
-.horizontal-scroll {
-  overflow: hidden;
-  display: flex;
-  box-sizing: border-box;
-  padding: 1px;
-  margin: 0;
-  list-style: none;
-  border: 1px solid #cdd6dd;
-  border-radius: 0.4rem;
-
-  li {
-    cursor: pointer;
-    position: relative;
-    width: 50%;
-    border: 0;
-    border-radius: 0.4rem;
-    box-sizing: border-box;
-    padding: 0.5rem 1rem;
-    line-height: 1;
-    text-align: center;
-    color: #6f7579;
-    transition: 0.3s;
-
-    &.active {
-      background-color: $primary;
-      color: $white;
-    }
-
-    &:not(.active):hover {
-      background-color: rgb(255, 249, 240);
-    }
-  }
-}
+// .horizontal-scroll {
+//   overflow: hidden;
+//   display: flex;
+//   box-sizing: border-box;
+//   padding: 1px;
+//   margin: 0;
+//   list-style: none;
+//   border: 1px solid #cdd6dd;
+//   border-radius: 0.4rem;
+//
+//   li {
+//     cursor: pointer;
+//     position: relative;
+//     width: 50%;
+//     border: 0;
+//     border-radius: 0.4rem;
+//     box-sizing: border-box;
+//     padding: 0.5rem 1rem;
+//     line-height: 1;
+//     text-align: center;
+//     color: #6f7579;
+//     transition: 0.3s;
+//
+//     &.active {
+//       background-color: $primary;
+//       color: $white;
+//     }
+//
+//     &:not(.active):hover {
+//       background-color: rgb(255, 249, 240);
+//     }
+//   }
+// }
 
 .table-responsive {
   thead {
@@ -383,6 +383,18 @@ body {
     }
   }
 }
+ .seo-nav{
+   .nav-item{
+     font-weight: bold;
+     color: #959ea7;
+     cursor: pointer;
+
+     &.active{
+       color: $primary;
+       border-bottom: solid 3px $primary;
+     }
+   }
+ }
 
 .ka-bg {
   &-purple {
@@ -478,6 +490,9 @@ body {
 
   &-color-red-2 {
     color: #ff3b30;
+  }
+  &-color-gray{
+    color: #959ea7;
   }
 
   &-bg-purple {
@@ -580,3 +595,7 @@ body {
    max-width: 100px;
    max-height: 70px;
  }
+
+.seo-range{
+  padding: .4rem .6rem
+}
