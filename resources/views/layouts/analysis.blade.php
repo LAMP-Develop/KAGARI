@@ -3,8 +3,8 @@ $url_array = [];
 @endphp
 
 @section('content')
-<section id="seo-report" class="wrap">
-<div class="container">
+<section id="seo-report">
+<div class="container-fluid px-4">
 @if ($ga_message != '')
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
 @php
@@ -16,19 +16,12 @@ echo $ga_message;
 </div>
 @endif
 <header class="seo-nav">
-<div class="card">
+<div class="card rounded-lg">
 <div class="card-body pb-0 pt-4">
 <!-- エクスポートと期間選択 -->
 <div class="d-flex justify-content-end align-items-end mx-0">
-{{-- <form class="p-0" method="get"> --}}
 <div class="form-row align-items-end m-0">
 <div class="pl-0 mr-2">
-{{-- <label for="start"><i class="far fa-calendar-alt mr-1"></i>開始日</label>
-<input id="start" type="date" name="start" class="form-control form-control-sm" value="{{ $start }}" min="2005-01-01">
-</div>
-<div class="mr-2">
-<label for="end"><i class="far fa-calendar-alt mr-1"></i>終了日</label>
-<input id="end" type="date" name="end" class="form-control form-control-sm" value="{{ $end }}" max="{{ $today }}"> --}}
 <a class="text-decoration-none mr-2" href="#" data-toggle="modal" data-target="#period-form">
 <span class="opacity-color-gray d-inline-block align-middle mr-2">分析期間</span>
 <span class="text-dark d-inline-block align-middle border rounded-lg seo-range">{{ $start }} ~ {{ $end }}</span>
@@ -36,18 +29,7 @@ echo $ga_message;
 <button type="submit" class="btn btn-primary btn-sm">期間で絞り込む</button>
 </div>
 </div>
-{{-- </form> --}}
 </div>
-<!-- スクロールとハイライト -->
-{{-- <div class="row justify-content-between align-items-end mt-3 mx-0">
-<div class="col-3 p-0">
-<label>分析</label>
-<ul class="horizontal-scroll">
-<li class="active seo"><i class="fas fa-search mr-1"></i>SEO</li>
-<li class="site"><i class="fas fa-chart-bar mr-1"></i>サイト</li>
-</ul>
-</div>
-</div> --}}
 <ul class="nav seo-nav horizontal-scroll">
 <li class="nav-item active seo pb-1 mr-4"><i class="fas fa-search mr-1"></i>SEO分析</li>
 <li class="nav-item site pb-1"><i class="fas fa-chart-bar mr-1"></i>サイト分析</li>
@@ -55,6 +37,7 @@ echo $ga_message;
 </div>
 </div>
 </header>
+
 <!-- Modal -->
 <div class="modal fade" id="period-form" tabindex="-1" role="dialog" aria-labelledby="period-form-label" aria-hidden="true">
 <div class="modal-dialog modal-lg" role="document">
@@ -91,10 +74,10 @@ echo $ga_message;
 </div>
 </div>
 </div>
-{{-- Modal end --}}
+
 <!-- 解析テーブル -->
-<section id="seo-report-detail" class="mt-4">
-<div class="table-responsive">
+<section id="seo-report-detail" class="mt-4 rounded-lg">
+<div class="table-responsive rounded-lg border">
 <table class="table table-bordered table-hover table-fixed">
 <thead>
 <tr class="row-head">

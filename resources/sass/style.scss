@@ -98,7 +98,6 @@ body {
   max-width: 768px;
   margin: 0 auto;
 }
-
 // .horizontal-scroll {
 //   overflow: hidden;
 //   display: flex;
@@ -145,28 +144,13 @@ body {
   }
 }
 
-#seo-detail-table {
-  thead {
-    th {
-      min-width: 8rem;
-      max-width: 8rem;
-    }
-  }
-
-  tbody {
-    td {
-      text-align: right;
-      min-width: 8rem;
-      max-width: 8rem;
-    }
-  }
-}
-
 #seo-report-detail {
+  background-color: $white;
+
   thead {
     th {
-      min-width: 10rem;
-      max-width: 10rem;
+      min-width: 8rem;
+      max-width: 8rem;
     }
 
     tr {
@@ -186,8 +170,10 @@ body {
   tbody {
     td {
       text-align: right;
-      min-width: 10rem;
-      max-width: 10rem;
+      min-width: 8rem;
+      max-width: 8rem;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
     }
   }
 
@@ -242,7 +228,6 @@ body {
 
   .sort-none {
     font-size: 0.7rem;
-    background-color: #fafafa;
   }
 }
 
@@ -383,18 +368,19 @@ body {
     }
   }
 }
- .seo-nav{
-   .nav-item{
-     font-weight: bold;
-     color: #959ea7;
-     cursor: pointer;
 
-     &.active{
-       color: $primary;
-       border-bottom: solid 3px $primary;
-     }
-   }
- }
+.seo-nav {
+  .nav-item {
+    font-weight: bold;
+    color: #959ea7;
+    cursor: pointer;
+
+    &.active {
+      color: $primary;
+      border-bottom: solid 3px $primary;
+    }
+  }
+}
 
 .ka-bg {
   &-purple {
@@ -491,7 +477,8 @@ body {
   &-color-red-2 {
     color: #ff3b30;
   }
-  &-color-gray{
+
+  &-color-gray {
     color: #959ea7;
   }
 
@@ -549,7 +536,7 @@ body {
   height: 0.25rem;
 }
 
-.table-responsive .table_number{
+.table-responsive .table_number {
   width: 1rem;
 }
 
@@ -591,11 +578,11 @@ body {
   margin-bottom: 0.25rem;
 }
 
-.logo_now{
-   max-width: 100px;
-   max-height: 70px;
- }
+.logo_now {
+  max-width: 100px;
+  max-height: 70px;
+}
 
-.seo-range{
-  padding: .4rem .6rem
+.seo-range {
+  padding: 0.4rem 0.6rem;
 }
