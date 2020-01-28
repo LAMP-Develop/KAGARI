@@ -146,4 +146,29 @@ $(function() {
       $('.print-error-msg').children('.alert').find('ul').append('<li>' + value + '</li>');
     });
   }
+
+    // seo datepicker
+    $('.datepicker').datepicker({
+      language: 'ja',
+      autoclose: true,
+      format: 'yyyy-mm-dd',
+      endDate: '-3d',
+    }).on('changeDate', function(e) {
+      let target = document.getElementById("check_range");
+      let change_btn = document.getElementById("data_change_btn");
+      let start = $('#start').val();
+      start = start.split('-');
+      start = new Date(start[0], start[1] - 1, start[2]);
+      let end = $('#end').val();
+      end = end.split('-');
+      end = new Date(end[0], end[1] - 1, end[2]);
+
+      if (start > end) {
+          target.innerHTML = '解析期間の終了日を解析期間の開始日以降に設定してください';
+          change_btn.disabled = 'disabled';
+      } else {
+        target.innerHTML = '';
+        change_btn.disabled = '';
+      }
+    });
 });
