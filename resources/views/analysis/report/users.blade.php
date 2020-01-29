@@ -67,7 +67,7 @@ $area = $ga_result[1][1];
 </div>
 <div class="row mx-0">
 <div class="col text-center">
-<p class="opacity-color-red-2 m-0"><i class="fas fa-user-plus h3"></i></p>
+<p class="opacity-color-blue m-0"><i class="fas fa-user-plus h3"></i></p>
 <p class="mb-1">新規ユーザー</p>
 <p class="m-0 h5 font-weight-bold text-dark">{{ $new_users }}<small class="ml-1 h6">%</small></p>
 <p class="m-0">
@@ -80,7 +80,7 @@ $area = $ga_result[1][1];
 </p>
 </div>
 <div class="col text-center">
-<p class="opacity-color-red m-0"><i class="fas fa-user h3"></i></p>
+<p class="opacity-color-purple m-0"><i class="fas fa-user h3"></i></p>
 <p class="mb-1">既存ユーザー</p>
 <p class="m-0 h5 font-weight-bold text-dark">{{ $re_users }}<small class="ml-1 h6">%</small></p>
 <p class="m-0">
@@ -162,7 +162,7 @@ $area = $ga_result[1][1];
 </p>
 </div>
 <div class="col text-center">
-<p class="m-0"><i class="fas fa-desktop h3" style="color:#007AFF99"></i></p>
+<p class="m-0"><i class="fas fa-desktop h3" style="color:#9561e2"></i></p>
 <p class="mb-1"><small>PC</small></p>
 <p class="m-0 h5 font-weight-bold text-dark">{{ $desktop_str }}<small class="ml-1 h6">%</small></p>
 <p class="m-0">
@@ -175,7 +175,7 @@ $area = $ga_result[1][1];
 </p>
 </div>
 <div class="col text-center">
-<p class="m-0"><i class="fas fa-tablet-alt h3" style="color:#007AFF66"></i></p>
+<p class="m-0"><i class="fas fa-tablet-alt h3" style="color:#FF2D55"></i></p>
 <p class="mb-1"><small>タブレット</small></p>
 <p class="m-0 h5 font-weight-bold text-dark">{{ $tablet_str }}<small class="ml-1 h6">%</small></p>
 <p class="m-0">
@@ -333,7 +333,7 @@ let myChart1 = new Chart(ctx, {
     datasets: [
       {
         data: userData,
-        backgroundColor: ['rgba(255, 59, 48, 1)', 'rgba(255, 59, 48, 0.6)']
+        backgroundColor: ['#007AFF', '#9561e2']
       }
     ]
   },
@@ -379,7 +379,7 @@ let myChart3 = new Chart(ctx3, {
     datasets: [
       {
         data: userData,
-        backgroundColor: ['#007AFF', '#007AFF99', '#007AFF66']
+        backgroundColor: ['#007AFF', '#9561e2', '#FF2D55']
       }
     ]
   },
