@@ -133,7 +133,7 @@ if(isset($_POST['update'])) {
 </svg>
 </h3>
 <p class="h2 font-weight-bold mb-0">¥5,000/月</p>
-<p class="text-left"><small>¥60,000/年間</small></p>
+<p class="text-left"><small>¥30,000/半年</small></p>
 <p class="text-left my-4 font-weight-bold">すべてのレポート作成機能を<br>ご利用いただけるプラン</p>
 <ul>
 <li class="border-0 p-0 mb-1 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>アクセス解析</li>
@@ -158,7 +158,7 @@ if(isset($_POST['update'])) {
 </svg>
 </h3>
 <p class="h2 font-weight-bold mb-0">¥8,000/月</p>
-<p class="text-left"><small>¥96,000/年間</small></p>
+<p class="text-left"><small>¥48,000/半年</small></p>
 <p class="text-left my-4 font-weight-bold">ページごとのSEO分析に特化した<br>分析機能付きのプラン</p>
 <ul>
 <li class="border-0 p-0 mb-1 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>アクセス解析</li>
@@ -200,7 +200,7 @@ if(isset($_POST['update'])) {
 </svg>
 </h3>
 <p class="h2 font-weight-bold mb-0">¥6,000/月</p>
-<p class="text-left"><small>¥72,000/年間</small></p>
+{{-- <p class="text-left"><small>¥72,000/年間</small></p> --}}
 <p class="text-left my-4 font-weight-bold">すべてのレポート作成機能を<br>ご利用いただけるプラン</p>
 <ul>
 <li class="border-0 p-0 mb-1 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>アクセス解析</li>
@@ -225,7 +225,7 @@ if(isset($_POST['update'])) {
 </svg>
 </h3>
 <p class="h2 font-weight-bold mb-0">¥9,000/月</p>
-<p class="text-left"><small>¥108,000/年間</small></p>
+{{-- <p class="text-left"><small>¥108,000/年間</small></p> --}}
 <p class="text-left my-4 font-weight-bold">ページごとのSEO分析に特化した<br>分析機能付きのプラン</p>
 <ul>
 <li class="border-0 p-0 mb-1 list-group-item"><i class="fas fa-check mr-1 text-primary"></i>アクセス解析</li>
