@@ -17,7 +17,7 @@ echo $ga_message;
 @endif
 <header class="seo-nav">
 <div class="card rounded-lg">
-<div class="card-body pb-0 pt-4">
+<div class="card-body pb-0 pt-3">
 <!-- エクスポートと期間選択 -->
 <div class="d-flex justify-content-end align-items-end mx-0">
 <div class="form-row align-items-end m-0">
@@ -30,7 +30,7 @@ echo $ga_message;
 </div>
 </div>
 </div>
-<ul class="nav seo-nav horizontal-scroll">
+<ul class="nav seo-nav horizontal-scroll mt-n3">
 <li class="nav-item active seo pb-1 mr-4"><i class="fas fa-search mr-1"></i>SEO分析</li>
 <li class="nav-item site pb-1"><i class="fas fa-chart-bar mr-1"></i>サイト分析</li>
 </ul>
