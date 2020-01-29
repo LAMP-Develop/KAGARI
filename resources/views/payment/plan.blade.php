@@ -36,17 +36,17 @@ if(isset($_POST['update'])) {
 
 <ul class="nav nav-pills mt-5 justify-content-center">
 <li class="nav-item">
-<a href="#annual" class="nav-link active" data-toggle="tab">年間契約</a>
+<a href="#annual" class="nav-link active" data-toggle="tab">年払い</a>
 </li>
 <li class="nav-item">
-<a href="#half" class="nav-link" data-toggle="tab">半年契約</a>
+<a href="#half" class="nav-link" data-toggle="tab">半年払い</a>
 </li>
 <li class="nav-item">
-<a href="#month" class="nav-link" data-toggle="tab">月間契約</a>
+<a href="#month" class="nav-link" data-toggle="tab">月払い</a>
 </li>
 </ul>
 <div class="tab-content pt-4">
-<!-- 年間契約 -->
+<!-- 年払い -->
 <div id="annual" class="tab-pane active">
 <div class="row justify-content-center">
 <div class="col-lg-4 col">
@@ -113,7 +113,7 @@ if(isset($_POST['update'])) {
 </div>
 </div>
 </div>
-<!-- 半年契約 -->
+<!-- 半年払い -->
 <div id="half" class="tab-pane">
 <div class="row justify-content-center">
 <div class="col-lg-4 col">
@@ -180,7 +180,7 @@ if(isset($_POST['update'])) {
 </div>
 </div>
 </div>
-<!-- 月間契約 -->
+<!-- 月払い -->
 <div id="month" class="tab-pane">
 <div class="row justify-content-center">
 <div class="col-lg-4 col">
