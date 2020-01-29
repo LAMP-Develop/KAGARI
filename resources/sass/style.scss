@@ -144,6 +144,15 @@ body {
   }
 }
 
+#seo-detail-table {
+  th,
+  td {
+    width: 8rem;
+    min-width: 8rem;
+    max-width: 8rem;
+  }
+}
+
 #seo-report-detail {
   background-color: $white;
 
