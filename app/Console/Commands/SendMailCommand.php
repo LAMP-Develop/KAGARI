@@ -56,9 +56,14 @@ class SendMailCommand extends Command
         $now = date("Y-m-d H:i:s");
         $now = new DateTime($now);
         $today = date('d');
-        $youbi = date('w');
+        //月終わり
+        $endDate  = new DateTime('last day of this month');
+        if ($today == $endDate) {
+          $today = 31;
+        }
+        $date_w = date('w');
         // if today is Monday
-        if ($youbi == 1) {
+        if ($date_w == 1) {
             $sites = ReportSendDays::where('days', 7)->get();
             foreach ($sites as $key => $site) {
                 $site_id = $site->site_id;
@@ -140,7 +145,6 @@ class SendMailCommand extends Command
                 try {
                     \Mail::to($_mail)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
                     \Mail::to($user_email)->send(new CustomerSendmail($site_url, $site_name, $action_url));
-                    return true;
                 } catch (\Exception $e) {
                 }
             } else {
