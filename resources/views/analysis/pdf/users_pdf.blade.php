@@ -12,16 +12,41 @@ $old_re_users = round($old_re_user_data / ($old_new_user_data + $old_re_user_dat
 $comp_new_users = round($new_users - $old_new_users, 2);
 $comp_re_users = round($re_users - $old_re_users, 2);
 // 男女比
-$female = $ga_result_user[0][2]['female'][0];
-$male = $ga_result_user[0][2]['male'][0];
-$old_female = $ga_result_user[0][2]['female'][1];
-$old_male = $ga_result_user[0][2]['male'][1];
-$female_str = round($female / ($female + $male) * 100, 2);
-$male_str = round($male / ($female + $male) * 100, 2);
-$old_female_str = round($old_female / ($old_female + $old_male) * 100, 2);
-$old_male_str = round($old_male / ($old_female + $old_male) * 100, 2);
-$comp_female = round($female_str - $old_female_str, 2);
-$comp_male = round($male_str - $old_male_str, 2);
+if (!isset($ga_result_user[0][2]['male'])) {
+  $female = $ga_result_user[0][2]['female'][0];
+  $male = 0;
+  $old_female = $ga_result_user[0][2]['female'][1];
+  $old_male = 0;
+  $female_str = round($female / ($female + $male) * 100, 2);
+  $male_str = 0;
+  $old_female_str = round($old_female / ($old_female + $old_male) * 100, 2);
+  $old_male_str = 0;
+  $comp_female = round($female_str - $old_female_str, 2);
+  $comp_male = 0;
+}elseif (!isset($ga_result_user[0][2]['female'])){
+  $female = 0;
+  $male = $ga_result_user[0][2]['male'][0];
+  $old_female = 0;
+  $old_male = $ga_result_user[0][2]['male'][1];
+  $female_str = 0;
+  $male_str = round($male / ($female + $male) * 100, 2);
+  $old_female_str = 0;
+  $old_male_str = round($old_male / ($old_female + $old_male) * 100, 2);
+  $comp_female = 0;
+  $comp_male = round($male_str - $old_male_str, 2);
+}else{
+  $female = $ga_result_user[0][2]['female'][0];
+  $male = $ga_result_user[0][2]['male'][0];
+  $old_female = $ga_result_user[0][2]['female'][1];
+  $old_male = $ga_result_user[0][2]['male'][1];
+  $female_str = round($female / ($female + $male) * 100, 2);
+  $male_str = round($male / ($female + $male) * 100, 2);
+  $old_female_str = round($old_female / ($old_female + $old_male) * 100, 2);
+  $old_male_str = round($old_male / ($old_female + $old_male) * 100, 2);
+  $comp_female = round($female_str - $old_female_str, 2);
+  $comp_male = round($male_str - $old_male_str, 2);
+}
+
 // デバイス
 $mobile = $ga_result_user[0][1]['mobile'][0];
 $desktop = $ga_result_user[0][1]['desktop'][0];
