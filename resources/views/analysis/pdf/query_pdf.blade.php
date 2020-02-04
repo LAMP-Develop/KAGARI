@@ -128,7 +128,11 @@ if ($max_imp_tmp < $impressions) {
 <script>
 let ctx_query = $('#query-chart');
 let clicks = @json($sc_result['impressions'], JSON_PRETTY_PRINT);
+@if(isset($sc_result['comp']['impressions']))
 let clicks_comp = @json($sc_result['comp']['impressions'], JSON_PRETTY_PRINT);
+@else
+let clicks_comp = 0;
+@endif
 let arrayLabel_query = @json($sc_result['date'], JSON_PRETTY_PRINT);
 let myChart_query = new Chart(ctx_query, {
   type: 'line',
