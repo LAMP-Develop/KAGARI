@@ -15,8 +15,12 @@ if ($bool) {
     $old_cv = $ga_result_ad[0][1][2];
     if ($old_cv != 0 && $cv != 0) {
         $cvcost = round($cost / $cv, 0);
-        $old_cvcost = round($old_cost/$old_cv, 0);
-        $comp_all_cvcost = round(($cvcost / $old_cvcost - 1) * 100, 2);
+        $old_cvcost = round($old_cost / $old_cv, 0);
+        if (($old_cvcost - 1) > 0) {
+            $comp_all_cvcost = round(($cvcost / $old_cvcost - 1) * 100, 2);
+        } else {
+            $comp_all_cvcost = 0;
+        }
     } else {
         $cvcost = 0;
         $old_cvcost = 0;
@@ -24,6 +28,8 @@ if ($bool) {
     }
     if ($old_cost != 0) {
         $comp_all_cost = round(($cost / $old_cost - 1) * 100, 2);
+    } else {
+        $comp_all_cost = 0;
     }
     if ($old_click != 0) {
         $old_price = round($old_cost / $old_click, 1);
