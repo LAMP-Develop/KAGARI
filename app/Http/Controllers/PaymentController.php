@@ -138,9 +138,8 @@ class PaymentController extends Controller
                 'updated_at' => date('Y-m-d H:i:s')
             ]);
 
-            if (isset($request->com_name)) {
-                DB::table('billing_sheet')
-              ->insert([
+            if (isset($request['com_name']) && isset($request['per_name'])) {
+                DB::table('billing_sheet')->insert([
                   'company' => $request['com_name'],
                   'name' => $request['per_name'],
                   'site_id' => $request['site_id'],
