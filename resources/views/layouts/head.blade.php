@@ -27,16 +27,15 @@
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79537153-15"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-79537153-15');
-  @if(Route::current()->getName() == 'register')
-  gtag('config', 'UA-79537153-10')
-  @endif
-  gtag('config', 'AW-672878991');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-79537153-15');
+@if(Route::current()->getName() == 'register')
+gtag('config', 'UA-79537153-10')
+@endif
+gtag('config', 'AW-672878991');
 </script>
-
 @if(Route::current()->getName() == 'payment-done')
 <!-- Event snippet for Repot(月額) conversion page -->
 <script>
@@ -46,4 +45,21 @@
   });
 </script>
 @endif
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1424654571021609');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1424654571021609&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
 @endsection
