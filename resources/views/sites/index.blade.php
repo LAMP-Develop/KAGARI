@@ -1,6 +1,16 @@
 @section('content')
 <section class="wrap">
 <div class="container">
+
+<div class="mb-3">
+<div class="input-group">
+<div class="input-group-prepend">
+<div class="input-group-text"><i class="fas fa-search"></i></div>
+</div>
+<input id="mysite-search" class="form-control search" type="text" placeholder="キーワードでサイトを絞り込み" width="500">
+</div>
+</div>
+
 <ul class="list-group list-group-flush">
 <li class="list-group-item">
 <div class="row">
@@ -26,7 +36,7 @@ if ($site->trial_at != null) {
 }
 $plan_date = null;
 @endphp
-<li class="list-group-item list-group-item-action" data-toggle="collapse" href="#collapse-{{ $key }}" role="button" aria-expanded="false" aria-controls="collapse-{{ $key }}">
+<li class="my-site list-group-item list-group-item-action" data-toggle="collapse" href="#collapse-{{ $key }}" role="button" aria-expanded="false" aria-controls="collapse-{{ $key }}">
 <div class="row align-items-center">
 <div class="col-4 d-flex align-items-center">
 <figure class="m-0 line-height-1">
