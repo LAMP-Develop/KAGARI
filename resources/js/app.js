@@ -23,6 +23,8 @@ $(function() {
   $searchInput.on('input', function() {
     $('.collapse').collapse('hide');
   });
+  let $search = $('#mysite-search');
+  $search.quicksearch('.my-site');
 
   // モーダル
   $('.addsite-modal').on('click', function() {
