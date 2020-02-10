@@ -73,9 +73,14 @@ class SendMailCommand extends Command
                     $_site = AddSites::where('id', $site_id)->first();
                     $site_name = $_site->site_name;
                     $site_url = $_site->url;
+                    $user_id = $_site->user_id;
+                    $user = User::where('id', $user_id)->first();
+                    $user_email = $user->email;
+                    $site_mail = ReportSendMail::where('site_id', $site_id)->first();
+                    $_mail = $site_mail->mailaddress;
                     try {
-                        \Mail::to($_mail)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
-                        \Mail::to($user_email)->send(new CustomerSendmail($site_url, $site_name, $action_url));
+                        \Mail::to($user_email)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
+                        \Mail::to($_mail)->send(new CustomerSendmail($site_url, $site_name, $action_url));
                     } catch (\Exception $e) {
                     }
                 }
@@ -101,8 +106,8 @@ class SendMailCommand extends Command
                     $site_name = $_site->site_name;
                     $site_url = $_site->url;
                     try {
-                        \Mail::to($_mail)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
-                        \Mail::to($user_email)->send(new CustomerSendmail($site_url, $site_name, $action_url));
+                        \Mail::to($user_email)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
+                        \Mail::to($_mail)->send(new CustomerSendmail($site_url, $site_name, $action_url));
                     } catch (\Exception $e) {
                     }
                 } elseif ($diff % 6 && $site_days == 180) {
@@ -116,8 +121,8 @@ class SendMailCommand extends Command
                     $site_name = $_site->site_name;
                     $site_url = $_site->url;
                     try {
-                        \Mail::to($_mail)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
-                        \Mail::to($user_email)->send(new CustomerSendmail($site_url, $site_name, $action_url));
+                        \Mail::to($user_email)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
+                        \Mail::to($_mail)->send(new CustomerSendmail($site_url, $site_name, $action_url));
                     } catch (\Exception $e) {
                     }
                 } elseif ($diff % 3 && $site_days == 90) {
@@ -131,8 +136,8 @@ class SendMailCommand extends Command
                     $site_name = $_site->site_name;
                     $site_url = $_site->url;
                     try {
-                        \Mail::to($_mail)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
-                        \Mail::to($user_email)->send(new CustomerSendmail($site_url, $site_name, $action_url));
+                        \Mail::to($user_email)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
+                        \Mail::to($_mail)->send(new CustomerSendmail($site_url, $site_name, $action_url));
                     } catch (\Exception $e) {
                     }
                 } elseif ($site_days == 30) {
@@ -146,8 +151,8 @@ class SendMailCommand extends Command
                     $site_name = $_site->site_name;
                     $site_url = $_site->url;
                     try {
-                        \Mail::to($_mail)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
-                        \Mail::to($user_email)->send(new CustomerSendmail($site_url, $site_name, $action_url));
+                        \Mail::to($user_email)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
+                        \Mail::to($_mail)->send(new CustomerSendmail($site_url, $site_name, $action_url));
                     } catch (\Exception $e) {
                     }
                 } else {
