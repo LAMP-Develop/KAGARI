@@ -57,6 +57,11 @@ class TestController extends Controller
                     $_site = AddSites::where('id', $site_id)->first();
                     $site_name = $_site->site_name;
                     $site_url = $_site->url;
+                    $user_id = $_site->user_id;
+                    $user = User::where('id', $user_id)->first();
+                    $user_email = $user->email;
+                    $site_mail = ReportSendMail::where('site_id', $site_id)->first();
+                    $_mail = $site_mail->mailaddress;
                     try {
                         \Mail::to($user_email)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
                         \Mail::to($_mail)->send(new CustomerSendmail($site_url, $site_name, $action_url));
