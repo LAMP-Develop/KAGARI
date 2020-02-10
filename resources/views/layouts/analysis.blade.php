@@ -26,7 +26,6 @@ echo $ga_message;
 <span class="opacity-color-gray d-inline-block align-middle mr-2">分析期間</span>
 <span class="text-dark d-inline-block align-middle border rounded-lg seo-range">{{ $start }} ~ {{ $end }}</span>
 </a>
-<button type="submit" class="btn btn-primary btn-sm">期間で絞り込む</button>
 </div>
 </div>
 </div>
