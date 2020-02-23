@@ -60,7 +60,7 @@ class TestController extends Controller
                     $user_id = $_site->user_id;
                     $user = User::where('id', $user_id)->first();
                     $user_email = $user->email;
-                    $site_mail = ReportSendMail::where('site_id', $site_id)->get();
+                    $site_mail = ReportSendMail::where('site_id', $site_id)->first();
                     dd($site_mail);
                     $_mail = $site_mail->mailaddress;
                     try {
