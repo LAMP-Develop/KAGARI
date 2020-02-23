@@ -61,11 +61,10 @@ class TestController extends Controller
                     $user = User::where('id', $user_id)->first();
                     $user_email = $user->email;
                     $site_mail = ReportSendMail::where('site_id', $site_id)->first();
-                    dd($site_mail);
                     $_mail = $site_mail->mailaddress;
                     try {
-                        // \Mail::to($user_email)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
-                        // \Mail::to($_mail)->send(new CustomerSendmail($site_url, $site_name, $action_url));
+                        \Mail::to($user_email)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
+                        \Mail::to($_mail)->send(new CustomerSendmail($site_url, $site_name, $action_url));
                     } catch (\Exception $e) {
                     }
                 }
@@ -91,8 +90,8 @@ class TestController extends Controller
                     $site_name = $_site->site_name;
                     $site_url = $_site->url;
                     try {
-                        // \Mail::to($user_email)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
-                        // \Mail::to($_mail)->send(new CustomerSendmail($site_url, $site_name, $action_url));
+                        \Mail::to($user_email)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
+                        \Mail::to($_mail)->send(new CustomerSendmail($site_url, $site_name, $action_url));
                     } catch (\Exception $e) {
                     }
                 } elseif ($diff % 6 && $site_days == 180) {
@@ -106,8 +105,8 @@ class TestController extends Controller
                     $site_name = $_site->site_name;
                     $site_url = $_site->url;
                     try {
-                        // \Mail::to($user_email)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
-                        // \Mail::to($_mail)->send(new CustomerSendmail($site_url, $site_name, $action_url));
+                        \Mail::to($user_email)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
+                        \Mail::to($_mail)->send(new CustomerSendmail($site_url, $site_name, $action_url));
                     } catch (\Exception $e) {
                     }
                 } elseif ($diff % 3 && $site_days == 90) {
@@ -121,8 +120,8 @@ class TestController extends Controller
                     $site_name = $_site->site_name;
                     $site_url = $_site->url;
                     try {
-                        // \Mail::to($user_email)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
-                        // \Mail::to($_mail)->send(new CustomerSendmail($site_url, $site_name, $action_url));
+                        \Mail::to($user_email)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
+                        \Mail::to($_mail)->send(new CustomerSendmail($site_url, $site_name, $action_url));
                     } catch (\Exception $e) {
                     }
                 } elseif ($site_days == 30) {
@@ -136,8 +135,8 @@ class TestController extends Controller
                     $site_name = $_site->site_name;
                     $site_url = $_site->url;
                     try {
-                        // \Mail::to($user_email)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
-                        // \Mail::to($_mail)->send(new CustomerSendmail($site_url, $site_name, $action_url));
+                        \Mail::to($user_email)->send(new ReportSendMailCrone($site_url, $site_name, $action_url));
+                        \Mail::to($_mail)->send(new CustomerSendmail($site_url, $site_name, $action_url));
                     } catch (\Exception $e) {
                     }
                 } else {
