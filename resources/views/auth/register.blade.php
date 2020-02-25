@@ -68,7 +68,7 @@
 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
 </div>
 <div class="form-group mb-0 text-center mt-5">
-<button type="submit" class="btn btn-primary" onclick="gtag('event', 'click', {'event_category': 'register','event_label': 'next'});gtag('event', 'conversion', {'send_to': 'AW-672878991/Lv9ECK-S9MUBEI-j7cAC'});">{{ __('Register') }}</button>
+<button type="submit" class="btn btn-primary" onclick="gtag('event', 'conversion', {'send_to': 'AW-672878991/Lv9ECK-S9MUBEI-j7cAC'});">{{ __('Register') }}</button>
 </div>
 </form>
 </div>

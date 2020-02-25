@@ -15,6 +15,14 @@ if ($error) {
 @include('layouts.footer')
 
 @section('content')
+<!-- Event snippet for 購入 conversion page -->
+<script>
+gtag('event', 'conversion', {
+    'send_to': 'AW-672878991/4vN0CIbwgsYBEI-j7cAC',
+    'transaction_id': ''
+});
+</script>
+
 <section class="wrap">
 <div class="container">
 @if ($error)
