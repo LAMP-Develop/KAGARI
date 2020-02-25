@@ -30,11 +30,8 @@
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'UA-79537153-10' {
-  'linker': {
-    'accept_incoming': true
-  }
-});
+gtag('config', 'UA-79537153-10');
+gtag('config', 'AW-672878991');
 </script>
 <!-- Facebook Pixel Code -->
 <script>
