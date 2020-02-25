@@ -36,13 +36,6 @@ gtag('config', 'UA-79537153-15' {
     'accept_incoming': true
   }
 });
-@if(Route::current()->getName() == 'register')
-gtag('config', 'UA-79537153-10' {
-  'linker': {
-    'accept_incoming': true
-  }
-});
-@endif
 </script>
 <!-- Facebook Pixel Code -->
 <script>
