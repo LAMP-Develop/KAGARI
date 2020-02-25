@@ -25,12 +25,11 @@
 <script src="{{ mix('js/app.js') }}"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-79537153-10"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-672878991"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'UA-79537153-10');
 gtag('config', 'AW-672878991');
 </script>
 <!-- Facebook Pixel Code -->
