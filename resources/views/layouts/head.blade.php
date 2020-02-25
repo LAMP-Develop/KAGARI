@@ -31,7 +31,11 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('set', 'linker', {'domains': ['report.kagari.ai']});
 gtag('js', new Date());
-gtag('config', 'UA-79537153-15');
+gtag('config', 'UA-79537153-15' {
+  'linker': {
+    'accept_incoming': true
+  }
+});
 @if(Route::current()->getName() == 'register')
 gtag('config', 'UA-79537153-10' {
   'linker': {
