@@ -24,14 +24,15 @@
 <!-- Scripts -->
 <script src="{{ mix('js/app.js') }}"></script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Ads: 672878991 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-672878991"></script>
 <script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'AW-672878991');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-672878991');
 </script>
+
 <!-- Facebook Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
