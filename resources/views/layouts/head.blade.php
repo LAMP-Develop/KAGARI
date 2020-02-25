@@ -33,7 +33,11 @@ gtag('set', 'linker', {'domains': ['report.kagari.ai']});
 gtag('js', new Date());
 gtag('config', 'UA-79537153-15');
 @if(Route::current()->getName() == 'register')
-gtag('config', 'UA-79537153-10')
+gtag('config', 'UA-79537153-10' {
+  'linker': {
+    'accept_incoming': true
+  }
+});
 @endif
 </script>
 <!-- Facebook Pixel Code -->
