@@ -266,8 +266,16 @@ $comp = 0;
 {{ $comp }}%</span>
 </p>
 </td>
+
 <td class="text-right">
-<span class="text-dark font-weight-bold"><i class="fas fa-yen-sign mr-1"></i>{{ number_format($val[0][0][3]) }}</span>
+@php
+if ($val[0][0][1] != null && $val[0][0][1] != 0) {
+    $click_costs = $val[0][0][2]/$val[0][0][1];
+} else {
+    $click_costs = 0;
+}
+@endphp
+<span class="text-dark font-weight-bold"><i class="fas fa-yen-sign mr-1"></i>{{ number_format($click_costs) }}</span>
 <div class="progress">
 @if($arr_price[0] != 0)
 <div class="progress-bar ka-bg-blue-2" style="width:{{ ($val[0][0][3]/$arr_price[0]*100) }}%" role="progressbar" aria-valuenow="{{ ($val[0][0][3]/$arr_price[0]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>
@@ -275,10 +283,11 @@ $comp = 0;
 </div>
 <p class="text-right mb-0">
 @php
-if ($val[1][0][3] != 0) {
-$comp = round(($val[0][0][3] / $val[1][0][3] - 1) * 100, 2);
+if ($val[1][0][1] != 0) {
+    $click_costs_old = $val[1][0][2]/$val[1][0][1];
+    $comp = round(($click_costs / $click_costs_old - 1) * 100, 2);
 } else {
-$comp = 0;
+    $comp = 0;
 }
 @endphp
 @if($comp <= 0)
@@ -289,6 +298,7 @@ $comp = 0;
 {{ $comp }}%</span>
 </p>
 </td>
+
 <td class="text-right">
 <span class="text-dark font-weight-bold">{{ number_format($val[0][0][4]) }}</span>
 <div class="progress">

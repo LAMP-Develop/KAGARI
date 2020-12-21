@@ -115,7 +115,7 @@ $comp = 0;
 @foreach ($sns as $key => $value)
 <p class="mb-0 overflow-hidden"><span class="float-left">{{ $value[0] }}</span><span class="float-right font-weight-bold h5 text-dark">{{ number_format($value[1]) }}</span></p>
 <div class="progress">
-@if ($key == 0)
+@if ($key == 0 || $sns[0][1] == 0)
 <div class="progress-bar ka-bg-purple-2" style="width:100%" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 @else
 <div class="progress-bar ka-bg-purple-2" style="width:{{ ($value[1]/$sns[0][1]*100) }}%" role="progressbar" aria-valuenow="{{ ($value[1]/$sns[0][1]*100) }}" aria-valuemin="0" aria-valuemax="100"></div>

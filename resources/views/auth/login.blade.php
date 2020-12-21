@@ -8,6 +8,9 @@
 <div class="container">
 <form class="mt-5 form-signin" method="POST" action="{{ route('login') }}">
 @csrf
+<div class="p-3 rounded-lg mb-3 bg-light text-center">
+  <a href="https://kagari.ai/news/20201130/" target="_blank">【重要】サービス終了のお知らせ</a>
+</div>
 <!-- メール -->
 <div class="form-group">
 <label for="email">{{ __('E-Mail Address') }}</label>
@@ -37,8 +40,8 @@
 </div>
 <!-- ログイン・忘れた -->
 <div class="form-group mt-5 mb-0">
-<p class="text-center mb-4"><button type="submit" class="btn btn-primary btn-block">{{ __('Login') }}</button></p>
-<p class="m-0 text-center"><a href="{{ route('register') }}">新規会員登録</a></p>
+<p class="text-center mb-3"><button type="submit" class="btn btn-primary btn-block">{{ __('Login') }}</button></p>
+{{-- <p class="m-0 text-center"><a href="{{ route('register') }}">新規会員登録</a></p> --}}
 @if (Route::has('password.request'))
 <p class="m-0 text-center">
 <a class="btn btn-link" href="{{ route('password.request') }}">

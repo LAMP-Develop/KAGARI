@@ -2,6 +2,10 @@
 <section class="wrap">
 <div class="container">
 
+<div class="p-3 rounded-lg mb-3 bg-light text-center">
+<a href="https://kagari.ai/news/20201130/" target="_blank">【重要】サービス終了のお知らせ</a>
+</div>
+
 <div class="mb-3">
 <div class="input-group">
 <div class="input-group-prepend">
@@ -90,22 +94,22 @@ if ($site_plan == 1 || $site_plan == 2) {
 <div class="">
 <a href="{{ route('send-setting', $site->id) }}" class="btn btn-sm btn-outline-secondary mr-2">メール受信設定</a>
 @if ($trial_flag && ($site->plan == 7 || $site->plan == 8))
-<form class="d-inline-block mr-2" action="{{ route('plan') }}" method="post">
+{{-- <form class="d-inline-block mr-2" action="{{ route('plan') }}" method="post">
 @csrf
 <button class="btn btn-sm btn-outline-secondary" type="submit">プランを選択する</button>
 <input type="hidden" name="site_id" value="{{ $site->id }}">
 <input type="hidden" name="site_url" value="{{ $site->url }}">
 <input type="hidden" name="site_name" value="{{ $site->site_name }}">
-</form>
+</form> --}}
 @else
-<form class="d-inline-block mr-2" action="{{ route('change-plan.form') }}" method="post">
+{{-- <form class="d-inline-block mr-2" action="{{ route('change-plan.form') }}" method="post">
 @csrf
 <button class="btn btn-sm btn-outline-secondary" type="submit">プランの変更</button>
 <input type="hidden" name="site_id" value="{{ $site->id }}">
 <input type="hidden" name="site_url" value="{{ $site->url }}">
 <input type="hidden" name="site_name" value="{{ $site->site_name }}">
 <input type="hidden" name="site_plan" value="{{ $site->plan }}">
-</form>
+</form> --}}
 @endif
 <a href="{{ route('sites-edit', $site->id) }}" class="btn btn-sm btn-outline-secondary">サイト情報変更</a>
 </div>
@@ -116,13 +120,17 @@ if ($site_plan == 1 || $site_plan == 2) {
 @endif
 </ul>
 @if (count($add_sites) == 0)
-<div class="mt-5 text-center">
+@if (Auth::id() !== 108)
+<div class="mt-5 text-center" style="display: none">
 <a href="{{ route('addsite') }}" class="btn btn-primary">サイトを追加する</a>
 </div>
+@endif
 @else
-<div class="mt-3">
+@if (Auth::id() !== 108)
+<div class="mt-3" style="display: none">
 <a href="{{ route('addsite') }}" class="text-primary"><i class="fas fa-plus mr-1"></i>サイトを追加する</a>
 </div>
+@endif
 @endif
 </div>
 </section>
